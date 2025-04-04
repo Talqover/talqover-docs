@@ -27,15 +27,12 @@
           {
             "group": "API Documentation",
             "pages": [
-              "endpoint/introduction"
+              "api-reference/introduction"
             ]
           },
           {
             "group": "Endpoints",
-            "openapi": {
-              "source": "api-reference/openapi.json",
-              "directory": "api-reference"
-            }
+            "openapi": "api-reference/openapi.json",
           }
         ]
       }
