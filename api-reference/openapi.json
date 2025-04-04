@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/api/v1",
+      "url": "http://142.93.75.161:6001/api/v1",
       "description": "API V1"
     }
   ],
@@ -34,6 +34,20 @@
           },
           "401": {
             "description": "Unauthenticated"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X GET \\\n  'http://142.93.75.161:6001/api/v1/user' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('http://142.93.75.161:6001/api/v1/user', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('http://142.93.75.161:6001/api/v1/user', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -134,12 +148,194 @@
             "required": true,
             "schema": {
               "type": "string"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "string",
+                    "description": "Phone number to call"
+                  }
+                }
+              },
+              "example": {
+                "to": "+1234567890"
+              }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Call initiated successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "123e4567-e89b-12d3-a456-426614174000",
+                  "sid": "CA123456789",
+                  "status": "initiated",
+                  "to": "+1234567890",
+                  "from": "+0987654321",
+                  "created_at": "2024-03-20T10:00:00Z"
+                }
+              }
+            }
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X POST \\\n  'http://142.93.75.161:6001/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"to\": \"+1234567890\"\n  }'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('http://142.93.75.161:6001/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890'\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('http://142.93.75.161:6001/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
+    "/agents/{agent}/end-call": {
+      "post": {
+        "tags": ["Agents"],
+        "summary": "End an active call",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "call_sid": {
+                    "type": "string",
+                    "description": "Twilio Call SID"
+                  }
+                }
+              },
+              "example": {
+                "call_sid": "CA123456789"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Call ended successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "123e4567-e89b-12d3-a456-426614174000",
+                  "sid": "CA123456789",
+                  "status": "completed",
+                  "duration": 300,
+                  "ended_at": "2024-03-20T10:05:00Z"
+                }
+              }
+            }
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X POST \\\n  'http://142.93.75.161:6001/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/end-call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"call_sid\": \"CA123456789\"\n  }'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('http://142.93.75.161:6001/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/end-call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'call_sid' => 'CA123456789'\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('http://142.93.75.161:6001/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/end-call', {\n  call_sid: 'CA123456789'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
+    "/agents/{agent}/active-call/{phone}": {
+      "get": {
+        "tags": ["Agents"],
+        "summary": "Get active call for a phone number",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          {
+            "name": "phone",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "+1234567890"
           }
         ],
         "responses": {
           "200": {
-            "description": "Call initiated successfully"
+            "description": "Active call found",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": "123e4567-e89b-12d3-a456-426614174000",
+                    "sid": "CA123456789",
+                    "status": "in-progress",
+                    "to": "+1234567890",
+                    "from": "+0987654321",
+                    "started_at": "2024-03-20T10:00:00Z",
+                    "duration": 180
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "No active calls found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "No active calls found"
+                }
+              }
+            }
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X GET \\\n  'http://142.93.75.161:6001/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/active-call/+1234567890' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('http://142.93.75.161:6001/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/active-call/+1234567890', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('http://142.93.75.161:6001/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/active-call/+1234567890', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -173,6 +369,20 @@
           "404": {
             "description": "File not found"
           }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X GET \\\n  'http://142.93.75.161:6001/api/v1/tts/audio123.mp3' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  --output audio123.mp3"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('http://142.93.75.161:6001/api/v1/tts/audio123.mp3', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n    'sink' => 'audio123.mp3', // Save to file\n]);"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\nconst fs = require('fs');\n\nconst response = await axios.get('http://142.93.75.161:6001/api/v1/tts/audio123.mp3', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  },\n  responseType: 'stream'\n});\n\nresponse.data.pipe(fs.createWriteStream('audio123.mp3'));"
+          }
         }
       }
     }
@@ -183,21 +393,29 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "string",
+            "format": "uuid"
           },
           "name": {
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           }
+        },
+        "example": {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "name": "John Doe",
+          "email": "john@example.com"
         }
       },
       "Agent": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "string",
+            "format": "uuid"
           },
           "name": {
             "type": "string"
@@ -209,14 +427,89 @@
             "type": "string"
           },
           "language": {
-            "type": "string"
+            "type": "string",
+            "enum": ["en", "pt", "es"]
           },
           "voice_id": {
-            "type": "integer"
+            "type": "string",
+            "format": "uuid"
           },
           "initial_message": {
             "type": "string"
+          },
+          "interrupt_sensitivity": {
+            "type": "string"
+          },
+          "noise_suppression": {
+            "type": "boolean"
+          },
+          "endpointing_sensitivity": {
+            "type": "string"
+          },
+          "conversation_speed": {
+            "type": "number"
+          },
+          "enable_recording": {
+            "type": "boolean"
+          },
+          "provider": {
+            "type": "string"
           }
+        },
+        "example": {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "name": "Customer Service Agent",
+          "description": "A helpful customer service agent",
+          "prompt": "You are a customer service agent...",
+          "language": "en",
+          "voice_id": "456e4567-e89b-12d3-a456-426614174000",
+          "initial_message": "Hello, how can I help you today?",
+          "interrupt_sensitivity": "medium",
+          "noise_suppression": true,
+          "endpointing_sensitivity": "medium",
+          "conversation_speed": 1.0,
+          "enable_recording": true,
+          "provider": "openai"
+        }
+      },
+      "Call": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sid": {
+            "type": "string",
+            "description": "Twilio Call SID"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["initiated", "ringing", "in-progress", "completed", "failed"]
+          },
+          "to": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Call duration in seconds"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "sid": "CA123456789",
+          "status": "in-progress",
+          "to": "+1234567890",
+          "from": "+0987654321",
+          "duration": 180,
+          "created_at": "2024-03-20T10:00:00Z"
         }
       }
     },
