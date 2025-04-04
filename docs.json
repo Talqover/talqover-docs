@@ -31,13 +31,11 @@
             ]
           },
           {
-            "group": "Endpoint Examples",
-            "pages": [
-              "endpoint/endpoint/get",
-              "endpoint/endpoint/create",
-              "endpoint/endpoint/delete",
-              "endpoint/endpoint/webhook"
-            ]
+            "group": "Endpoints",
+            "openapi": {
+              "source": "openapi.json",
+              "directory": "api-reference"
+            }
           }
         ]
       }
