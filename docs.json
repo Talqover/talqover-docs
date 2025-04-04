@@ -1,72 +1,453 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Talqover",
-  "colors": {
-    "primary": "#155DFC",
-    "light": "#669BFF",
-    "dark": "#15803D"
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Talqover API Documentation",
+    "version": "1.0.0",
+    "description": "API documentation for Talqover"
   },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
+  "servers": [
+    {
+      "url": "/api/v1",
+      "description": "API V1"
+    }
+  ],
+  "paths": {
+    "/user": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get authenticated user information",
+        "security": [
           {
-            "group": "Get Started",
-            "pages": [
-              "introduction"
-            ]
+            "sanctum": []
           }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
+        ],
+        "responses": {
+          "200": {
+            "description": "User information retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          }
+        }
+      }
+    },
+    "/calls/welcome": {
+      "post": {
+        "tags": ["Calls"],
+        "summary": "Handle welcome message for calls",
+        "responses": {
+          "200": {
+            "description": "Welcome message processed successfully"
+          }
+        }
+      }
+    },
+    "/calls/welcome_ws": {
+      "post": {
+        "tags": ["Calls"],
+        "summary": "Handle websocket welcome message",
+        "responses": {
+          "200": {
+            "description": "Websocket welcome message processed successfully"
+          }
+        }
+      }
+    },
+    "/calls/retrieve/{callSid}": {
+      "post": {
+        "tags": ["Calls"],
+        "summary": "Retrieve call information",
+        "parameters": [
           {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
+            "name": "callSid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Call information retrieved successfully"
+          }
+        }
+      }
+    },
+    "/calls/{call}/recording": {
+      "post": {
+        "tags": ["Calls"],
+        "summary": "Handle call recording",
+        "parameters": [
+          {
+            "name": "call",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recording handled successfully"
+          }
+        }
+      }
+    },
+    "/agents": {
+      "get": {
+        "tags": ["Agents"],
+        "summary": "Get list of agents",
+        "responses": {
+          "200": {
+            "description": "List of agents retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Agent"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agents/{agent}/call": {
+      "post": {
+        "tags": ["Agents"],
+        "summary": "Make a call with an agent",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "string",
+                    "description": "Phone number to call"
+                  }
+                }
+              },
+              "example": {
+                "to": "+1234567890"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Call initiated successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "123e4567-e89b-12d3-a456-426614174000",
+                  "sid": "CA123456789",
+                  "status": "initiated",
+                  "to": "+1234567890",
+                  "from": "+0987654321",
+                  "created_at": "2024-03-20T10:00:00Z"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agents/{agent}/end-call": {
+      "post": {
+        "tags": ["Agents"],
+        "summary": "End an active call",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "call_sid": {
+                    "type": "string",
+                    "description": "Twilio Call SID"
+                  }
+                }
+              },
+              "example": {
+                "call_sid": "CA123456789"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Call ended successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "123e4567-e89b-12d3-a456-426614174000",
+                  "sid": "CA123456789",
+                  "status": "completed",
+                  "duration": 300,
+                  "ended_at": "2024-03-20T10:05:00Z"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agents/{agent}/active-call/{phone}": {
+      "get": {
+        "tags": ["Agents"],
+        "summary": "Get active call for a phone number",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
           },
           {
-            "group": "Endpoints",
-            "openapi": "api-reference/openapi.json"
+            "name": "phone",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "+1234567890"
           }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Community",
-          "href": "https://discord.gg/bnNGrrGQ",
-          "icon": "slack"
+        ],
+        "responses": {
+          "200": {
+            "description": "Active call found",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": "123e4567-e89b-12d3-a456-426614174000",
+                    "sid": "CA123456789",
+                    "status": "in-progress",
+                    "to": "+1234567890",
+                    "from": "+0987654321",
+                    "started_at": "2024-03-20T10:00:00Z",
+                    "duration": 180
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "No active calls found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "No active calls found"
+                }
+              }
+            }
+          }
         }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:contact@talqover.com"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.talqover.com"
+    },
+    "/tts/{filename}": {
+      "get": {
+        "tags": ["TTS"],
+        "summary": "Get TTS audio file",
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Audio file retrieved successfully",
+            "content": {
+              "audio/mpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "File not found"
+          }
+        }
+      }
     }
   },
-  "footer": {
-    "socials": {
-      "linkedin": "https://linkedin.com/company/talqover"
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "example": {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "name": "John Doe",
+          "email": "john@example.com"
+        }
+      },
+      "Agent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string",
+            "enum": ["en", "pt", "es"]
+          },
+          "voice_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "initial_message": {
+            "type": "string"
+          },
+          "interrupt_sensitivity": {
+            "type": "string"
+          },
+          "noise_suppression": {
+            "type": "boolean"
+          },
+          "endpointing_sensitivity": {
+            "type": "string"
+          },
+          "conversation_speed": {
+            "type": "number"
+          },
+          "enable_recording": {
+            "type": "boolean"
+          },
+          "provider": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "name": "Customer Service Agent",
+          "description": "A helpful customer service agent",
+          "prompt": "You are a customer service agent...",
+          "language": "en",
+          "voice_id": "456e4567-e89b-12d3-a456-426614174000",
+          "initial_message": "Hello, how can I help you today?",
+          "interrupt_sensitivity": "medium",
+          "noise_suppression": true,
+          "endpointing_sensitivity": "medium",
+          "conversation_speed": 1.0,
+          "enable_recording": true,
+          "provider": "openai"
+        }
+      },
+      "Call": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sid": {
+            "type": "string",
+            "description": "Twilio Call SID"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["initiated", "ringing", "in-progress", "completed", "failed"]
+          },
+          "to": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Call duration in seconds"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "sid": "CA123456789",
+          "status": "in-progress",
+          "to": "+1234567890",
+          "from": "+0987654321",
+          "duration": 180,
+          "created_at": "2024-03-20T10:00:00Z"
+        }
+      }
+    },
+    "securitySchemes": {
+      "sanctum": {
+        "type": "http",
+        "scheme": "bearer"
+      }
     }
   }
-}
+} 
