@@ -16,7 +16,7 @@
           {
             "group": "Get Started",
             "pages": [
-              "introduction",
+              "introduction"
             ]
           }
         ]
@@ -46,7 +46,7 @@
           "anchor": "Community",
           "href": "https://discord.gg/bnNGrrGQ",
           "icon": "slack"
-        },
+        }
       ]
     }
   },
