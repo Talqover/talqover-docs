@@ -1,0 +1,184 @@
+---
+title: "Autenticação"
+description: "Aprenda como autenticar com a API Talqover usando tokens de ambiente"
+---
+
+# Autenticação
+
+Todas as solicitações para a API Talqover requerem autenticação usando tokens de ambiente. Este guia explica como obter seu token e usá-lo em solicitações da API.
+
+## Obtendo Seu Token de Ambiente
+
+### Passo 1: Acessar Seu Painel
+
+1. **Faça login** na sua conta Talqover em [talqover.app](https://talqover.app)
+2. **Navegue até Conta** na barra lateral esquerda
+3. **Clique em "Ambientes"**
+
+### Passo 2: Copiar Seu Token
+
+Seus tokens de ambiente serão exibidos na seção Ambientes. Cada ambiente tem seu próprio token que começa com `talq_` seguido por uma longa string de caracteres.
+
+<Info>
+  Formato de exemplo do token: `talq_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`
+</Info>
+
+<Warning>
+  **Aviso de Segurança**: Seu token de ambiente é como uma senha. Nunca o compartilhe publicamente, cometa-o no controle de versão ou inclua-o no código do lado do cliente.
+</Warning>
+
+## Usando Seu Token em Solicitações da API
+
+### Cabeçalhos HTTP
+
+Inclua seu token no cabeçalho `Authorization` de todas as solicitações da API:
+
+```bash
+Authorization: Bearer talq_seu_token_de_ambiente_aqui
+```
+
+### Exemplo de Solicitação cURL
+
+```bash
+curl -X POST "https://api.talqover.com/api/v1/agents/agent_123456/call" \
+  -H "Authorization: Bearer talq_seu_token_de_ambiente_aqui" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+1234567890"
+  }'
+```
+
+### Exemplo de Solicitação JavaScript
+
+```javascript
+const response = await fetch('https://api.talqover.com/api/v1/agents/agent_123456/call', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_seu_token_de_ambiente_aqui',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    to: '+1234567890'
+  })
+});
+```
+
+### Exemplo de Solicitação Python
+
+```python
+import requests
+
+headers = {
+    'Authorization': 'Bearer talq_seu_token_de_ambiente_aqui',
+    'Content-Type': 'application/json'
+}
+
+data = {
+    'to': '+1234567890'
+}
+
+response = requests.post(
+    'https://api.talqover.com/api/v1/agents/agent_123456/call',
+    headers=headers,
+    json=data
+)
+```
+
+## Variáveis de Ambiente
+
+Por segurança, armazene seu token em variáveis de ambiente:
+
+### Bash/Linux/macOS
+
+```bash
+export TALQOVER_TOKEN="talq_seu_token_de_ambiente_aqui"
+```
+
+### Windows (Prompt de Comando)
+
+```cmd
+set TALQOVER_TOKEN=talq_seu_token_de_ambiente_aqui
+```
+
+### Windows (PowerShell)
+
+```powershell
+$env:TALQOVER_TOKEN="talq_seu_token_de_ambiente_aqui"
+```
+
+### Usando Variáveis de Ambiente no Código
+
+```javascript
+// JavaScript
+const token = process.env.TALQOVER_TOKEN;
+```
+
+```python
+# Python
+import os
+token = os.environ.get('TALQOVER_TOKEN')
+```
+
+```php
+// PHP
+$token = $_ENV['TALQOVER_TOKEN'];
+```
+
+## Melhores Práticas de Segurança do Token
+
+### ✅ Faça
+
+- Armazene tokens em variáveis de ambiente
+- Use serviços seguros de gerenciamento de segredos
+- Rotacione tokens regularmente
+- Use tokens diferentes para ambientes diferentes (dev, staging, prod)
+
+### ❌ Não Faça
+
+- Nunca cometa tokens no controle de versão
+- Não compartilhe tokens em repositórios públicos
+- Evite codificar tokens diretamente em sua aplicação
+- Não inclua tokens no código do lado do cliente
+
+## Gerenciamento de Token
+
+### Regenerando Seu Token
+
+Se seu token for comprometido ou você precisar rotacioná-lo:
+
+1. **Vá para Conta** → **Ambientes** no seu painel
+2. **Clique em "Regenerar Token"**
+3. **Copie o novo token**
+4. **Atualize suas aplicações** com o novo token
+5. **Delete o token antigo** do seu código
+
+### Expiração do Token
+
+Tokens de ambiente não expiram automaticamente, mas você pode regenerá-los a qualquer momento por motivos de segurança.
+
+## Solução de Problemas
+
+### Erros Comuns de Autenticação
+
+| Código de Erro | Descrição | Solução |
+|----------------|-----------|---------|
+| `401 Unauthorized` | Token inválido ou ausente | Verifique se seu token está correto e incluído no cabeçalho Authorization |
+| `403 Forbidden` | Token não tem permissões necessárias | Entre em contato com o suporte se acreditar que isso é um erro |
+| `429 Too Many Requests` | Limite de taxa excedido | Aguarde antes de fazer mais solicitações |
+
+### Testando Seu Token
+
+Você pode testar se seu token está funcionando fazendo uma solicitação simples:
+
+```bash
+curl -H "Authorization: Bearer talq_seu_token_de_ambiente_aqui" \
+  https://talqover.app/api/v1/health
+```
+
+Se bem-sucedido, você deve receber uma resposta indicando que a API está saudável.
+
+## Próximos Passos
+
+- **Aprenda sobre agentes de voz** em nosso [Guia de Configuração do Agente de Voz](/pt-br/guides/voice-agent-setup)
+- **Faça sua primeira chamada** em nosso [Tutorial da Primeira Chamada](/pt-br/getting-started/first-call)
+- **Explore nossa referência da API** para documentação detalhada de endpoints

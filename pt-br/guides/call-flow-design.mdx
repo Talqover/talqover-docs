@@ -1,0 +1,110 @@
+---
+title: "Design de Fluxo de Chamadas"
+description: "Aprenda como estruturar conversas eficazes e projetar fluxos de chamadas inteligentes para seus agentes de voz"
+---
+
+# Design de Fluxo de Chamadas
+
+Os fluxos de chamadas são a espinha dorsal das interações de voz eficazes no Talqover. Eles definem como seu agente conduz conversas, se adapta às solicitações dos clientes e fornece soluções significativas. Este guia irá ensiná-lo como projetar fluxos que pareçam naturais e alcancem seus objetivos de negócio.
+
+## Entendendo Fluxos de Chamadas
+
+### O que é um Fluxo de Chamada?
+
+Um fluxo de chamada é um **caminho de conversa estruturado** que orienta como seu agente de voz interage com os chamadores. Ele define:
+
+- **Estrutura da conversa** - Como as interações começam, progridem e terminam
+- **Respostas adaptativas** - Como o agente se ajusta a diferentes solicitações dos clientes
+- **Pontos de decisão** - Quando e como ramificar conversas
+- **Caminhos de resolução** - Como resolver problemas ou atender solicitações
+- **Gatilhos de escalação** - Quando envolver agentes humanos
+
+### Componentes do Fluxo
+
+Todo fluxo de chamada eficaz inclui estes elementos:
+
+#### 1. Saudação e Introdução
+
+A conversa começa com uma abertura acolhedora:
+
+```
+"Olá! Obrigado por ligar para [Nome da Empresa]. 
+Sou seu assistente de IA, aqui para ajudar com qualquer pergunta 
+sobre nossos serviços. Como posso ajudá-lo hoje?"
+```
+
+#### 2. Entendimento da Solicitação
+
+O agente identifica o que o cliente precisa:
+
+```
+Cliente: "Preciso verificar meu pedido"
+Agente: "Ficarei feliz em ajudá-lo a verificar o status do seu pedido. 
+Você pode fornecer o número do pedido ou o endereço de email 
+que usou para a compra?"
+```
+
+#### 3. Coleta de Informações
+
+Colete detalhes necessários para fornecer assistência:
+
+- **Números de pedido** - Para consultas de status
+- **Informações da conta** - Para serviço personalizado
+- **Detalhes do problema** - Para solução de problemas
+- **Preferências** - Para recomendações
+
+#### 4. Resolução e Ação
+
+Forneça soluções ou tome ações apropriadas:
+
+```
+"Encontrei seu pedido #12345. Ele foi enviado ontem e 
+deve chegar até sexta-feira. Estou enviando um link de rastreamento 
+para seu email. Há mais alguma coisa que posso ajudar?"
+```
+
+#### 5. Confirmação e Encerramento
+
+Garanta satisfação e encerre profissionalmente:
+
+```
+"Perfeito! Você deve receber o email de rastreamento em 
+alguns minutos. Há mais alguma coisa que posso ajudá-lo 
+hoje? Obrigado por ligar para [Empresa]!"
+```
+
+## Princípios de Design de Fluxo
+
+### 1. Estrutura de Conversa Natural
+
+Projete fluxos que espelhem padrões de conversa humana:
+
+#### Divulgação Progressiva
+
+Comece amplo, depois seja específico:
+
+```
+Nível 1: "Como posso ajudá-lo hoje?"
+Nível 2: "Vejo que você está perguntando sobre cobrança. Que pergunta 
+         específica você tem sobre sua conta?"
+Nível 3: "Deixe-me procurar sua última fatura. Você pode confirmar 
+         o endereço de email da sua conta?"
+```
+
+#### Respostas Contextuais
+
+Adapte baseado no que foi dito anteriormente:
+
+```
+Se o cliente menciona "urgente":
+"Entendo que isso é urgente. Deixe-me priorizar sua solicitação 
+```
+
+## Próximos Passos
+
+Após aprender sobre design de fluxo de chamadas:
+
+- **Configure seu agente de voz** em nosso [Guia de Configuração do Agente de Voz](/pt-br/guides/voice-agent-setup)
+- **Explore opções de integração** em nossos [Exemplos de Integração](/pt-br/guides/integration-examples)
+- **Revise dicas de otimização** em nosso [Guia de Melhores Práticas](/pt-br/guides/best-practices)
+- **Comece a fazer chamadas** com nossa [Documentação da API](/pt-br/api-reference/endpoints/make-call)

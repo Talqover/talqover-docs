@@ -1,0 +1,110 @@
+---
+title: "Exemplos de Integração"
+description: "Exemplos reais de como integrar o Talqover com seus sistemas de negócio e fluxos de trabalho existentes"
+---
+
+# Exemplos de Integração
+
+O Talqover se integra perfeitamente com seus sistemas de negócio existentes para criar fluxos de trabalho automatizados poderosos. Este guia fornece exemplos práticos de como as empresas usam o Talqover para melhorar seu atendimento ao cliente, vendas e processos operacionais.
+
+## Visão Geral
+
+O Talqover fornece um agente de voz de IA do lado do cliente que pode conversar naturalmente e tem acesso a ferramentas (ações) que você configura. O agente de IA gerencia a conversa enquanto sua aplicação do lado do cliente gerencia a lógica de negócio e integrações.
+
+## Como Funciona
+
+1. **Agente de IA**: Gerencia conversa natural com os chamadores
+2. **Ferramentas/Ações**: Disponíveis para a IA durante as conversas
+3. **Lógica do Lado do Cliente**: Sua aplicação processa as ações e gerencia integrações
+4. **Sistemas de Negócio**: Seus sistemas existentes lidam com as operações reais
+
+## Tipos de Ações Disponíveis
+
+O Talqover fornece sete tipos de ações que o agente de IA pode usar durante as conversas:
+
+### 1. **Encerrar Conversa** (`end_conversation`)
+O agente de IA encerra a chamada graciosamente com uma mensagem de despedida.
+
+### 2. **DTMF** (`dtmf`)
+O agente de IA coleta entrada de toque do chamador (ex: "Pressione 1 para vendas, 2 para suporte").
+
+### 3. **Transferir Chamada** (`transfer_call`)
+O agente de IA transfere a chamada para um número de telefone ou extensão específica.
+
+### 4. **Capturar Dados** (`capture_data`)
+O agente de IA envia dados da conversa para sua aplicação do lado do cliente para processamento.
+
+### 5. **Colocar em Espera** (`set_on_hold`)
+O agente de IA coloca o chamador em espera por uma duração especificada.
+
+### 6. **Conhecimento Externo** (`external`)
+O agente de IA faz solicitações para sua aplicação do lado do cliente para recuperar ou processar informações.
+
+### 7. **Adicionar à Conferência** (`add_to_conference`)
+*Atualmente comentado na interface - o agente de IA adiciona o chamador a uma conferência.
+
+## Configuração de Ação
+
+Cada ação pode ser configurada com:
+
+- **Nome**: Nome da ação legível (apenas letras e espaços)
+- **Descrição**: Quando/como o agente de IA deve usar esta ação
+- **Tipo**: Um dos sete tipos de ação acima
+- **URL**: Para ações externas e capture_data - seu endpoint do lado do cliente
+- **URL de Autorização**: Endpoint de autenticação opcional para sua aplicação
+- **Entradas**: Para ações externas e capture_data - parâmetros que a IA enviará
+- **Transferir Para**: Para ações transfer_call - número de telefone de destino
+- **Duração da Espera**: Para ações set_on_hold - duração em segundos
+
+## Tipos de Entrada
+
+As ações podem aceitar estes tipos de entrada:
+- **String**: Dados de texto (nomes, descrições, etc.)
+- **Number**: Valores numéricos (quantidades, durações, etc.)
+- **Boolean**: Valores verdadeiro/falso (flags, toggles, etc.)
+
+## Integração do Lado do Cliente
+
+Sua aplicação do lado do cliente gerencia a lógica de negócio real:
+
+- **Processa solicitações de ação** do agente de IA
+- **Conecta aos seus sistemas de negócio** (CRM, bancos de dados, APIs)
+- **Executa operações** baseadas em solicitações do agente de IA
+- **Retorna resultados** para o agente de IA para continuação da conversa
+- **Gerencia fluxo de dados** entre o agente de IA e seus sistemas
+
+## Exemplos de Tipos de Ação
+
+### Ação Encerrar Conversa
+```
+Nome da Ação: "Agradecer Cliente e Encerrar"
+Tipo: end_conversation
+Descrição: "Encerrar a chamada com uma mensagem educada de agradecimento após resolver o problema do cliente"
+
+Caso de Uso: Após resolver com sucesso uma consulta do cliente, encerrar a chamada profissionalmente.
+```
+
+### Ação DTMF
+```
+Nome da Ação: "Seleção de Menu"
+Tipo: dtmf
+Descrição: "Coletar escolha do menu do cliente para roteamento para departamento apropriado"
+
+Caso de Uso: "Pressione 1 para vendas, 2 para suporte, 3 para cobrança" - coletar a escolha do cliente.
+```
+
+### Ação Transferir Chamada
+```
+Nome da Ação: "Transferir para Equipe de Vendas"
+Tipo: transfer_call
+Transferir Para: "+55-11-99999-9999"
+```
+
+## Próximos Passos
+
+Após aprender sobre integrações:
+
+- **Configure seu agente de voz** em nosso [Guia de Configuração do Agente de Voz](/pt-br/guides/voice-agent-setup)
+- **Aprenda sobre design de fluxo de chamadas** em nosso [Guia de Design de Fluxo de Chamadas](/pt-br/guides/call-flow-design)
+- **Revise dicas de otimização** em nosso [Guia de Melhores Práticas](/pt-br/guides/best-practices)
+- **Comece a fazer chamadas** com nossa [Documentação da API](/pt-br/api-reference/endpoints/make-call)
