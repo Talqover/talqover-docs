@@ -9,7 +9,7 @@ Comece a usar a plataforma Talqover AI Voice Agent em apenas 5 minutos. Este gui
 
 ## Pré-requisitos
 
-- Uma conta Talqover (cadastre-se em [app.talqover.com](https://app.talqover.com))
+- Uma conta Talqover (cadastre-se em [talqover.app](https://talqover.app))
 - Um número de telefone para teste
 - Conhecimento básico de requisições HTTP
 
@@ -19,9 +19,9 @@ Seu token de ambiente é sua chave de API para autenticar requisições para a A
 
 ### Como Obter Seu Token:
 
-1. **Faça login no seu painel Talqover** em [app.talqover.com](https://app.talqover.com)
-2. **Navegue para Configurações** → **Chaves de API**
-3. **Copie seu Token de Ambiente** (começa com `talq_`)
+1. **Faça login no seu painel Talqover** em [talqover.app](https://talqover.app)
+2. **Navegue para Conta** → **Ambientes**
+3. **Copie seu Token de Ambiente** da lista (começa com `talq_`)
 
 <Warning>
   Mantenha seu token de ambiente seguro e nunca o compartilhe publicamente. Trate-o como uma senha.
@@ -60,7 +60,7 @@ POST /api/v1/agents/{agent_id}/call
 ### Exemplo de Requisição
 
 ```bash
-curl -X POST "https://api.talqover.com/api/v1/agents/agent_123456/call" \
+curl -X POST "https://talqover.app/api/v1/agents/agent_123456/call" \
   -H "Authorization: Bearer talq_seu_token_de_ambiente_aqui" \
   -H "Content-Type: application/json" \
   -d '{

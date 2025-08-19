@@ -11,13 +11,13 @@ All requests to the Talqover API require authentication using environment tokens
 
 ### Step 1: Access Your Dashboard
 
-1. **Log in** to your Talqover account at [app.talqover.com](https://app.talqover.com)
-2. **Navigate to Settings** in the left sidebar
-3. **Click on "API Keys"**
+1. **Log in** to your Talqover account at [talqover.app](https://talqover.app)
+2. **Navigate to Account** in the left sidebar
+3. **Click on "Environments"**
 
 ### Step 2: Copy Your Token
 
-Your environment token will be displayed in the API Keys section. It starts with `talq_` followed by a long string of characters.
+Your environment tokens will be displayed in the Environments section. Each environment has its own token that starts with `talq_` followed by a long string of characters.
 
 <Info>
   Example token format: `talq_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`
@@ -146,7 +146,7 @@ $token = $_ENV['TALQOVER_TOKEN'];
 
 If your token is compromised or you need to rotate it:
 
-1. **Go to Settings** → **API Keys** in your dashboard
+1. **Go to Account** → **Environments** in your dashboard
 2. **Click "Regenerate Token"**
 3. **Copy the new token**
 4. **Update your applications** with the new token
@@ -172,7 +172,7 @@ You can test if your token is working by making a simple request:
 
 ```bash
 curl -H "Authorization: Bearer talq_your_environment_token_here" \
-  https://api.talqover.com/api/v1/health
+  https://talqover.app/api/v1/health
 ```
 
 If successful, you should receive a response indicating the API is healthy.
