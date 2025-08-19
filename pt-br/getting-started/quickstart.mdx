@@ -1,0 +1,102 @@
+---
+title: "Guia de Início Rápido"
+description: "Comece a usar o Talqover em 5 minutos - aprenda como obter seu ID de agente e token de ambiente"
+---
+
+# Guia de Início Rápido
+
+Comece a usar a plataforma Talqover AI Voice Agent em apenas 5 minutos. Este guia irá orientá-lo através da configuração do seu primeiro agente de voz e da realização da sua primeira chamada.
+
+## Pré-requisitos
+
+- Uma conta Talqover (cadastre-se em [app.talqover.com](https://app.talqover.com))
+- Um número de telefone para teste
+- Conhecimento básico de requisições HTTP
+
+## Passo 1: Obter Seu Token de Ambiente
+
+Seu token de ambiente é sua chave de API para autenticar requisições para a API Talqover.
+
+### Como Obter Seu Token:
+
+1. **Faça login no seu painel Talqover** em [app.talqover.com](https://app.talqover.com)
+2. **Navegue para Configurações** → **Chaves de API**
+3. **Copie seu Token de Ambiente** (começa com `talq_`)
+
+<Warning>
+  Mantenha seu token de ambiente seguro e nunca o compartilhe publicamente. Trate-o como uma senha.
+</Warning>
+
+## Passo 2: Criar Seu Primeiro Agente de Voz
+
+Agentes de voz são as personalidades de IA que gerenciam suas chamadas. Você precisa criar um antes de fazer chamadas.
+
+### Como Criar um Agente de Voz:
+
+1. **Vá para Agentes de Voz** no seu painel
+2. **Clique em "Criar Novo Agente"**
+3. **Configure seu agente:**
+   - **Nome**: Dê um nome descritivo ao seu agente (ex: "Agente de Atendimento")
+   - **Voz**: Escolha uma personalidade de voz
+   - **Idioma**: Selecione o idioma para conversas
+   - **Fluxo de Chamada**: Projete como seu agente deve gerenciar conversas
+4. **Salve seu agente**
+5. **Copie o ID do Agente** (você precisará disso para chamadas da API)
+
+<Tip>
+  Comece com um fluxo de chamada simples para teste. Você pode torná-lo mais complexo depois.
+</Tip>
+
+## Passo 3: Fazer Sua Primeira Chamada
+
+Agora você está pronto para fazer sua primeira chamada usando a API Talqover!
+
+### Endpoint da API
+
+```
+POST /api/v1/agents/{agent_id}/call
+```
+
+### Exemplo de Requisição
+
+```bash
+curl -X POST "https://api.talqover.com/api/v1/agents/agent_123456/call" \
+  -H "Authorization: Bearer talq_seu_token_de_ambiente_aqui" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+1234567890"
+  }'
+```
+
+### Exemplo de Resposta
+
+```json
+{
+  "call_id": "call_789012",
+  "agent_id": "agent_123456",
+  "to": "+1234567890",
+  "status": "initiated",
+  "created_at": "2024-01-15T10:30:00Z",
+  "estimated_duration": 120
+}
+```
+
+## Passo 4: Monitorar Sua Chamada
+
+Após iniciar uma chamada, você pode:
+
+1. **Verificar o status da chamada** no seu painel
+2. **Ouvir gravações da chamada** (se habilitado)
+3. **Ver transcrições da chamada** (se habilitado)
+4. **Monitorar análises da chamada**
+
+## Próximos Passos
+
+- **Aprenda sobre fluxos de chamada** em nosso [Guia de Design de Fluxo de Chamada](/pt-br/guides/call-flow-design)
+- **Explore exemplos de integração** em nossos [Exemplos de Integração](/pt-br/guides/integration-examples)
+- **Confira nossos SDKs** para integração mais fácil
+- **Junte-se à nossa comunidade** no [Discord](https://discord.gg/RMP4bpFrCF)
+
+<Check>
+  Parabéns! Você configurou com sucesso o Talqover e fez sua primeira chamada com IA.
+</Check>

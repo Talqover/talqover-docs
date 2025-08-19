@@ -1,0 +1,102 @@
+---
+title: "Quickstart Guide"
+description: "Get up and running with Talqover in 5 minutes - learn how to get your agent ID and environment token"
+---
+
+# Quickstart Guide
+
+Get started with Talqover AI Voice Agent platform in just 5 minutes. This guide will walk you through setting up your first voice agent and making your first call.
+
+## Prerequisites
+
+- A Talqover account (sign up at [app.talqover.com](https://app.talqover.com))
+- A phone number for testing
+- Basic knowledge of HTTP requests
+
+## Step 1: Get Your Environment Token
+
+Your environment token is your API key for authenticating requests to the Talqover API.
+
+### How to Get Your Token:
+
+1. **Log in to your Talqover dashboard** at [app.talqover.com](https://app.talqover.com)
+2. **Navigate to Settings** → **API Keys**
+3. **Copy your Environment Token** (it starts with `talq_`)
+
+<Warning>
+  Keep your environment token secure and never share it publicly. Treat it like a password.
+</Warning>
+
+## Step 2: Create Your First Voice Agent
+
+Voice agents are the AI personalities that handle your calls. You need to create one before making calls.
+
+### How to Create a Voice Agent:
+
+1. **Go to Voice Agents** in your dashboard
+2. **Click "Create New Agent"**
+3. **Configure your agent:**
+   - **Name**: Give your agent a descriptive name (e.g., "Customer Service Agent")
+   - **Voice**: Choose a voice personality
+   - **Language**: Select the language for conversations
+   - **Call Flow**: Design how your agent should handle conversations
+4. **Save your agent**
+5. **Copy the Agent ID** (you'll need this for API calls)
+
+<Tip>
+  Start with a simple call flow for testing. You can make it more complex later.
+</Tip>
+
+## Step 3: Make Your First Call
+
+Now you're ready to make your first call using the Talqover API!
+
+### API Endpoint
+
+```
+POST /api/v1/agents/{agent_id}/call
+```
+
+### Example Request
+
+```bash
+curl -X POST "https://api.talqover.com/api/v1/agents/agent_123456/call" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+1234567890"
+  }'
+```
+
+### Example Response
+
+```json
+{
+  "call_id": "call_789012",
+  "agent_id": "agent_123456",
+  "to": "+1234567890",
+  "status": "initiated",
+  "created_at": "2024-01-15T10:30:00Z",
+  "estimated_duration": 120
+}
+```
+
+## Step 4: Monitor Your Call
+
+After initiating a call, you can:
+
+1. **Check call status** in your dashboard
+2. **Listen to call recordings** (if enabled)
+3. **View call transcripts** (if enabled)
+4. **Monitor call analytics**
+
+## What's Next?
+
+- **Learn about call flows** in our [Call Flow Design Guide](/en/guides/call-flow-design)
+- **Explore integration examples** in our [Integration Examples](/en/guides/integration-examples)
+- **Check out our SDKs** for easier integration
+- **Join our community** on [Discord](https://discord.gg/RMP4bpFrCF)
+
+<Check>
+  Congratulations! You've successfully set up Talqover and made your first AI-powered call.
+</Check>

@@ -17,29 +17,50 @@
           {
             "group": "Get Started",
             "pages": [
-              "en/introduction"
+              "en/introduction",
+              "en/getting-started/quickstart",
+              "en/getting-started/authentication",
+              "en/getting-started/first-call"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Concepts",
             "pages": [
-              "en/essentials/code",
-              "en/essentials/images",
-              "en/essentials/markdown",
-              "en/essentials/navigation",
-              "en/essentials/reusable-snippets",
-              "en/essentials/settings"
+              "en/concepts/voice-agents",
+              "en/concepts/call-flows"
             ]
           },
           {
             "group": "API Reference",
             "pages": [
-              "en/api-reference/introduction"
+              "en/api-reference/introduction",
+              "en/api-reference/authentication",
+              "en/api-reference/endpoints/make-call"
             ]
           },
           {
-            "group": "Endpoints",
-            "openapi": "api-reference/openapi.json"
+            "group": "Guides",
+            "pages": [
+              "en/guides/voice-agent-setup",
+              "en/guides/call-flow-design",
+              "en/guides/integration-examples",
+              "en/guides/best-practices"
+            ]
+          },
+          {
+            "group": "SDK",
+            "pages": [
+              "en/sdk/javascript",
+              "en/sdk/python",
+              "en/sdk/php"
+            ]
+          },
+          {
+            "group": "Troubleshooting",
+            "pages": [
+              "en/troubleshooting/common-issues",
+              "en/troubleshooting/debugging"
+            ]
           }
         ]
       },
@@ -49,29 +70,50 @@
           {
             "group": "Primeiros Passos",
             "pages": [
-              "pt-br/introduction"
+              "pt-br/introduction",
+              "pt-br/getting-started/quickstart",
+              "pt-br/getting-started/authentication",
+              "pt-br/getting-started/first-call"
             ]
           },
           {
-            "group": "Fundamentos",
+            "group": "Conceitos",
             "pages": [
-              "pt-br/essentials/code",
-              "pt-br/essentials/images",
-              "pt-br/essentials/markdown",
-              "pt-br/essentials/navigation",
-              "pt-br/essentials/reusable-snippets",
-              "pt-br/essentials/settings"
+              "pt-br/concepts/voice-agents",
+              "pt-br/concepts/call-flows"
             ]
           },
           {
             "group": "Referência da API",
             "pages": [
-              "pt-br/api-reference/introduction"
+              "pt-br/api-reference/introduction",
+              "pt-br/api-reference/authentication",
+              "pt-br/api-reference/endpoints/make-call"
             ]
           },
           {
-            "group": "Endpoints",
-            "openapi": "api-reference/openapi.json"
+            "group": "Guias",
+            "pages": [
+              "pt-br/guides/voice-agent-setup",
+              "pt-br/guides/call-flow-design",
+              "pt-br/guides/integration-examples",
+              "pt-br/guides/best-practices"
+            ]
+          },
+          {
+            "group": "SDK",
+            "pages": [
+              "pt-br/sdk/javascript",
+              "pt-br/sdk/python",
+              "pt-br/sdk/php"
+            ]
+          },
+          {
+            "group": "Solução de Problemas",
+            "pages": [
+              "pt-br/troubleshooting/common-issues",
+              "pt-br/troubleshooting/debugging"
+            ]
           }
         ]
       }
