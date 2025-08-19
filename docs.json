@@ -46,21 +46,6 @@
               "en/guides/integration-examples",
               "en/guides/best-practices"
             ]
-          },
-          {
-            "group": "SDK",
-            "pages": [
-              "en/sdk/javascript",
-              "en/sdk/python",
-              "en/sdk/php"
-            ]
-          },
-          {
-            "group": "Troubleshooting",
-            "pages": [
-              "en/troubleshooting/common-issues",
-              "en/troubleshooting/debugging"
-            ]
           }
         ]
       },
@@ -98,21 +83,6 @@
               "pt-br/guides/call-flow-design",
               "pt-br/guides/integration-examples",
               "pt-br/guides/best-practices"
-            ]
-          },
-          {
-            "group": "SDK",
-            "pages": [
-              "pt-br/sdk/javascript",
-              "pt-br/sdk/python",
-              "pt-br/sdk/php"
-            ]
-          },
-          {
-            "group": "Solução de Problemas",
-            "pages": [
-              "pt-br/troubleshooting/common-issues",
-              "pt-br/troubleshooting/debugging"
             ]
           }
         ]

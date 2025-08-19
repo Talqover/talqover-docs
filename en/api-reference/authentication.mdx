@@ -1,0 +1,250 @@
+---
+title: "Authentication"
+description: "Learn how to authenticate with the Talqover API using environment tokens"
+---
+
+# Authentication
+
+The Talqover API uses Bearer token authentication with environment tokens. All API requests must include a valid environment token in the Authorization header.
+
+## Overview
+
+Authentication is handled through **Environment Tokens** that you can generate in your Talqover dashboard. These tokens provide secure access to your account's resources and are used to authenticate all API requests.
+
+## Getting Your Environment Token
+
+### Step 1: Access Your Dashboard
+
+1. **Log in** to your Talqover account at [talqover.app](https://talqover.app)
+2. **Navigate to Account** in the left sidebar
+3. **Click on "Environments"**
+
+### Step 2: Find Your Token
+
+Your environment tokens will be displayed in the Environments section. Each environment has its own token that starts with `talq_` followed by a long string of characters.
+
+<Note>
+  Environment tokens are sensitive credentials. Keep them secure and never share them publicly or commit them to version control.
+</Note>
+
+## Using Your Environment Token
+
+### Authorization Header
+
+Include your environment token in the `Authorization` header of all API requests:
+
+```bash
+Authorization: Bearer talq_your_environment_token_here
+```
+
+### Example Request
+
+```bash
+curl -H "Authorization: Bearer talq_your_environment_token_here" \
+  https://talqover.app/api/v1/health
+```
+
+## Security Best Practices
+
+### 1. Keep Tokens Secure
+
+- **Never expose tokens** in client-side code or public repositories
+- **Use environment variables** to store tokens securely
+- **Rotate tokens regularly** for enhanced security
+- **Monitor token usage** for suspicious activity
+
+### 2. Token Management
+
+- **Use different tokens** for different environments (development, staging, production)
+- **Limit token permissions** to only what's necessary
+- **Revoke compromised tokens** immediately
+- **Use token expiration** when available
+
+### 3. Request Security
+
+- **Always use HTTPS** for API requests
+- **Validate responses** to ensure they come from Talqover
+- **Handle errors gracefully** without exposing sensitive information
+- **Log requests securely** without including tokens
+
+## Environment Variables
+
+Store your environment token securely using environment variables:
+
+### Bash/Shell
+
+```bash
+export TALQOVER_TOKEN="talq_your_environment_token_here"
+```
+
+### JavaScript/Node.js
+
+```javascript
+const token = process.env.TALQOVER_TOKEN;
+```
+
+### Python
+
+```python
+import os
+token = os.environ.get('TALQOVER_TOKEN')
+```
+
+### PHP
+
+```php
+$token = getenv('TALQOVER_TOKEN');
+```
+
+## Code Examples
+
+### cURL
+
+```bash
+curl -X POST "https://talqover.app/api/v1/agents/agent_123456/call" \
+  -H "Authorization: Bearer $TALQOVER_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+1234567890"
+  }'
+```
+
+### JavaScript
+
+```javascript
+const response = await fetch('https://talqover.app/api/v1/agents/agent_123456/call', {
+  method: 'POST',
+  headers: {
+    'Authorization': `Bearer ${process.env.TALQOVER_TOKEN}`,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    to: '+1234567890'
+  })
+});
+```
+
+### Python
+
+```python
+import requests
+import os
+
+headers = {
+    'Authorization': f'Bearer {os.environ.get("TALQOVER_TOKEN")}',
+    'Content-Type': 'application/json'
+}
+
+data = {
+    'to': '+1234567890'
+}
+
+response = requests.post(
+    'https://talqover.app/api/v1/agents/agent_123456/call',
+    headers=headers,
+    json=data
+)
+```
+
+### PHP
+
+```php
+$token = getenv('TALQOVER_TOKEN');
+$headers = [
+    'Authorization: Bearer ' . $token,
+    'Content-Type: application/json'
+];
+
+$data = [
+    'to' => '+1234567890'
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://talqover.app/api/v1/agents/agent_123456/call');
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($ch);
+curl_close($ch);
+```
+
+## Error Responses
+
+### Invalid Token
+
+```json
+{
+  "error": "UNAUTHORIZED",
+  "message": "Invalid or missing authentication token",
+  "status_code": 401
+}
+```
+
+### Expired Token
+
+```json
+{
+  "error": "TOKEN_EXPIRED",
+  "message": "Authentication token has expired",
+  "status_code": 401
+}
+```
+
+### Missing Token
+
+```json
+{
+  "error": "MISSING_TOKEN",
+  "message": "Authorization header is required",
+  "status_code": 401
+}
+```
+
+## Token Scopes and Permissions
+
+Environment tokens have access to:
+
+- **Voice Agents** - Create, read, update, and delete voice agents
+- **Calls** - Initiate and manage calls
+- **Campaigns** - Create and manage call campaigns
+- **Call History** - Access call logs and analytics
+- **Account Settings** - Read account information
+
+<Warning>
+  Environment tokens have full access to your account. Use them responsibly and never share them with unauthorized parties.
+</Warning>
+
+## Troubleshooting
+
+### Common Issues
+
+1. **"Invalid token" error**
+   - Verify the token is correct and complete
+   - Check that the token starts with `talq_`
+   - Ensure no extra spaces or characters
+
+2. **"Token expired" error**
+   - Generate a new environment token
+   - Update your application with the new token
+   - Check token expiration settings
+
+3. **"Missing token" error**
+   - Ensure the Authorization header is included
+   - Verify the header format: `Bearer <token>`
+   - Check that the token is not empty
+
+### Getting Help
+
+If you're experiencing authentication issues:
+
+1. **Check your token** in the dashboard
+2. **Verify the request format** matches the examples
+3. **Test with a simple request** like the health endpoint
+4. **Contact support** if the issue persists
+
+## Next Steps
+
+- **Make your first call** in our [First Call Guide](/en/getting-started/first-call)
+- **Learn about API endpoints** in our [API Reference](/en/api-reference/endpoints/make-call)
+- **Explore integration examples** in our [Integration Examples](/en/guides/integration-examples)
