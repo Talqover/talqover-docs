@@ -1,0 +1,297 @@
+---
+title: "Call Flows"
+description: "Learn how to design effective conversation flows for your voice agents"
+---
+
+# Call Flows
+
+Call flows are the conversation blueprints that define how your voice agent interacts with callers. They determine the structure, logic, and flow of conversations to achieve specific goals.
+
+## What are Call Flows?
+
+Call flows are structured conversation designs that:
+
+- **Define conversation paths** - Map out how conversations should progress
+- **Handle different scenarios** - Plan responses for various caller inputs
+- **Achieve specific goals** - Guide conversations toward desired outcomes
+- **Maintain context** - Keep track of conversation state and progress
+- **Provide fallbacks** - Handle unexpected situations gracefully
+
+## Call Flow Components
+
+### 1. Entry Points
+
+Where conversations begin:
+
+- **Greeting** - Initial introduction and purpose
+- **Identification** - Verify caller identity if needed
+- **Context setting** - Establish the reason for the call
+
+### 2. Main Conversation Paths
+
+The core interaction logic:
+
+- **Information gathering** - Collect necessary data from callers
+- **Decision points** - Branch based on caller responses
+- **Action execution** - Perform tasks based on conversation
+- **Confirmation** - Verify understanding and actions
+
+### 3. Error Handling
+
+Manage unexpected situations:
+
+- **Clarification requests** - Ask for clarification when needed
+- **Rephrasing** - Restate information in different ways
+- **Fallback options** - Provide alternative solutions
+- **Human handoff** - Transfer to human agents when appropriate
+
+### 4. Exit Points
+
+How conversations end:
+
+- **Successful completion** - Goal achieved
+- **Escalation** - Transfer to human agent
+- **Follow-up scheduling** - Plan next steps
+- **Graceful closure** - End conversation politely
+
+## Designing Effective Call Flows
+
+### Step 1: Define Your Goal
+
+Start with a clear objective:
+
+- **What should the call accomplish?**
+- **What information do you need to collect?**
+- **What actions should be taken?**
+- **How will you measure success?**
+
+### Step 2: Map the Conversation
+
+Create a conversation flowchart:
+
+```
+Start
+  ↓
+Greeting
+  ↓
+Purpose Explanation
+  ↓
+Information Gathering
+  ↓
+Decision Point
+  ↓
+Action Execution
+  ↓
+Confirmation
+  ↓
+End
+```
+
+### Step 3: Plan for Variations
+
+Consider different conversation paths:
+
+- **Happy path** - Everything goes smoothly
+- **Alternative paths** - Different caller responses
+- **Error scenarios** - Problems and misunderstandings
+- **Escalation paths** - When human intervention is needed
+
+### Step 4: Add Context and Personalization
+
+Incorporate dynamic elements:
+
+- **Caller information** - Use available data
+- **Previous interactions** - Reference history
+- **Real-time data** - Access current information
+- **Business logic** - Apply company rules and policies
+
+## Call Flow Examples
+
+### Customer Service Flow
+
+```
+1. Greeting
+   "Hello! Thank you for calling [Company]. My name is [Agent]. How can I help you today?"
+
+2. Issue Identification
+   - Listen to caller's problem
+   - Ask clarifying questions
+   - Categorize the issue
+
+3. Solution Provision
+   - Provide relevant information
+   - Offer solutions
+   - Guide through steps
+
+4. Resolution Confirmation
+   - Verify the solution worked
+   - Ask if anything else is needed
+
+5. Closing
+   - Thank the caller
+   - End the conversation
+```
+
+### Appointment Scheduling Flow
+
+```
+1. Greeting and Purpose
+   "Hello! I'm calling to help you schedule an appointment. Is this a good time?"
+
+2. Service Selection
+   - Present available services
+   - Help caller choose appropriate service
+   - Confirm selection
+
+3. Date and Time Selection
+   - Show available dates
+   - Present time slots
+   - Confirm appointment details
+
+4. Information Collection
+   - Gather contact information
+   - Collect any special requirements
+   - Verify all details
+
+5. Confirmation
+   - Repeat appointment details
+   - Send confirmation
+   - End call
+```
+
+### Survey Flow
+
+```
+1. Introduction
+   "Hello! I'm calling on behalf of [Company] to conduct a brief survey. Do you have a few minutes?"
+
+2. Consent
+   - Explain the survey purpose
+   - Get caller consent
+   - Set expectations
+
+3. Survey Questions
+   - Ask questions one by one
+   - Record responses
+   - Handle "don't know" responses
+
+4. Completion
+   - Thank the caller
+   - Provide any incentives
+   - End the survey
+```
+
+## Best Practices for Call Flow Design
+
+### 1. Keep It Simple
+
+- **Start simple** - Begin with basic flows and add complexity
+- **Clear objectives** - Each step should have a clear purpose
+- **Logical progression** - Flow should make sense to callers
+- **Avoid complexity** - Don't overwhelm callers with too many options
+
+### 2. Be Natural
+
+- **Conversational language** - Use natural, human-like speech
+- **Variety in responses** - Don't repeat the same phrases
+- **Context awareness** - Reference previous parts of the conversation
+- **Emotional intelligence** - Match the caller's emotional state
+
+### 3. Handle Errors Gracefully
+
+- **Anticipate problems** - Plan for common issues
+- **Provide clear options** - Give callers specific choices
+- **Offer alternatives** - Have backup solutions ready
+- **Maintain patience** - Don't get frustrated with callers
+
+### 4. Test Thoroughly
+
+- **Multiple scenarios** - Test various conversation paths
+- **Edge cases** - Try unexpected caller responses
+- **Real users** - Get feedback from actual callers
+- **Iterate** - Improve based on testing results
+
+### 5. Monitor and Optimize
+
+- **Track metrics** - Measure success rates and completion times
+- **Identify bottlenecks** - Find where callers get stuck
+- **Gather feedback** - Collect caller satisfaction ratings
+- **Continuous improvement** - Regularly update and optimize flows
+
+## Advanced Call Flow Features
+
+### Dynamic Content
+
+Adapt responses based on context:
+
+- **Caller information** - Use available data to personalize
+- **Time and date** - Adjust based on current time
+- **Previous interactions** - Reference past conversations
+- **Business rules** - Apply company policies and procedures
+
+### Conditional Logic
+
+Branch conversations based on conditions:
+
+- **Caller responses** - Different paths based on answers
+- **Data availability** - Adjust based on available information
+- **Business rules** - Apply company-specific logic
+- **Error conditions** - Handle problems and exceptions
+
+### Integration Points
+
+Connect with external systems:
+
+- **CRM systems** - Access customer data
+- **Scheduling systems** - Check availability and book appointments
+- **Payment systems** - Process transactions
+- **Notification systems** - Send follow-up messages
+
+## Call Flow Testing
+
+### Test Scenarios
+
+Create comprehensive test cases:
+
+1. **Happy path** - Everything works perfectly
+2. **Alternative paths** - Different caller responses
+3. **Error scenarios** - Problems and misunderstandings
+4. **Edge cases** - Unusual or unexpected situations
+5. **Integration tests** - External system interactions
+
+### Testing Methods
+
+- **Manual testing** - Test flows yourself
+- **Automated testing** - Use testing tools and scripts
+- **User testing** - Have real users test the flows
+- **A/B testing** - Compare different flow versions
+
+### Success Metrics
+
+Measure flow effectiveness:
+
+- **Completion rate** - Percentage of calls that reach the goal
+- **Average duration** - How long calls take
+- **Satisfaction scores** - Caller ratings and feedback
+- **Error rates** - How often problems occur
+- **Escalation rate** - How often human intervention is needed
+
+## Getting Started
+
+To design your first call flow:
+
+1. **Define your goal** - What should the call accomplish?
+2. **Map the conversation** - Create a basic flow structure
+3. **Add variations** - Plan for different scenarios
+4. **Test the flow** - Try it with various inputs
+5. **Iterate and improve** - Refine based on testing results
+
+<Tip>
+  Start with a simple flow for a specific use case. You can make it more complex as you learn and gather feedback.
+</Tip>
+
+## Next Steps
+
+- **Create your first agent** in our [Voice Agent Setup Guide](/en/guides/voice-agent-setup)
+- **Learn about voice agents** in our [Voice Agents Guide](/en/concepts/voice-agents)
+- **Explore integration examples** in our [Integration Examples](/en/guides/integration-examples)
