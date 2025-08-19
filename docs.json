@@ -13,6 +13,9 @@
       {
         "language": "en",
         "default": true,
+        "header": {
+          "image": "/images/talqover-header-en.png"
+        },
         "groups": [
           {
             "group": "Get Started",
@@ -51,6 +54,9 @@
       },
       {
         "language": "pt-BR",
+        "header": {
+          "image": "/images/talqover-header-br.png"
+        },
         "groups": [
           {
             "group": "Primeiros Passos",
@@ -99,8 +105,8 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/logo.svg",
+    "dark": "/images/logo.svg"
   },
   "navbar": {
     "links": [
