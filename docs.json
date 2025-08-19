@@ -9,25 +9,64 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "tabs": [
+    "languages": [
       {
-        "tab": "Guides",
+        "language": "en",
+        "default": true,
         "groups": [
           {
             "group": "Get Started",
             "pages": [
-              "introduction"
+              "en/introduction"
             ]
+          },
+          {
+            "group": "Essentials",
+            "pages": [
+              "en/essentials/code",
+              "en/essentials/images",
+              "en/essentials/markdown",
+              "en/essentials/navigation",
+              "en/essentials/reusable-snippets",
+              "en/essentials/settings"
+            ]
+          },
+          {
+            "group": "API Reference",
+            "pages": [
+              "en/api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "openapi": "api-reference/openapi.json"
           }
         ]
       },
       {
-        "tab": "API Reference",
+        "language": "pt-BR",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "Primeiros Passos",
             "pages": [
-              "api-reference/introduction"
+              "pt-br/introduction"
+            ]
+          },
+          {
+            "group": "Fundamentos",
+            "pages": [
+              "pt-br/essentials/code",
+              "pt-br/essentials/images",
+              "pt-br/essentials/markdown",
+              "pt-br/essentials/navigation",
+              "pt-br/essentials/reusable-snippets",
+              "pt-br/essentials/settings"
+            ]
+          },
+          {
+            "group": "Referência da API",
+            "pages": [
+              "pt-br/api-reference/introduction"
             ]
           },
           {
@@ -41,7 +80,7 @@
       "anchors": [
         {
           "anchor": "Community",
-          "href": "https://discord.gg/bnNGrrGQ",
+          "href": "https://discord.gg/RMP4bpFrCF",
           "icon": "slack"
         }
       ]

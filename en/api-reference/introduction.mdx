@@ -1,0 +1,98 @@
+---
+title: 'API Reference'
+description: 'Complete API documentation for Talqover voice conversation platform'
+---
+
+Welcome to the Talqover API Reference. This documentation provides comprehensive information about all available endpoints, authentication methods, and integration examples.
+
+## Overview
+
+The Talqover API enables you to:
+
+- **Create and manage call flows** - Design intelligent conversation paths
+- **Initiate and control calls** - Start conversations programmatically
+- **Monitor call status** - Track real-time call progress and outcomes
+- **Access call analytics** - Retrieve detailed performance metrics
+
+## Authentication
+
+All API endpoints require authentication using Bearer tokens. Include your API key in the Authorization header:
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+<Warning>
+  Keep your API key secure and never expose it in client-side code or public repositories.
+</Warning>
+
+## Base URL
+
+All API requests should be made to:
+
+```
+https://api.talqover.com/v1
+```
+
+## Rate Limits
+
+- **Standard Plan**: 100 requests per minute
+- **Professional Plan**: 1,000 requests per minute
+- **Enterprise Plan**: Custom limits
+
+<Info>
+  Rate limit headers are included in all API responses to help you monitor usage.
+</Info>
+
+## Response Format
+
+All API responses are returned in JSON format with the following structure:
+
+```json
+{
+  "success": true,
+  "data": {
+    // Response data
+  },
+  "message": "Operation completed successfully"
+}
+```
+
+## Error Handling
+
+The API uses standard HTTP status codes and returns detailed error messages:
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "INVALID_API_KEY",
+    "message": "The provided API key is invalid",
+    "details": {}
+  }
+}
+```
+
+## SDKs and Libraries
+
+We provide official SDKs for popular programming languages:
+
+- [JavaScript/Node.js SDK](https://github.com/talqover/talqover-js)
+- [Python SDK](https://github.com/talqover/talqover-python)
+- [PHP SDK](https://github.com/talqover/talqover-php)
+
+<Card
+  title="OpenAPI Specification"
+  icon="file-text"
+  href="/api-reference/openapi.json"
+>
+  Download the complete OpenAPI specification
+</Card>
+
+## Getting Help
+
+If you need assistance:
+
+- **Documentation**: Browse our guides and examples
+- **Support**: Contact us at [contact@talqover.com](mailto:contact@talqover.com)
+- **Community**: Join our [Discord server](https://discord.gg/RMP4bpFrCF)

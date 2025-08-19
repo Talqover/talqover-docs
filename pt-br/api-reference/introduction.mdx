@@ -1,0 +1,98 @@
+---
+title: 'Referência da API'
+description: 'Documentação completa da API para a plataforma de conversas por voz Talqover'
+---
+
+Bem-vindo à Referência da API Talqover. Esta documentação fornece informações abrangentes sobre todos os endpoints disponíveis, métodos de autenticação e exemplos de integração.
+
+## Visão Geral
+
+A API Talqover permite que você:
+
+- **Crie e gerencie fluxos de chamadas** - Projete caminhos de conversa inteligentes
+- **Inicie e controle chamadas** - Inicie conversas programaticamente
+- **Monitore o status das chamadas** - Acompanhe o progresso e resultados das chamadas em tempo real
+- **Acesse análises de chamadas** - Recupere métricas detalhadas de desempenho
+
+## Autenticação
+
+Todos os endpoints da API requerem autenticação usando tokens Bearer. Inclua sua chave de API no cabeçalho Authorization:
+
+```bash
+Authorization: Bearer SUA_CHAVE_API
+```
+
+<Warning>
+  Mantenha sua chave de API segura e nunca a exponha em código do lado do cliente ou repositórios públicos.
+</Warning>
+
+## URL Base
+
+Todas as requisições da API devem ser feitas para:
+
+```
+https://api.talqover.com/v1
+```
+
+## Limites de Taxa
+
+- **Plano Padrão**: 100 requisições por minuto
+- **Plano Profissional**: 1.000 requisições por minuto
+- **Plano Enterprise**: Limites personalizados
+
+<Info>
+  Cabeçalhos de limite de taxa são incluídos em todas as respostas da API para ajudá-lo a monitorar o uso.
+</Info>
+
+## Formato de Resposta
+
+Todas as respostas da API são retornadas no formato JSON com a seguinte estrutura:
+
+```json
+{
+  "success": true,
+  "data": {
+    // Dados da resposta
+  },
+  "message": "Operação concluída com sucesso"
+}
+```
+
+## Tratamento de Erros
+
+A API usa códigos de status HTTP padrão e retorna mensagens de erro detalhadas:
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "INVALID_API_KEY",
+    "message": "A chave de API fornecida é inválida",
+    "details": {}
+  }
+}
+```
+
+## SDKs e Bibliotecas
+
+Fornecemos SDKs oficiais para linguagens de programação populares:
+
+- [SDK JavaScript/Node.js](https://github.com/talqover/talqover-js)
+- [SDK Python](https://github.com/talqover/talqover-python)
+- [SDK PHP](https://github.com/talqover/talqover-php)
+
+<Card
+  title="Especificação OpenAPI"
+  icon="file-text"
+  href="/api-reference/openapi.json"
+>
+  Baixar a especificação OpenAPI completa
+</Card>
+
+## Obtendo Ajuda
+
+Se você precisar de assistência:
+
+- **Documentação**: Navegue pelos nossos guias e exemplos
+- **Suporte**: Entre em contato conosco em [contact@talqover.com](mailto:contact@talqover.com)
+- **Comunidade**: Junte-se ao nosso [servidor Discord](https://discord.gg/RMP4bpFrCF)

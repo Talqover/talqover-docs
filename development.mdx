@@ -1,107 +1,93 @@
 ---
-title: 'Development'
-description: 'Preview changes locally to update your docs'
+title: "Development Guide"
+description: "Learn how to develop and maintain the Talqover documentation with multi-language support"
 ---
 
-<Info>
-  **Prerequisite**: Please install Node.js (version 19 or higher) before proceeding. <br />
-  Please upgrade to ```docs.json``` before proceeding and delete the legacy ```mint.json``` file.
-</Info>
+# Development Guide
 
-Follow these steps to install and run Mintlify on your operating system:
+This guide explains how to develop and maintain the Talqover documentation with support for multiple languages.
 
-**Step 1**: Install Mintlify:
+## Multi-Language Support
 
-<CodeGroup>
+The documentation supports two languages:
+- **English (EN)** - Default language
+- **Brazilian Portuguese (PT-BR)** - Secondary language
 
-  ```bash npm
-  npm i -g mintlify
-  ```
+### File Structure
 
-```bash yarn
-yarn global add mintlify
+```
+talqover-docs/
+├── en/                    # English content
+│   ├── introduction.mdx
+│   ├── essentials/
+│   └── api-reference/
+├── pt-br/                 # Portuguese content
+│   ├── introduction.mdx
+│   ├── essentials/
+│   └── api-reference/
+├── api-reference/         # Shared OpenAPI files
+├── images/               # Shared images
+└── docs.json            # Configuration
 ```
 
-</CodeGroup>
+### Adding New Content
 
-**Step 2**: Navigate to the docs directory (where the `docs.json` file is located) and execute the following command:
+When adding new content, you must create versions for both languages:
+
+1. **Create English version** in the `en/` directory
+2. **Create Portuguese version** in the `pt-br/` directory
+3. **Update navigation** in `docs.json` for both languages
+
+### Translation Guidelines
+
+- Maintain consistent terminology across languages
+- Use proper Brazilian Portuguese (not European Portuguese)
+- Keep technical terms consistent (API, endpoint, etc.)
+- Ensure all links point to the correct language version
+
+### Running Locally
 
 ```bash
-mintlify dev
+# Install dependencies
+npm install
+
+# Start development server
+mint dev
 ```
 
-A local preview of your documentation will be available at `http://localhost:3000`.
+The documentation will be available at `http://localhost:3000` with language switching functionality.
 
-### Custom Ports
-
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. To run Mintlify on port 3333, for instance, use this command:
+### Building for Production
 
 ```bash
-mintlify dev --port 3333
+# Build the documentation
+mint build
 ```
 
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
+### Configuration
 
-```md
-Port 3000 is already in use. Trying 3001 instead.
-```
+The `docs.json` file contains the main configuration:
 
-## Mintlify Versions
+- **Languages**: Define supported languages and their navigation
+- **Navigation**: Structure for each language
+- **Theme**: Colors, logo, and branding
+- **Integrations**: Analytics, support widgets, etc.
 
-Please note that each CLI release is associated with a specific version of Mintlify. If your local website doesn't align with the production version, please update the CLI:
+### Best Practices
 
-<CodeGroup>
+1. **Keep content synchronized** between languages
+2. **Use consistent file naming** across language folders
+3. **Test both languages** before deploying
+4. **Update navigation** when adding new pages
+5. **Use proper alt text** for images in both languages
 
-```bash npm
-npm i -g mintlify@latest
-```
+### Contributing
 
-```bash yarn
-yarn global upgrade mintlify
-```
+When contributing to the documentation:
 
-</CodeGroup>
+1. Create content for both languages
+2. Follow the existing structure and style
+3. Test your changes locally
+4. Update this guide if needed
 
-## Validating Links
-
-The CLI can assist with validating reference links made in your documentation. To identify any broken links, use the following command:
-
-```bash
-mintlify broken-links
-```
-
-## Deployment
-
-<Tip>
-  Unlimited editors available under the [Pro
-  Plan](https://mintlify.com/pricing) and above.
-</Tip>
-
-If the deployment is successful, you should see the following:
-
-<Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
-</Frame>
-
-## Code Formatting
-
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
-
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of mintlify: `npm remove -g mintlify`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall mintlify: `npm install -g mintlify`
-  </Accordion>
-
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the \~/.mintlify folder. Afterwards, run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
-
-Curious about what changed in the CLI version? [Check out the CLI changelog.](https://www.npmjs.com/package/mintlify?activeTab=versions)
+For more information about Mintlify components and features, see the [Mintlify documentation](https://mintlify.com/docs).
