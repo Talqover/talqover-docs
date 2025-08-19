@@ -39,10 +39,16 @@ Now you have everything you need to make your first call:
 - **Agent ID**: `agent_123456`
 - **Phone Number**: `+1234567890`
 
-### API Endpoint
+### API Endpoints
 
+#### Individual Agent Call
 ```
 POST https://talqover.app/api/v1/agents/{agent_id}/call
+```
+
+#### Campaign Call
+```
+POST https://talqover.app/api/v1/campaigns/{campaign_id}/call
 ```
 
 ### Request Headers
@@ -54,9 +60,21 @@ Content-Type: application/json
 
 ### Request Body
 
+#### For Agent Calls
 ```json
 {
   "to": "+1234567890"
+}
+```
+
+#### For Campaign Calls
+```json
+{
+  "to": "+1234567890",
+  "payload": {
+    "customer_name": "John Doe",
+    "customer_id": "12345"
+  }
 }
 ```
 

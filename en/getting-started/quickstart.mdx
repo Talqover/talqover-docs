@@ -51,20 +51,41 @@ Voice agents are the AI personalities that handle your calls. You need to create
 
 Now you're ready to make your first call using the Talqover API!
 
-### API Endpoint
+### API Endpoints
 
+#### Individual Agent Call
 ```
 POST /api/v1/agents/{agent_id}/call
 ```
 
-### Example Request
+#### Campaign Call
+```
+POST /api/v1/campaigns/{campaign_id}/call
+```
 
+### Example Requests
+
+#### Agent Call
 ```bash
-curl -X POST "https://api.talqover.com/api/v1/agents/agent_123456/call" \
+curl -X POST "https://talqover.app/api/v1/agents/agent_123456/call" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
     "to": "+1234567890"
+  }'
+```
+
+#### Campaign Call
+```bash
+curl -X POST "https://talqover.app/api/v1/campaigns/campaign_789012/call" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+1234567890",
+    "payload": {
+      "customer_name": "John Doe",
+      "customer_id": "12345"
+    }
   }'
 ```
 

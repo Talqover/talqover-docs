@@ -1,0 +1,425 @@
+---
+title: "Fazer uma Chamada"
+description: "Iniciar uma chamada com IA usando um agente de voz ou campanha"
+api: "POST /api/v1/agents/{agent_id}/call"
+---
+
+# Fazer uma Chamada
+
+Inicie uma chamada com IA usando um agente de voz ou campanha específica. Este endpoint cria uma nova chamada e retorna detalhes da chamada incluindo um ID único de chamada.
+
+## Endpoints
+
+### Chamada Individual de Agente
+
+```
+POST /api/v1/agents/{agent_id}/call
+```
+
+### Chamada de Campanha
+
+```
+POST /api/v1/campaigns/{campaign_id}/call
+```
+
+## Parâmetros de Caminho
+
+<ParamField path="agent_id" type="string" required>
+  O identificador único do agente de voz que irá gerenciar a chamada. Você pode encontrar isso no seu painel em Agentes de Voz.
+</ParamField>
+
+<ParamField path="campaign_id" type="string" required>
+  O identificador único da campanha que irá gerenciar a chamada. Você pode encontrar isso no seu painel em Campanhas.
+</ParamField>
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_seu_token_de_ambiente_aqui`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Deve ser definido como `application/json`
+</ParamField>
+
+## Corpo da Requisição
+
+### Para Chamadas de Agente
+
+<ParamField body="to" type="string" required>
+  O número de telefone para chamar. Deve estar no formato internacional (ex: +1234567890).
+</ParamField>
+
+### Para Chamadas de Campanha
+
+<ParamField body="to" type="string" required>
+  O número de telefone para chamar. Deve estar no formato internacional (ex: +1234567890).
+</ParamField>
+
+<ParamField body="payload" type="object" required>
+  Dados personalizados para passar para a campanha. Esses dados estarão disponíveis durante a chamada para personalização.
+</ParamField>
+
+## Exemplos de Requisições
+
+<RequestExample>
+
+### Chamada de Agente
+
+```bash
+curl -X POST "https://talqover.app/api/v1/agents/agent_123456/call" \
+  -H "Authorization: Bearer talq_seu_token_de_ambiente_aqui" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+1234567890"
+  }'
+```
+
+```javascript
+const response = await fetch('https://talqover.app/api/v1/agents/agent_123456/call', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_seu_token_de_ambiente_aqui',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    to: '+1234567890'
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+### Chamada de Campanha
+
+```bash
+curl -X POST "https://talqover.app/api/v1/campaigns/campaign_789012/call" \
+  -H "Authorization: Bearer talq_seu_token_de_ambiente_aqui" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+1234567890",
+    "payload": {
+      "customer_name": "João Silva",
+      "customer_id": "12345"
+    }
+  }'
+```
+
+```javascript
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign_789012/call', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_seu_token_de_ambiente_aqui',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    to: '+1234567890',
+    payload: {
+      customer_name: 'João Silva',
+      customer_id: '12345'
+    }
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+```python
+import requests
+
+# Chamada de agente
+url = "https://talqover.app/api/v1/agents/agent_123456/call"
+headers = {
+    "Authorization": "Bearer talq_seu_token_de_ambiente_aqui",
+    "Content-Type": "application/json"
+}
+data = {
+    "to": "+1234567890"
+}
+
+response = requests.post(url, headers=headers, json=data)
+result = response.json()
+print(result)
+
+# Chamada de campanha
+url = "https://talqover.app/api/v1/campaigns/campaign_789012/call"
+data = {
+    "to": "+1234567890",
+    "payload": {
+        "customer_name": "João Silva",
+        "customer_id": "12345"
+    }
+}
+
+response = requests.post(url, headers=headers, json=data)
+result = response.json()
+print(result)
+```
+
+```php
+<?php
+// Chamada de agente
+$url = 'https://talqover.app/api/v1/agents/agent_123456/call';
+$headers = [
+    'Authorization: Bearer talq_seu_token_de_ambiente_aqui',
+    'Content-Type: application/json'
+];
+$data = [
+    'to' => '+1234567890'
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+$result = json_decode($response, true);
+curl_close($ch);
+
+print_r($result);
+
+// Chamada de campanha
+$url = 'https://talqover.app/api/v1/campaigns/campaign_789012/call';
+$data = [
+    'to' => '+1234567890',
+    'payload' => [
+        'customer_name' => 'João Silva',
+        'customer_id' => '12345'
+    ]
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+$result = json_decode($response, true);
+curl_close($ch);
+
+print_r($result);
+?>
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "call_id": "call_789012",
+  "agent_id": "agent_123456",
+  "campaign_id": "campaign_789012",
+  "to": "+1234567890",
+  "status": "initiated",
+  "created_at": "2024-01-15T10:30:00Z",
+  "estimated_duration": 120,
+  "payload": {
+    "customer_name": "João Silva",
+    "customer_id": "12345"
+  }
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="call_id" type="string" required>
+  Identificador único para a chamada. Use este ID para rastrear o status da chamada e recuperar detalhes da chamada.
+</ResponseField>
+
+<ResponseField name="agent_id" type="string">
+  O ID do agente de voz gerenciando a chamada (para chamadas de agente).
+</ResponseField>
+
+<ResponseField name="campaign_id" type="string">
+  O ID da campanha gerenciando a chamada (para chamadas de campanha).
+</ResponseField>
+
+<ResponseField name="to" type="string" required>
+  O número de telefone que foi chamado.
+</ResponseField>
+
+<ResponseField name="status" type="string" required>
+  Status atual da chamada. Valores possíveis:
+  - `initiated` - Chamada foi criada e está sendo processada
+  - `ringing` - Telefone está tocando
+  - `in-progress` - Chamada está ativa e conversa está acontecendo
+  - `completed` - Chamada terminou com sucesso
+  - `failed` - Chamada falhou ou não foi atendida
+  - `busy` - Telefone estava ocupado
+  - `no-answer` - Telefone tocou mas não foi atendido
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required>
+  Timestamp ISO 8601 quando a chamada foi criada.
+</ResponseField>
+
+<ResponseField name="estimated_duration" type="integer" required>
+  Duração estimada da chamada em segundos. Baseado na configuração do fluxo de chamada do agente ou campanha.
+</ResponseField>
+
+<ResponseField name="payload" type="object">
+  Os dados personalizados passados com a chamada (para chamadas de campanha). Esses dados estão disponíveis durante a conversa para personalização.
+</ResponseField>
+
+## Respostas de Erro
+
+### 400 Bad Request
+
+<ResponseExample>
+
+```json
+{
+  "error": {
+    "code": "INVALID_PHONE_NUMBER",
+    "message": "Número de telefone deve estar no formato internacional (ex: +1234567890)",
+    "details": {
+      "field": "to",
+      "value": "1234567890"
+    }
+  }
+}
+```
+
+</ResponseExample>
+
+### 401 Unauthorized
+
+<ResponseExample>
+
+```json
+{
+  "error": {
+    "code": "INVALID_TOKEN",
+    "message": "Token de autenticação inválido ou ausente",
+    "details": {}
+  }
+}
+```
+
+</ResponseExample>
+
+### 404 Not Found
+
+<ResponseExample>
+
+```json
+{
+  "error": {
+    "code": "AGENT_NOT_FOUND",
+    "message": "Agente de voz não encontrado",
+    "details": {
+      "agent_id": "agent_999999"
+    }
+  }
+}
+```
+
+</ResponseExample>
+
+### 429 Too Many Requests
+
+<ResponseExample>
+
+```json
+{
+  "error": {
+    "code": "RATE_LIMIT_EXCEEDED",
+    "message": "Limite de taxa excedido. Aguarde antes de fazer mais requisições.",
+    "details": {
+      "retry_after": 60
+    }
+  }
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `INVALID_PHONE_NUMBER` | Formato do número de telefone é inválido | 400 |
+| `MISSING_PHONE_NUMBER` | Número de telefone é obrigatório | 400 |
+| `INVALID_TOKEN` | Token de autenticação é inválido ou ausente | 401 |
+| `AGENT_NOT_FOUND` | Agente especificado não existe | 404 |
+| `CAMPAIGN_NOT_FOUND` | Campanha especificada não existe | 404 |
+| `AGENT_INACTIVE` | Agente não está ativo ou configurado | 400 |
+| `CAMPAIGN_INACTIVE` | Campanha não está ativa ou configurada | 400 |
+| `RATE_LIMIT_EXCEEDED` | Muitas requisições em pouco tempo | 429 |
+| `INSUFFICIENT_CREDITS` | Conta tem créditos insuficientes | 402 |
+
+## Limites de Taxa
+
+- **Plano Padrão**: 10 chamadas por minuto
+- **Plano Profissional**: 100 chamadas por minuto
+- **Plano Enterprise**: Limites personalizados
+
+Cabeçalhos de limite de taxa são incluídos em todas as respostas:
+- `X-RateLimit-Limit`: Máximo de requisições por janela
+- `X-RateLimit-Remaining`: Requisições restantes na janela atual
+- `X-RateLimit-Reset`: Tempo quando o limite de taxa é redefinido
+
+## Fluxo de Status da Chamada
+
+```
+initiated → ringing → in-progress → completed
+     ↓         ↓           ↓           ↓
+   Call    Phone is    Agent is    Call has
+  created   ringing   talking     finished
+```
+
+## Uso do Payload da Campanha
+
+Ao fazer chamadas de campanha, o objeto `payload` permite que você passe dados personalizados que podem ser usados durante a conversa:
+
+### Exemplos de Casos de Uso
+
+- **Informações do Cliente**: Passar nome do cliente, ID ou detalhes da conta
+- **Informações do Pedido**: Incluir número do pedido, itens ou detalhes de entrega
+- **Dados de Agendamento**: Passar horário do agendamento, localização ou detalhes de confirmação
+- **Contexto da Pesquisa**: Incluir tipo de pesquisa, perguntas ou respostas anteriores
+
+### Acessando Dados do Payload
+
+Os dados do payload estão disponíveis durante a chamada e podem ser referenciados no seu fluxo de chamada para personalização:
+
+```json
+{
+  "payload": {
+    "customer_name": "João Silva",
+    "order_number": "PED-12345",
+    "delivery_date": "2024-01-20"
+  }
+}
+```
+
+## Melhores Práticas
+
+1. **Sempre trate erros graciosamente** - Verifique respostas de erro e implemente lógica de retry
+2. **Armazene IDs de chamada** - Use o `call_id` retornado para rastrear status da chamada
+3. **Valide números de telefone** - Certifique-se de que números de telefone estão no formato internacional
+4. **Monitore limites de taxa** - Verifique cabeçalhos de limite de taxa para evitar atingir limites
+5. **Teste com pequenos números primeiro** - Comece com algumas chamadas de teste antes de escalar
+6. **Use dados de payload significativos** - Passe informações relevantes para melhor personalização da chamada
+7. **Mantenha tamanho do payload razoável** - Evite objetos de payload muito grandes
+
+## Endpoints Relacionados
+
+- **Obter Detalhes da Chamada**: `GET /api/v1/calls/{call_id}` (em breve)
+- **Listar Chamadas**: `GET /api/v1/calls` (em breve)
+- **Obter Detalhes do Agente**: `GET /api/v1/agents/{agent_id}` (em breve)
+- **Obter Detalhes da Campanha**: `GET /api/v1/campaigns/{campaign_id}` (em breve)
