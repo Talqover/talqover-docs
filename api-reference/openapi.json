@@ -469,7 +469,7 @@
           "endpointing_sensitivity": "medium",
           "conversation_speed": 1.0,
           "enable_recording": true,
-          "provider": "openai"
+          "provider": "internal"
         }
       },
       "Call": {
@@ -481,7 +481,7 @@
           },
           "sid": {
             "type": "string",
-            "description": "Twilio Call SID"
+            "description": "Call Session ID"
           },
           "status": {
             "type": "string",
@@ -504,7 +504,7 @@
         },
         "example": {
           "id": "123e4567-e89b-12d3-a456-426614174000",
-          "sid": "CA123456789",
+          "sid": "TQ123456789",
           "status": "in-progress",
           "to": "+1234567890",
           "from": "+0987654321",
