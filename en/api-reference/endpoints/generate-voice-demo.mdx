@@ -1,0 +1,179 @@
+---
+title: "Generate Voice Template Demo"
+description: "Generate a demo audio file for a specific voice template"
+api: "GET /api/v1/voice-templates/{voiceTemplateId}/demo"
+---
+
+# Generate Voice Template Demo
+
+Generate a demo audio file for a specific voice template. This endpoint creates a sample audio file that demonstrates how the voice template sounds, allowing you to test and evaluate voice templates before using them in your agents.
+
+## Endpoint
+
+```
+GET /api/v1/voice-templates/{voiceTemplateId}/demo
+```
+
+## Path Parameters
+
+<ParamField path="voiceTemplateId" type="string" required>
+  The unique identifier of the voice template. You can find this in the voice templates list.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Example Requests
+
+<RequestExample>
+
+```bash
+# Request 1: Generate demo for a specific voice template
+curl -X GET "https://talqover.app/api/v1/voice-templates/voice-template-uuid-1/demo" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Request 1: Generate demo for a specific voice template
+const response = await fetch('https://talqover.app/api/v1/voice-templates/voice-template-uuid-1/demo', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Request 2: Generate demo with error handling
+curl -X GET "https://talqover.app/api/v1/voice-templates/voice-template-uuid-1/demo" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -w "\nHTTP Status: %{http_code}\n"
+```
+
+```javascript
+// Request 2: Generate demo with error handling
+try {
+  const response = await fetch('https://talqover.app/api/v1/voice-templates/voice-template-uuid-1/demo', {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer talq_your_environment_token_here'
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const result = await response.json();
+  console.log('Demo URL:', result.mp3_url);
+} catch (error) {
+  console.error('Error generating demo:', error);
+}
+```
+
+</RequestExample>
+
+## Response
+
+### Success Response (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "mp3_url": "https://example.com/storage/demo-audio/signed-url-here.mp3"
+}
+```
+
+</ResponseExample>
+
+### Response Fields
+
+<ResponseField name="mp3_url" type="string" required>
+  A signed URL to the generated demo audio file in MP3 format. This URL is temporary and will expire.
+</ResponseField>
+
+## Error Responses
+
+### 404 Not Found
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Voice template not found"
+}
+```
+
+</ResponseExample>
+
+### 401 Unauthorized
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 500 Server Error
+
+<ResponseExample>
+
+```json
+{
+  "error": "Failed to generate demo audio"
+}
+```
+
+</ResponseExample>
+
+## Error Codes
+
+| Code | Description | HTTP Status |
+|------|-------------|-------------|
+| `VOICE_TEMPLATE_NOT_FOUND` | Specified voice template does not exist | 404 |
+| `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
+| `DEMO_GENERATION_FAILED` | Failed to generate demo audio | 500 |
+
+## Important Notes
+
+<Info>
+  **Temporary URLs.** The demo audio URL is temporary and will expire after a certain time period.
+</Info>
+
+<Info>
+  **Demo content.** The demo audio contains a sample text that showcases the voice template's capabilities.
+</Info>
+
+<Warning>
+  **Generation time.** Demo audio generation may take a few seconds to complete.
+</Warning>
+
+## Best Practices
+
+1. **Test before using** - Always generate a demo to test voice templates before selecting them
+2. **Handle URL expiration** - Download or use the demo URL quickly as it expires
+3. **Error handling** - Implement proper error handling for generation failures
+4. **Cache demos** - Consider caching demo URLs for frequently accessed voice templates
+5. **Test different quality tiers** - Generate demos for different quality tiers to compare
+
+## Related Endpoints
+
+- **List Voice Templates**: `GET /api/v1/voice-templates`
+- **List Phone Numbers**: `GET /api/v1/phone-numbers`

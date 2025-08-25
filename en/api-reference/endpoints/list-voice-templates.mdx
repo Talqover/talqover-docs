@@ -1,0 +1,299 @@
+---
+title: "List Voice Templates"
+description: "Retrieve a list of available voice templates grouped by display name"
+api: "GET /api/v1/voice-templates"
+---
+
+# List Voice Templates
+
+Retrieve a list of available voice templates grouped by display name. This endpoint returns voice templates with different quality tiers and languages that can be used for voice agents.
+
+## Endpoint
+
+```
+GET /api/v1/voice-templates
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="language" type="string" required={false}>
+  Filter by language (e.g., `en-US`, `pt-BR`)
+</ParamField>
+
+<ParamField query="quality_tier" type="string" required={false}>
+  Filter by quality tier. Options: `basic`, `pro`, `ultra`, `beta`
+</ParamField>
+
+<ParamField query="gender" type="string" required={false}>
+  Filter by gender. Options: `male`, `female`
+</ParamField>
+
+## Example Requests
+
+<RequestExample>
+
+```bash
+# Request 1: Get all voice templates
+curl -X GET "https://talqover.app/api/v1/voice-templates" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Request 1: Get all voice templates
+const response = await fetch('https://talqover.app/api/v1/voice-templates', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Request 2: Get Portuguese voice templates
+curl -X GET "https://talqover.app/api/v1/voice-templates?language=pt-BR" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Request 2: Get Portuguese voice templates
+const response = await fetch('https://talqover.app/api/v1/voice-templates?language=pt-BR', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Request 3: Get female pro quality templates
+curl -X GET "https://talqover.app/api/v1/voice-templates?gender=female&quality_tier=pro" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Request 3: Get female pro quality templates
+const response = await fetch('https://talqover.app/api/v1/voice-templates?gender=female&quality_tier=pro', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Response
+
+### Success Response (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "display_name": "Bianca",
+      "voices": [
+        {
+          "id": "voice-template-uuid-1",
+          "name": "Bianca",
+          "gender": "female",
+          "language": "pt-BR",
+          "quality_tier": "basic",
+          "cost": "0.10"
+        },
+        {
+          "id": "voice-template-uuid-2",
+          "name": "Bianca",
+          "gender": "female",
+          "language": "pt-BR",
+          "quality_tier": "pro",
+          "cost": "0.16"
+        },
+        {
+          "id": "voice-template-uuid-3",
+          "name": "Bianca",
+          "gender": "female",
+          "language": "pt-BR",
+          "quality_tier": "ultra",
+          "cost": "0.23"
+        }
+      ]
+    },
+    {
+      "display_name": "Isabela",
+      "voices": [
+        {
+          "id": "voice-template-uuid-4",
+          "name": "Isabela",
+          "gender": "female",
+          "language": "pt-BR",
+          "quality_tier": "basic",
+          "cost": "0.10"
+        },
+        {
+          "id": "voice-template-uuid-5",
+          "name": "Isabela",
+          "gender": "female",
+          "language": "pt-BR",
+          "quality_tier": "pro",
+          "cost": "0.16"
+        }
+      ]
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+### Response Fields
+
+<ResponseField name="success" type="boolean" required>
+  Indicates if the operation was successful.
+</ResponseField>
+
+<ResponseField name="data" type="array" required>
+  Array of voice template groups.
+
+  <Expandable title="Voice Template Group">
+    <ResponseField name="display_name" type="string" required>
+      The display name of the voice template group.
+    </ResponseField>
+    <ResponseField name="voices" type="array" required>
+      Array of voice templates with different quality tiers.
+
+      <Expandable title="Voice Template">
+        <ResponseField name="id" type="string" required>
+          Unique identifier for the voice template.
+        </ResponseField>
+        <ResponseField name="name" type="string" required>
+          Name of the voice template.
+        </ResponseField>
+        <ResponseField name="gender" type="string" required>
+          Gender of the voice. Options: `male`, `female`.
+        </ResponseField>
+        <ResponseField name="language" type="string" required>
+          Language code of the voice (e.g., `en-US`, `pt-BR`).
+        </ResponseField>
+        <ResponseField name="quality_tier" type="string" required>
+          Quality tier of the voice. Options: `basic`, `pro`, `ultra`, `beta`.
+        </ResponseField>
+        <ResponseField name="cost" type="string" required>
+          Price per minute in USD.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Error Responses
+
+### 401 Unauthorized
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 422 Validation Error
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "language": [
+      "The selected language is invalid."
+    ],
+    "quality_tier": [
+      "The selected quality tier is invalid."
+    ],
+    "gender": [
+      "The selected gender is invalid."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 500 Server Error
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Error Codes
+
+| Code | Description | HTTP Status |
+|------|-------------|-------------|
+| `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
+| `VALIDATION_ERROR` | Query parameter validation failed | 422 |
+| `SERVER_ERROR` | Internal server error occurred | 500 |
+
+## Important Notes
+
+<Info>
+  **Grouped by display name.** Voice templates are grouped by their display name, with each group containing different quality tiers of the same voice.
+</Info>
+
+<Info>
+  **Quality tiers affect cost.** Higher quality tiers (pro, ultra) cost more per minute than basic tiers.
+</Info>
+
+<Info>
+  **Language filtering.** Use the language parameter to get voice templates for specific languages.
+</Info>
+
+## Best Practices
+
+1. **Filter by language** - Use the language parameter to get relevant voice templates
+2. **Consider quality vs cost** - Balance voice quality with cost requirements
+3. **Test voices** - Use the demo endpoint to test voice templates before selecting
+4. **Cache results** - Voice templates don't change frequently, so consider caching
+5. **Handle empty responses** - Some language/gender combinations may return empty results
+
+## Related Endpoints
+
+- **Generate Voice Template Demo**: `GET /api/v1/voice-templates/{voiceTemplate}/demo`
+- **List Phone Numbers**: `GET /api/v1/phone-numbers`

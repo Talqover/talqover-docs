@@ -38,7 +38,14 @@
             "pages": [
               "en/api-reference/introduction",
               "en/api-reference/authentication",
-              "en/api-reference/endpoints/make-call",
+              {
+                "group": "Voice Templates & Phone Numbers",
+                "pages": [
+                  "en/api-reference/endpoints/list-voice-templates",
+                  "en/api-reference/endpoints/generate-voice-demo",
+                  "en/api-reference/endpoints/list-phone-numbers"
+                ]
+              },
               {
                 "group": "Setup Agents",
                 "pages": [
@@ -69,6 +76,13 @@
                       "en/api-reference/endpoints/delete-action"
                     ]
                   }
+                ]
+              },
+              {
+                "group": "Make a Call",
+                "pages": [
+                  "en/api-reference/endpoints/make-call",
+                  "en/api-reference/endpoints/make-campaign-call"
                 ]
               }
             ]
@@ -111,7 +125,14 @@
             "pages": [
               "pt-br/api-reference/introduction",
               "pt-br/api-reference/authentication",
-              "pt-br/api-reference/endpoints/make-call",
+              {
+                "group": "Modelos de Voz e Números de Telefone",
+                "pages": [
+                  "pt-br/api-reference/endpoints/list-voice-templates",
+                  "pt-br/api-reference/endpoints/generate-voice-demo",
+                  "pt-br/api-reference/endpoints/list-phone-numbers"
+                ]
+              },
               {
                 "group": "Configurar Agentes",
                 "pages": [
@@ -133,6 +154,13 @@
                       "pt-br/api-reference/endpoints/agent-actions"
                     ]
                   }
+                ]
+              },
+              {
+                "group": "Fazer Chamada",
+                "pages": [
+                  "pt-br/api-reference/endpoints/make-call",
+                  "pt-br/api-reference/endpoints/make-campaign-call"
                 ]
               }
             ]
