@@ -1,0 +1,207 @@
+---
+title: "Delete Training"
+description: "Delete a specific training data entry for a voice agent"
+api: "DELETE /api/v1/agents/{agent}/trainings/{training}"
+---
+
+# Delete Training
+
+Delete a specific training data entry for a voice agent. This action is irreversible and will permanently remove the training instructions from the agent.
+
+## Endpoint
+
+```
+DELETE /api/v1/agents/{agent}/trainings/{training}
+```
+
+## Path Parameters
+
+<ParamField path="agent" type="string" required>
+  The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
+</ParamField>
+
+<ParamField path="training" type="string" required>
+  The unique identifier of the training to delete. You can find this by listing the agent's trainings first.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Example Requests
+
+<RequestExample>
+
+```bash
+# Request 1: Delete a specific training
+curl -X DELETE "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings/training-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Request 1: Delete a specific training
+const response = await fetch('https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings/training-uuid-1', {
+  method: 'DELETE',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Request 2: Delete training with error handling
+curl -X DELETE "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings/training-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -w "\nHTTP Status: %{http_code}\n"
+```
+
+```javascript
+// Request 2: Delete training with error handling
+try {
+  const response = await fetch('https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings/training-uuid-1', {
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Bearer talq_your_environment_token_here'
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const result = await response.json();
+  console.log('Training deleted successfully:', result.message);
+} catch (error) {
+  console.error('Error deleting training:', error);
+}
+```
+
+</RequestExample>
+
+## Response
+
+### Success Response (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Agent training deleted successfully"
+}
+```
+
+</ResponseExample>
+
+### Response Fields
+
+<ResponseField name="success" type="boolean" required>
+  Indicates if the operation was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Success message confirming the training was deleted.
+</ResponseField>
+
+## Error Responses
+
+### 404 Not Found
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Training not found"
+}
+```
+
+</ResponseExample>
+
+### 401 Unauthorized
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthenticated."
+}
+```
+
+</ResponseExample>
+
+### 403 Forbidden
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "You are not authorized to delete training for this agent."
+}
+```
+
+</ResponseExample>
+
+### 500 Server Error
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Error Codes
+
+| Code | Description | HTTP Status |
+|------|-------------|-------------|
+| `TRAINING_NOT_FOUND` | Specified training does not exist | 404 |
+| `AGENT_NOT_FOUND` | Specified agent does not exist | 404 |
+| `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
+| `UNAUTHORIZED` | User does not have permission to delete training for this agent | 403 |
+| `SERVER_ERROR` | Internal server error occurred | 500 |
+
+## Important Notes
+
+<Warning>
+  **This action is irreversible.** Once a training is deleted, it cannot be recovered. Make sure you have a backup if needed.
+</Warning>
+
+<Info>
+  **Agent status will be set to draft.** After deleting training, the agent will be automatically set to "draft" status and will need to be published again to become active.
+</Info>
+
+<Info>
+  **No confirmation required.** The deletion happens immediately without additional confirmation steps.
+</Info>
+
+## Best Practices
+
+1. **Verify before deleting** - Always list trainings first to get the correct training ID
+2. **Backup important data** - Consider backing up training data before deletion
+3. **Test impact** - Understand how removing training might affect agent performance
+4. **Use inactive status** - Consider setting training to "inactive" instead of deleting if you might need it later
+5. **Monitor agent performance** - After deletion, monitor the agent's performance to ensure it still works as expected
+6. **Document changes** - Keep track of what training was deleted and why
+
+## Related Endpoints
+
+- **List Trainings**: `GET /api/v1/agents/{agent}/trainings`
+- **Create/Update Training**: `POST /api/v1/agents/{agent}/trainings`
+- **Get Agent**: `GET /api/v1/agents/{agent}`
+- **Publish Agent**: `POST /api/v1/agents/{agent}/publish`

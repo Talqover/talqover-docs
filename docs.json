@@ -38,7 +38,39 @@
             "pages": [
               "en/api-reference/introduction",
               "en/api-reference/authentication",
-              "en/api-reference/endpoints/make-call"
+              "en/api-reference/endpoints/make-call",
+              {
+                "group": "Setup Agents",
+                "pages": [
+                  {
+                    "group": "Agents",
+                    "pages": [
+                      "en/api-reference/endpoints/list-agents",
+                      "en/api-reference/endpoints/create-agent",
+                      "en/api-reference/endpoints/get-agent",
+                      "en/api-reference/endpoints/update-agent-knowledge",
+                      "en/api-reference/endpoints/update-agent-voice",
+                      "en/api-reference/endpoints/delete-agent"
+                    ]
+                  },
+                  {
+                    "group": "Trainings",
+                    "pages": [
+                      "en/api-reference/endpoints/list-trainings",
+                      "en/api-reference/endpoints/create-training",
+                      "en/api-reference/endpoints/delete-training"
+                    ]
+                  },
+                  {
+                    "group": "Actions",
+                    "pages": [
+                      "en/api-reference/endpoints/list-actions",
+                      "en/api-reference/endpoints/create-action",
+                      "en/api-reference/endpoints/delete-action"
+                    ]
+                  }
+                ]
+              }
             ]
           },
           {
@@ -79,7 +111,30 @@
             "pages": [
               "pt-br/api-reference/introduction",
               "pt-br/api-reference/authentication",
-              "pt-br/api-reference/endpoints/make-call"
+              "pt-br/api-reference/endpoints/make-call",
+              {
+                "group": "Configurar Agentes",
+                "pages": [
+                  {
+                    "group": "Agentes",
+                    "pages": [
+                      "pt-br/api-reference/endpoints/agents"
+                    ]
+                  },
+                  {
+                    "group": "Treinamentos",
+                    "pages": [
+                      "pt-br/api-reference/endpoints/agent-trainings"
+                    ]
+                  },
+                  {
+                    "group": "Ações",
+                    "pages": [
+                      "pt-br/api-reference/endpoints/agent-actions"
+                    ]
+                  }
+                ]
+              }
             ]
           },
           {

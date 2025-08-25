@@ -1,0 +1,243 @@
+---
+title: "List Trainings"
+description: "Retrieve a list of training data for a specific voice agent"
+api: "GET /api/v1/agents/{agent}/trainings"
+---
+
+# List Trainings
+
+Retrieve all training data associated with a specific voice agent. This endpoint returns a list of training instructions that the agent uses to understand how to respond to different scenarios.
+
+## Endpoint
+
+```
+GET /api/v1/agents/{agent}/trainings
+```
+
+## Path Parameters
+
+<ParamField path="agent" type="string" required>
+  The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Example Requests
+
+<RequestExample>
+
+```bash
+# Request 1: List all trainings for an agent
+curl -X GET "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Request 1: List all trainings for an agent
+const response = await fetch('https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Request 2: List trainings with error handling
+curl -X GET "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -w "\nHTTP Status: %{http_code}\n"
+```
+
+```javascript
+// Request 2: List trainings with error handling
+try {
+  const response = await fetch('https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings', {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer talq_your_environment_token_here'
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const result = await response.json();
+  console.log('Trainings:', result.data);
+} catch (error) {
+  console.error('Error fetching trainings:', error);
+}
+```
+
+</RequestExample>
+
+## Response
+
+### Success Response (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "training-uuid-1",
+      "subject": "Product Knowledge",
+      "instructions": "Learn about our product features, pricing, and common use cases. Focus on the main benefits and how to address common customer questions.",
+      "current_status": "active",
+      "created_at": "2024-01-15T10:30:00Z",
+      "updated_at": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "training-uuid-2",
+      "subject": "Customer Service Best Practices",
+      "instructions": "Understand how to handle customer complaints and provide excellent service. Always be polite, patient, and solution-oriented.",
+      "current_status": "active",
+      "created_at": "2024-01-15T11:00:00Z",
+      "updated_at": "2024-01-15T11:00:00Z"
+    },
+    {
+      "id": "training-uuid-3",
+      "subject": "Technical Support",
+      "instructions": "Provide technical support for common issues. Guide users through troubleshooting steps and escalate when necessary.",
+      "current_status": "inactive",
+      "created_at": "2024-01-15T12:00:00Z",
+      "updated_at": "2024-01-15T12:00:00Z"
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+### Response Fields
+
+<ResponseField name="success" type="boolean" required>
+  Indicates if the operation was successful.
+</ResponseField>
+
+<ResponseField name="data" type="array" required>
+  Array of training objects associated with the agent.
+
+  <Expandable title="Training Object">
+    <ResponseField name="id" type="string" required>
+      Unique identifier for the training.
+    </ResponseField>
+    <ResponseField name="subject" type="string" required>
+      The subject or title of the training.
+    </ResponseField>
+    <ResponseField name="instructions" type="string" required>
+      Detailed instructions for the training that the agent will learn from.
+    </ResponseField>
+    <ResponseField name="current_status" type="string" required>
+      Current status of the training. Options: `active`, `inactive`.
+    </ResponseField>
+    <ResponseField name="created_at" type="string" required>
+      ISO 8601 timestamp when the training was created.
+    </ResponseField>
+    <ResponseField name="updated_at" type="string" required>
+      ISO 8601 timestamp when the training was last updated.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Error Responses
+
+### 404 Not Found
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Agent not found"
+}
+```
+
+</ResponseExample>
+
+### 401 Unauthorized
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthenticated."
+}
+```
+
+</ResponseExample>
+
+### 403 Forbidden
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "You are not authorized to access this agent's trainings."
+}
+```
+
+</ResponseExample>
+
+### 500 Server Error
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Error Codes
+
+| Code | Description | HTTP Status |
+|------|-------------|-------------|
+| `AGENT_NOT_FOUND` | Specified agent does not exist | 404 |
+| `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
+| `UNAUTHORIZED` | User does not have permission to access this agent | 403 |
+| `SERVER_ERROR` | Internal server error occurred | 500 |
+
+## Important Notes
+
+<Info>
+  **Empty response is normal.** If an agent has no training data, the response will be an empty array `[]` rather than an error.
+</Info>
+
+<Info>
+  **Status filtering.** The response includes both active and inactive trainings. You can filter by `current_status` on the client side if needed.
+</Info>
+
+## Best Practices
+
+1. **Cache training data** - Training data doesn't change frequently, so consider caching the response
+2. **Handle empty responses** - Always check if the data array is empty before processing
+3. **Monitor training status** - Check the `current_status` to ensure trainings are active
+4. **Error handling** - Implement proper error handling for authentication and authorization failures
+5. **Rate limiting** - Be mindful of API rate limits when fetching training data
+
+## Related Endpoints
+
+- **Create/Update Training**: `POST /api/v1/agents/{agent}/trainings`
+- **Delete Training**: `DELETE /api/v1/agents/{agent}/trainings/{training}`
+- **Get Agent**: `GET /api/v1/agents/{agent}`
+- **List Agents**: `GET /api/v1/agents`
