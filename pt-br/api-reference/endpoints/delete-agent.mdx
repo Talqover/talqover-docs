@@ -1,0 +1,197 @@
+---
+title: "Excluir Agente"
+description: "Excluir um agente específico permanentemente"
+api: "DELETE /api/v1/agents/{agent}"
+---
+
+# Excluir Agente
+
+Excluir um agente específico permanentemente. Esta operação não pode ser desfeita e remove todos os dados associados ao agente.
+
+## Endpoint
+
+```
+DELETE /api/v1/agents/{agent}
+```
+
+## Parâmetros de Caminho
+
+<ParamField path="agent" type="string" required>
+  O identificador único do agente. Você pode encontrá-lo na lista de agentes.
+</ParamField>
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Excluir um agente específico
+curl -X DELETE "https://talqover.app/api/v1/agents/agent-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 1: Excluir um agente específico
+const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1', {
+  method: 'DELETE',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Excluir agente com ID específico
+curl -X DELETE "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 2: Excluir agente com ID específico
+const agentId = '550e8400-e29b-41d4-a716-446655440000';
+const response = await fetch(`https://talqover.app/api/v1/agents/${agentId}`, {
+  method: 'DELETE',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Agente excluído com sucesso"
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="success" type="boolean" required>
+  Indica se a operação foi bem-sucedida.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Mensagem de sucesso descrevendo a operação.
+</ResponseField>
+
+## Respostas de Erro
+
+### 404 Não Encontrado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Agent not found"
+}
+```
+
+</ResponseExample>
+
+### 409 Conflito
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Cannot delete agent that is currently in use"
+}
+```
+
+</ResponseExample>
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `AGENT_NOT_FOUND` | Agente especificado não existe | 404 |
+| `AGENT_IN_USE` | Agente não pode ser excluído pois está em uso | 409 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
+
+## Notas Importantes
+
+<Warning>
+  **Operação irreversível.** Esta operação exclui permanentemente o agente e todos os dados associados.
+</Warning>
+
+<Info>
+  **Verificação de uso.** Agentes em uso ativo não podem ser excluídos.
+</Info>
+
+<Info>
+  **Dados associados.** Todos os dados do agente, incluindo treinamentos e ações, são removidos.
+</Info>
+
+<Warning>
+  **Confirmação necessária.** Certifique-se de que deseja excluir o agente antes de executar esta operação.
+</Warning>
+
+## Melhores Práticas
+
+1. **Confirme a exclusão** - Certifique-se de que deseja excluir o agente permanentemente
+2. **Verifique uso ativo** - Confirme que o agente não está sendo usado em chamadas ativas
+3. **Faça backup** - Considere fazer backup dos dados importantes antes da exclusão
+4. **Teste em ambiente de desenvolvimento** - Teste a exclusão em ambiente de desenvolvimento primeiro
+5. **Monitore dependências** - Verifique se há outras partes do sistema que dependem do agente
+
+## Endpoints Relacionados
+
+- **Listar Agentes**: `GET /api/v1/agents`
+- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Criar Agente**: `POST /api/v1/agents`
+- **Atualizar Conhecimento do Agente**: `PUT /api/v1/agents/{agent}/knowledge`

@@ -1,0 +1,377 @@
+---
+title: "Atualizar Campanha"
+description: "Atualizar configurações de uma campanha existente"
+api: "PUT /api/v1/campaigns/{campaign}"
+---
+
+# Atualizar Campanha
+
+Atualizar configurações de uma campanha existente. Todos os campos são opcionais - apenas inclua os campos que deseja atualizar.
+
+## Endpoint
+
+```
+PUT /api/v1/campaigns/{campaign}
+```
+
+## Parâmetros de Caminho
+
+<ParamField path="campaign" type="string" required>
+  O identificador único da campanha. Você pode encontrá-lo na lista de campanhas.
+</ParamField>
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Application JSON. Formato: `application/json`
+</ParamField>
+
+## Corpo da Requisição
+
+<ParamField body="name" type="string" required={false}>
+  Nome da campanha (máximo 255 caracteres).
+</ParamField>
+
+<ParamField body="description" type="string" required={false}>
+  Descrição da campanha.
+</ParamField>
+
+<ParamField body="campaign_type" type="string" required={false}>
+  Tipo da campanha. Opções: `sales`, `follow_up`, `reminder`, `custom`
+</ParamField>
+
+<ParamField body="start_date" type="string" required={false}>
+  Data de início da campanha (formato: YYYY-MM-DD).
+</ParamField>
+
+<ParamField body="days_of_week" type="array" required={false}>
+  Array de dias da semana (1=Segunda, 7=Domingo).
+</ParamField>
+
+<ParamField body="earliest_call_time" type="string" required={false}>
+  Horário mais cedo para fazer chamadas (formato: HH:MM:SS).
+</ParamField>
+
+<ParamField body="latest_call_time" type="string" required={false}>
+  Horário mais tarde para fazer chamadas (formato: HH:MM:SS).
+</ParamField>
+
+<ParamField body="timezone" type="string" required={false}>
+  Fuso horário para agendamento de chamadas.
+</ParamField>
+
+<ParamField body="agent_id" type="string" required={false}>
+  UUID do agente atribuído à campanha.
+</ParamField>
+
+<ParamField body="initial_call_delay" type="integer" required={false}>
+  Atraso inicial da chamada em segundos.
+</ParamField>
+
+<ParamField body="max_retries" type="integer" required={false}>
+  Número máximo de tentativas.
+</ParamField>
+
+<ParamField body="retry_cooldown_hours" type="integer" required={false}>
+  Tempo de espera entre tentativas em horas.
+</ParamField>
+
+<ParamField body="enable_post_completion_cooldown" type="boolean" required={false}>
+  Habilitar cooldown pós-conclusão.
+</ParamField>
+
+<ParamField body="post_completion_cooldown_hours" type="integer" required={false}>
+  Tempo de cooldown pós-conclusão em horas.
+</ParamField>
+
+<ParamField body="success_cooldown_hours" type="integer" required={false}>
+  Tempo de cooldown após sucesso em horas.
+</ParamField>
+
+<ParamField body="voicemail_cooldown_hours" type="integer" required={false}>
+  Tempo de cooldown após caixa postal em horas.
+</ParamField>
+
+<ParamField body="no_answer_cooldown_hours" type="integer" required={false}>
+  Tempo de cooldown após sem resposta em horas.
+</ParamField>
+
+<ParamField body="busy_cooldown_hours" type="integer" required={false}>
+  Tempo de cooldown após ocupado em horas.
+</ParamField>
+
+<ParamField body="failed_cooldown_hours" type="integer" required={false}>
+  Tempo de cooldown após falha em horas.
+</ParamField>
+
+<ParamField body="do_not_call_enabled" type="boolean" required={false}>
+  Habilitar lista de não chamar.
+</ParamField>
+
+<ParamField body="do_not_call_list_source" type="string" required={false}>
+  Fonte da lista de não chamar. Opções: `environment`, `campaign`
+</ParamField>
+
+<ParamField body="auto_add_to_dnc_enabled" type="boolean" required={false}>
+  Adicionar automaticamente à lista de não chamar.
+</ParamField>
+
+<ParamField body="auto_dnc_trigger_statuses" type="array" required={false}>
+  Status que disparam adição automática à DNC. Opções: `completed`, `voicemail`
+</ParamField>
+
+<ParamField body="auto_dnc_trigger_errors" type="array" required={false}>
+  Erros que disparam adição automática à DNC. Opções: `invalid_number`, `disconnected`
+</ParamField>
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Atualizar nome e descrição da campanha
+curl -X PUT "https://talqover.app/api/v1/campaigns/campaign-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Campanha de Vendas Q1 Atualizada",
+    "description": "Campanha de vendas outbound atualizada para Q1"
+  }'
+```
+
+```javascript
+// Requisição 1: Atualizar nome e descrição da campanha
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1', {
+  method: 'PUT',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'Campanha de Vendas Q1 Atualizada',
+    description: 'Campanha de vendas outbound atualizada para Q1'
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Atualizar configurações de agendamento
+curl -X PUT "https://talqover.app/api/v1/campaigns/campaign-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "days_of_week": [1, 2, 3, 4, 5, 6],
+    "earliest_call_time": "08:00:00",
+    "latest_call_time": "18:00:00",
+    "max_retries": 5,
+    "retry_cooldown_hours": 48
+  }'
+```
+
+```javascript
+// Requisição 2: Atualizar configurações de agendamento
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1', {
+  method: 'PUT',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    days_of_week: [1, 2, 3, 4, 5, 6],
+    earliest_call_time: '08:00:00',
+    latest_call_time: '18:00:00',
+    max_retries: 5,
+    retry_cooldown_hours: 48
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Campanha atualizada com sucesso",
+  "data": {
+    "id": "campaign-uuid-1",
+    "name": "Campanha de Vendas Q1 Atualizada",
+    "description": "Campanha de vendas outbound atualizada para Q1",
+    "status": "active",
+    "campaign_type": "sales",
+    "agent_id": "agent-uuid-1",
+    "updated_at": "2024-01-01T00:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="success" type="boolean" required>
+  Indica se a operação foi bem-sucedida.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Mensagem de sucesso descrevendo a operação.
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Dados da campanha atualizada.
+
+  <Expandable title="Dados da Campanha">
+    <ResponseField name="id" type="string" required>
+      Identificador único da campanha.
+    </ResponseField>
+    <ResponseField name="name" type="string" required>
+      Nome da campanha.
+    </ResponseField>
+    <ResponseField name="description" type="string">
+      Descrição da campanha.
+    </ResponseField>
+    <ResponseField name="status" type="string" required>
+      Status atual da campanha.
+    </ResponseField>
+    <ResponseField name="campaign_type" type="string" required>
+      Tipo da campanha.
+    </ResponseField>
+    <ResponseField name="agent_id" type="string" required>
+      ID do agente atribuído.
+    </ResponseField>
+    <ResponseField name="updated_at" type="string" required>
+      Timestamp ISO 8601 quando a campanha foi atualizada.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Respostas de Erro
+
+### 404 Não Encontrado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Campaign not found"
+}
+```
+
+</ResponseExample>
+
+### 422 Erro de Validação
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "name": [
+      "The name may not be greater than 255 characters."
+    ],
+    "campaign_type": [
+      "The selected campaign type is invalid."
+    ],
+    "days_of_week": [
+      "The days of week must be an array."
+    ],
+    "earliest_call_time": [
+      "The earliest call time does not match the format H:i:s."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `CAMPAIGN_NOT_FOUND` | Campanha especificada não existe | 404 |
+| `VALIDATION_ERROR` | Validação da requisição falhou | 422 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
+
+## Notas Importantes
+
+<Info>
+  **Atualização parcial.** Apenas os campos incluídos na requisição serão atualizados.
+</Info>
+
+<Info>
+  **Validação.** Todos os campos são validados mesmo que sejam opcionais.
+</Info>
+
+<Info>
+  **Timestamp de atualização.** O campo `updated_at` é automaticamente atualizado.
+</Info>
+
+<Warning>
+  **Impacto nas chamadas.** Alterações podem afetar chamadas em andamento ou agendadas.
+</Warning>
+
+## Melhores Práticas
+
+1. **Atualize apenas o necessário** - Inclua apenas os campos que realmente precisam ser alterados
+2. **Teste configurações** - Teste as novas configurações antes de aplicar em produção
+3. **Monitore impacto** - Acompanhe como as mudanças afetam o desempenho da campanha
+4. **Valide dados** - Certifique-se de que todos os dados estão no formato correto
+5. **Documente mudanças** - Mantenha registro das alterações feitas na campanha
+
+## Endpoints Relacionados
+
+- **Listar Campanhas**: `GET /api/v1/campaigns`
+- **Criar Campanha**: `POST /api/v1/campaigns`
+- **Obter Campanha**: `GET /api/v1/campaigns/{campaign}`
+- **Atualizar Status da Campanha**: `PATCH /api/v1/campaigns/{campaign}/status`
+- **Excluir Campanha**: `DELETE /api/v1/campaigns/{campaign}`
+- **Fazer Chamada de Campanha**: `POST /api/v1/campaigns/{campaign}/call`

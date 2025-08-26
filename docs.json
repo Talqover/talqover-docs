@@ -152,19 +152,28 @@
                   {
                     "group": "Agentes",
                     "pages": [
-                      "pt-br/api-reference/endpoints/agents"
+                      "pt-br/api-reference/endpoints/list-agents",
+                      "pt-br/api-reference/endpoints/create-agent",
+                      "pt-br/api-reference/endpoints/get-agent",
+                      "pt-br/api-reference/endpoints/update-agent-knowledge",
+                      "pt-br/api-reference/endpoints/update-agent-voice",
+                      "pt-br/api-reference/endpoints/delete-agent"
                     ]
                   },
                   {
                     "group": "Treinamentos",
                     "pages": [
-                      "pt-br/api-reference/endpoints/agent-trainings"
+                      "pt-br/api-reference/endpoints/list-trainings",
+                      "pt-br/api-reference/endpoints/create-training",
+                      "pt-br/api-reference/endpoints/delete-training"
                     ]
                   },
                   {
                     "group": "Ações",
                     "pages": [
-                      "pt-br/api-reference/endpoints/agent-actions"
+                      "pt-br/api-reference/endpoints/list-actions",
+                      "pt-br/api-reference/endpoints/create-action",
+                      "pt-br/api-reference/endpoints/delete-action"
                     ]
                   }
                 ]

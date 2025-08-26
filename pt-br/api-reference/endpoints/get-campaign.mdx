@@ -1,0 +1,413 @@
+---
+title: "Obter Campanha"
+description: "Recuperar detalhes de uma campanha específica"
+api: "GET /api/v1/campaigns/{campaign}"
+---
+
+# Obter Campanha
+
+Recuperar detalhes completos de uma campanha específica, incluindo configurações, estatísticas, chamadas associadas e arquivos.
+
+## Endpoint
+
+```
+GET /api/v1/campaigns/{campaign}
+```
+
+## Parâmetros de Caminho
+
+<ParamField path="campaign" type="string" required>
+  O identificador único da campanha. Você pode encontrá-lo na lista de campanhas.
+</ParamField>
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Obter detalhes de uma campanha específica
+curl -X GET "https://talqover.app/api/v1/campaigns/campaign-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 1: Obter detalhes de uma campanha específica
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Obter campanha com ID específico
+curl -X GET "https://talqover.app/api/v1/campaigns/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 2: Obter campanha com ID específico
+const campaignId = '550e8400-e29b-41d4-a716-446655440000';
+const response = await fetch(`https://talqover.app/api/v1/campaigns/${campaignId}`, {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "campaign-uuid-1",
+    "name": "Campanha de Vendas Q1",
+    "description": "Campanha de vendas outbound para Q1",
+    "status": "active",
+    "campaign_type": "sales",
+    "start_date": "2024-01-01",
+    "days_of_week": [1, 2, 3, 4, 5],
+    "earliest_call_time": "09:00:00",
+    "latest_call_time": "17:00:00",
+    "timezone": "America/New_York",
+    "agent_id": "agent-uuid-1",
+    "initial_call_delay": 0,
+    "max_retries": 3,
+    "retry_cooldown_hours": 24,
+    "enable_post_completion_cooldown": true,
+    "post_completion_cooldown_hours": 168,
+    "success_cooldown_hours": 168,
+    "voicemail_cooldown_hours": 24,
+    "no_answer_cooldown_hours": 24,
+    "busy_cooldown_hours": 24,
+    "failed_cooldown_hours": 24,
+    "do_not_call_enabled": true,
+    "do_not_call_list_source": "environment",
+    "auto_add_to_dnc_enabled": true,
+    "auto_dnc_trigger_statuses": ["completed", "voicemail"],
+    "auto_dnc_trigger_errors": ["invalid_number", "disconnected"],
+    "agent": {
+      "id": "agent-uuid-1",
+      "name": "Agente de Vendas",
+      "label": "Agente de Vendas Label"
+    },
+    "calls": [
+      {
+        "id": "call-uuid-1",
+        "to": "+1234567890",
+        "status": "completed",
+        "retries": 0,
+        "created_at": "2024-01-01T00:00:00Z"
+      }
+    ],
+    "files": [
+      {
+        "id": "file-uuid-1",
+        "original_filename": "contacts.csv",
+        "processed_filename": "processed_contacts.csv",
+        "status": "processed",
+        "total_records": 1000,
+        "processed_records": 950
+      }
+    ],
+    "stats": {
+      "total_calls": 100,
+      "completed_calls": 80,
+      "failed_calls": 20,
+      "success_rate": 80.0,
+      "average_duration": 120
+    },
+    "created_at": "2024-01-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="success" type="boolean" required>
+  Indica se a operação foi bem-sucedida.
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Dados completos da campanha.
+
+  <Expandable title="Objeto de Campanha">
+    <ResponseField name="id" type="string" required>
+      Identificador único da campanha.
+    </ResponseField>
+    <ResponseField name="name" type="string" required>
+      Nome da campanha.
+    </ResponseField>
+    <ResponseField name="description" type="string">
+      Descrição da campanha.
+    </ResponseField>
+    <ResponseField name="status" type="string" required>
+      Status da campanha. Opções: `draft`, `active`, `paused`, `completed`, `cancelled`.
+    </ResponseField>
+    <ResponseField name="campaign_type" type="string" required>
+      Tipo da campanha. Opções: `sales`, `follow_up`, `reminder`, `custom`.
+    </ResponseField>
+    <ResponseField name="start_date" type="string" required>
+      Data de início da campanha (formato: YYYY-MM-DD).
+    </ResponseField>
+    <ResponseField name="days_of_week" type="array" required>
+      Array de dias da semana (1=Segunda, 7=Domingo).
+    </ResponseField>
+    <ResponseField name="earliest_call_time" type="string" required>
+      Horário mais cedo para fazer chamadas (formato: HH:MM:SS).
+    </ResponseField>
+    <ResponseField name="latest_call_time" type="string" required>
+      Horário mais tarde para fazer chamadas (formato: HH:MM:SS).
+    </ResponseField>
+    <ResponseField name="timezone" type="string" required>
+      Fuso horário para agendamento de chamadas.
+    </ResponseField>
+    <ResponseField name="agent_id" type="string" required>
+      ID do agente atribuído à campanha.
+    </ResponseField>
+    <ResponseField name="initial_call_delay" type="integer" required>
+      Atraso inicial da chamada em segundos.
+    </ResponseField>
+    <ResponseField name="max_retries" type="integer" required>
+      Número máximo de tentativas.
+    </ResponseField>
+    <ResponseField name="retry_cooldown_hours" type="integer" required>
+      Tempo de espera entre tentativas em horas.
+    </ResponseField>
+    <ResponseField name="enable_post_completion_cooldown" type="boolean" required>
+      Se o cooldown pós-conclusão está habilitado.
+    </ResponseField>
+    <ResponseField name="post_completion_cooldown_hours" type="integer" required>
+      Tempo de cooldown pós-conclusão em horas.
+    </ResponseField>
+    <ResponseField name="success_cooldown_hours" type="integer" required>
+      Tempo de cooldown após sucesso em horas.
+    </ResponseField>
+    <ResponseField name="voicemail_cooldown_hours" type="integer" required>
+      Tempo de cooldown após caixa postal em horas.
+    </ResponseField>
+    <ResponseField name="no_answer_cooldown_hours" type="integer" required>
+      Tempo de cooldown após sem resposta em horas.
+    </ResponseField>
+    <ResponseField name="busy_cooldown_hours" type="integer" required>
+      Tempo de cooldown após ocupado em horas.
+    </ResponseField>
+    <ResponseField name="failed_cooldown_hours" type="integer" required>
+      Tempo de cooldown após falha em horas.
+    </ResponseField>
+    <ResponseField name="do_not_call_enabled" type="boolean" required>
+      Se a lista de não chamar está habilitada.
+    </ResponseField>
+    <ResponseField name="do_not_call_list_source" type="string" required>
+      Fonte da lista de não chamar.
+    </ResponseField>
+    <ResponseField name="auto_add_to_dnc_enabled" type="boolean" required>
+      Se a adição automática à DNC está habilitada.
+    </ResponseField>
+    <ResponseField name="auto_dnc_trigger_statuses" type="array" required>
+      Status que disparam adição automática à DNC.
+    </ResponseField>
+    <ResponseField name="auto_dnc_trigger_errors" type="array" required>
+      Erros que disparam adição automática à DNC.
+    </ResponseField>
+    <ResponseField name="agent" type="object" required>
+      Informações do agente.
+
+      <Expandable title="Objeto do Agente">
+        <ResponseField name="id" type="string" required>
+          ID do agente.
+        </ResponseField>
+        <ResponseField name="name" type="string" required>
+          Nome do agente.
+        </ResponseField>
+        <ResponseField name="label" type="string" required>
+          Label do agente.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="calls" type="array" required>
+      Lista de chamadas associadas à campanha.
+
+      <Expandable title="Objeto de Chamada">
+        <ResponseField name="id" type="string" required>
+          ID da chamada.
+        </ResponseField>
+        <ResponseField name="to" type="string" required>
+          Número de telefone de destino.
+        </ResponseField>
+        <ResponseField name="status" type="string" required>
+          Status da chamada.
+        </ResponseField>
+        <ResponseField name="retries" type="integer" required>
+          Número de tentativas.
+        </ResponseField>
+        <ResponseField name="created_at" type="string" required>
+          Timestamp de criação da chamada.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="files" type="array" required>
+      Lista de arquivos associados à campanha.
+
+      <Expandable title="Objeto de Arquivo">
+        <ResponseField name="id" type="string" required>
+          ID do arquivo.
+        </ResponseField>
+        <ResponseField name="original_filename" type="string" required>
+          Nome original do arquivo.
+        </ResponseField>
+        <ResponseField name="processed_filename" type="string" required>
+          Nome do arquivo processado.
+        </ResponseField>
+        <ResponseField name="status" type="string" required>
+          Status do processamento.
+        </ResponseField>
+        <ResponseField name="total_records" type="integer" required>
+          Número total de registros.
+        </ResponseField>
+        <ResponseField name="processed_records" type="integer" required>
+          Número de registros processados.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="stats" type="object" required>
+      Estatísticas da campanha.
+
+      <Expandable title="Objeto de Estatísticas">
+        <ResponseField name="total_calls" type="integer" required>
+          Número total de chamadas.
+        </ResponseField>
+        <ResponseField name="completed_calls" type="integer" required>
+          Número de chamadas completadas.
+        </ResponseField>
+        <ResponseField name="failed_calls" type="integer" required>
+          Número de chamadas falhadas.
+        </ResponseField>
+        <ResponseField name="success_rate" type="number" required>
+          Taxa de sucesso em porcentagem.
+        </ResponseField>
+        <ResponseField name="average_duration" type="integer" required>
+          Duração média das chamadas em segundos.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="created_at" type="string" required>
+      Timestamp ISO 8601 quando a campanha foi criada.
+    </ResponseField>
+    <ResponseField name="updated_at" type="string" required>
+      Timestamp ISO 8601 quando a campanha foi atualizada pela última vez.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Respostas de Erro
+
+### 404 Não Encontrado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Campaign not found"
+}
+```
+
+</ResponseExample>
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `CAMPAIGN_NOT_FOUND` | Campanha especificada não existe | 404 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
+
+## Notas Importantes
+
+<Info>
+  **Dados completos.** Este endpoint retorna todos os detalhes da campanha incluindo configurações, estatísticas e relacionamentos.
+</Info>
+
+<Info>
+  **Chamadas incluídas.** A resposta inclui uma lista das chamadas associadas à campanha.
+</Info>
+
+<Info>
+  **Arquivos incluídos.** A resposta inclui uma lista dos arquivos associados à campanha.
+</Info>
+
+<Info>
+  **Estatísticas em tempo real.** As estatísticas são calculadas em tempo real com base nas chamadas atuais.
+</Info>
+
+## Melhores Práticas
+
+1. **Monitore estatísticas** - Use as estatísticas para acompanhar o desempenho da campanha
+2. **Verifique chamadas** - Analise as chamadas para entender o comportamento da campanha
+3. **Acompanhe arquivos** - Monitore o processamento de arquivos para garantir que todos os registros sejam processados
+4. **Use dados para otimização** - Use os dados retornados para otimizar configurações da campanha
+5. **Verifique configurações** - Confirme se todas as configurações estão corretas
+
+## Endpoints Relacionados
+
+- **Listar Campanhas**: `GET /api/v1/campaigns`
+- **Criar Campanha**: `POST /api/v1/campaigns`
+- **Atualizar Campanha**: `PUT /api/v1/campaigns/{campaign}`
+- **Atualizar Status da Campanha**: `PATCH /api/v1/campaigns/{campaign}/status`
+- **Excluir Campanha**: `DELETE /api/v1/campaigns/{campaign}`
+- **Fazer Chamada de Campanha**: `POST /api/v1/campaigns/{campaign}/call`

@@ -1,0 +1,297 @@
+---
+title: "Atualizar Status da Campanha"
+description: "Atualizar o status de uma campanha específica"
+api: "PATCH /api/v1/campaigns/{campaign}/status"
+---
+
+# Atualizar Status da Campanha
+
+Atualizar o status de uma campanha específica. Este endpoint permite controlar o ciclo de vida da campanha (rascunho, ativa, pausada, concluída, cancelada).
+
+## Endpoint
+
+```
+PATCH /api/v1/campaigns/{campaign}/status
+```
+
+## Parâmetros de Caminho
+
+<ParamField path="campaign" type="string" required>
+  O identificador único da campanha. Você pode encontrá-lo na lista de campanhas.
+</ParamField>
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Application JSON. Formato: `application/json`
+</ParamField>
+
+## Corpo da Requisição
+
+<ParamField body="status" type="string" required>
+  Novo status da campanha. Opções: `draft`, `active`, `paused`, `completed`, `cancelled`
+</ParamField>
+
+## Valores de Status Válidos
+
+- `draft` - Campanha está em modo rascunho
+- `active` - Campanha está em execução
+- `paused` - Campanha está pausada
+- `completed` - Campanha foi finalizada
+- `cancelled` - Campanha foi cancelada
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Ativar uma campanha
+curl -X PATCH "https://talqover.app/api/v1/campaigns/campaign-uuid-1/status" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "status": "active"
+  }'
+```
+
+```javascript
+// Requisição 1: Ativar uma campanha
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1/status', {
+  method: 'PATCH',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    status: 'active'
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Pausar uma campanha
+curl -X PATCH "https://talqover.app/api/v1/campaigns/campaign-uuid-1/status" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "status": "paused"
+  }'
+```
+
+```javascript
+// Requisição 2: Pausar uma campanha
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1/status', {
+  method: 'PATCH',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    status: 'paused'
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Status da campanha atualizado com sucesso",
+  "data": {
+    "id": "campaign-uuid-1",
+    "status": "active"
+  }
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="success" type="boolean" required>
+  Indica se a operação foi bem-sucedida.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Mensagem de sucesso descrevendo a operação.
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Dados da campanha atualizada.
+
+  <Expandable title="Dados da Campanha">
+    <ResponseField name="id" type="string" required>
+      Identificador único da campanha.
+    </ResponseField>
+    <ResponseField name="status" type="string" required>
+      Novo status da campanha.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Respostas de Erro
+
+### 404 Não Encontrado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Campaign not found"
+}
+```
+
+</ResponseExample>
+
+### 422 Erro de Validação
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "status": [
+      "The selected status is invalid."
+    ],
+    "status": [
+      "The status field is required."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 409 Conflito
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Invalid status transition"
+}
+```
+
+</ResponseExample>
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `CAMPAIGN_NOT_FOUND` | Campanha especificada não existe | 404 |
+| `VALIDATION_ERROR` | Validação da requisição falhou | 422 |
+| `INVALID_STATUS_TRANSITION` | Transição de status inválida | 409 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
+
+## Regras de Transição de Status
+
+<Info>
+  **draft → active** - Permitido quando a campanha está configurada corretamente
+</Info>
+
+<Info>
+  **active → paused** - Permitido a qualquer momento
+</Info>
+
+<Info>
+  **paused → active** - Permitido a qualquer momento
+</Info>
+
+<Info>
+  **active/paused → completed** - Permitido quando todas as chamadas foram processadas
+</Info>
+
+<Info>
+  **draft/active/paused → cancelled** - Permitido a qualquer momento
+</Info>
+
+<Warning>
+  **Transições irreversíveis.** Algumas transições de status não podem ser desfeitas.
+</Warning>
+
+## Notas Importantes
+
+<Info>
+  **Controle de fluxo.** Use este endpoint para controlar o ciclo de vida da campanha.
+</Info>
+
+<Info>
+  **Validação de transição.** O sistema valida se a transição de status é permitida.
+</Info>
+
+<Info>
+  **Impacto nas chamadas.** Mudanças de status podem afetar chamadas em andamento.
+</Info>
+
+<Warning>
+  **Status final.** Status como `completed` e `cancelled` são finais e não podem ser alterados.
+</Warning>
+
+## Melhores Práticas
+
+1. **Planeje transições** - Entenda as regras de transição antes de alterar status
+2. **Monitore impacto** - Acompanhe como mudanças de status afetam as chamadas
+3. **Use pausa temporária** - Use `paused` para interromper temporariamente sem cancelar
+4. **Confirme finalização** - Certifique-se de que deseja finalizar antes de usar `completed`
+5. **Documente mudanças** - Mantenha registro das mudanças de status da campanha
+
+## Endpoints Relacionados
+
+- **Listar Campanhas**: `GET /api/v1/campaigns`
+- **Criar Campanha**: `POST /api/v1/campaigns`
+- **Obter Campanha**: `GET /api/v1/campaigns/{campaign}`
+- **Atualizar Campanha**: `PUT /api/v1/campaigns/{campaign}`
+- **Excluir Campanha**: `DELETE /api/v1/campaigns/{campaign}`
+- **Fazer Chamada de Campanha**: `POST /api/v1/campaigns/{campaign}/call`

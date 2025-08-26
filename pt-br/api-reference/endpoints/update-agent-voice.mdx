@@ -1,0 +1,267 @@
+---
+title: "Atualizar Voz do Agente"
+description: "Atualizar o modelo de voz de um agente específico"
+api: "PUT /api/v1/agents/{agent}/voice"
+---
+
+# Atualizar Voz do Agente
+
+Atualizar o modelo de voz de um agente específico. Esta operação permite alterar a voz do agente sem afetar outras configurações.
+
+## Endpoint
+
+```
+PUT /api/v1/agents/{agent}/voice
+```
+
+## Parâmetros de Caminho
+
+<ParamField path="agent" type="string" required>
+  O identificador único do agente. Você pode encontrá-lo na lista de agentes.
+</ParamField>
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Application JSON. Formato: `application/json`
+</ParamField>
+
+## Corpo da Requisição
+
+<ParamField body="voice_template_id" type="string" required>
+  ID do novo modelo de voz a ser usado pelo agente.
+</ParamField>
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Atualizar modelo de voz do agente
+curl -X PUT "https://talqover.app/api/v1/agents/agent-uuid-1/voice" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "voice_template_id": "voice-template-uuid-2"
+  }'
+```
+
+```javascript
+// Requisição 1: Atualizar modelo de voz do agente
+const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/voice', {
+  method: 'PUT',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    voice_template_id: 'voice-template-uuid-2'
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Atualizar para modelo de voz específico
+curl -X PUT "https://talqover.app/api/v1/agents/agent-uuid-1/voice" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "voice_template_id": "550e8400-e29b-41d4-a716-446655440000"
+  }'
+```
+
+```javascript
+// Requisição 2: Atualizar para modelo de voz específico
+const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/voice', {
+  method: 'PUT',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    voice_template_id: '550e8400-e29b-41d4-a716-446655440000'
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Voz do agente atualizada com sucesso",
+  "data": {
+    "id": "agent-uuid-1",
+    "voice_template_id": "voice-template-uuid-2",
+    "voice_template_name": "Isabela",
+    "updated_at": "2024-01-01T00:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="success" type="boolean" required>
+  Indica se a operação foi bem-sucedida.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Mensagem de sucesso descrevendo a operação.
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Dados da atualização.
+
+  <Expandable title="Dados da Atualização">
+    <ResponseField name="id" type="string" required>
+      ID do agente atualizado.
+    </ResponseField>
+    <ResponseField name="voice_template_id" type="string" required>
+      ID do novo modelo de voz associado ao agente.
+    </ResponseField>
+    <ResponseField name="voice_template_name" type="string" required>
+      Nome do novo modelo de voz associado ao agente.
+    </ResponseField>
+    <ResponseField name="updated_at" type="string" required>
+      Timestamp ISO 8601 quando a voz foi atualizada.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Respostas de Erro
+
+### 404 Não Encontrado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Agent not found"
+}
+```
+
+</ResponseExample>
+
+### 422 Erro de Validação
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "voice_template_id": [
+      "The voice template id field is required."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 404 Modelo de Voz Não Encontrado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Voice template not found"
+}
+```
+
+</ResponseExample>
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `AGENT_NOT_FOUND` | Agente especificado não existe | 404 |
+| `VOICE_TEMPLATE_NOT_FOUND` | Modelo de voz especificado não existe | 404 |
+| `VALIDATION_ERROR` | Validação da requisição falhou | 422 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
+
+## Notas Importantes
+
+<Info>
+  **Alteração isolada.** Esta operação altera apenas o modelo de voz, mantendo outras configurações inalteradas.
+</Info>
+
+<Info>
+  **Modelo de voz válido.** O modelo de voz especificado deve existir e estar ativo.
+</Info>
+
+<Info>
+  **Compatibilidade de idioma.** Certifique-se de que o modelo de voz é compatível com o idioma do agente.
+</Info>
+
+<Warning>
+  **Teste antes de publicar.** Sempre teste a nova voz em modo rascunho antes de publicar o agente.
+</Warning>
+
+## Melhores Práticas
+
+1. **Verifique compatibilidade** - Certifique-se de que o modelo de voz é compatível com o idioma do agente
+2. **Teste a voz** - Use o endpoint de demonstração para testar a voz antes de aplicá-la
+3. **Teste em rascunho** - Sempre teste mudanças em agentes em modo rascunho antes de publicar
+4. **Monitore qualidade** - Verifique se a qualidade da voz atende às suas necessidades
+5. **Considere custos** - Diferentes modelos de voz podem ter custos diferentes
+
+## Endpoints Relacionados
+
+- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Atualizar Conhecimento do Agente**: `PUT /api/v1/agents/{agent}/knowledge`
+- **Listar Modelos de Voz**: `GET /api/v1/voice-templates`
+- **Gerar Demonstração de Voz**: `GET /api/v1/voice-templates/{voiceTemplateId}/demo`
+- **Publicar Agente**: `POST /api/v1/agents/{agent}/publish`

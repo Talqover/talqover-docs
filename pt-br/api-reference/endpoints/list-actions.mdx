@@ -1,0 +1,336 @@
+---
+title: "Listar Ações"
+description: "Recuperar uma lista de ações para um agente específico"
+api: "GET /api/v1/agents/{agent}/actions"
+---
+
+# Listar Ações
+
+Recuperar uma lista de ações configuradas para um agente específico com suporte à paginação.
+
+## Endpoint
+
+```
+GET /api/v1/agents/{agent}/actions
+```
+
+## Parâmetros de Caminho
+
+<ParamField path="agent" type="string" required>
+  O identificador único do agente. Você pode encontrá-lo na lista de agentes.
+</ParamField>
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Parâmetros de Consulta
+
+<ParamField query="type" type="string" required={false}>
+  Filtrar por tipo de ação. Opções: `webhook`, `transfer`, `hold`
+</ParamField>
+
+<ParamField query="per_page" type="integer" required={false}>
+  Número de itens por página (padrão: 20, máximo: 100)
+</ParamField>
+
+<ParamField query="page" type="integer" required={false}>
+  Número da página (padrão: 1)
+</ParamField>
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Obter todas as ações de um agente
+curl -X GET "https://talqover.app/api/v1/agents/agent-uuid-1/actions" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 1: Obter todas as ações de um agente
+const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/actions', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Filtrar por tipo de ação
+curl -X GET "https://talqover.app/api/v1/agents/agent-uuid-1/actions?type=webhook&per_page=50" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 2: Filtrar por tipo de ação
+const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/actions?type=webhook&per_page=50', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "action-uuid-1",
+      "type": "webhook",
+      "name": "Webhook de Notificação",
+      "description": "Envia notificação para sistema externo",
+      "config": {
+        "url": "https://api.example.com/webhook",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer webhook-token"
+        }
+      },
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "action-uuid-2",
+      "type": "transfer",
+      "name": "Transferência para Supervisor",
+      "description": "Transfere chamada para supervisor quando necessário",
+      "config": {
+        "phone_number": "+1234567890",
+        "transfer_message": "Transferindo para supervisor"
+      },
+      "is_active": true,
+      "created_at": "2024-01-01T01:00:00Z",
+      "updated_at": "2024-01-01T01:00:00Z"
+    }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "last_page": 2,
+    "per_page": 20,
+    "total": 30,
+    "from": 1,
+    "to": 20
+  }
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="success" type="boolean" required>
+  Indica se a operação foi bem-sucedida.
+</ResponseField>
+
+<ResponseField name="data" type="array" required>
+  Array de objetos de ação.
+
+  <Expandable title="Objeto de Ação">
+    <ResponseField name="id" type="string" required>
+      Identificador único da ação.
+    </ResponseField>
+    <ResponseField name="type" type="string" required>
+      Tipo da ação. Opções: `webhook`, `transfer`, `hold`.
+    </ResponseField>
+    <ResponseField name="name" type="string" required>
+      Nome da ação.
+    </ResponseField>
+    <ResponseField name="description" type="string">
+      Descrição da ação.
+    </ResponseField>
+    <ResponseField name="config" type="object" required>
+      Configuração específica da ação.
+
+      <Expandable title="Configuração de Webhook">
+        <ResponseField name="url" type="string" required>
+          URL do webhook.
+        </ResponseField>
+        <ResponseField name="method" type="string" required>
+          Método HTTP (GET, POST, PUT, DELETE).
+        </ResponseField>
+        <ResponseField name="headers" type="object">
+          Cabeçalhos HTTP para a requisição.
+        </ResponseField>
+      </Expandable>
+
+      <Expandable title="Configuração de Transferência">
+        <ResponseField name="phone_number" type="string" required>
+          Número de telefone para transferência.
+        </ResponseField>
+        <ResponseField name="transfer_message" type="string">
+          Mensagem de transferência.
+        </ResponseField>
+      </Expandable>
+
+      <Expandable title="Configuração de Pausa">
+        <ResponseField name="duration" type="integer" required>
+          Duração da pausa em segundos.
+        </ResponseField>
+        <ResponseField name="message" type="string">
+          Mensagem durante a pausa.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="is_active" type="boolean" required>
+      Se a ação está ativa.
+    </ResponseField>
+    <ResponseField name="created_at" type="string" required>
+      Timestamp ISO 8601 quando a ação foi criada.
+    </ResponseField>
+    <ResponseField name="updated_at" type="string" required>
+      Timestamp ISO 8601 quando a ação foi atualizada pela última vez.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="pagination" type="object" required>
+  Metadados de paginação.
+
+  <Expandable title="Objeto de Paginação">
+    <ResponseField name="current_page" type="integer" required>
+      Número da página atual.
+    </ResponseField>
+    <ResponseField name="last_page" type="integer" required>
+      Número da última página.
+    </ResponseField>
+    <ResponseField name="per_page" type="integer" required>
+      Número de itens por página.
+    </ResponseField>
+    <ResponseField name="total" type="integer" required>
+      Número total de itens.
+    </ResponseField>
+    <ResponseField name="from" type="integer" required>
+      Número do item inicial da página atual.
+    </ResponseField>
+    <ResponseField name="to" type="integer" required>
+      Número do item final da página atual.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Respostas de Erro
+
+### 404 Não Encontrado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Agent not found"
+}
+```
+
+</ResponseExample>
+
+### 422 Erro de Validação
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "type": [
+      "The selected type is invalid."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `AGENT_NOT_FOUND` | Agente especificado não existe | 404 |
+| `VALIDATION_ERROR` | Validação dos parâmetros de consulta falhou | 422 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
+
+## Notas Importantes
+
+<Info>
+  **Tipos de ação.** As ações podem ser webhooks, transferências ou pausas.
+</Info>
+
+<Info>
+  **Configurações específicas.** Cada tipo de ação tem sua própria configuração.
+</Info>
+
+<Info>
+  **Status ativo.** Ações podem ser ativadas ou desativadas conforme necessário.
+</Info>
+
+<Info>
+  **Suporte à paginação.** Use parâmetros `page` e `per_page` para navegar pelos resultados.
+</Info>
+
+## Melhores Práticas
+
+1. **Use paginação** - Sempre use paginação para grandes conjuntos de dados
+2. **Filtre por tipo** - Use filtros de tipo para encontrar ações específicas
+3. **Monitore status** - Verifique se as ações estão ativas quando necessário
+4. **Teste configurações** - Sempre teste as configurações de ações antes de usar em produção
+5. **Documente ações** - Mantenha descrições claras para cada ação
+
+## Endpoints Relacionados
+
+- **Criar/Atualizar Ação**: `POST /api/v1/agents/{agent}/actions`
+- **Excluir Ação**: `DELETE /api/v1/agents/{agent}/actions/{action}`
+- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Listar Agentes**: `GET /api/v1/agents`

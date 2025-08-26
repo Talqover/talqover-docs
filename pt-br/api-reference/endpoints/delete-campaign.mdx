@@ -1,0 +1,225 @@
+---
+title: "Excluir Campanha"
+description: "Excluir uma campanha específica permanentemente"
+api: "DELETE /api/v1/campaigns/{campaign}"
+---
+
+# Excluir Campanha
+
+Excluir uma campanha específica permanentemente. Esta operação remove a campanha e todos os dados associados, incluindo configurações, estatísticas e histórico de chamadas.
+
+## Endpoint
+
+```
+DELETE /api/v1/campaigns/{campaign}
+```
+
+## Parâmetros de Caminho
+
+<ParamField path="campaign" type="string" required>
+  O identificador único da campanha. Você pode encontrá-lo na lista de campanhas.
+</ParamField>
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Excluir uma campanha específica
+curl -X DELETE "https://talqover.app/api/v1/campaigns/campaign-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 1: Excluir uma campanha específica
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1', {
+  method: 'DELETE',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Excluir campanha com ID específico
+curl -X DELETE "https://talqover.app/api/v1/campaigns/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 2: Excluir campanha com ID específico
+const campaignId = '550e8400-e29b-41d4-a716-446655440000';
+const response = await fetch(`https://talqover.app/api/v1/campaigns/${campaignId}`, {
+  method: 'DELETE',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Campanha excluída com sucesso"
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="success" type="boolean" required>
+  Indica se a operação foi bem-sucedida.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Mensagem de sucesso descrevendo a operação.
+</ResponseField>
+
+## Respostas de Erro
+
+### 404 Não Encontrado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Campaign not found"
+}
+```
+
+</ResponseExample>
+
+### 409 Conflito
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Cannot delete campaign with active calls"
+}
+```
+
+</ResponseExample>
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `CAMPAIGN_NOT_FOUND` | Campanha especificada não existe | 404 |
+| `CAMPAIGN_HAS_ACTIVE_CALLS` | Campanha tem chamadas ativas e não pode ser excluída | 409 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
+
+## Regras de Exclusão
+
+<Info>
+  **Campanhas em rascunho.** Campanhas com status `draft` podem ser excluídas a qualquer momento.
+</Info>
+
+<Info>
+  **Campanhas ativas.** Campanhas com status `active` só podem ser excluídas se não tiverem chamadas em andamento.
+</Info>
+
+<Info>
+  **Campanhas pausadas.** Campanhas com status `paused` podem ser excluídas se não tiverem chamadas ativas.
+</Info>
+
+<Info>
+  **Campanhas concluídas.** Campanhas com status `completed` podem ser excluídas a qualquer momento.
+</Info>
+
+<Info>
+  **Campanhas canceladas.** Campanhas com status `cancelled` podem ser excluídas a qualquer momento.
+</Info>
+
+<Warning>
+  **Operação irreversível.** Esta operação exclui permanentemente a campanha e todos os dados associados.
+</Warning>
+
+## Notas Importantes
+
+<Warning>
+  **Perda de dados.** Todos os dados da campanha serão perdidos permanentemente.
+</Warning>
+
+<Info>
+  **Verificação de chamadas.** O sistema verifica se há chamadas ativas antes de permitir a exclusão.
+</Info>
+
+<Info>
+  **Limpeza automática.** Dados relacionados como arquivos e estatísticas são removidos automaticamente.
+</Info>
+
+<Warning>
+  **Confirmação necessária.** Certifique-se de que deseja excluir a campanha antes de executar esta operação.
+</Warning>
+
+## Melhores Práticas
+
+1. **Confirme a exclusão** - Certifique-se de que deseja excluir a campanha permanentemente
+2. **Verifique chamadas ativas** - Certifique-se de que não há chamadas em andamento
+3. **Faça backup** - Considere fazer backup dos dados importantes antes da exclusão
+4. **Teste em ambiente de desenvolvimento** - Teste a exclusão em ambiente de desenvolvimento primeiro
+5. **Monitore impacto** - Acompanhe como a exclusão afeta outros sistemas integrados
+
+## Endpoints Relacionados
+
+- **Listar Campanhas**: `GET /api/v1/campaigns`
+- **Criar Campanha**: `POST /api/v1/campaigns`
+- **Obter Campanha**: `GET /api/v1/campaigns/{campaign}`
+- **Atualizar Campanha**: `PUT /api/v1/campaigns/{campaign}`
+- **Atualizar Status da Campanha**: `PATCH /api/v1/campaigns/{campaign}/status`
+- **Fazer Chamada de Campanha**: `POST /api/v1/campaigns/{campaign}/call`

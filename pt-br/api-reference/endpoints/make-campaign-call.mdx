@@ -1,0 +1,306 @@
+---
+title: "Fazer Chamada de Campanha"
+description: "Iniciar uma chamada como parte de uma campanha específica"
+api: "POST /api/v1/campaigns/{campaign}/call"
+---
+
+# Fazer Chamada de Campanha
+
+Iniciar uma chamada como parte de uma campanha específica. Este endpoint permite fazer chamadas individuais dentro do contexto de uma campanha, seguindo as configurações e regras da campanha.
+
+## Endpoint
+
+```
+POST /api/v1/campaigns/{campaign}/call
+```
+
+## Parâmetros de Caminho
+
+<ParamField path="campaign" type="string" required>
+  O identificador único da campanha. Você pode encontrá-lo na lista de campanhas.
+</ParamField>
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Application JSON. Formato: `application/json`
+</ParamField>
+
+## Corpo da Requisição
+
+<ParamField body="to" type="string" required>
+  Número de telefone para chamar em formato E.164 (ex: +1234567890).
+</ParamField>
+
+<ParamField body="is_testing" type="boolean" required={false}>
+  Se esta é uma chamada de teste (padrão: false).
+</ParamField>
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Fazer chamada normal de campanha
+curl -X POST "https://talqover.app/api/v1/campaigns/campaign-uuid-1/call" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+1234567890"
+  }'
+```
+
+```javascript
+// Requisição 1: Fazer chamada normal de campanha
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1/call', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    to: '+1234567890'
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Fazer chamada de teste de campanha
+curl -X POST "https://talqover.app/api/v1/campaigns/campaign-uuid-1/call" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+1234567890",
+    "is_testing": true
+  }'
+```
+
+```javascript
+// Requisição 2: Fazer chamada de teste de campanha
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1/call', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    to: '+1234567890',
+    is_testing: true
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (201 Created)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Chamada iniciada com sucesso",
+  "data": {
+    "call_id": "call-uuid-1",
+    "call_sid": "call_sid_123",
+    "status": "initiated"
+  }
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="success" type="boolean" required>
+  Indica se a operação foi bem-sucedida.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Mensagem de sucesso descrevendo a operação.
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Dados da chamada iniciada.
+
+  <Expandable title="Dados da Chamada">
+    <ResponseField name="call_id" type="string" required>
+      Identificador único da chamada criada.
+    </ResponseField>
+    <ResponseField name="call_sid" type="string" required>
+      SID da chamada do provedor de telefonia.
+    </ResponseField>
+    <ResponseField name="status" type="string" required>
+      Status inicial da chamada (sempre "initiated").
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Respostas de Erro
+
+### 404 Não Encontrado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Campaign not found"
+}
+```
+
+</ResponseExample>
+
+### 422 Erro de Validação
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "to": [
+      "The to field is required."
+    ],
+    "to": [
+      "The to field must be a valid phone number."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 409 Conflito
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Campaign is not active"
+}
+```
+
+</ResponseExample>
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Phone number is in do not call list"
+}
+```
+
+</ResponseExample>
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `CAMPAIGN_NOT_FOUND` | Campanha especificada não existe | 404 |
+| `VALIDATION_ERROR` | Validação da requisição falhou | 422 |
+| `CAMPAIGN_NOT_ACTIVE` | Campanha não está ativa | 409 |
+| `PHONE_IN_DNC_LIST` | Número de telefone está na lista de não chamar | 409 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
+
+## Regras de Chamada de Campanha
+
+<Info>
+  **Campanha ativa.** A campanha deve estar com status `active` para permitir chamadas.
+</Info>
+
+<Info>
+  **Lista de não chamar.** O número não pode estar na lista de não chamar (DNC).
+</Info>
+
+<Info>
+  **Configurações da campanha.** A chamada segue as configurações de agendamento e cooldown da campanha.
+</Info>
+
+<Info>
+  **Agente da campanha.** A chamada usa o agente configurado na campanha.
+</Info>
+
+<Info>
+  **Chamadas de teste.** Chamadas marcadas como `is_testing: true` não afetam estatísticas da campanha.
+</Info>
+
+## Notas Importantes
+
+<Info>
+  **Contexto da campanha.** A chamada é associada à campanha e segue suas regras.
+</Info>
+
+<Info>
+  **Configurações automáticas.** Usa automaticamente o agente e configurações da campanha.
+</Info>
+
+<Info>
+  **Rastreamento.** A chamada é rastreada nas estatísticas da campanha (exceto chamadas de teste).
+</Info>
+
+<Warning>
+  **Respeite horários.** A chamada respeita os horários configurados na campanha.
+</Warning>
+
+## Melhores Práticas
+
+1. **Verifique status da campanha** - Certifique-se de que a campanha está ativa antes de fazer chamadas
+2. **Use números válidos** - Sempre use números de telefone no formato E.164
+3. **Teste primeiro** - Use `is_testing: true` para testar configurações antes de fazer chamadas reais
+4. **Monitore chamadas** - Acompanhe o status das chamadas através dos endpoints de listagem
+5. **Respeite DNC** - Verifique se o número não está na lista de não chamar
+
+## Endpoints Relacionados
+
+- **Listar Campanhas**: `GET /api/v1/campaigns`
+- **Obter Campanha**: `GET /api/v1/campaigns/{campaign}`
+- **Listar Chamadas**: `GET /api/v1/calls`
+- **Fazer Chamada**: `POST /api/v1/calls`
+- **Obter Chamadas do Agente**: `GET /api/v1/agents/{agent}/calls`

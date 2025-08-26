@@ -1,0 +1,369 @@
+---
+title: "Criar/Atualizar Ação"
+description: "Criar ou atualizar uma ação para um agente específico"
+api: "POST /api/v1/agents/{agent}/actions"
+---
+
+# Criar/Atualizar Ação
+
+Criar ou atualizar uma ação para um agente específico. Este endpoint suporta diferentes tipos de ações: webhooks, transferências e pausas.
+
+## Endpoint
+
+```
+POST /api/v1/agents/{agent}/actions
+```
+
+## Parâmetros de Caminho
+
+<ParamField path="agent" type="string" required>
+  O identificador único do agente. Você pode encontrá-lo na lista de agentes.
+</ParamField>
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Application JSON. Formato: `application/json`
+</ParamField>
+
+## Corpo da Requisição
+
+<ParamField body="type" type="string" required>
+  Tipo da ação. Opções: `webhook`, `transfer`, `hold`
+</ParamField>
+
+<ParamField body="name" type="string" required>
+  Nome da ação (máximo 255 caracteres).
+</ParamField>
+
+<ParamField body="description" type="string" required={false}>
+  Descrição da ação.
+</ParamField>
+
+<ParamField body="config" type="object" required>
+  Configuração específica da ação baseada no tipo.
+
+  <Expandable title="Configuração de Webhook">
+    <ParamField body="config.url" type="string" required>
+      URL do webhook.
+    </ParamField>
+    <ParamField body="config.method" type="string" required>
+      Método HTTP. Opções: `GET`, `POST`, `PUT`, `DELETE`
+    </ParamField>
+    <ParamField body="config.headers" type="object" required={false}>
+      Cabeçalhos HTTP para a requisição.
+    </ParamField>
+  </Expandable>
+
+  <Expandable title="Configuração de Transferência">
+    <ParamField body="config.phone_number" type="string" required>
+      Número de telefone para transferência em formato E.164.
+    </ParamField>
+    <ParamField body="config.transfer_message" type="string" required={false}>
+      Mensagem de transferência.
+    </ParamField>
+  </Expandable>
+
+  <Expandable title="Configuração de Pausa">
+    <ParamField body="config.duration" type="integer" required>
+      Duração da pausa em segundos.
+    </ParamField>
+    <ParamField body="config.message" type="string" required={false}>
+      Mensagem durante a pausa.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="is_active" type="boolean" required={false}>
+  Se a ação deve estar ativa (padrão: true).
+</ParamField>
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Criar webhook
+curl -X POST "https://talqover.app/api/v1/agents/agent-uuid-1/actions" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "webhook",
+    "name": "Webhook de Notificação",
+    "description": "Envia notificação para sistema externo",
+    "config": {
+      "url": "https://api.example.com/webhook",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer webhook-token"
+      }
+    },
+    "is_active": true
+  }'
+```
+
+```javascript
+// Requisição 1: Criar webhook
+const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/actions', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    type: 'webhook',
+    name: 'Webhook de Notificação',
+    description: 'Envia notificação para sistema externo',
+    config: {
+      url: 'https://api.example.com/webhook',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer webhook-token'
+      }
+    },
+    is_active: true
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Criar transferência
+curl -X POST "https://talqover.app/api/v1/agents/agent-uuid-1/actions" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "transfer",
+    "name": "Transferência para Supervisor",
+    "description": "Transfere chamada para supervisor quando necessário",
+    "config": {
+      "phone_number": "+1234567890",
+      "transfer_message": "Transferindo para supervisor"
+    },
+    "is_active": true
+  }'
+```
+
+```javascript
+// Requisição 2: Criar transferência
+const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/actions', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    type: 'transfer',
+    name: 'Transferência para Supervisor',
+    description: 'Transfere chamada para supervisor quando necessário',
+    config: {
+      phone_number: '+1234567890',
+      transfer_message: 'Transferindo para supervisor'
+    },
+    is_active: true
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (201 Created)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Ação criada com sucesso",
+  "data": {
+    "id": "action-uuid-1",
+    "type": "webhook",
+    "name": "Webhook de Notificação",
+    "description": "Envia notificação para sistema externo",
+    "config": {
+      "url": "https://api.example.com/webhook",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer webhook-token"
+      }
+    },
+    "is_active": true,
+    "created_at": "2024-01-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="success" type="boolean" required>
+  Indica se a operação foi bem-sucedida.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Mensagem de sucesso descrevendo a operação.
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Dados da ação criada.
+
+  <Expandable title="Dados da Ação">
+    <ResponseField name="id" type="string" required>
+      Identificador único da ação criada.
+    </ResponseField>
+    <ResponseField name="type" type="string" required>
+      Tipo da ação.
+    </ResponseField>
+    <ResponseField name="name" type="string" required>
+      Nome da ação.
+    </ResponseField>
+    <ResponseField name="description" type="string">
+      Descrição da ação.
+    </ResponseField>
+    <ResponseField name="config" type="object" required>
+      Configuração da ação.
+    </ResponseField>
+    <ResponseField name="is_active" type="boolean" required>
+      Se a ação está ativa.
+    </ResponseField>
+    <ResponseField name="created_at" type="string" required>
+      Timestamp ISO 8601 quando a ação foi criada.
+    </ResponseField>
+    <ResponseField name="updated_at" type="string" required>
+      Timestamp ISO 8601 quando a ação foi atualizada pela última vez.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Respostas de Erro
+
+### 404 Não Encontrado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Agent not found"
+}
+```
+
+</ResponseExample>
+
+### 422 Erro de Validação
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "type": [
+      "The selected type is invalid."
+    ],
+    "name": [
+      "The name field is required."
+    ],
+    "config": [
+      "The config field is required."
+    ],
+    "config.url": [
+      "The config.url field is required when type is webhook."
+    ],
+    "config.phone_number": [
+      "The config.phone_number field is required when type is transfer."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `AGENT_NOT_FOUND` | Agente especificado não existe | 404 |
+| `VALIDATION_ERROR` | Validação da requisição falhou | 422 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
+
+## Notas Importantes
+
+<Info>
+  **Tipos de ação.** Suporta webhooks, transferências e pausas com configurações específicas.
+</Info>
+
+<Info>
+  **Configurações obrigatórias.** Cada tipo de ação requer configurações específicas.
+</Info>
+
+<Info>
+  **Status ativo.** Ações podem ser criadas como ativas ou inativas.
+</Info>
+
+<Warning>
+  **URLs válidas.** Para webhooks, certifique-se de que a URL é válida e acessível.
+</Warning>
+
+## Melhores Práticas
+
+1. **Teste webhooks** - Sempre teste webhooks antes de usar em produção
+2. **URLs seguras** - Use HTTPS para URLs de webhook
+3. **Configurações válidas** - Verifique se todas as configurações obrigatórias estão presentes
+4. **Nomes descritivos** - Use nomes claros e descritivos para as ações
+5. **Documentação** - Mantenha descrições detalhadas para cada ação
+
+## Endpoints Relacionados
+
+- **Listar Ações**: `GET /api/v1/agents/{agent}/actions`
+- **Excluir Ação**: `DELETE /api/v1/agents/{agent}/actions/{action}`
+- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Listar Agentes**: `GET /api/v1/agents`
