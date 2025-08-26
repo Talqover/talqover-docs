@@ -53,11 +53,11 @@ PUT /api/v1/agents/{agent}/voice
 </ParamField>
 
 <ParamField body="similarity" type="number" required={false}>
-  Similarity boost for voices (gte 0.5, lt 1)
+  Voice similarity setting (0.5 to 1.0)
 </ParamField>
 
 <ParamField body="stability" type="number" required={false}>
-  Stability for voices (gte 0.5, lt 1)
+  Voice stability setting (0.5 to 1.0)
 </ParamField>
 
 ## Example Requests
@@ -218,7 +218,7 @@ console.log(result);
       Voice stability setting (0.0 to 1.0).
     </ResponseField>
     <ResponseField name="similarity_boost" type="number">
-      Voice similarity boost setting (0.0 to 1.0).
+      Voice similarity setting (0.0 to 1.0).
     </ResponseField>
     <ResponseField name="ambient_background" type="string">
       Ambient background setting.
@@ -320,7 +320,7 @@ console.log(result);
 </Info>
 
 <Info>
-  **Voice settings affect call quality.** Higher stability values (closer to 1.0) provide more consistent voice output, while higher similarity values (closer to 1.0) make the voice sound more like the original speaker.
+  **Voice settings affect call quality.** Higher stability values (closer to 1.0) provide more consistent voice output, while higher similarity values (closer to 1.0) enhance voice characteristics.
 </Info>
 
 ## Best Practices
