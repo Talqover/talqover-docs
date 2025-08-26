@@ -228,7 +228,7 @@
                 "properties": {
                   "call_sid": {
                     "type": "string",
-                    "description": "Twilio Call SID"
+                    "description": "Call SID"
                   }
                 }
               },

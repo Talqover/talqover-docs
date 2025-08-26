@@ -692,7 +692,7 @@ console.log(result);
 <RequestExample>
 
 ```bash
-# Request 1: Update voice with ElevenLabs settings
+# Request 1: Update voice with settings
 curl -X PUT "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/voice" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
@@ -708,7 +708,7 @@ curl -X PUT "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-44665544
 ```
 
 ```javascript
-// Request 1: Update voice with ElevenLabs settings
+// Request 1: Update voice with settings
 const response = await fetch('https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/voice', {
   method: 'PUT',
   headers: {
@@ -837,11 +837,11 @@ console.log(result);
 </ParamField>
 
 <ParamField body="similarity" type="number" required={false}>
-  Similarity boost for ElevenLabs voices (gte 0.5, lt 1)
+  Similarity boost for voices (gte 0.5, lt 1)
 </ParamField>
 
 <ParamField body="stability" type="number" required={false}>
-  Stability for ElevenLabs voices (gte 0.5, lt 1)
+  Stability for voices (gte 0.5, lt 1)
 </ParamField>
 
 ### Update Agent Calling Settings
