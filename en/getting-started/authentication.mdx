@@ -172,10 +172,10 @@ You can test if your token is working by making a simple request:
 
 ```bash
 curl -H "Authorization: Bearer talq_your_environment_token_here" \
-  https://talqover.app/api/v1/health
+  https://talqover.app/api/v1/agents
 ```
 
-If successful, you should receive a response indicating the API is healthy.
+If successful, you should receive a response with your agents list (or an empty array if you don't have any agents yet).
 
 ## Next Steps
 

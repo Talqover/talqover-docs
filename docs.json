@@ -84,6 +84,19 @@
                   "en/api-reference/endpoints/make-call",
                   "en/api-reference/endpoints/make-campaign-call"
                 ]
+              },
+              {
+                "group": "Calls & Campaigns",
+                "pages": [
+                  "en/api-reference/endpoints/list-calls",
+                  "en/api-reference/endpoints/get-agent-calls",
+                  "en/api-reference/endpoints/list-campaigns",
+                  "en/api-reference/endpoints/create-campaign",
+                  "en/api-reference/endpoints/get-campaign",
+                  "en/api-reference/endpoints/update-campaign",
+                  "en/api-reference/endpoints/update-campaign-status",
+                  "en/api-reference/endpoints/delete-campaign"
+                ]
               }
             ]
           },
@@ -161,6 +174,19 @@
                 "pages": [
                   "pt-br/api-reference/endpoints/make-call",
                   "pt-br/api-reference/endpoints/make-campaign-call"
+                ]
+              },
+              {
+                "group": "Chamadas e Campanhas",
+                "pages": [
+                  "pt-br/api-reference/endpoints/list-calls",
+                  "pt-br/api-reference/endpoints/get-agent-calls",
+                  "pt-br/api-reference/endpoints/list-campaigns",
+                  "pt-br/api-reference/endpoints/create-campaign",
+                  "pt-br/api-reference/endpoints/get-campaign",
+                  "pt-br/api-reference/endpoints/update-campaign",
+                  "pt-br/api-reference/endpoints/update-campaign-status",
+                  "pt-br/api-reference/endpoints/delete-campaign"
                 ]
               }
             ]

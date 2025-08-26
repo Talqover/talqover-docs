@@ -1,0 +1,299 @@
+---
+title: "Listar Modelos de Voz"
+description: "Recuperar uma lista de modelos de voz disponíveis agrupados por nome de exibição"
+api: "GET /api/v1/voice-templates"
+---
+
+# Listar Modelos de Voz
+
+Recuperar uma lista de modelos de voz disponíveis agrupados por nome de exibição, com opções de filtragem por idioma, qualidade e gênero.
+
+## Endpoint
+
+```
+GET /api/v1/voice-templates
+```
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Parâmetros de Consulta
+
+<ParamField query="language" type="string" required={false}>
+  Filtrar por idioma (ex: `en-US`, `pt-BR`)
+</ParamField>
+
+<ParamField query="quality_tier" type="string" required={false}>
+  Filtrar por nível de qualidade. Opções: `basic`, `pro`, `ultra`, `beta`
+</ParamField>
+
+<ParamField query="gender" type="string" required={false}>
+  Filtrar por gênero. Opções: `male`, `female`
+</ParamField>
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Obter todos os modelos de voz
+curl -X GET "https://talqover.app/api/v1/voice-templates" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 1: Obter todos os modelos de voz
+const response = await fetch('https://talqover.app/api/v1/voice-templates', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Filtrar por idioma português
+curl -X GET "https://talqover.app/api/v1/voice-templates?language=pt-BR" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 2: Filtrar por idioma português
+const response = await fetch('https://talqover.app/api/v1/voice-templates?language=pt-BR', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 3: Filtrar por qualidade profissional e gênero feminino
+curl -X GET "https://talqover.app/api/v1/voice-templates?quality_tier=pro&gender=female" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 3: Filtrar por qualidade profissional e gênero feminino
+const response = await fetch('https://talqover.app/api/v1/voice-templates?quality_tier=pro&gender=female', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "display_name": "Bianca",
+      "voices": [
+        {
+          "id": "voice-template-uuid-1",
+          "name": "Bianca",
+          "gender": "female",
+          "language": "pt-BR",
+          "quality_tier": "basic",
+          "cost": "0.10"
+        },
+        {
+          "id": "voice-template-uuid-2",
+          "name": "Bianca",
+          "gender": "female",
+          "language": "pt-BR",
+          "quality_tier": "pro",
+          "cost": "0.16"
+        },
+        {
+          "id": "voice-template-uuid-3",
+          "name": "Bianca",
+          "gender": "female",
+          "language": "pt-BR",
+          "quality_tier": "ultra",
+          "cost": "0.23"
+        }
+      ]
+    },
+    {
+      "display_name": "Isabela",
+      "voices": [
+        {
+          "id": "voice-template-uuid-4",
+          "name": "Isabela",
+          "gender": "female",
+          "language": "pt-BR",
+          "quality_tier": "basic",
+          "cost": "0.10"
+        },
+        {
+          "id": "voice-template-uuid-5",
+          "name": "Isabela",
+          "gender": "female",
+          "language": "pt-BR",
+          "quality_tier": "pro",
+          "cost": "0.16"
+        }
+      ]
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="success" type="boolean" required>
+  Indica se a operação foi bem-sucedida.
+</ResponseField>
+
+<ResponseField name="data" type="array" required>
+  Array de grupos de modelos de voz.
+
+  <Expandable title="Grupo de Modelos de Voz">
+    <ResponseField name="display_name" type="string" required>
+      Nome de exibição do grupo de vozes.
+    </ResponseField>
+    <ResponseField name="voices" type="array" required>
+      Array de modelos de voz individuais.
+
+      <Expandable title="Modelo de Voz">
+        <ResponseField name="id" type="string" required>
+          Identificador único do modelo de voz.
+        </ResponseField>
+        <ResponseField name="name" type="string" required>
+          Nome do modelo de voz.
+        </ResponseField>
+        <ResponseField name="gender" type="string" required>
+          Gênero da voz. Opções: `male`, `female`.
+        </ResponseField>
+        <ResponseField name="language" type="string" required>
+          Código do idioma da voz (ex: `pt-BR`, `en-US`).
+        </ResponseField>
+        <ResponseField name="quality_tier" type="string" required>
+          Nível de qualidade da voz. Opções: `basic`, `pro`, `ultra`, `beta`.
+        </ResponseField>
+        <ResponseField name="cost" type="string" required>
+          Custo por minuto em USD.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Respostas de Erro
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 422 Erro de Validação
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "language": [
+      "The selected language is invalid."
+    ],
+    "quality_tier": [
+      "The selected quality tier is invalid."
+    ],
+    "gender": [
+      "The selected gender is invalid."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `VALIDATION_ERROR` | Validação dos parâmetros de consulta falhou | 422 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
+
+## Notas Importantes
+
+<Info>
+  **Agrupamento por nome.** Os modelos de voz são agrupados por nome de exibição para facilitar a seleção.
+</Info>
+
+<Info>
+  **Filtros disponíveis.** Use os parâmetros de consulta para filtrar por idioma, qualidade e gênero.
+</Info>
+
+<Info>
+  **Custos variáveis.** Cada nível de qualidade tem um custo diferente por minuto.
+</Info>
+
+## Melhores Práticas
+
+1. **Filtre por idioma** - Use o parâmetro `language` para obter vozes no idioma desejado
+2. **Considere a qualidade** - Escolha o nível de qualidade adequado para seu caso de uso
+3. **Teste as vozes** - Use o endpoint de demonstração para testar as vozes antes de usar
+4. **Monitore custos** - Diferentes níveis de qualidade têm custos diferentes
+5. **Trate erros** - Implemente tratamento adequado de erros para falhas de autenticação e validação
+
+## Endpoints Relacionados
+
+- **Gerar Demonstração de Voz**: `GET /api/v1/voice-templates/{voiceTemplateId}/demo`
+- **Listar Números de Telefone**: `GET /api/v1/phone-numbers`

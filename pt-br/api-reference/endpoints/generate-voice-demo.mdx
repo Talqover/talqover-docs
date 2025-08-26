@@ -1,0 +1,176 @@
+---
+title: "Gerar Demonstração de Voz"
+description: "Gerar um arquivo de áudio de demonstração para um modelo de voz específico"
+api: "GET /api/v1/voice-templates/{voiceTemplateId}/demo"
+---
+
+# Gerar Demonstração de Voz
+
+Gerar um arquivo de áudio de demonstração para um modelo de voz específico. Este endpoint permite que você teste como uma voz soa antes de usá-la em suas chamadas.
+
+## Endpoint
+
+```
+GET /api/v1/voice-templates/{voiceTemplateId}/demo
+```
+
+## Parâmetros de Caminho
+
+<ParamField path="voiceTemplateId" type="string" required>
+  O identificador único do modelo de voz. Você pode encontrá-lo na lista de modelos de voz.
+</ParamField>
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Gerar demonstração para um modelo de voz
+curl -X GET "https://talqover.app/api/v1/voice-templates/voice-template-uuid-1/demo" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 1: Gerar demonstração para um modelo de voz
+const response = await fetch('https://talqover.app/api/v1/voice-templates/voice-template-uuid-1/demo', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Gerar demonstração com ID específico
+curl -X GET "https://talqover.app/api/v1/voice-templates/550e8400-e29b-41d4-a716-446655440000/demo" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 2: Gerar demonstração com ID específico
+const voiceTemplateId = '550e8400-e29b-41d4-a716-446655440000';
+const response = await fetch(`https://talqover.app/api/v1/voice-templates/${voiceTemplateId}/demo`, {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "mp3_url": "https://example.com/storage/demo-audio/signed-url-here.mp3"
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="mp3_url" type="string" required>
+  URL assinada para download do arquivo de áudio de demonstração em formato MP3.
+</ResponseField>
+
+## Respostas de Erro
+
+### 404 Não Encontrado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Voice template not found"
+}
+```
+
+</ResponseExample>
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Failed to generate demo audio"
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `VOICE_TEMPLATE_NOT_FOUND` | Modelo de voz especificado não existe | 404 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `GENERATION_FAILED` | Falha ao gerar áudio de demonstração | 500 |
+
+## Notas Importantes
+
+<Info>
+  **URLs assinadas.** O URL retornado é temporário e expira após um período determinado.
+</Info>
+
+<Info>
+  **Formato MP3.** Os arquivos de demonstração são fornecidos em formato MP3 para compatibilidade.
+</Info>
+
+<Info>
+  **Geração sob demanda.** O áudio de demonstração é gerado quando solicitado.
+</Info>
+
+<Warning>
+  **URLs temporários.** Baixe o arquivo imediatamente, pois o URL pode expirar.
+</Warning>
+
+## Melhores Práticas
+
+1. **Teste antes de usar** - Sempre teste as vozes antes de usá-las em produção
+2. **Baixe rapidamente** - Os URLs são temporários, então baixe o arquivo imediatamente
+3. **Compare vozes** - Use este endpoint para comparar diferentes modelos de voz
+4. **Trate erros** - Implemente tratamento adequado de erros para falhas de geração
+5. **Monitore qualidade** - Verifique se a qualidade da voz atende às suas necessidades
+
+## Endpoints Relacionados
+
+- **Listar Modelos de Voz**: `GET /api/v1/voice-templates`
+- **Listar Números de Telefone**: `GET /api/v1/phone-numbers`

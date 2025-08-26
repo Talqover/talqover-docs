@@ -1,0 +1,344 @@
+---
+title: "Listar Números de Telefone"
+description: "Recuperar uma lista de números de telefone disponíveis com opções de filtragem"
+api: "GET /api/v1/phone-numbers"
+---
+
+# Listar Números de Telefone
+
+Recuperar uma lista de números de telefone disponíveis com opções de filtragem por tipo, capacidades e status.
+
+## Endpoint
+
+```
+GET /api/v1/phone-numbers
+```
+
+## Cabeçalhos da Requisição
+
+<ParamField header="Authorization" type="string" required>
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Parâmetros de Consulta
+
+<ParamField query="type" type="string" required={false}>
+  Filtrar por tipo de número de telefone. Opções: `voice`, `sms`, `whatsapp`, `mms`, `fax`
+</ParamField>
+
+<ParamField query="has_voice" type="boolean" required={false}>
+  Filtrar por capacidade de voz. Opções: `true`, `false`
+</ParamField>
+
+<ParamField query="has_whatsapp" type="boolean" required={false}>
+  Filtrar por capacidade de WhatsApp. Opções: `true`, `false`
+</ParamField>
+
+<ParamField query="search" type="string" required={false}>
+  Pesquisar por número de telefone ou ID
+</ParamField>
+
+## Exemplos de Requisição
+
+<RequestExample>
+
+```bash
+# Requisição 1: Obter todos os números de telefone
+curl -X GET "https://talqover.app/api/v1/phone-numbers" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 1: Obter todos os números de telefone
+const response = await fetch('https://talqover.app/api/v1/phone-numbers', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 2: Obter números com capacidade de voz
+curl -X GET "https://talqover.app/api/v1/phone-numbers?has_voice=true" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 2: Obter números com capacidade de voz
+const response = await fetch('https://talqover.app/api/v1/phone-numbers?has_voice=true', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Requisição 3: Pesquisar por número específico
+curl -X GET "https://talqover.app/api/v1/phone-numbers?search=+1234567890" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Requisição 3: Pesquisar por número específico
+const response = await fetch('https://talqover.app/api/v1/phone-numbers?search=+1234567890', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Resposta
+
+### Resposta de Sucesso (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "phone-uuid-1",
+      "number": "+1234567890",
+      "country_code": "US",
+      "formatted_number": "(123) 456-7890",
+      "international_number": "+1 234 567 890",
+      "type": "voice",
+      "has_voice": true,
+      "has_sms": true,
+      "has_mms": false,
+      "has_fax": false,
+      "has_whatsapp": false,
+      "current_status": "active",
+      "is_sandbox": false,
+      "current_price": 1.00,
+      "currency": "USD",
+      "renewal_date": "2024-02-15",
+      "auto_renewal": true,
+      "created_at": "2024-01-15T10:30:00Z",
+      "updated_at": "2024-01-15T10:30:00Z",
+      "monthly_renewal_cost": 1.00,
+      "days_until_monthly_renewal": 15,
+      "is_due_for_monthly_renewal": false,
+      "environment": null,
+      "agents": null
+    },
+    {
+      "id": "phone-uuid-2",
+      "number": "+1987654321",
+      "country_code": "US",
+      "formatted_number": "(987) 654-3210",
+      "international_number": "+1 987 654 321",
+      "type": "voice",
+      "has_voice": true,
+      "has_sms": true,
+      "has_mms": false,
+      "has_fax": false,
+      "has_whatsapp": false,
+      "current_status": "active",
+      "is_sandbox": false,
+      "current_price": 1.00,
+      "currency": "USD",
+      "renewal_date": "2024-02-15",
+      "auto_renewal": true,
+      "created_at": "2024-01-15T11:00:00Z",
+      "updated_at": "2024-01-15T11:00:00Z",
+      "monthly_renewal_cost": 1.00,
+      "days_until_monthly_renewal": 15,
+      "is_due_for_monthly_renewal": false,
+      "environment": null,
+      "agents": null
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+### Campos da Resposta
+
+<ResponseField name="success" type="boolean" required>
+  Indica se a operação foi bem-sucedida.
+</ResponseField>
+
+<ResponseField name="data" type="array" required>
+  Array de objetos de número de telefone.
+
+  <Expandable title="Objeto de Número de Telefone">
+    <ResponseField name="id" type="string" required>
+      Identificador único do número de telefone.
+    </ResponseField>
+    <ResponseField name="number" type="string" required>
+      Número de telefone em formato E.164.
+    </ResponseField>
+    <ResponseField name="country_code" type="string" required>
+      Código do país do número.
+    </ResponseField>
+    <ResponseField name="formatted_number" type="string" required>
+      Número formatado para exibição.
+    </ResponseField>
+    <ResponseField name="international_number" type="string" required>
+      Número internacional formatado.
+    </ResponseField>
+    <ResponseField name="type" type="string" required>
+      Tipo do número de telefone. Opções: `voice`, `sms`, `whatsapp`, `mms`, `fax`.
+    </ResponseField>
+    <ResponseField name="has_voice" type="boolean" required>
+      Se o número tem capacidade de voz.
+    </ResponseField>
+    <ResponseField name="has_sms" type="boolean" required>
+      Se o número tem capacidade de SMS.
+    </ResponseField>
+    <ResponseField name="has_mms" type="boolean" required>
+      Se o número tem capacidade de MMS.
+    </ResponseField>
+    <ResponseField name="has_fax" type="boolean" required>
+      Se o número tem capacidade de fax.
+    </ResponseField>
+    <ResponseField name="has_whatsapp" type="boolean" required>
+      Se o número tem capacidade de WhatsApp.
+    </ResponseField>
+    <ResponseField name="current_status" type="string" required>
+      Status atual do número. Opções: `active`, `inactive`, `pending`, `suspended`.
+    </ResponseField>
+    <ResponseField name="is_sandbox" type="boolean" required>
+      Se o número é um número de sandbox.
+    </ResponseField>
+    <ResponseField name="current_price" type="number" required>
+      Preço atual do número.
+    </ResponseField>
+    <ResponseField name="currency" type="string" required>
+      Moeda do preço.
+    </ResponseField>
+    <ResponseField name="renewal_date" type="string" required>
+      Data de renovação (YYYY-MM-DD).
+    </ResponseField>
+    <ResponseField name="auto_renewal" type="boolean" required>
+      Se a renovação automática está ativada.
+    </ResponseField>
+    <ResponseField name="created_at" type="string" required>
+      Timestamp ISO 8601 quando o número foi criado.
+    </ResponseField>
+    <ResponseField name="updated_at" type="string" required>
+      Timestamp ISO 8601 quando o número foi atualizado pela última vez.
+    </ResponseField>
+    <ResponseField name="monthly_renewal_cost" type="number" required>
+      Custo mensal de renovação.
+    </ResponseField>
+    <ResponseField name="days_until_monthly_renewal" type="integer" required>
+      Dias até a renovação mensal.
+    </ResponseField>
+    <ResponseField name="is_due_for_monthly_renewal" type="boolean" required>
+      Se o número está vencendo para renovação mensal.
+    </ResponseField>
+    <ResponseField name="environment" type="object">
+      Informações do ambiente (quando carregado).
+    </ResponseField>
+    <ResponseField name="agents" type="array">
+      Agentes associados (quando carregado).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Respostas de Erro
+
+### 401 Não Autorizado
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 422 Erro de Validação
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "type": [
+      "The selected type is invalid."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 500 Erro do Servidor
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Códigos de Erro
+
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `VALIDATION_ERROR` | Validação dos parâmetros de consulta falhou | 422 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
+
+## Notas Importantes
+
+<Info>
+  **Capacidades de filtragem.** Use parâmetros de consulta para filtrar números por tipo e capacidades.
+</Info>
+
+<Info>
+  **Formato de números.** Todos os números são retornados em formato E.164.
+</Info>
+
+<Info>
+  **Informações de renovação.** Inclui detalhes sobre custos e datas de renovação.
+</Info>
+
+## Melhores Práticas
+
+1. **Filtre por capacidades** - Use `has_voice` e `has_whatsapp` para encontrar números adequados
+2. **Verifique status** - Certifique-se de que os números estão ativos antes de usar
+3. **Monitore renovação** - Acompanhe as datas de renovação para evitar interrupções
+4. **Pesquise eficientemente** - Use o parâmetro `search` para encontrar números específicos
+5. **Trate erros** - Implemente tratamento adequado de erros para falhas de autenticação e validação
+
+## Endpoints Relacionados
+
+- **Listar Modelos de Voz**: `GET /api/v1/voice-templates`
+- **Gerar Demonstração de Voz**: `GET /api/v1/voice-templates/{voiceTemplateId}/demo`

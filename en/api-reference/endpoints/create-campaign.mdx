@@ -1,0 +1,456 @@
+---
+title: "Create Campaign"
+description: "Create a new campaign with comprehensive configuration options"
+api: "POST /api/v1/campaigns"
+---
+
+# Create Campaign
+
+Create a new campaign with comprehensive configuration options including scheduling, retry logic, and do-not-call settings.
+
+## Endpoint
+
+```
+POST /api/v1/campaigns
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Application JSON. Format: `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="name" type="string" required>
+  Campaign name (max 255 characters).
+</ParamField>
+
+<ParamField body="description" type="string" required={false}>
+  Description of the campaign.
+</ParamField>
+
+<ParamField body="campaign_type" type="string" required>
+  Type of campaign. Options: `sales`, `follow_up`, `reminder`, `custom`.
+</ParamField>
+
+<ParamField body="start_date" type="string" required>
+  Campaign start date (YYYY-MM-DD).
+</ParamField>
+
+<ParamField body="days_of_week" type="array" required>
+  Array of days when calls can be made (1=Monday, 7=Sunday).
+</ParamField>
+
+<ParamField body="earliest_call_time" type="string" required>
+  Earliest time to make calls (HH:MM:SS).
+</ParamField>
+
+<ParamField body="latest_call_time" type="string" required>
+  Latest time to make calls (HH:MM:SS).
+</ParamField>
+
+<ParamField body="timezone" type="string" required>
+  Timezone for call scheduling (e.g., "America/New_York").
+</ParamField>
+
+<ParamField body="agent_id" type="string" required>
+  UUID of the agent assigned to the campaign.
+</ParamField>
+
+<ParamField body="initial_call_delay" type="integer" required={false}>
+  Initial delay before making calls in seconds (default: 0).
+</ParamField>
+
+<ParamField body="max_retries" type="integer" required={false}>
+  Maximum number of retry attempts (default: 3).
+</ParamField>
+
+<ParamField body="retry_cooldown_hours" type="integer" required={false}>
+  Hours to wait between retry attempts (default: 24).
+</ParamField>
+
+<ParamField body="enable_post_completion_cooldown" type="boolean" required={false}>
+  Whether to enable post-completion cooldown (default: true).
+</ParamField>
+
+<ParamField body="post_completion_cooldown_hours" type="integer" required={false}>
+  Hours to wait after campaign completion (default: 168).
+</ParamField>
+
+<ParamField body="success_cooldown_hours" type="integer" required={false}>
+  Hours to wait after successful calls (default: 168).
+</ParamField>
+
+<ParamField body="voicemail_cooldown_hours" type="integer" required={false}>
+  Hours to wait after voicemail calls (default: 24).
+</ParamField>
+
+<ParamField body="no_answer_cooldown_hours" type="integer" required={false}>
+  Hours to wait after no-answer calls (default: 24).
+</ParamField>
+
+<ParamField body="busy_cooldown_hours" type="integer" required={false}>
+  Hours to wait after busy calls (default: 24).
+</ParamField>
+
+<ParamField body="failed_cooldown_hours" type="integer" required={false}>
+  Hours to wait after failed calls (default: 24).
+</ParamField>
+
+<ParamField body="do_not_call_enabled" type="boolean" required={false}>
+  Whether to enable do-not-call list checking (default: true).
+</ParamField>
+
+<ParamField body="do_not_call_list_source" type="string" required={false}>
+  Source of do-not-call list. Options: `environment`, `campaign` (default: "environment").
+</ParamField>
+
+<ParamField body="auto_add_to_dnc_enabled" type="boolean" required={false}>
+  Whether to automatically add numbers to do-not-call list (default: true).
+</ParamField>
+
+<ParamField body="auto_dnc_trigger_statuses" type="array" required={false}>
+  Call statuses that trigger auto-add to DNC. Options: `completed`, `voicemail` (default: ["completed", "voicemail"]).
+</ParamField>
+
+<ParamField body="auto_dnc_trigger_errors" type="array" required={false}>
+  Call errors that trigger auto-add to DNC. Options: `invalid_number`, `disconnected` (default: ["invalid_number", "disconnected"]).
+</ParamField>
+
+## Example Requests
+
+<RequestExample>
+
+```bash
+# Request 1: Create a basic sales campaign
+curl -X POST "https://talqover.app/api/v1/campaigns" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Sales Campaign",
+    "description": "Outbound sales campaign for Q1",
+    "campaign_type": "sales",
+    "start_date": "2024-01-01",
+    "days_of_week": [1, 2, 3, 4, 5],
+    "earliest_call_time": "09:00:00",
+    "latest_call_time": "17:00:00",
+    "timezone": "America/New_York",
+    "agent_id": "agent-uuid-1"
+  }'
+```
+
+```javascript
+// Request 1: Create a basic sales campaign
+const response = await fetch('https://talqover.app/api/v1/campaigns', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'Sales Campaign',
+    description: 'Outbound sales campaign for Q1',
+    campaign_type: 'sales',
+    start_date: '2024-01-01',
+    days_of_week: [1, 2, 3, 4, 5],
+    earliest_call_time: '09:00:00',
+    latest_call_time: '17:00:00',
+    timezone: 'America/New_York',
+    agent_id: 'agent-uuid-1'
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Request 2: Create a follow-up campaign with custom settings
+curl -X POST "https://talqover.app/api/v1/campaigns" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Follow-up Campaign",
+    "description": "Follow-up calls for existing customers",
+    "campaign_type": "follow_up",
+    "start_date": "2024-01-15",
+    "days_of_week": [2, 3, 4],
+    "earliest_call_time": "10:00:00",
+    "latest_call_time": "16:00:00",
+    "timezone": "America/New_York",
+    "agent_id": "agent-uuid-2",
+    "max_retries": 2,
+    "retry_cooldown_hours": 48,
+    "success_cooldown_hours": 336,
+    "do_not_call_enabled": true,
+    "auto_add_to_dnc_enabled": true
+  }'
+```
+
+```javascript
+// Request 2: Create a follow-up campaign with custom settings
+const response = await fetch('https://talqover.app/api/v1/campaigns', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'Follow-up Campaign',
+    description: 'Follow-up calls for existing customers',
+    campaign_type: 'follow_up',
+    start_date: '2024-01-15',
+    days_of_week: [2, 3, 4],
+    earliest_call_time: '10:00:00',
+    latest_call_time: '16:00:00',
+    timezone: 'America/New_York',
+    agent_id: 'agent-uuid-2',
+    max_retries: 2,
+    retry_cooldown_hours: 48,
+    success_cooldown_hours: 336,
+    do_not_call_enabled: true,
+    auto_add_to_dnc_enabled: true
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Request 3: Create a reminder campaign with minimal settings
+curl -X POST "https://talqover.app/api/v1/campaigns" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Appointment Reminders",
+    "campaign_type": "reminder",
+    "start_date": "2024-01-20",
+    "days_of_week": [1, 2, 3, 4, 5, 6],
+    "earliest_call_time": "08:00:00",
+    "latest_call_time": "20:00:00",
+    "timezone": "America/Chicago",
+    "agent_id": "agent-uuid-3",
+    "initial_call_delay": 300,
+    "max_retries": 1,
+    "retry_cooldown_hours": 12
+  }'
+```
+
+```javascript
+// Request 3: Create a reminder campaign with minimal settings
+const response = await fetch('https://talqover.app/api/v1/campaigns', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'Appointment Reminders',
+    campaign_type: 'reminder',
+    start_date: '2024-01-20',
+    days_of_week: [1, 2, 3, 4, 5, 6],
+    earliest_call_time: '08:00:00',
+    latest_call_time: '20:00:00',
+    timezone: 'America/Chicago',
+    agent_id: 'agent-uuid-3',
+    initial_call_delay: 300,
+    max_retries: 1,
+    retry_cooldown_hours: 12
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Response
+
+### Success Response (201 Created)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Campaign created successfully",
+  "data": {
+    "id": "campaign-uuid-1",
+    "name": "Sales Campaign",
+    "status": "draft",
+    "campaign_type": "sales",
+    "agent_id": "agent-uuid-1",
+    "created_at": "2024-01-01T00:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+### Response Fields
+
+<ResponseField name="success" type="boolean" required>
+  Indicates if the operation was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Success message describing the operation.
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Created campaign data.
+
+  <Expandable title="Campaign Data Object">
+    <ResponseField name="id" type="string" required>
+      Unique identifier for the created campaign.
+    </ResponseField>
+    <ResponseField name="name" type="string" required>
+      Name of the campaign.
+    </ResponseField>
+    <ResponseField name="status" type="string" required>
+      Initial status of the campaign (always "draft").
+    </ResponseField>
+    <ResponseField name="campaign_type" type="string" required>
+      Type of campaign.
+    </ResponseField>
+    <ResponseField name="agent_id" type="string" required>
+      UUID of the assigned agent.
+    </ResponseField>
+    <ResponseField name="created_at" type="string" required>
+      ISO 8601 timestamp when the campaign was created.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Error Responses
+
+### 422 Validation Error
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "name": [
+      "The name field is required."
+    ],
+    "campaign_type": [
+      "The selected campaign type is invalid."
+    ],
+    "start_date": [
+      "The start date must be a valid date."
+    ],
+    "days_of_week": [
+      "The days of week must be an array."
+    ],
+    "agent_id": [
+      "The selected agent id is invalid."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 401 Unauthorized
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 404 Not Found
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Agent not found"
+}
+```
+
+</ResponseExample>
+
+### 500 Server Error
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Error Codes
+
+| Code | Description | HTTP Status |
+|------|-------------|-------------|
+| `VALIDATION_ERROR` | Request validation failed | 422 |
+| `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
+| `AGENT_NOT_FOUND` | Specified agent does not exist | 404 |
+| `SERVER_ERROR` | Internal server error occurred | 500 |
+
+## Important Notes
+
+<Info>
+  **Campaign status.** New campaigns are created with "draft" status and must be activated manually.
+</Info>
+
+<Info>
+  **Timezone support.** Use valid timezone identifiers (e.g., "America/New_York", "Europe/London").
+</Info>
+
+<Info>
+  **Days of week.** Use numbers 1-7 where 1=Monday and 7=Sunday.
+</Info>
+
+<Info>
+  **Agent assignment.** The specified agent must exist and be active.
+</Info>
+
+<Warning>
+  **Do-not-call compliance.** Ensure your campaign complies with local do-not-call regulations.
+</Warning>
+
+## Best Practices
+
+1. **Start with draft status** - Create campaigns in draft mode and review before activating
+2. **Set appropriate time windows** - Consider recipient time zones and business hours
+3. **Configure retry logic** - Set reasonable retry limits and cooldown periods
+4. **Enable DNC checking** - Always enable do-not-call list checking for compliance
+5. **Test thoroughly** - Test campaign settings before going live
+6. **Monitor performance** - Track campaign statistics and adjust settings as needed
+
+## Related Endpoints
+
+- **List Campaigns**: `GET /api/v1/campaigns`
+- **Get Campaign**: `GET /api/v1/campaigns/{campaign}`
+- **Update Campaign**: `PUT /api/v1/campaigns/{campaign}`
+- **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign}/status`

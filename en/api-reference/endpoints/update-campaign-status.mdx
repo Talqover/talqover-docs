@@ -1,0 +1,332 @@
+---
+title: "Update Campaign Status"
+description: "Update the status of a campaign (draft, active, paused, completed, cancelled)"
+api: "PATCH /api/v1/campaigns/{campaign}/status"
+---
+
+# Update Campaign Status
+
+Update the status of a campaign to control its lifecycle. This endpoint allows you to activate, pause, complete, or cancel campaigns.
+
+## Endpoint
+
+```
+PATCH /api/v1/campaigns/{campaign}/status
+```
+
+## Path Parameters
+
+<ParamField path="campaign" type="string" required>
+  The unique identifier of the campaign. You can find this in your dashboard under Campaigns.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Application JSON. Format: `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="status" type="string" required>
+  New status for the campaign. Options: `draft`, `active`, `paused`, `completed`, `cancelled`.
+</ParamField>
+
+## Valid Status Values
+
+| Status | Description |
+|--------|-------------|
+| `draft` | Campaign is in draft mode and not yet active |
+| `active` | Campaign is running and making calls |
+| `paused` | Campaign is paused and not making new calls |
+| `completed` | Campaign has finished all scheduled calls |
+| `cancelled` | Campaign was cancelled and will not make more calls |
+
+## Example Requests
+
+<RequestExample>
+
+```bash
+# Request 1: Activate a draft campaign
+curl -X PATCH "https://talqover.app/api/v1/campaigns/campaign-uuid-1/status" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "status": "active"
+  }'
+```
+
+```javascript
+// Request 1: Activate a draft campaign
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1/status', {
+  method: 'PATCH',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    status: 'active'
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Request 2: Pause an active campaign
+curl -X PATCH "https://talqover.app/api/v1/campaigns/campaign-uuid-1/status" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "status": "paused"
+  }'
+```
+
+```javascript
+// Request 2: Pause an active campaign
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1/status', {
+  method: 'PATCH',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    status: 'paused'
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Request 3: Cancel a campaign
+curl -X PATCH "https://talqover.app/api/v1/campaigns/campaign-uuid-1/status" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "status": "cancelled"
+  }'
+```
+
+```javascript
+// Request 3: Cancel a campaign
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1/status', {
+  method: 'PATCH',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    status: 'cancelled'
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Response
+
+### Success Response (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Campaign status updated successfully",
+  "data": {
+    "id": "campaign-uuid-1",
+    "status": "active",
+    "updated_at": "2024-01-01T12:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+### Response Fields
+
+<ResponseField name="success" type="boolean" required>
+  Indicates if the operation was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Success message describing the operation.
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Updated campaign status data.
+
+  <Expandable title="Campaign Status Data Object">
+    <ResponseField name="id" type="string" required>
+      Unique identifier for the campaign.
+    </ResponseField>
+    <ResponseField name="status" type="string" required>
+      New status of the campaign.
+    </ResponseField>
+    <ResponseField name="updated_at" type="string" required>
+      ISO 8601 timestamp when the status was updated.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Error Responses
+
+### 404 Not Found
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Campaign not found"
+}
+```
+
+</ResponseExample>
+
+### 422 Validation Error
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "status": [
+      "The selected status is invalid."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 400 Bad Request
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Cannot transition from active to draft status"
+}
+```
+
+</ResponseExample>
+
+### 401 Unauthorized
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 403 Forbidden
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Cannot update campaign status"
+}
+```
+
+</ResponseExample>
+
+### 500 Server Error
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Error Codes
+
+| Code | Description | HTTP Status |
+|------|-------------|-------------|
+| `CAMPAIGN_NOT_FOUND` | Specified campaign does not exist | 404 |
+| `VALIDATION_ERROR` | Invalid status value provided | 422 |
+| `INVALID_TRANSITION` | Invalid status transition attempted | 400 |
+| `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
+| `FORBIDDEN` | Cannot update campaign status | 403 |
+| `SERVER_ERROR` | Internal server error occurred | 500 |
+
+## Status Transition Rules
+
+| Current Status | Allowed Transitions |
+|----------------|-------------------|
+| `draft` | `active`, `cancelled` |
+| `active` | `paused`, `completed`, `cancelled` |
+| `paused` | `active`, `completed`, `cancelled` |
+| `completed` | None (final state) |
+| `cancelled` | None (final state) |
+
+## Important Notes
+
+<Info>
+  **Status transitions.** Not all status transitions are allowed. See the transition rules above.
+</Info>
+
+<Info>
+  **Final states.** Once a campaign reaches `completed` or `cancelled` status, it cannot be changed.
+</Info>
+
+<Info>
+  **Active campaigns.** Activating a campaign will start making calls according to the schedule.
+</Info>
+
+<Warning>
+  **Paused campaigns.** Pausing a campaign stops new calls but doesn't affect calls already in progress.
+</Warning>
+
+<Warning>
+  **Cancelled campaigns.** Cancelling a campaign stops all future calls and cannot be undone.
+</Warning>
+
+## Best Practices
+
+1. **Check current status** - Verify the current status before attempting transitions
+2. **Plan transitions** - Understand the allowed status transitions for your use case
+3. **Monitor effects** - Track how status changes affect campaign performance
+4. **Handle errors** - Implement proper error handling for invalid transitions
+5. **Use appropriate statuses** - Use `paused` for temporary stops and `cancelled` for permanent stops
+
+## Related Endpoints
+
+- **Get Campaign**: `GET /api/v1/campaigns/{campaign}`
+- **Update Campaign**: `PUT /api/v1/campaigns/{campaign}`
+- **Create Campaign**: `POST /api/v1/campaigns`
+- **Delete Campaign**: `DELETE /api/v1/campaigns/{campaign}`
+- **List Campaigns**: `GET /api/v1/campaigns`

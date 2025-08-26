@@ -1,0 +1,222 @@
+---
+title: "Delete Campaign"
+description: "Permanently delete a campaign and all associated data"
+api: "DELETE /api/v1/campaigns/{campaign}"
+---
+
+# Delete Campaign
+
+Permanently delete a campaign and all associated data including calls, files, and statistics. This action cannot be undone.
+
+## Endpoint
+
+```
+DELETE /api/v1/campaigns/{campaign}
+```
+
+## Path Parameters
+
+<ParamField path="campaign" type="string" required>
+  The unique identifier of the campaign. You can find this in your dashboard under Campaigns.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Example Requests
+
+<RequestExample>
+
+```bash
+# Request 1: Delete a campaign
+curl -X DELETE "https://talqover.app/api/v1/campaigns/campaign-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Request 1: Delete a campaign
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1', {
+  method: 'DELETE',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```bash
+# Request 2: Delete campaign with specific ID
+curl -X DELETE "https://talqover.app/api/v1/campaigns/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+// Request 2: Delete campaign with specific ID
+const campaignId = '550e8400-e29b-41d4-a716-446655440000';
+const response = await fetch(`https://talqover.app/api/v1/campaigns/${campaignId}`, {
+  method: 'DELETE',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+## Response
+
+### Success Response (200 OK)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Campaign deleted successfully"
+}
+```
+
+</ResponseExample>
+
+### Response Fields
+
+<ResponseField name="success" type="boolean" required>
+  Indicates if the operation was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string" required>
+  Success message describing the operation.
+</ResponseField>
+
+## Error Responses
+
+### 404 Not Found
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Campaign not found"
+}
+```
+
+</ResponseExample>
+
+### 401 Unauthorized
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+</ResponseExample>
+
+### 403 Forbidden
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Cannot delete active campaign"
+}
+```
+
+</ResponseExample>
+
+### 409 Conflict
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Campaign has active calls in progress"
+}
+```
+
+</ResponseExample>
+
+### 500 Server Error
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Internal server error."
+}
+```
+
+</ResponseExample>
+
+## Error Codes
+
+| Code | Description | HTTP Status |
+|------|-------------|-------------|
+| `CAMPAIGN_NOT_FOUND` | Specified campaign does not exist | 404 |
+| `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
+| `FORBIDDEN` | Cannot delete campaign in current state | 403 |
+| `CONFLICT` | Campaign has active operations that prevent deletion | 409 |
+| `SERVER_ERROR` | Internal server error occurred | 500 |
+
+## Deletion Rules
+
+| Campaign Status | Can Delete | Notes |
+|----------------|------------|-------|
+| `draft` | ✅ Yes | Safe to delete |
+| `active` | ❌ No | Must pause or cancel first |
+| `paused` | ✅ Yes | Safe to delete |
+| `completed` | ✅ Yes | Safe to delete |
+| `cancelled` | ✅ Yes | Safe to delete |
+
+## Important Notes
+
+<Warning>
+  **Permanent deletion.** This action permanently removes the campaign and all associated data. This cannot be undone.
+</Warning>
+
+<Info>
+  **Active campaigns.** Active campaigns cannot be deleted. You must pause or cancel them first.
+</Info>
+
+<Info>
+  **Associated data.** Deleting a campaign also removes all associated calls, files, and statistics.
+</Info>
+
+<Info>
+  **No confirmation.** There is no confirmation step - the deletion happens immediately.
+</Info>
+
+## Best Practices
+
+1. **Check status first** - Verify campaign status before attempting deletion
+2. **Backup important data** - Export any important campaign data before deletion
+3. **Stop active campaigns** - Pause or cancel active campaigns before deletion
+4. **Handle errors** - Implement proper error handling for deletion failures
+5. **Confirm intent** - Add confirmation steps in your application before calling this endpoint
+
+## Related Endpoints
+
+- **Get Campaign**: `GET /api/v1/campaigns/{campaign}`
+- **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign}/status`
+- **Create Campaign**: `POST /api/v1/campaigns`
+- **Update Campaign**: `PUT /api/v1/campaigns/{campaign}`
+- **List Campaigns**: `GET /api/v1/campaigns`
