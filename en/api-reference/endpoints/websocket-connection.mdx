@@ -1,0 +1,463 @@
+---
+title: "WebSocket Connection"
+description: "Connect to the websocket transport endpoint for external telephony calls"
+api: "WebSocket /{callId}/transport"
+---
+
+# WebSocket Connection
+
+Connect to the websocket transport endpoint to handle external telephony calls. This endpoint enables real-time audio streaming and call control for external telephony providers.
+
+## Overview
+
+The WebSocket Connection endpoint provides the real-time communication channel for external telephony providers to:
+- Stream audio data to and from the AI voice agent
+- Receive call control messages and status updates
+- Handle call lifecycle events
+- Manage audio quality and connection state
+
+## Endpoint
+
+The WebSocket transport endpoint is available in three regional locations:
+
+**United States:**
+```
+WebSocket: wss://us-agent.talqover.app/{callId}/transport?x-talq={token}
+```
+
+**Brazil:**
+```
+WebSocket: wss://br-agent.talqover.app/{callId}/transport?x-talq={token}
+```
+
+**Europe:**
+```
+WebSocket: wss://eu-agent.talqover.app/{callId}/transport?x-talq={token}
+```
+
+Choose the endpoint closest to your location for optimal performance and latency.
+
+## Connection Parameters
+
+<ParamField path="callId" type="string" required>
+  The call ID returned from the Make External Call endpoint.
+</ParamField>
+
+<ParamField query="x-talq" type="string" required>
+  Authentication token for the websocket connection. This token is provided in the call creation response.
+</ParamField>
+
+## Connection Process
+
+1. **Get Call ID** - Create an external call using the Make External Call endpoint
+2. **Extract Token** - Get the authentication token from the call response
+3. **Connect WebSocket** - Establish connection to the transport endpoint
+4. **Handle Audio Streams** - Begin streaming audio data for the call
+
+## WebSocket Connection Examples
+
+<RequestExample>
+
+##### JavaScript WebSocket Client
+
+```javascript
+const WebSocket = require('ws');
+
+const callId = '123e4567-e89b-12d3-a456-426614174000';
+const token = 'your_websocket_token_here';
+// Choose the appropriate regional endpoint
+const usEndpoint = `wss://us-agent.talqover.app/${callId}/transport?x-talq=${token}`;
+const brEndpoint = `wss://br-agent.talqover.app/${callId}/transport?x-talq=${token}`;
+const euEndpoint = `wss://eu-agent.talqover.app/${callId}/transport?x-talq=${token}`;
+
+// Use the endpoint closest to your location
+const wsUrl = usEndpoint; // or brEndpoint, euEndpoint
+
+const ws = new WebSocket(wsUrl);
+
+// Connection opened
+ws.on('open', () => {
+  console.log('WebSocket connected successfully');
+  
+  // Send initial connection message (optional)
+  ws.send(JSON.stringify({
+    event: 'clear'
+  }));
+});
+
+// Message received
+ws.on('message', (data) => {
+  try {
+    const message = JSON.parse(data);
+    console.log('Received message:', message);
+    
+    switch (message.event) {
+      case 'media':
+        // Handle incoming audio from the agent
+        if (message.media && message.media.payload) {
+          handleAgentAudio(message.media.payload);
+        }
+        break;
+      case 'dtmf':
+        // Handle DTMF keypress
+        if (message.dtmf && message.dtmf.digit) {
+          handleDTMF(message.dtmf.digit);
+        }
+        break;
+      default:
+        console.log('Unknown event type:', message.event);
+    }
+  } catch (error) {
+    console.error('Error parsing message:', error);
+  }
+});
+
+// Connection closed
+ws.on('close', (code, reason) => {
+  console.log('WebSocket disconnected:', code, reason);
+});
+
+// Connection error
+ws.on('error', (error) => {
+  console.error('WebSocket error:', error);
+});
+
+// Handle agent audio
+function handleAgentAudio(audioData) {
+  // Process the base64 encoded audio data from the AI agent
+  // This could involve playing audio, recording, or other processing
+  console.log('Processing agent audio:', audioData.length, 'characters (base64)');
+}
+
+// Handle DTMF keypress
+function handleDTMF(digit) {
+  // Process DTMF keypress from the agent
+  console.log('DTMF keypress received:', digit);
+}
+```
+
+</RequestExample>
+
+<RequestExample>
+
+##### Node.js WebSocket with Audio Handling
+
+```javascript
+const WebSocket = require('ws');
+const fs = require('fs');
+
+class ExternalTelephonyClient {
+  constructor(callId, token) {
+    this.callId = callId;
+    this.token = token;
+    this.ws = null;
+    this.isConnected = false;
+  }
+
+  connect() {
+    // Choose the appropriate regional endpoint
+const usEndpoint = `wss://us-agent.talqover.app/${this.callId}/transport?x-talq=${this.token}`;
+const brEndpoint = `wss://br-agent.talqover.app/${this.callId}/transport?x-talq=${this.token}`;
+const euEndpoint = `wss://eu-agent.talqover.app/${this.callId}/transport?x-talq=${this.token}`;
+
+// Use the endpoint closest to your location
+const wsUrl = usEndpoint; // or brEndpoint, euEndpoint
+    
+    this.ws = new WebSocket(wsUrl);
+    
+    this.ws.on('open', () => {
+      console.log('Connected to Talqover WebSocket');
+      this.isConnected = true;
+      this.sendMessage({
+        event: 'clear'
+      });
+    });
+
+    this.ws.on('message', (data) => {
+      this.handleMessage(data);
+    });
+
+    this.ws.on('close', () => {
+      console.log('WebSocket connection closed');
+      this.isConnected = false;
+    });
+
+    this.ws.on('error', (error) => {
+      console.error('WebSocket error:', error);
+    });
+  }
+
+  sendMessage(message) {
+    if (this.isConnected) {
+      this.ws.send(JSON.stringify(message));
+    }
+  }
+
+  sendAudio(audioData) {
+    if (this.isConnected) {
+      this.ws.send(JSON.stringify({
+        event: 'media',
+        media: {
+          payload: audioData.toString('base64')
+        }
+      }));
+    }
+  }
+
+  handleMessage(data) {
+    try {
+      const message = JSON.parse(data);
+      
+      switch (message.event) {
+        case 'media':
+          // Handle incoming audio from the agent
+          if (message.media && message.media.payload) {
+            this.handleAgentAudio(message.media.payload);
+          }
+          break;
+        case 'dtmf':
+          // Handle DTMF keypress
+          if (message.dtmf && message.dtmf.digit) {
+            this.handleDTMF(message.dtmf.digit);
+          }
+          break;
+        default:
+          console.log('Unknown event type:', message.event);
+      }
+    } catch (error) {
+      console.error('Error parsing message:', error);
+    }
+  }
+
+  handleAgentAudio(audioData) {
+    // Handle incoming base64 encoded audio from the AI agent
+    // This is where you would process the audio for your telephony system
+    console.log('Received agent audio:', audioData.length, 'characters (base64)');
+  }
+
+  handleDTMF(digit) {
+    // Handle DTMF keypress from the agent
+    console.log('DTMF keypress received:', digit);
+  }
+
+  disconnect() {
+    if (this.ws) {
+      this.ws.close();
+    }
+  }
+}
+
+// Usage example
+const client = new ExternalTelephonyClient(
+  '123e4567-e89b-12d3-a456-426614174000',
+  'your_websocket_token_here'
+);
+
+client.connect();
+
+// Send audio data (example)
+setTimeout(() => {
+  const audioData = Buffer.from('audio_data_here', 'base64');
+  client.sendAudio(audioData);
+}, 1000);
+
+// Send DTMF (example)
+setTimeout(() => {
+  client.sendMessage({
+    event: 'dtmf',
+    dtmf: { digit: '1' }
+  });
+}, 2000);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+##### cURL WebSocket Test
+
+```bash
+curl -i -N -H "Connection: Upgrade" \
+  -H "Upgrade: websocket" \
+  -H "Sec-WebSocket-Version: 13" \
+  -H "Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==" \
+  'https://us-agent.talqover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here'
+```
+
+</RequestExample>
+
+## Event Protocol
+
+The WebSocket connection uses a standardized event-based protocol for communication. All messages follow the same structure with an `event` field indicating the message type.
+
+### Outgoing Messages (Client → Server)
+
+| Event | Description | Payload |
+|-------|-------------|---------|
+| `media` | Sends audio data to the AI agent | `{ "event": "media", "media": { "payload": "base64_audio" } }` |
+| `clear` | Clears interruption state | `{ "event": "clear" }` |
+
+### Incoming Messages (Server → Client)
+
+| Event | Description | Payload |
+|-------|-------------|---------|
+| `media` | Audio data from the AI agent | `{ "event": "media", "media": { "payload": "base64_audio" } }` |
+| `dtmf` | DTMF keypress events | `{ "event": "dtmf", "dtmf": { "digit": "1" } }` |
+
+### Message Structure
+
+All messages follow this JSON structure:
+```json
+{
+  "event": "event_type",
+  "additional_fields": "values"
+}
+```
+
+The `event` field is always required and determines how the message is processed.
+
+## Audio Format
+
+The WebSocket connection handles audio data in the following format:
+
+- **Encoding**: Base64 encoded audio data
+- **Format**: PCMU (μ-law) or PCMA (A-law) at 8kHz
+- **Direction**: Bidirectional streaming
+- **Sample Rate**: 8kHz
+- **Channels**: Mono (1 channel)
+
+## Connection States
+
+### Connection Lifecycle
+
+1. **Connecting** - WebSocket connection attempt
+2. **Connected** - WebSocket connection established
+3. **Ready** - Call is ready to start
+4. **Active** - Call is in progress
+5. **Ending** - Call is ending
+6. **Disconnected** - WebSocket connection closed
+
+### Status Monitoring
+
+Monitor the connection state to ensure proper call handling:
+
+```javascript
+ws.on('open', () => {
+  console.log('Connection state: Connected');
+});
+
+ws.on('close', () => {
+  console.log('Connection state: Disconnected');
+});
+
+ws.on('error', () => {
+  console.log('Connection state: Error');
+});
+```
+
+## Error Handling
+
+### Common WebSocket Errors
+
+| Error | Description | Solution |
+|-------|-------------|----------|
+| `ECONNREFUSED` | Connection refused | Check if the endpoint is accessible |
+| `ETIMEDOUT` | Connection timeout | Verify network connectivity |
+| `ECONNRESET` | Connection reset | Reconnect with exponential backoff |
+| `Unexpected server response` | Invalid response | Check authentication token |
+
+### Reconnection Strategy
+
+Implement a robust reconnection strategy:
+
+```javascript
+class WebSocketManager {
+  constructor(url, options = {}) {
+    this.url = url;
+    this.options = {
+      maxRetries: 5,
+      retryDelay: 1000,
+      ...options
+    };
+    this.retryCount = 0;
+    this.connect();
+  }
+
+  connect() {
+    try {
+      this.ws = new WebSocket(this.url);
+      this.setupEventHandlers();
+    } catch (error) {
+      this.handleConnectionError(error);
+    }
+  }
+
+  setupEventHandlers() {
+    this.ws.on('open', () => {
+      console.log('Connected successfully');
+      this.retryCount = 0;
+    });
+
+    this.ws.on('close', () => {
+      console.log('Connection closed');
+      this.scheduleReconnect();
+    });
+
+    this.ws.on('error', (error) => {
+      console.error('WebSocket error:', error);
+      this.handleConnectionError(error);
+    });
+  }
+
+  scheduleReconnect() {
+    if (this.retryCount < this.options.maxRetries) {
+      const delay = this.options.retryDelay * Math.pow(2, this.retryCount);
+      setTimeout(() => {
+        this.retryCount++;
+        console.log(`Reconnecting... Attempt ${this.retryCount}`);
+        this.connect();
+      }, delay);
+    }
+  }
+
+  handleConnectionError(error) {
+    console.error('Connection error:', error);
+    this.scheduleReconnect();
+  }
+}
+```
+
+## Best Practices
+
+1. **Immediate Connection** - Connect to the WebSocket immediately after call creation
+2. **Heartbeat Monitoring** - Implement connection health monitoring
+3. **Audio Buffering** - Buffer audio data to handle network latency
+4. **Error Recovery** - Implement automatic reconnection with exponential backoff
+5. **Resource Cleanup** - Properly close connections and clean up resources
+
+## Security Considerations
+
+<Info>
+  **Authentication Required.** Always include the `x-talq` token in the WebSocket URL.
+</Info>
+
+<Info>
+  **Secure Connection.** Use WSS (WebSocket Secure) for production environments.
+</Info>
+
+<Info>
+  **Token Validation.** Validate the authentication token before establishing connection.
+</Info>
+
+## Performance Optimization
+
+- **Audio Chunking** - Send audio in appropriate chunk sizes
+- **Connection Pooling** - Reuse WebSocket connections when possible
+- **Compression** - Consider audio compression for bandwidth optimization
+- **Latency Monitoring** - Monitor and optimize for low-latency audio streaming
+
+## Related Endpoints
+
+- **Make External Call**: `POST /api/v1/agents/{agent_id}/call`
+- **Get Call**: `GET /api/v1/calls/{call}`
+- **List Calls**: `GET /api/v1/calls`

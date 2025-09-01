@@ -1,0 +1,320 @@
+---
+title: "Make External Call"
+description: "Create external calls using websocket transport instead of traditional telephony"
+api: "POST /api/v1/agents/{agent_id}/call"
+---
+
+# Make External Call
+
+Create external calls that use websocket transport instead of traditional telephony infrastructure. This endpoint allows you to integrate with external telephony providers while leveraging Talqover's AI voice agent capabilities.
+
+## Overview
+
+The Make External Call endpoint creates calls that bypass the traditional telephony flow and instead provide a websocket URL for external telephony providers to connect and handle the call audio streams.
+
+## How It Works
+
+When you call this endpoint, the system:
+1. Creates an external call record
+2. Returns a websocket URL for the external telephony provider
+3. Sets the call status to "ready" for websocket connection
+4. Provides transport information for external integration
+
+## Endpoint
+
+```
+POST /api/v1/agents/{agent_id}/call
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>
+  The unique identifier of the voice agent that will handle the call.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="sid" type="string" required>
+  Session ID for the external call. This should be provided by your external telephony provider.
+</ParamField>
+
+<ParamField body="from" type="string" required>
+  The phone number making the call. Must be in international format (e.g., +1234567890).
+</ParamField>
+
+<ParamField body="to" type="string" required>
+  The phone number to call. Must be in international format (e.g., +1234567890).
+</ParamField>
+
+<ParamField body="direction" type="string" required>
+  Call direction. Typically "outbound" for outgoing calls.
+</ParamField>
+
+<ParamField body="payload" type="array" required={false}>
+  Custom data to pass to the call. This data will be available during the call for personalization.
+</ParamField>
+
+## Example Request
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talqover.app/api/v1/agents/agent_123456/call" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sid": "EX123456789",
+    "from": "+1234567890",
+    "to": "+0987654321",
+    "direction": "outbound",
+    "payload": {
+      "customer_name": "John Doe",
+      "account_id": "ACC123"
+    }
+  }'
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```javascript
+const response = await fetch('https://talqover.app/api/v1/agents/agent_123456/call', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    sid: 'EX123456789',
+    from: '+1234567890',
+    to: '+0987654321',
+    direction: 'outbound',
+    payload: {
+      customer_name: 'John Doe',
+      account_id: 'ACC123'
+    }
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+</RequestExample>
+
+<RequestExample>
+
+```php
+<?php
+
+$client = new \GuzzleHttp\Client();
+$response = $client->post('https://talqover.app/api/v1/agents/agent_123456/call', [
+    'headers' => [
+        'Authorization' => 'Bearer talq_your_environment_token_here',
+        'Content-Type' => 'application/json',
+    ],
+    'json' => [
+        'sid' => 'EX123456789',
+        'from' => '+1234567890',
+        'to' => '+0987654321',
+        'direction' => 'outbound',
+        'payload' => [
+            'customer_name' => 'John Doe',
+            'account_id' => 'ACC123'
+        ]
+    ],
+]);
+$data = json_decode($response->getBody());
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "agent_id": "agent_123456",
+  "type": "external.websocketCall",
+  "created_at": "2024-01-01T00:00:00.000Z",
+  "updated_at": "2024-01-01T00:00:00.000Z",
+  "org_id": "org_789",
+  "cost": 0,
+  "status": "ready",
+  "transport": {
+    "provider": "external.websocket",
+    "websocketCallUrl": "https://us-agent.talqover.app/123e4567-e89b-12d3-a456-426614174000/transport"
+  }
+}
+```
+
+</ResponseExample>
+
+## Response Fields
+
+<ResponseField name="id" type="string" required>
+  Unique call identifier.
+</ResponseField>
+
+<ResponseField name="agent_id" type="string" required>
+  The ID of the agent handling the call.
+</ResponseField>
+
+<ResponseField name="type" type="string" required>
+  Call type, always "external.websocketCall" for external calls.
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required>
+  ISO 8601 timestamp when the call was created.
+</ResponseField>
+
+<ResponseField name="updated_at" type="string" required>
+  ISO 8601 timestamp when the call was last updated.
+</ResponseField>
+
+<ResponseField name="org_id" type="string" required>
+  Organization/environment ID associated with the agent.
+</ResponseField>
+
+<ResponseField name="cost" type="number" required>
+  Call cost. Always 0 for external calls.
+</ResponseField>
+
+<ResponseField name="status" type="string" required>
+  Call status. "ready" indicates the call is ready for websocket connection.
+</ResponseField>
+
+<ResponseField name="transport" type="object" required>
+  Transport configuration for the external call.
+</ResponseField>
+
+<ResponseField name="transport.provider" type="string" required>
+  Transport provider type, always "external.websocket".
+</ResponseField>
+
+<ResponseField name="transport.websocketCallUrl" type="string" required>
+  WebSocket URL for the external telephony provider to connect. The system automatically routes to the optimal regional endpoint based on your location.
+</ResponseField>
+
+## Regional Endpoints
+
+Talqover provides regional WebSocket endpoints for optimal performance:
+
+- **United States**: `wss://us-agent.talqover.app/{callId}/transport`
+- **Brazil**: `wss://br-agent.talqover.app/{callId}/transport`  
+- **Europe**: `wss://eu-agent.talqover.app/{callId}/transport`
+
+The `websocketCallUrl` in the response will automatically point to the closest regional endpoint. For custom routing, you can manually construct the WebSocket URL using any of the regional endpoints.
+
+## Error Responses
+
+### 404 Not Found
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Agent not found"
+}
+```
+
+</ResponseExample>
+
+### 422 Validation Error
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "The given data was invalid.",
+  "errors": {
+    "sid": [
+      "The sid field is required."
+    ],
+    "from": [
+      "The from field is required."
+    ],
+    "to": [
+      "The to field is required."
+    ],
+    "direction": [
+      "The direction field is required."
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+### 401 Unauthorized
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Unauthenticated."
+}
+```
+
+</ResponseExample>
+
+## Error Codes
+
+| Code | Description | HTTP Status |
+|------|-------------|-------------|
+| `AGENT_NOT_FOUND` | Specified agent does not exist | 404 |
+| `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
+| `VALIDATION_ERROR` | Request data validation failed | 422 |
+
+## Important Notes
+
+<Info>
+  **External Call Only.** This endpoint is specifically designed for external telephony integration and bypasses traditional telephony infrastructure.
+</Info>
+
+<Info>
+  **WebSocket Required.** After creating the call, you must connect to the provided websocket URL to handle the call audio streams.
+</Info>
+
+<Info>
+  **Status Ready.** The call status "ready" indicates it's waiting for websocket connection from the external telephony provider.
+</Info>
+
+## Best Practices
+
+1. **Validate Required Fields** - Ensure all required fields (sid, from, to, direction) are provided
+2. **Use Unique SIDs** - Each call should have a unique session ID from your external provider
+3. **Handle WebSocket Connection** - Connect to the websocket URL immediately after call creation
+4. **Monitor Call Status** - Track the call status through the websocket connection
+5. **Error Handling** - Implement proper error handling for validation and authentication failures
+
+## Use Cases
+
+- **Custom Telephony Infrastructure** - Use your own telephony providers
+- **Hybrid Deployments** - Mix traditional and external telephony as needed
+- **Real-time Audio Processing** - Custom audio handling and processing
+- **Multi-tenant Solutions** - Different telephony providers for different customers
+- **Compliance Requirements** - Meet specific regulatory or compliance needs
+
+## Related Endpoints
+
+- **WebSocket Connection**: `/{callId}/transport`
+- **Get Agent**: `GET /api/v1/agents/{agent}`
+- **List Agents**: `GET /api/v1/agents`
+- **Create Agent**: `POST /api/v1/agents`

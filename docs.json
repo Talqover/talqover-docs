@@ -97,6 +97,13 @@
                   "en/api-reference/endpoints/update-campaign-status",
                   "en/api-reference/endpoints/delete-campaign"
                 ]
+              },
+              {
+                "group": "Custom Telephony",
+                "pages": [
+                  "en/api-reference/endpoints/make-external-call",
+                  "en/api-reference/endpoints/websocket-connection"
+                ]
               }
             ]
           },
@@ -194,8 +201,14 @@
                   "pt-br/api-reference/endpoints/create-campaign",
                   "pt-br/api-reference/endpoints/get-campaign",
                   "pt-br/api-reference/endpoints/update-campaign",
-                  "pt-br/api-reference/endpoints/update-campaign-status",
                   "pt-br/api-reference/endpoints/delete-campaign"
+                ]
+              },
+              {
+                "group": "Telefonia Personalizada",
+                "pages": [
+                  "pt-br/api-reference/endpoints/make-external-call",
+                  "pt-br/api-reference/endpoints/websocket-connection"
                 ]
               }
             ]

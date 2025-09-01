@@ -374,6 +374,238 @@
         }
       }
     },
+    "/agents/{agent}/voice": {
+      "put": {
+        "tags": ["Agents"],
+        "summary": "Update agent voice settings",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "voice_id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Voice template ID"
+                  },
+                  "similarity": {
+                    "type": "number",
+                    "minimum": 0.5,
+                    "maximum": 1.0,
+                    "description": "Voice similarity setting"
+                  },
+                  "stability": {
+                    "type": "number",
+                    "minimum": 0.5,
+                    "maximum": 1.0,
+                    "description": "Voice stability setting"
+                  }
+                }
+              },
+              "example": {
+                "voice_id": "voice-template-uuid",
+                "similarity": 0.75,
+                "stability": 0.8
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Voice settings updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agent"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Agent or voice template not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X PUT \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/voice' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"voice_id\": \"voice-template-uuid\",\n    \"similarity\": 0.75,\n    \"stability\": 0.8\n  }'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->put('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/voice', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'voice_id' => 'voice-template-uuid',\n        'similarity' => 0.75,\n        'stability' => 0.8\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.put('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/voice', {\n  voice_id: 'voice-template-uuid',\n  similarity: 0.75,\n  stability: 0.8\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
+    "/agents/{agent}/knowledge": {
+      "put": {
+        "tags": ["Agents"],
+        "summary": "Update agent knowledge",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["prompt"],
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "description": "Agent prompt/instructions"
+                  }
+                }
+              },
+              "example": {
+                "prompt": "You are a helpful customer service agent..."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Knowledge updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agent"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Agent not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X PUT \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/knowledge' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"prompt\": \"You are a helpful customer service agent...\"\n  }'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->put('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/knowledge', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'prompt' => 'You are a helpful customer service agent...'\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.put('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/knowledge', {\n  prompt: 'You are a helpful customer service agent...'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
+    "/agents/{agent}/calls": {
+      "get": {
+        "tags": ["Calls"],
+        "summary": "Get agent calls",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent ID"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search in phone numbers or call SID"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            },
+            "description": "Number of items per page"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent calls retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Call"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMeta"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/calls' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/calls', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/calls', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
     "/agents/{agent}/call": {
       "post": {
         "tags": ["Calls"],
@@ -437,6 +669,404 @@
           "nodejs": {
             "lang": "javascript",
             "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
+    "/agents/{agent}/trainings": {
+      "get": {
+        "tags": ["Training"],
+        "summary": "List agent trainings",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent ID"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            },
+            "description": "Number of items per page"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Trainings retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Training"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMeta"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Training"],
+        "summary": "Create agent training",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["instruction"],
+                "properties": {
+                  "instruction": {
+                    "type": "string",
+                    "description": "Training instruction"
+                  }
+                }
+              },
+              "example": {
+                "instruction": "When a customer asks about refunds, explain the 30-day return policy..."
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Training created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Training"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"instruction\": \"When a customer asks about refunds, explain the 30-day return policy...\"\n  }'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'instruction' => 'When a customer asks about refunds, explain the 30-day return policy...'\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings', {\n  instruction: 'When a customer asks about refunds, explain the 30-day return policy...'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
+    "/agents/{agent}/trainings/{training}": {
+      "delete": {
+        "tags": ["Training"],
+        "summary": "Delete agent training",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent ID"
+          },
+          {
+            "name": "training",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Training ID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Training deleted successfully"
+          },
+          "404": {
+            "description": "Training not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X DELETE \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings/456e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->delete('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings/456e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.delete('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings/456e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});"
+          }
+        }
+      }
+    },
+    "/agents/{agent}/actions": {
+      "get": {
+        "tags": ["Actions"],
+        "summary": "List agent actions",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent ID"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            },
+            "description": "Number of items per page"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actions retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Action"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMeta"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Actions"],
+        "summary": "Create agent action",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "type", "trigger"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Action name"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": ["webhook", "transfer", "hangup"],
+                    "description": "Action type"
+                  },
+                  "trigger": {
+                    "type": "string",
+                    "description": "Trigger condition"
+                  },
+                  "config": {
+                    "type": "object",
+                    "description": "Action configuration"
+                  }
+                }
+              },
+              "example": {
+                "name": "Transfer to Human",
+                "type": "transfer",
+                "trigger": "customer asks for human",
+                "config": {
+                  "phone_number": "+1234567890"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Action created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Action"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"name\": \"Transfer to Human\",\n    \"type\": \"transfer\",\n    \"trigger\": \"customer asks for human\",\n    \"config\": {\n      \"phone_number\": \"+1234567890\"\n    }\n  }'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'name' => 'Transfer to Human',\n        'type' => 'transfer',\n        'trigger' => 'customer asks for human',\n        'config' => [\n            'phone_number' => '+1234567890'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions', {\n  name: 'Transfer to Human',\n  type: 'transfer',\n  trigger: 'customer asks for human',\n  config: {\n    phone_number: '+1234567890'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
+    "/agents/{agent}/actions/{action}": {
+      "delete": {
+        "tags": ["Actions"],
+        "summary": "Delete agent action",
+        "parameters": [
+          {
+            "name": "agent",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent ID"
+          },
+          {
+            "name": "action",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Action ID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Action deleted successfully"
+          },
+          "404": {
+            "description": "Action not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X DELETE \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions/456e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->delete('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions/456e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.delete('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions/456e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});"
           }
         }
       }
@@ -684,6 +1314,514 @@
         }
       }
     },
+    "/campaigns/{campaign}": {
+      "get": {
+        "tags": ["Campaigns"],
+        "summary": "Get a specific campaign",
+        "parameters": [
+          {
+            "name": "campaign",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Campaign ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Campaign not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Campaigns"],
+        "summary": "Update a campaign",
+        "parameters": [
+          {
+            "name": "campaign",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Campaign ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Campaign name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Campaign description"
+                  },
+                  "max_calls_per_hour": {
+                    "type": "integer",
+                    "description": "Maximum calls per hour"
+                  },
+                  "max_calls_per_day": {
+                    "type": "integer",
+                    "description": "Maximum calls per day"
+                  },
+                  "voicemail_hours": {
+                    "type": "integer",
+                    "description": "Hours to wait after voicemail calls"
+                  },
+                  "auto_add_to_dnc": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": ["completed", "voicemail"]
+                    },
+                    "description": "Call statuses that trigger auto-add to DNC"
+                  }
+                }
+              },
+              "example": {
+                "name": "Updated Customer Outreach Campaign",
+                "max_calls_per_hour": 15,
+                "max_calls_per_day": 150
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Campaign updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Campaign not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X PUT \\\n  'https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"name\": \"Updated Customer Outreach Campaign\",\n    \"max_calls_per_hour\": 15,\n    \"max_calls_per_day\": 150\n  }'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->put('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'name' => 'Updated Customer Outreach Campaign',\n        'max_calls_per_hour' => 15,\n        'max_calls_per_day' => 150\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.put('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', {\n  name: 'Updated Customer Outreach Campaign',\n  max_calls_per_hour: 15,\n  max_calls_per_day: 150\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Campaigns"],
+        "summary": "Delete a campaign",
+        "parameters": [
+          {
+            "name": "campaign",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Campaign ID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Campaign deleted successfully"
+          },
+          "404": {
+            "description": "Campaign not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X DELETE \\\n  'https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->delete('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.delete('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});"
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign}/status": {
+      "patch": {
+        "tags": ["Campaigns"],
+        "summary": "Update campaign status",
+        "parameters": [
+          {
+            "name": "campaign",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Campaign ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["status"],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": ["draft", "active", "paused", "completed"],
+                    "description": "Campaign status"
+                  }
+                }
+              },
+              "example": {
+                "status": "active"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Campaign status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Campaign not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X PATCH \\\n  'https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/status' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"status\": \"active\"\n  }'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->patch('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/status', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'status' => 'active'\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.patch('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/status', {\n  status: 'active'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign}/call": {
+      "post": {
+        "tags": ["Calls"],
+        "summary": "Make a campaign call",
+        "parameters": [
+          {
+            "name": "campaign",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Campaign ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["to"],
+                "properties": {
+                  "to": {
+                    "type": "string",
+                    "description": "Phone number to call (international format)"
+                  },
+                  "payload": {
+                    "type": "object",
+                    "description": "Custom data to pass to the campaign"
+                  }
+                }
+              },
+              "example": {
+                "to": "+1234567890",
+                "payload": {
+                  "customer_name": "John Doe",
+                  "order_id": "12345"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Campaign call initiated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Call"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"to\": \"+1234567890\",\n    \"payload\": {\n      \"customer_name\": \"John Doe\",\n      \"order_id\": \"12345\"\n    }\n  }'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890',\n        'payload' => [\n            'customer_name' => 'John Doe',\n            'order_id' => '12345'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890',\n  payload: {\n    customer_name: 'John Doe',\n    order_id: '12345'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
+    "/agents/{agent_id}/call": {
+      "post": {
+        "tags": ["Custom Telephony"],
+        "summary": "Create external call or use existing telephony",
+        "description": "Create calls that can use either existing telephony flow or external websocket transport based on agent configuration",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["to"],
+                "properties": {
+                  "to": {
+                    "type": "string",
+                    "description": "Phone number to call (international format)"
+                  },
+                  "payload": {
+                    "type": "object",
+                    "description": "Custom data to pass to the call"
+                  }
+                }
+              },
+              "examples": {
+                "existing_telephony": {
+                  "summary": "Existing Telephony Call",
+                  "description": "Uses existing telephony flow when agent.use_transport = true",
+                  "value": {
+                    "to": "+1234567890",
+                    "payload": {
+                      "customer_name": "John Doe"
+                    }
+                  }
+                },
+                "external_call": {
+                  "summary": "External Call",
+                  "description": "Creates external call when agent.use_transport = false",
+                  "value": {
+                    "to": "+1234567890",
+                    "payload": {
+                      "customer_name": "John Doe",
+                      "external_provider": "custom"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Call created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Call"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ExternalCall"
+                    }
+                  ]
+                },
+                "examples": {
+                  "existing_telephony": {
+                    "summary": "Existing Telephony Response",
+                    "description": "Response when using existing telephony flow",
+                    "value": {
+                      "id": "123e4567-e89b-12d3-a456-426614174000",
+                      "sid": "TQ123456789",
+                      "status": "initiated",
+                      "to": "+1234567890",
+                      "from": "+0987654321",
+                      "created_at": "2024-01-01T00:00:00Z"
+                    }
+                  },
+                  "external_call": {
+                    "summary": "External Call Response",
+                    "description": "Response when creating external call",
+                    "value": {
+                      "id": "123e4567-e89b-12d3-a456-426614174000",
+                      "status": "external",
+                      "to": "+1234567890",
+                      "websocket_url": "wss://us-worker.talqover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here",
+                      "created_at": "2024-01-01T00:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Agent not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"to\": \"+1234567890\",\n    \"payload\": {\n      \"customer_name\": \"John Doe\"\n    }\n  }'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890',\n        'payload' => [\n            'customer_name' => 'John Doe'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890',\n  payload: {\n    customer_name: 'John Doe'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
+    "/{callId}/transport": {
+      "get": {
+        "tags": ["Custom Telephony"],
+        "summary": "WebSocket transport endpoint for external calls",
+        "description": "WebSocket endpoint for external telephony providers to connect and handle call audio streams. Available in three regional locations for optimal performance: US (us-agent.talqover.app), Brazil (br-agent.talqover.app), and Europe (eu-agent.talqover.app).",
+        "parameters": [
+          {
+            "name": "callId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Call ID from the external call creation"
+          },
+          {
+            "name": "x-talq",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Authentication token for the websocket connection"
+          }
+        ],
+        "responses": {
+          "101": {
+            "description": "Switching to WebSocket protocol",
+            "headers": {
+              "Upgrade": {
+                "schema": {
+                  "type": "string",
+                  "example": "websocket"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "Upgrade"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid token"
+          },
+          "404": {
+            "description": "Call not found"
+          }
+        },
+        "x-code-samples": {
+          "websocket": {
+            "lang": "javascript",
+            "source": "const WebSocket = require('ws');\n\nconst callId = '123e4567-e89b-12d3-a456-426614174000';\nconst token = 'your_websocket_token_here';\n\n// Choose the appropriate regional endpoint\nconst usEndpoint = `wss://us-agent.talqover.app/${callId}/transport?x-talq=${token}`;\nconst brEndpoint = `wss://br-agent.talqover.app/${callId}/transport?x-talq=${token}`;\nconst euEndpoint = `wss://eu-agent.talqover.app/${callId}/transport?x-talq=${token}`;\n\n// Use the endpoint closest to your location\nconst wsUrl = usEndpoint; // or brEndpoint, euEndpoint\n\nconst ws = new WebSocket(wsUrl);\n\nws.on('open', () => {\n  console.log('WebSocket connected');\n  // Send initial clear event\n  ws.send(JSON.stringify({ event: 'clear' }));\n});\n\nws.on('message', (data) => {\n  try {\n    const message = JSON.parse(data);\n    console.log('Received:', message);\n    \n    switch (message.event) {\n      case 'media':\n        if (message.media && message.media.payload) {\n          // Handle incoming audio from agent\n          handleAgentAudio(message.media.payload);\n        }\n        break;\n      case 'dtmf':\n        if (message.dtmf && message.dtmf.digit) {\n          // Handle DTMF keypress\n          handleDTMF(message.dtmf.digit);\n        }\n        break;\n    }\n  } catch (error) {\n    console.error('Error parsing message:', error);\n  }\n});\n\nws.on('close', () => {\n  console.log('WebSocket disconnected');\n});\n\nfunction handleAgentAudio(audioData) {\n  // Process base64 encoded audio data\n  console.log('Processing agent audio:', audioData.length, 'characters (base64)');\n}\n\nfunction handleDTMF(digit) {\n  console.log('DTMF keypress received:', digit);\n}"
+          },
+          "curl": {
+            "lang": "curl",
+            "source": "curl -i -N -H \"Connection: Upgrade\" \\\n  -H \"Upgrade: websocket\" \\\n  -H \"Sec-WebSocket-Version: 13\" \\\n  -H \"Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==\" \\\n  'https://us-agent.talqover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here'"
+          }
+        }
+      }
+    },
     "/voice-templates": {
       "get": {
         "tags": ["Voice Templates"],
@@ -746,6 +1884,60 @@
           "nodejs": {
             "lang": "javascript",
             "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/voice-templates', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+          }
+        }
+      }
+    },
+    "/voice-templates/{voiceTemplateId}/demo": {
+      "get": {
+        "tags": ["Voice Templates"],
+        "summary": "Generate voice template demo",
+        "parameters": [
+          {
+            "name": "voiceTemplateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Voice template ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Demo audio generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "demo_url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "URL to the demo audio file"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Voice template not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/voice-templates/123e4567-e89b-12d3-a456-426614174000/demo' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          },
+          "php": {
+            "lang": "php",
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/voice-templates/123e4567-e89b-12d3-a456-426614174000/demo', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+          },
+          "nodejs": {
+            "lang": "javascript",
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/voice-templates/123e4567-e89b-12d3-a456-426614174000/demo', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -912,6 +2104,10 @@
           },
           "voice_template": {
             "$ref": "#/components/schemas/VoiceTemplate"
+          },
+          "use_transport": {
+            "type": "boolean",
+            "description": "Whether to use existing telephony transport (true) or external websocket transport (false)"
           },
           "created_at": {
             "type": "string",
@@ -1174,6 +2370,199 @@
           "per_page": 20,
           "total": 100,
           "last_page": 5
+        }
+      },
+      "ExternalCall": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["external"],
+            "description": "Call status indicating external transport"
+          },
+          "to": {
+            "type": "string",
+            "description": "Phone number to call"
+          },
+          "websocket_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "WebSocket URL for external telephony provider (automatically routed to optimal regional endpoint)"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "status": "external",
+          "to": "+1234567890",
+          "websocket_url": "wss://us-agent.talqover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here",
+          "created_at": "2024-01-01T00:00:00Z"
+        }
+      },
+      "WebSocketEvent": {
+        "type": "object",
+        "description": "WebSocket event message structure for external telephony",
+        "properties": {
+          "event": {
+            "type": "string",
+            "description": "Event type identifier",
+            "enum": ["media", "dtmf", "clear"]
+          }
+        },
+        "required": ["event"],
+        "discriminator": {
+          "propertyName": "event"
+        }
+      },
+      "MediaEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/WebSocketEvent"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "media": {
+                "type": "object",
+                "properties": {
+                  "payload": {
+                    "type": "string",
+                    "description": "Base64 encoded audio data (PCMU/PCMA at 8kHz)"
+                  }
+                },
+                "required": ["payload"]
+              }
+            },
+            "required": ["media"]
+          }
+        ],
+        "example": {
+          "event": "media",
+          "media": {
+            "payload": "base64_encoded_audio_data_here"
+          }
+        }
+      },
+      "DTMFEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/WebSocketEvent"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dtmf": {
+                "type": "object",
+                "properties": {
+                  "digit": {
+                    "type": "string",
+                    "description": "DTMF digit pressed (0-9, *, #, A-D)"
+                  }
+                },
+                "required": ["digit"]
+              }
+            },
+            "required": ["dtmf"]
+          }
+        ],
+        "example": {
+          "event": "dtmf",
+          "dtmf": {
+            "digit": "1"
+          }
+        }
+      },
+      "ClearEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/WebSocketEvent"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ],
+        "example": {
+          "event": "clear"
+        }
+      },
+      "Training": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "instruction": {
+            "type": "string",
+            "description": "Training instruction"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "instruction": "When a customer asks about refunds, explain the 30-day return policy...",
+          "created_at": "2024-01-01T00:00:00Z",
+          "updated_at": "2024-01-01T00:00:00Z"
+        }
+      },
+      "Action": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "Action name"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["webhook", "transfer", "hangup"],
+            "description": "Action type"
+          },
+          "trigger": {
+            "type": "string",
+            "description": "Trigger condition"
+          },
+          "config": {
+            "type": "object",
+            "description": "Action configuration"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "name": "Transfer to Human",
+          "type": "transfer",
+          "trigger": "customer asks for human",
+          "config": {
+            "phone_number": "+1234567890"
+          },
+          "created_at": "2024-01-01T00:00:00Z",
+          "updated_at": "2024-01-01T00:00:00Z"
         }
       }
     },
