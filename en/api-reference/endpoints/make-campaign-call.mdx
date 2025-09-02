@@ -8,6 +8,48 @@ api: "POST /api/v1/campaigns/{campaign_id}/call"
 
 Initiate a call as part of a specific campaign. This endpoint allows you to manually trigger calls within a campaign context.
 
+## Overview
+
+The Make Campaign Call endpoint allows you to initiate individual calls within an existing campaign. This endpoint leverages the campaign's configuration and settings to ensure calls follow the established campaign rules and parameters.
+
+## Campaign Calls vs Individual Agent Calls
+
+### **Campaign Calls** - Strategic, Automated Outreach
+Campaign calls are designed for **systematic, large-scale customer engagement** with advanced automation features:
+
+- **Campaign-Specific Settings**: Each call inherits the campaign's configuration (agent, retry logic, cooldown periods, call hours)
+- **Advanced Scheduling**: Calls automatically respect business hours, timezone settings, and day-of-week restrictions
+- **Retry Logic**: Built-in retry mechanisms with configurable cooldown periods between attempts
+- **Call Flow Management**: Consistent call flows and messaging across all campaign calls
+- **Performance Analytics**: Comprehensive tracking and reporting at the campaign level
+- **Compliance Features**: Do-not-call list management and regulatory compliance tools
+- **Batch Processing**: Handle thousands of calls with intelligent queuing and rate limiting
+
+**Best for**: Customer outreach campaigns, lead nurturing, appointment reminders, market research, and any scenario requiring consistent, automated calling with sophisticated rules.
+
+### **Individual Agent Calls** - Immediate, Personalized Interaction
+Individual agent calls are perfect for **instant, one-off interactions** that require immediate attention:
+
+- **Instant Execution**: Calls are made immediately without waiting for campaign scheduling
+- **Real-Time Context**: Perfect for immediate follow-ups after form submissions or customer actions
+- **Flexible Parameters**: Customize call parameters on-the-fly for specific situations
+- **Direct Control**: Immediate control over call timing and execution
+- **Personal Touch**: Ideal for high-value interactions requiring immediate human attention
+
+**Best for**: Form follow-ups, immediate customer service, urgent scheduling, high-priority leads, and any situation requiring instant response.
+
+## When to Use Each Approach
+
+| Scenario | Use Campaign Call | Use Individual Agent Call |
+|----------|------------------|---------------------------|
+| **Customer fills out contact form** | ❌ | ✅ **Immediate follow-up** |
+| **Lead nurturing over time** | ✅ **Automated sequence** | ❌ |
+| **Appointment reminders** | ✅ **Scheduled outreach** | ❌ |
+| **Urgent customer issue** | ❌ | ✅ **Instant response** |
+| **Market research survey** | ✅ **Large-scale calling** | ❌ |
+| **Sales follow-up after demo** | ❌ | ✅ **Quick conversion** |
+| **Customer satisfaction calls** | ✅ **Systematic outreach** | ❌ |
+
 ## Endpoint
 
 ```

@@ -8,6 +8,48 @@ api: "POST /api/v1/campaigns/{campaign_id}/call"
 
 Iniciar uma chamada como parte de uma campanha específica. Este endpoint permite fazer chamadas individuais dentro do contexto de uma campanha, seguindo as configurações e regras da campanha.
 
+## Visão Geral
+
+O endpoint Fazer Chamada de Campanha permite que você inicie chamadas individuais dentro de uma campanha existente. Este endpoint aproveita a configuração e configurações da campanha para garantir que as chamadas sigam as regras e parâmetros estabelecidos da campanha.
+
+## Chamadas de Campanha vs Chamadas Individuais do Agente
+
+### **Chamadas de Campanha** - Alcance Estratégico e Automatizado
+As chamadas de campanha são projetadas para **engajamento sistemático e em larga escala com clientes** com recursos avançados de automação:
+
+- **Configurações Específicas da Campanha**: Cada chamada herda a configuração da campanha (agente, lógica de nova tentativa, períodos de cooldown, horários de chamada)
+- **Agendamento Avançado**: As chamadas respeitam automaticamente os horários comerciais, configurações de fuso horário e restrições de dia da semana
+- **Lógica de Nova Tentativa**: Mecanismos de nova tentativa integrados com períodos de cooldown configuráveis entre tentativas
+- **Gerenciamento de Fluxo de Chamada**: Fluxos de chamada e mensagens consistentes em todas as chamadas da campanha
+- **Análise de Performance**: Rastreamento e relatórios abrangentes no nível da campanha
+- **Recursos de Conformidade**: Gerenciamento de lista de não ligar e ferramentas de conformidade regulatória
+- **Processamento em Lote**: Gerencie milhares de chamadas com enfileiramento inteligente e limitação de taxa
+
+**Melhor para**: Campanhas de alcance ao cliente, nutrição de leads, lembretes de compromissos, pesquisa de mercado e qualquer cenário que exija chamadas consistentes e automatizadas com regras sofisticadas.
+
+### **Chamadas Individuais do Agente** - Interação Imediata e Personalizada
+As chamadas individuais do agente são perfeitas para **interações instantâneas e únicas** que requerem atenção imediata:
+
+- **Execução Instantânea**: As chamadas são feitas imediatamente sem esperar pelo agendamento da campanha
+- **Contexto em Tempo Real**: Perfeito para acompanhamentos imediatos após envios de formulários ou ações do cliente
+- **Parâmetros Flexíveis**: Personalize os parâmetros da chamada em tempo real para situações específicas
+- **Controle Direto**: Controle imediato sobre o tempo e execução da chamada
+- **Toque Pessoal**: Ideal para interações de alto valor que requerem atenção humana imediata
+
+**Melhor para**: Acompanhamentos de formulários, atendimento imediato ao cliente, agendamento urgente, leads de alta prioridade e qualquer situação que exija resposta imediata.
+
+## Quando Usar Cada Abordagem
+
+| Cenário | Usar Chamada de Campanha | Usar Chamada Individual do Agente |
+|---------|--------------------------|-----------------------------------|
+| **Cliente preenche formulário de contato** | ❌ | ✅ **Acompanhamento imediato** |
+| **Nutrição de leads ao longo do tempo** | ✅ **Sequência automatizada** | ❌ |
+| **Lembretes de compromissos** | ✅ **Alcance agendado** | ❌ |
+| **Problema urgente do cliente** | ❌ | ✅ **Resposta imediata** |
+| **Pesquisa de mercado** | ✅ **Chamadas em larga escala** | ❌ |
+| **Acompanhamento de vendas após demo** | ❌ | ✅ **Conversão rápida** |
+| **Chamadas de satisfação do cliente** | ✅ **Alcance sistemático** | ❌ |
+
 ## Endpoint
 
 ```

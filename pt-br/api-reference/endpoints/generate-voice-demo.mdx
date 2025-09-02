@@ -16,7 +16,7 @@ GET /api/v1/voice-templates/{voice_template_id}/demo
 
 ## Parâmetros de Caminho
 
-<ParamField path="voiceTemplateId" type="string" required>
+<ParamField path="voice_template_id" type="string" required>
   O identificador único do modelo de voz. Você pode encontrá-lo na lista de modelos de voz.
 </ParamField>
 
@@ -61,7 +61,7 @@ curl -X GET "https://talqover.app/api/v1/voice-templates/550e8400-e29b-41d4-a716
 
 ```javascript
 // Requisição 2: Gerar demonstração com ID específico
-const voiceTemplateId = '550e8400-e29b-41d4-a716-446655440000';
+const voice_template_id = '550e8400-e29b-41d4-a716-446655440000';
 const response = await fetch(`https://talqover.app/api/v1/voice-templates/${voice_template_id}/demo`, {
   method: 'GET',
   headers: {

@@ -61,8 +61,8 @@ curl -X GET "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-44665544
 
 ```javascript
 // Requisição 2: Obter agente com ID específico
-const agentId = '550e8400-e29b-41d4-a716-446655440000';
-const response = await fetch(`https://talqover.app/api/v1/agents/${agentId}`, {
+const agent_id = '550e8400-e29b-41d4-a716-446655440000';
+const response = await fetch(`https://talqover.app/api/v1/agents/${agent_id}`, {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

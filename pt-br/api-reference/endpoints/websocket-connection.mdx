@@ -39,7 +39,7 @@ Escolha o endpoint mais próximo da sua localização para melhor performance e 
 
 ## Parâmetros de Conexão
 
-<ParamField path="callId" type="string" required>
+<ParamField path="call_id" type="string" required>
   O ID da chamada retornado do endpoint Fazer Chamada Externa.
 </ParamField>
 
@@ -63,7 +63,7 @@ Escolha o endpoint mais próximo da sua localização para melhor performance e 
 ```javascript
 const WebSocket = require('ws');
 
-const callId = '123e4567-e89b-12d3-a456-426614174000';
+const call_id = '123e4567-e89b-12d3-a456-426614174000';
 const token = 'your_websocket_token_here';
 // Escolha o endpoint regional apropriado
 const usEndpoint = `wss://us-agent.talqover.app/${call_id}/transport?x-talq=${token}`;
@@ -147,8 +147,8 @@ const WebSocket = require('ws');
 const fs = require('fs');
 
 class ExternalTelephonyClient {
-  constructor(callId, token) {
-    this.callId = callId;
+  constructor(call_id, token) {
+    this.call_id = call_id;
     this.token = token;
     this.ws = null;
     this.isConnected = false;
@@ -156,9 +156,9 @@ class ExternalTelephonyClient {
 
   connect() {
     // Escolha o endpoint regional apropriado
-const usEndpoint = `wss://us-agent.talqover.app/${this.callId}/transport?x-talq=${this.token}`;
-const brEndpoint = `wss://br-agent.talqover.app/${this.callId}/transport?x-talq=${this.token}`;
-const euEndpoint = `wss://eu-agent.talqover.app/${this.callId}/transport?x-talq=${this.token}`;
+    const usEndpoint = `wss://us-agent.talqover.app/${this.call_id}/transport?x-talq=${this.token}`;
+    const brEndpoint = `wss://br-agent.talqover.app/${this.call_id}/transport?x-talq=${this.token}`;
+    const euEndpoint = `wss://eu-agent.talqover.app/${this.call_id}/transport?x-talq=${this.token}`;
 
 // Use o endpoint mais próximo da sua localização
 const wsUrl = usEndpoint; // ou brEndpoint, euEndpoint

@@ -61,8 +61,8 @@ curl -X GET "https://talqover.app/api/v1/campaigns/550e8400-e29b-41d4-a716-44665
 
 ```javascript
 // Request 2: Get campaign with specific ID
-const campaignId = '550e8400-e29b-41d4-a716-446655440000';
-const response = await fetch(`https://talqover.app/api/v1/campaigns/${campaignId}`, {
+const campaign_id = '550e8400-e29b-41d4-a716-446655440000';
+const response = await fetch(`https://talqover.app/api/v1/campaigns/${campaign_id}`, {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -425,3 +425,6 @@ console.log(result);
 - **Update Campaign**: `PUT /api/v1/campaigns/{campaign_id}`
 - **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign_id}/status`
 - **Delete Campaign**: `DELETE /api/v1/campaigns/{campaign_id}`
+- **Make Campaign Call**: `POST /api/v1/campaigns/{campaign_id}/call`
+
+

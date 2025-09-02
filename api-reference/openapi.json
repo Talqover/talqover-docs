@@ -566,73 +566,6 @@
         }
       }
     },
-    "/agents/{agent_id}/call": {
-      "post": {
-        "tags": ["Calls"],
-        "summary": "Make a call with an agent",
-        "parameters": [
-          {
-            "name": "agent_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "description": "Agent ID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["to"],
-                "properties": {
-                  "to": {
-                    "type": "string",
-                    "description": "Phone number to call (international format)"
-                  }
-                }
-              },
-              "example": {
-                "to": "+1234567890"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Call initiated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Call"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation error"
-          }
-        },
-        "x-code-samples": {
-          "curl": {
-            "lang": "curl",
-            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"to\": \"+1234567890\"\n  }'"
-          },
-          "php": {
-            "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890'\n    ],\n]);\n$data = json_decode($response->getBody());"
-          },
-          "nodejs": {
-            "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
-          }
-        }
-      }
-    },
     "/agents/{agent_id}/trainings": {
       "get": {
         "tags": ["Training"],
@@ -1596,7 +1529,7 @@
       "post": {
         "tags": ["Custom Telephony"],
         "summary": "Create external call or use existing telephony",
-        "description": "Create calls that can use either existing telephony flow or external websocket transport based on agent configuration",
+        "description": "Create calls that can use either existing telephony flow or external websocket transport based on agent configuration. The request body structure determines the call type:\n- Simple payload with only 'to' field: Uses existing telephony flow\n- Full payload with 'sid', 'from', 'to', 'direction': Creates external call with websocket transport",
         "parameters": [
           {
             "name": "agent_id",
@@ -1614,18 +1547,48 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": ["to"],
-                "properties": {
-                  "to": {
-                    "type": "string",
-                    "description": "Phone number to call (international format)"
-                  },
-                  "payload": {
+                "oneOf": [
+                  {
                     "type": "object",
-                    "description": "Custom data to pass to the call"
+                    "required": ["to"],
+                    "properties": {
+                      "to": {
+                        "type": "string",
+                        "description": "Phone number to call (international format) - for existing telephony flow"
+                      },
+                      "payload": {
+                        "type": "object",
+                        "description": "Custom data to pass to the call"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": ["sid", "from", "to", "direction"],
+                    "properties": {
+                      "sid": {
+                        "type": "string",
+                        "description": "Session ID for the external call. This should be provided by your external telephony provider."
+                      },
+                      "from": {
+                        "type": "string",
+                        "description": "The phone number making the call. Must be in international format (e.g., +1234567890)."
+                      },
+                      "to": {
+                        "type": "string",
+                        "description": "The phone number to call. Must be in international format (e.g., +1234567890)."
+                      },
+                      "direction": {
+                        "type": "string",
+                        "description": "Call direction. Typically \"outbound\" for outgoing calls."
+                      },
+                      "payload": {
+                        "type": "array",
+                        "description": "Custom data to pass to the call. This data will be available during the call for personalization."
+                      }
+                    }
                   }
-                }
+                ]
               },
               "examples": {
                 "existing_telephony": {
@@ -1634,7 +1597,8 @@
                   "value": {
                     "to": "+1234567890",
                     "payload": {
-                      "customer_name": "John Doe"
+                      "customer_name": "John Doe",
+                      "account_id": "ACC123"
                     }
                   }
                 },
@@ -1642,11 +1606,16 @@
                   "summary": "External Call",
                   "description": "Creates external call when agent.use_transport = false",
                   "value": {
-                    "to": "+1234567890",
-                    "payload": {
-                      "customer_name": "John Doe",
-                      "external_provider": "custom"
-                    }
+                    "sid": "EX123456789",
+                    "from": "+1234567890",
+                    "to": "+0987654321",
+                    "direction": "outbound",
+                    "payload": [
+                      "customer_name",
+                      "John Doe",
+                      "account_id",
+                      "ACC123"
+                    ]
                   }
                 }
               }
@@ -1686,10 +1655,17 @@
                     "description": "Response when creating external call",
                     "value": {
                       "id": "123e4567-e89b-12d3-a456-426614174000",
-                      "status": "external",
-                      "to": "+1234567890",
-                      "websocket_url": "wss://us-worker.talqover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here",
-                      "created_at": "2024-01-01T00:00:00Z"
+                      "agent_id": "agent_123456",
+                      "type": "external.websocket",
+                      "created_at": "2024-01-01T00:00:00Z",
+                      "updated_at": "2024-01-01T00:00:00Z",
+                      "org_id": "org_123456",
+                      "cost": 0,
+                      "status": "ready",
+                      "transport": {
+                        "provider": "external.websocket",
+                        "websocketCallUrl": "wss://us-agent.talqover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here"
+                      }
                     }
                   }
                 }
@@ -1706,7 +1682,7 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"to\": \"+1234567890\",\n    \"payload\": {\n      \"customer_name\": \"John Doe\"\n    }\n  }'"
+            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"sid\": \"EX123456789\",\n    \"from\": \"+1234567890\",\n    \"to\": \"+0987654321\",\n    \"direction\": \"outbound\",\n    \"payload\": [\n      \"customer_name\",\n      \"John Doe\",\n      \"account_id\",\n      \"ACC123\"\n    ]\n  }'"
           },
           "php": {
             "lang": "php",
