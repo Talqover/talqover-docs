@@ -226,13 +226,7 @@
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "Community",
-          "href": "https://discord.gg/RMP4bpFrCF",
-          "icon": "discord"
-        }
-      ]
+      "anchors": []
     }
   },
   "logo": {
