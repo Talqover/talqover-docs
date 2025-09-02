@@ -1,7 +1,7 @@
 ---
 title: "Get Agent Calls"
 description: "Retrieve all calls for a specific agent with filtering and pagination"
-api: "GET /api/v1/agents/{agent}/calls"
+api: "GET /api/v1/agents/{agent_id}/calls"
 ---
 
 # Get Agent Calls
@@ -11,7 +11,7 @@ Retrieve all calls for a specific agent with various filtering options and pagin
 ## Endpoint
 
 ```
-GET /api/v1/agents/{agent}/calls
+GET /api/v1/agents/{agent_id}/calls
 ```
 
 ## Path Parameters
@@ -352,5 +352,5 @@ console.log(result);
 ## Related Endpoints
 
 - **List Calls**: `GET /api/v1/calls`
-- **Get Agent**: `GET /api/v1/agents/{agent}`
+- **Get Agent**: `GET /api/v1/agents/{agent_id}`
 - **List Campaigns**: `GET /api/v1/campaigns`

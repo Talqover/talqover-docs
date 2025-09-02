@@ -1,7 +1,7 @@
 ---
 title: "Conexão WebSocket"
 description: "Conecte ao endpoint de transporte websocket para chamadas de telefonia externa"
-api: "WebSocket /{callId}/transport"
+api: "WebSocket /{call_id}/transport"
 ---
 
 # Conexão WebSocket
@@ -22,17 +22,17 @@ O endpoint de transporte WebSocket está disponível em três localizações reg
 
 **Estados Unidos:**
 ```
-WebSocket: wss://us-agent.talqover.app/{callId}/transport?x-talq={token}
+WebSocket: wss://us-agent.talqover.app/{call_id}/transport?x-talq={token}
 ```
 
 **Brasil:**
 ```
-WebSocket: wss://br-agent.talqover.app/{callId}/transport?x-talq={token}
+WebSocket: wss://br-agent.talqover.app/{call_id}/transport?x-talq={token}
 ```
 
 **Europa:**
 ```
-WebSocket: wss://eu-agent.talqover.app/{callId}/transport?x-talq={token}
+WebSocket: wss://eu-agent.talqover.app/{call_id}/transport?x-talq={token}
 ```
 
 Escolha o endpoint mais próximo da sua localização para melhor performance e menor latência.
@@ -66,9 +66,9 @@ const WebSocket = require('ws');
 const callId = '123e4567-e89b-12d3-a456-426614174000';
 const token = 'your_websocket_token_here';
 // Escolha o endpoint regional apropriado
-const usEndpoint = `wss://us-agent.talqover.app/${callId}/transport?x-talq=${token}`;
-const brEndpoint = `wss://br-agent.talqover.app/${callId}/transport?x-talq=${token}`;
-const euEndpoint = `wss://eu-agent.talqover.app/${callId}/transport?x-talq=${token}`;
+const usEndpoint = `wss://us-agent.talqover.app/${call_id}/transport?x-talq=${token}`;
+const brEndpoint = `wss://br-agent.talqover.app/${call_id}/transport?x-talq=${token}`;
+const euEndpoint = `wss://eu-agent.talqover.app/${call_id}/transport?x-talq=${token}`;
 
 // Use o endpoint mais próximo da sua localização
 const wsUrl = usEndpoint; // ou brEndpoint, euEndpoint

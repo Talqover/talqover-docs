@@ -1,7 +1,7 @@
 ---
 title: "Atualizar Status da Campanha"
 description: "Atualizar o status de uma campanha específica"
-api: "PATCH /api/v1/campaigns/{campaign}/status"
+api: "PATCH /api/v1/campaigns/{campaign_id}/status"
 ---
 
 # Atualizar Status da Campanha
@@ -11,7 +11,7 @@ Atualizar o status de uma campanha específica. Este endpoint permite controlar 
 ## Endpoint
 
 ```
-PATCH /api/v1/campaigns/{campaign}/status
+PATCH /api/v1/campaigns/{campaign_id}/status
 ```
 
 ## Parâmetros de Caminho
@@ -291,7 +291,7 @@ console.log(result);
 
 - **Listar Campanhas**: `GET /api/v1/campaigns`
 - **Criar Campanha**: `POST /api/v1/campaigns`
-- **Obter Campanha**: `GET /api/v1/campaigns/{campaign}`
-- **Atualizar Campanha**: `PUT /api/v1/campaigns/{campaign}`
-- **Excluir Campanha**: `DELETE /api/v1/campaigns/{campaign}`
-- **Fazer Chamada de Campanha**: `POST /api/v1/campaigns/{campaign}/call`
+- **Obter Campanha**: `GET /api/v1/campaigns/{campaign_id}`
+- **Atualizar Campanha**: `PUT /api/v1/campaigns/{campaign_id}`
+- **Excluir Campanha**: `DELETE /api/v1/campaigns/{campaign_id}`
+- **Fazer Chamada de Campanha**: `POST /api/v1/campaigns/{campaign_id}/call`

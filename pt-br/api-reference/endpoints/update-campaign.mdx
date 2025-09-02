@@ -1,7 +1,7 @@
 ---
 title: "Atualizar Campanha"
 description: "Atualizar configurações de uma campanha existente"
-api: "PUT /api/v1/campaigns/{campaign}"
+api: "PUT /api/v1/campaigns/{campaign_id}"
 ---
 
 # Atualizar Campanha
@@ -11,7 +11,7 @@ Atualizar configurações de uma campanha existente. Todos os campos são opcion
 ## Endpoint
 
 ```
-PUT /api/v1/campaigns/{campaign}
+PUT /api/v1/campaigns/{campaign_id}
 ```
 
 ## Parâmetros de Caminho
@@ -371,7 +371,7 @@ console.log(result);
 
 - **Listar Campanhas**: `GET /api/v1/campaigns`
 - **Criar Campanha**: `POST /api/v1/campaigns`
-- **Obter Campanha**: `GET /api/v1/campaigns/{campaign}`
-- **Atualizar Status da Campanha**: `PATCH /api/v1/campaigns/{campaign}/status`
-- **Excluir Campanha**: `DELETE /api/v1/campaigns/{campaign}`
-- **Fazer Chamada de Campanha**: `POST /api/v1/campaigns/{campaign}/call`
+- **Obter Campanha**: `GET /api/v1/campaigns/{campaign_id}`
+- **Atualizar Status da Campanha**: `PATCH /api/v1/campaigns/{campaign_id}/status`
+- **Excluir Campanha**: `DELETE /api/v1/campaigns/{campaign_id}`
+- **Fazer Chamada de Campanha**: `POST /api/v1/campaigns/{campaign_id}/call`

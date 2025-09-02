@@ -1,7 +1,7 @@
 ---
 title: "Make Campaign Call"
 description: "Initiate a call as part of a specific campaign"
-api: "POST /api/v1/campaigns/{campaign}/call"
+api: "POST /api/v1/campaigns/{campaign_id}/call"
 ---
 
 # Make Campaign Call
@@ -11,7 +11,7 @@ Initiate a call as part of a specific campaign. This endpoint allows you to manu
 ## Endpoint
 
 ```
-POST /api/v1/campaigns/{campaign}/call
+POST /api/v1/campaigns/{campaign_id}/call
 ```
 
 ## Path Parameters
@@ -339,8 +339,8 @@ console.log(result);
 
 ## Related Endpoints
 
-- **Get Campaign**: `GET /api/v1/campaigns/{campaign}`
-- **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign}/status`
+- **Get Campaign**: `GET /api/v1/campaigns/{campaign_id}`
+- **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign_id}/status`
 - **Make a Call**: `POST /api/v1/calls`
 - **List Calls**: `GET /api/v1/calls`
-- **Get Agent Calls**: `GET /api/v1/agents/{agent}/calls`
+- **Get Agent Calls**: `GET /api/v1/agents/{agent_id}/calls`

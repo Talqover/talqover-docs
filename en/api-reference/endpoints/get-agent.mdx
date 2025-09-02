@@ -1,7 +1,7 @@
 ---
 title: "Get Agent"
 description: "Retrieve details of a specific voice agent by ID"
-api: "GET /api/v1/agents/{agent}"
+api: "GET /api/v1/agents/{agent_id}"
 ---
 
 # Get Agent
@@ -11,7 +11,7 @@ Retrieve detailed information about a specific voice agent, including its config
 ## Endpoint
 
 ```
-GET /api/v1/agents/{agent}
+GET /api/v1/agents/{agent_id}
 ```
 
 ## Path Parameters
@@ -303,9 +303,9 @@ console.log(result);
 
 - **List Agents**: `GET /api/v1/agents`
 - **Create Agent**: `POST /api/v1/agents`
-- **Update Agent Knowledge**: `PUT /api/v1/agents/{agent}/knowledge`
-- **Update Agent Voice**: `PUT /api/v1/agents/{agent}/voice`
-- **Update Agent Calling Settings**: `PUT /api/v1/agents/{agent}/calling`
-- **Publish Agent**: `POST /api/v1/agents/{agent}/publish`
-- **Unpublish Agent**: `POST /api/v1/agents/{agent}/unpublish`
-- **Delete Agent**: `DELETE /api/v1/agents/{agent}`
+- **Update Agent Knowledge**: `PUT /api/v1/agents/{agent_id}/knowledge`
+- **Update Agent Voice**: `PUT /api/v1/agents/{agent_id}/voice`
+- **Update Agent Calling Settings**: `PUT /api/v1/agents/{agent_id}/calling`
+- **Publish Agent**: `POST /api/v1/agents/{agent_id}/publish`
+- **Unpublish Agent**: `POST /api/v1/agents/{agent_id}/unpublish`
+- **Delete Agent**: `DELETE /api/v1/agents/{agent_id}`

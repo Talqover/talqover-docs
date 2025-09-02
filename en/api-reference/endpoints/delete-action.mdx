@@ -1,7 +1,7 @@
 ---
 title: "Delete Action"
 description: "Delete a specific action for a voice agent"
-api: "DELETE /api/v1/agents/{agent}/actions/{action}"
+api: "DELETE /api/v1/agents/{agent_id}/actions/{action_id}"
 ---
 
 # Delete Action
@@ -11,7 +11,7 @@ Delete a specific action for a voice agent. This action is irreversible and will
 ## Endpoint
 
 ```
-DELETE /api/v1/agents/{agent}/actions/{action}
+DELETE /api/v1/agents/{agent_id}/actions/{action_id}
 ```
 
 ## Path Parameters
@@ -206,7 +206,7 @@ try {
 
 ## Related Endpoints
 
-- **List Actions**: `GET /api/v1/agents/{agent}/actions`
-- **Create/Update Action**: `POST /api/v1/agents/{agent}/actions`
-- **Get Agent**: `GET /api/v1/agents/{agent}`
-- **Publish Agent**: `POST /api/v1/agents/{agent}/publish`
+- **List Actions**: `GET /api/v1/agents/{agent_id}/actions`
+- **Create/Update Action**: `POST /api/v1/agents/{agent_id}/actions`
+- **Get Agent**: `GET /api/v1/agents/{agent_id}`
+- **Publish Agent**: `POST /api/v1/agents/{agent_id}/publish`

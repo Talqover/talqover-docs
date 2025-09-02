@@ -1,7 +1,7 @@
 ---
 title: "Create/Update Action"
 description: "Create new actions or update existing actions for a voice agent"
-api: "POST /api/v1/agents/{agent}/actions"
+api: "POST /api/v1/agents/{agent_id}/actions"
 ---
 
 # Create/Update Action
@@ -11,7 +11,7 @@ Create new actions or update existing actions for a voice agent. This endpoint a
 ## Endpoint
 
 ```
-POST /api/v1/agents/{agent}/actions
+POST /api/v1/agents/{agent_id}/actions
 ```
 
 ## Path Parameters
@@ -488,7 +488,7 @@ console.log(result);
 
 ## Related Endpoints
 
-- **List Actions**: `GET /api/v1/agents/{agent}/actions`
-- **Delete Action**: `DELETE /api/v1/agents/{agent}/actions/{action}`
-- **Get Agent**: `GET /api/v1/agents/{agent}`
-- **Publish Agent**: `POST /api/v1/agents/{agent}/publish`
+- **List Actions**: `GET /api/v1/agents/{agent_id}/actions`
+- **Delete Action**: `DELETE /api/v1/agents/{agent_id}/actions/{action_id}`
+- **Get Agent**: `GET /api/v1/agents/{agent_id}`
+- **Publish Agent**: `POST /api/v1/agents/{agent_id}/publish`

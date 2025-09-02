@@ -1,7 +1,7 @@
 ---
 title: "Create/Update Training"
 description: "Create new training data or update existing training for a voice agent"
-api: "POST /api/v1/agents/{agent}/trainings"
+api: "POST /api/v1/agents/{agent_id}/trainings"
 ---
 
 # Create/Update Training
@@ -11,7 +11,7 @@ Create new training data or update existing training for a voice agent. This end
 ## Endpoint
 
 ```
-POST /api/v1/agents/{agent}/trainings
+POST /api/v1/agents/{agent_id}/trainings
 ```
 
 ## Path Parameters
@@ -326,7 +326,7 @@ console.log(result);
 
 ## Related Endpoints
 
-- **List Trainings**: `GET /api/v1/agents/{agent}/trainings`
-- **Delete Training**: `DELETE /api/v1/agents/{agent}/trainings/{training}`
-- **Get Agent**: `GET /api/v1/agents/{agent}`
-- **Publish Agent**: `POST /api/v1/agents/{agent}/publish`
+- **List Trainings**: `GET /api/v1/agents/{agent_id}/trainings`
+- **Delete Training**: `DELETE /api/v1/agents/{agent_id}/trainings/{training_id}`
+- **Get Agent**: `GET /api/v1/agents/{agent_id}`
+- **Publish Agent**: `POST /api/v1/agents/{agent_id}/publish`

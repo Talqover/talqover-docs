@@ -1,7 +1,7 @@
 ---
 title: "Atualizar Conhecimento do Agente"
 description: "Atualizar a base de conhecimento de um agente específico"
-api: "PUT /api/v1/agents/{agent}/knowledge"
+api: "PUT /api/v1/agents/{agent_id}/knowledge"
 ---
 
 # Atualizar Conhecimento do Agente
@@ -11,7 +11,7 @@ Atualizar a base de conhecimento de um agente específico. Esta operação subst
 ## Endpoint
 
 ```
-PUT /api/v1/agents/{agent}/knowledge
+PUT /api/v1/agents/{agent_id}/knowledge
 ```
 
 ## Parâmetros de Caminho
@@ -242,7 +242,7 @@ console.log(result);
 
 ## Endpoints Relacionados
 
-- **Obter Agente**: `GET /api/v1/agents/{agent}`
-- **Atualizar Voz do Agente**: `PUT /api/v1/agents/{agent}/voice`
-- **Publicar Agente**: `POST /api/v1/agents/{agent}/publish`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
+- **Atualizar Voz do Agente**: `PUT /api/v1/agents/{agent_id}/voice`
+- **Publicar Agente**: `POST /api/v1/agents/{agent_id}/publish`
 - **Listar Agentes**: `GET /api/v1/agents`

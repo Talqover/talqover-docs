@@ -1,7 +1,7 @@
 ---
 title: "Update Agent Knowledge"
 description: "Update an agent's knowledge, behavior, and conversation settings"
-api: "PUT /api/v1/agents/{agent}/knowledge"
+api: "PUT /api/v1/agents/{agent_id}/knowledge"
 ---
 
 # Update Agent Knowledge
@@ -11,7 +11,7 @@ Update an agent's knowledge base, conversation behavior, and interaction setting
 ## Endpoint
 
 ```
-PUT /api/v1/agents/{agent}/knowledge
+PUT /api/v1/agents/{agent_id}/knowledge
 ```
 
 ## Path Parameters
@@ -325,8 +325,8 @@ console.log(result);
 
 ## Related Endpoints
 
-- **Get Agent**: `GET /api/v1/agents/{agent}`
-- **Update Agent Voice**: `PUT /api/v1/agents/{agent}/voice`
-- **Update Agent Calling Settings**: `PUT /api/v1/agents/{agent}/calling`
-- **Publish Agent**: `POST /api/v1/agents/{agent}/publish`
+- **Get Agent**: `GET /api/v1/agents/{agent_id}`
+- **Update Agent Voice**: `PUT /api/v1/agents/{agent_id}/voice`
+- **Update Agent Calling Settings**: `PUT /api/v1/agents/{agent_id}/calling`
+- **Publish Agent**: `POST /api/v1/agents/{agent_id}/publish`
 - **List Agents**: `GET /api/v1/agents`

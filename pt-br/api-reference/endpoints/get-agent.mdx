@@ -1,7 +1,7 @@
 ---
 title: "Obter Agente"
 description: "Recuperar detalhes de um agente específico por ID"
-api: "GET /api/v1/agents/{agent}"
+api: "GET /api/v1/agents/{agent_id}"
 ---
 
 # Obter Agente
@@ -11,7 +11,7 @@ Recuperar detalhes completos de um agente específico, incluindo configurações
 ## Endpoint
 
 ```
-GET /api/v1/agents/{agent}
+GET /api/v1/agents/{agent_id}
 ```
 
 ## Parâmetros de Caminho
@@ -239,6 +239,6 @@ console.log(result);
 
 - **Listar Agentes**: `GET /api/v1/agents`
 - **Criar Agente**: `POST /api/v1/agents`
-- **Atualizar Conhecimento do Agente**: `PUT /api/v1/agents/{agent}/knowledge`
-- **Atualizar Voz do Agente**: `PUT /api/v1/agents/{agent}/voice`
-- **Excluir Agente**: `DELETE /api/v1/agents/{agent}`
+- **Atualizar Conhecimento do Agente**: `PUT /api/v1/agents/{agent_id}/knowledge`
+- **Atualizar Voz do Agente**: `PUT /api/v1/agents/{agent_id}/voice`
+- **Excluir Agente**: `DELETE /api/v1/agents/{agent_id}`

@@ -12,18 +12,9 @@
     }
   ],
   "paths": {
-    "/user": {
-      "get": {
-        "tags": ["User"],
-        "summary": "Get authenticated user information",
-        "security": [
-          {
-            "sanctum": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User information retrieved successfully",
+
+
+
             "content": {
               "application/json": {
                 "schema": {
@@ -289,13 +280,13 @@
         }
       }
     },
-    "/agents/{agent}": {
+    "/agents/{agent_id}": {
       "get": {
         "tags": ["Agents"],
         "summary": "Get a specific voice agent",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -340,7 +331,7 @@
         "summary": "Delete a voice agent",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -374,13 +365,13 @@
         }
       }
     },
-    "/agents/{agent}/voice": {
+    "/agents/{agent_id}/voice": {
       "put": {
         "tags": ["Agents"],
         "summary": "Update agent voice settings",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -455,13 +446,13 @@
         }
       }
     },
-    "/agents/{agent}/knowledge": {
+    "/agents/{agent_id}/knowledge": {
       "put": {
         "tags": ["Agents"],
         "summary": "Update agent knowledge",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -522,13 +513,13 @@
         }
       }
     },
-    "/agents/{agent}/calls": {
+    "/agents/{agent_id}/calls": {
       "get": {
         "tags": ["Calls"],
         "summary": "Get agent calls",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -606,13 +597,13 @@
         }
       }
     },
-    "/agents/{agent}/call": {
+    "/agents/{agent_id}/call": {
       "post": {
         "tags": ["Calls"],
         "summary": "Make a call with an agent",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -673,13 +664,13 @@
         }
       }
     },
-    "/agents/{agent}/trainings": {
+    "/agents/{agent_id}/trainings": {
       "get": {
         "tags": ["Training"],
         "summary": "List agent trainings",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -752,7 +743,7 @@
         "summary": "Create agent training",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -813,13 +804,13 @@
         }
       }
     },
-    "/agents/{agent}/trainings/{training}": {
+    "/agents/{agent_id}/trainings/{training_id}": {
       "delete": {
         "tags": ["Training"],
         "summary": "Delete agent training",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -829,7 +820,7 @@
             "description": "Agent ID"
           },
           {
-            "name": "training",
+            "name": "training_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -863,13 +854,13 @@
         }
       }
     },
-    "/agents/{agent}/actions": {
+    "/agents/{agent_id}/actions": {
       "get": {
         "tags": ["Actions"],
         "summary": "List agent actions",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -942,7 +933,7 @@
         "summary": "Create agent action",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1021,13 +1012,13 @@
         }
       }
     },
-    "/agents/{agent}/actions/{action}": {
+    "/agents/{agent_id}/actions/{action_id}": {
       "delete": {
         "tags": ["Actions"],
         "summary": "Delete agent action",
         "parameters": [
           {
-            "name": "agent",
+            "name": "agent_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1037,7 +1028,7 @@
             "description": "Agent ID"
           },
           {
-            "name": "action",
+            "name": "action_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1314,13 +1305,13 @@
         }
       }
     },
-    "/campaigns/{campaign}": {
+    "/campaigns/{campaign_id}": {
       "get": {
         "tags": ["Campaigns"],
         "summary": "Get a specific campaign",
         "parameters": [
           {
-            "name": "campaign",
+            "name": "campaign_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1365,7 +1356,7 @@
         "summary": "Update a campaign",
         "parameters": [
           {
-            "name": "campaign",
+            "name": "campaign_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1455,7 +1446,7 @@
         "summary": "Delete a campaign",
         "parameters": [
           {
-            "name": "campaign",
+            "name": "campaign_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1489,13 +1480,13 @@
         }
       }
     },
-    "/campaigns/{campaign}/status": {
+    "/campaigns/{campaign_id}/status": {
       "patch": {
         "tags": ["Campaigns"],
         "summary": "Update campaign status",
         "parameters": [
           {
-            "name": "campaign",
+            "name": "campaign_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1557,13 +1548,13 @@
         }
       }
     },
-    "/campaigns/{campaign}/call": {
+    "/campaigns/{campaign_id}/call": {
       "post": {
         "tags": ["Calls"],
         "summary": "Make a campaign call",
         "parameters": [
           {
-            "name": "campaign",
+            "name": "campaign_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1759,14 +1750,14 @@
         }
       }
     },
-    "/{callId}/transport": {
+    "/{call_id}/transport": {
       "get": {
         "tags": ["Custom Telephony"],
         "summary": "WebSocket transport endpoint for external calls",
         "description": "WebSocket endpoint for external telephony providers to connect and handle call audio streams. Available in three regional locations for optimal performance: US (us-agent.talqover.app), Brazil (br-agent.talqover.app), and Europe (eu-agent.talqover.app).",
         "parameters": [
           {
-            "name": "callId",
+            "name": "call_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1813,7 +1804,7 @@
         "x-code-samples": {
           "websocket": {
             "lang": "javascript",
-            "source": "const WebSocket = require('ws');\n\nconst callId = '123e4567-e89b-12d3-a456-426614174000';\nconst token = 'your_websocket_token_here';\n\n// Choose the appropriate regional endpoint\nconst usEndpoint = `wss://us-agent.talqover.app/${callId}/transport?x-talq=${token}`;\nconst brEndpoint = `wss://br-agent.talqover.app/${callId}/transport?x-talq=${token}`;\nconst euEndpoint = `wss://eu-agent.talqover.app/${callId}/transport?x-talq=${token}`;\n\n// Use the endpoint closest to your location\nconst wsUrl = usEndpoint; // or brEndpoint, euEndpoint\n\nconst ws = new WebSocket(wsUrl);\n\nws.on('open', () => {\n  console.log('WebSocket connected');\n  // Send initial clear event\n  ws.send(JSON.stringify({ event: 'clear' }));\n});\n\nws.on('message', (data) => {\n  try {\n    const message = JSON.parse(data);\n    console.log('Received:', message);\n    \n    switch (message.event) {\n      case 'media':\n        if (message.media && message.media.payload) {\n          // Handle incoming audio from agent\n          handleAgentAudio(message.media.payload);\n        }\n        break;\n      case 'dtmf':\n        if (message.dtmf && message.dtmf.digit) {\n          // Handle DTMF keypress\n          handleDTMF(message.dtmf.digit);\n        }\n        break;\n    }\n  } catch (error) {\n    console.error('Error parsing message:', error);\n  }\n});\n\nws.on('close', () => {\n  console.log('WebSocket disconnected');\n});\n\nfunction handleAgentAudio(audioData) {\n  // Process base64 encoded audio data\n  console.log('Processing agent audio:', audioData.length, 'characters (base64)');\n}\n\nfunction handleDTMF(digit) {\n  console.log('DTMF keypress received:', digit);\n}"
+            "source": "const WebSocket = require('ws');\n\nconst call_id = '123e4567-e89b-12d3-a456-426614174000';\nconst token = 'your_websocket_token_here';\n\n// Choose the appropriate regional endpoint\nconst usEndpoint = `wss://us-agent.talqover.app/${call_id}/transport?x-talq=${token}`;\nconst brEndpoint = `wss://br-agent.talqover.app/${call_id}/transport?x-talq=${token}`;\nconst euEndpoint = `wss://eu-agent.talqover.app/${call_id}/transport?x-talq=${token}`;\n\n// Use the endpoint closest to your location\nconst wsUrl = usEndpoint; // or brEndpoint, euEndpoint\n\nconst ws = new WebSocket(wsUrl);\n\nws.on('open', () => {\n  console.log('WebSocket connected');\n  // Send initial clear event\n  ws.send(JSON.stringify({ event: 'clear' }));\n});\n\nws.on('message', (data) => {\n  try {\n    const message = JSON.parse(data);\n    console.log('Received:', message);\n    \n    switch (message.event) {\n      case 'media':\n        if (message.media && message.media.payload) {\n          // Handle incoming audio from agent\n          handleAgentAudio(message.media.payload);\n        }\n        break;\n      case 'dtmf':\n        if (message.dtmf && message.dtmf.digit) {\n          // Handle DTMF keypress\n          handleDTMF(message.dtmf.digit);\n        }\n        break;\n    }\n  } catch (error) {\n    console.error('Error parsing message:', error);\n  }\n});\n\nws.on('close', () => {\n  console.log('WebSocket disconnected');\n});\n\nfunction handleAgentAudio(audioData) {\n  // Process base64 encoded audio data\n  console.log('Processing agent audio:', audioData.length, 'characters (base64)');\n}\n\nfunction handleDTMF(digit) {\n  console.log('DTMF keypress received:', digit);\n}"
           },
           "curl": {
             "lang": "curl",
@@ -1888,13 +1879,13 @@
         }
       }
     },
-    "/voice-templates/{voiceTemplateId}/demo": {
+    "/voice-templates/{voice_template_id}/demo": {
       "get": {
         "tags": ["Voice Templates"],
         "summary": "Generate voice template demo",
         "parameters": [
           {
-            "name": "voiceTemplateId",
+            "name": "voice_template_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -2019,27 +2010,7 @@
   },
   "components": {
     "schemas": {
-      "User": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string",
-            "format": "email"
-          }
-        },
-        "example": {
-          "id": "123e4567-e89b-12d3-a456-426614174000",
-          "name": "John Doe",
-          "email": "john@example.com"
-        }
-      },
+
       "Agent": {
         "type": "object",
         "properties": {

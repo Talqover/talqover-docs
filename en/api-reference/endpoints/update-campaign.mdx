@@ -1,7 +1,7 @@
 ---
 title: "Update Campaign"
 description: "Update an existing campaign with partial or complete configuration changes"
-api: "PUT /api/v1/campaigns/{campaign}"
+api: "PUT /api/v1/campaigns/{campaign_id}"
 ---
 
 # Update Campaign
@@ -11,7 +11,7 @@ Update an existing campaign with partial or complete configuration changes. All 
 ## Endpoint
 
 ```
-PUT /api/v1/campaigns/{campaign}
+PUT /api/v1/campaigns/{campaign_id}
 ```
 
 ## Path Parameters
@@ -413,8 +413,8 @@ console.log(result);
 
 ## Related Endpoints
 
-- **Get Campaign**: `GET /api/v1/campaigns/{campaign}`
+- **Get Campaign**: `GET /api/v1/campaigns/{campaign_id}`
 - **Create Campaign**: `POST /api/v1/campaigns`
-- **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign}/status`
-- **Delete Campaign**: `DELETE /api/v1/campaigns/{campaign}`
+- **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign_id}/status`
+- **Delete Campaign**: `DELETE /api/v1/campaigns/{campaign_id}`
 - **List Campaigns**: `GET /api/v1/campaigns`

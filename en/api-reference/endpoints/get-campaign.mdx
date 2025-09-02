@@ -1,7 +1,7 @@
 ---
 title: "Get Campaign"
 description: "Retrieve detailed information about a specific campaign including calls and files"
-api: "GET /api/v1/campaigns/{campaign}"
+api: "GET /api/v1/campaigns/{campaign_id}"
 ---
 
 # Get Campaign
@@ -11,7 +11,7 @@ Retrieve detailed information about a specific campaign, including its configura
 ## Endpoint
 
 ```
-GET /api/v1/campaigns/{campaign}
+GET /api/v1/campaigns/{campaign_id}
 ```
 
 ## Path Parameters
@@ -422,6 +422,6 @@ console.log(result);
 
 - **List Campaigns**: `GET /api/v1/campaigns`
 - **Create Campaign**: `POST /api/v1/campaigns`
-- **Update Campaign**: `PUT /api/v1/campaigns/{campaign}`
-- **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign}/status`
-- **Delete Campaign**: `DELETE /api/v1/campaigns/{campaign}`
+- **Update Campaign**: `PUT /api/v1/campaigns/{campaign_id}`
+- **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign_id}/status`
+- **Delete Campaign**: `DELETE /api/v1/campaigns/{campaign_id}`

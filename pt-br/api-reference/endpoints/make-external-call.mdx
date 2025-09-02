@@ -213,9 +213,9 @@ $data = json_decode($response->getBody());
 
 O Talqover fornece endpoints WebSocket regionais para performance ideal:
 
-- **Estados Unidos**: `wss://us-agent.talqover.app/{callId}/transport`
-- **Brasil**: `wss://br-agent.talqover.app/{callId}/transport`  
-- **Europa**: `wss://eu-agent.talqover.app/{callId}/transport`
+- **Estados Unidos**: `wss://us-agent.talqover.app/{call_id}/transport`
+- **Brasil**: `wss://br-agent.talqover.app/{call_id}/transport`
+- **Europa**: `wss://eu-agent.talqover.app/{call_id}/transport`
 
 A `websocketCallUrl` na resposta apontará automaticamente para o endpoint regional mais próximo. Para roteamento personalizado, você pode construir manualmente a URL WebSocket usando qualquer um dos endpoints regionais.
 
@@ -314,7 +314,7 @@ A `websocketCallUrl` na resposta apontará automaticamente para o endpoint regio
 
 ## Endpoints Relacionados
 
-- **Conexão WebSocket**: `/{callId}/transport`
-- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Conexão WebSocket**: `/{call_id}/transport`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
 - **Listar Agentes**: `GET /api/v1/agents`
 - **Criar Agente**: `POST /api/v1/agents`

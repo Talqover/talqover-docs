@@ -1,7 +1,7 @@
 ---
 title: "Criar/Atualizar Treinamento"
 description: "Criar ou atualizar dados de treinamento para um agente específico"
-api: "POST /api/v1/agents/{agent}/trainings"
+api: "POST /api/v1/agents/{agent_id}/trainings"
 ---
 
 # Criar/Atualizar Treinamento
@@ -11,7 +11,7 @@ Criar ou atualizar dados de treinamento para um agente específico. Este endpoin
 ## Endpoint
 
 ```
-POST /api/v1/agents/{agent}/trainings
+POST /api/v1/agents/{agent_id}/trainings
 ```
 
 ## Parâmetros de Caminho
@@ -267,7 +267,7 @@ console.log(result);
 
 ## Endpoints Relacionados
 
-- **Listar Treinamentos**: `GET /api/v1/agents/{agent}/trainings`
-- **Excluir Treinamento**: `DELETE /api/v1/agents/{agent}/trainings/{training}`
-- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Listar Treinamentos**: `GET /api/v1/agents/{agent_id}/trainings`
+- **Excluir Treinamento**: `DELETE /api/v1/agents/{agent_id}/trainings/{training_id}`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
 - **Listar Agentes**: `GET /api/v1/agents`

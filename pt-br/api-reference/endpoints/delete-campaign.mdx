@@ -1,7 +1,7 @@
 ---
 title: "Excluir Campanha"
 description: "Excluir uma campanha específica permanentemente"
-api: "DELETE /api/v1/campaigns/{campaign}"
+api: "DELETE /api/v1/campaigns/{campaign_id}"
 ---
 
 # Excluir Campanha
@@ -11,7 +11,7 @@ Excluir uma campanha específica permanentemente. Esta operação remove a campa
 ## Endpoint
 
 ```
-DELETE /api/v1/campaigns/{campaign}
+DELETE /api/v1/campaigns/{campaign_id}
 ```
 
 ## Parâmetros de Caminho
@@ -219,7 +219,7 @@ console.log(result);
 
 - **Listar Campanhas**: `GET /api/v1/campaigns`
 - **Criar Campanha**: `POST /api/v1/campaigns`
-- **Obter Campanha**: `GET /api/v1/campaigns/{campaign}`
-- **Atualizar Campanha**: `PUT /api/v1/campaigns/{campaign}`
-- **Atualizar Status da Campanha**: `PATCH /api/v1/campaigns/{campaign}/status`
-- **Fazer Chamada de Campanha**: `POST /api/v1/campaigns/{campaign}/call`
+- **Obter Campanha**: `GET /api/v1/campaigns/{campaign_id}`
+- **Atualizar Campanha**: `PUT /api/v1/campaigns/{campaign_id}`
+- **Atualizar Status da Campanha**: `PATCH /api/v1/campaigns/{campaign_id}/status`
+- **Fazer Chamada de Campanha**: `POST /api/v1/campaigns/{campaign_id}/call`

@@ -1,7 +1,7 @@
 ---
 title: "Update Campaign Status"
 description: "Update the status of a campaign (draft, active, paused, completed, cancelled)"
-api: "PATCH /api/v1/campaigns/{campaign}/status"
+api: "PATCH /api/v1/campaigns/{campaign_id}/status"
 ---
 
 # Update Campaign Status
@@ -11,7 +11,7 @@ Update the status of a campaign to control its lifecycle. This endpoint allows y
 ## Endpoint
 
 ```
-PATCH /api/v1/campaigns/{campaign}/status
+PATCH /api/v1/campaigns/{campaign_id}/status
 ```
 
 ## Path Parameters
@@ -325,8 +325,8 @@ console.log(result);
 
 ## Related Endpoints
 
-- **Get Campaign**: `GET /api/v1/campaigns/{campaign}`
-- **Update Campaign**: `PUT /api/v1/campaigns/{campaign}`
+- **Get Campaign**: `GET /api/v1/campaigns/{campaign_id}`
+- **Update Campaign**: `PUT /api/v1/campaigns/{campaign_id}`
 - **Create Campaign**: `POST /api/v1/campaigns`
-- **Delete Campaign**: `DELETE /api/v1/campaigns/{campaign}`
+- **Delete Campaign**: `DELETE /api/v1/campaigns/{campaign_id}`
 - **List Campaigns**: `GET /api/v1/campaigns`

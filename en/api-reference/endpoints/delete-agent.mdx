@@ -1,7 +1,7 @@
 ---
 title: "Delete Agent"
 description: "Delete a voice agent and all associated data"
-api: "DELETE /api/v1/agents/{agent}"
+api: "DELETE /api/v1/agents/{agent_id}"
 ---
 
 # Delete Agent
@@ -11,7 +11,7 @@ Permanently delete a voice agent and all its associated data including trainings
 ## Endpoint
 
 ```
-DELETE /api/v1/agents/{agent}
+DELETE /api/v1/agents/{agent_id}
 ```
 
 ## Path Parameters
@@ -168,6 +168,6 @@ console.log(result);
 ## Related Endpoints
 
 - **List Agents**: `GET /api/v1/agents`
-- **Get Agent**: `GET /api/v1/agents/{agent}`
-- **Unpublish Agent**: `POST /api/v1/agents/{agent}/unpublish`
+- **Get Agent**: `GET /api/v1/agents/{agent_id}`
+- **Unpublish Agent**: `POST /api/v1/agents/{agent_id}/unpublish`
 - **Create Agent**: `POST /api/v1/agents`

@@ -1,7 +1,7 @@
 ---
 title: "Criar/Atualizar Ação"
 description: "Criar ou atualizar uma ação para um agente específico"
-api: "POST /api/v1/agents/{agent}/actions"
+api: "POST /api/v1/agents/{agent_id}/actions"
 ---
 
 # Criar/Atualizar Ação
@@ -11,7 +11,7 @@ Criar ou atualizar uma ação para um agente específico. Este endpoint suporta 
 ## Endpoint
 
 ```
-POST /api/v1/agents/{agent}/actions
+POST /api/v1/agents/{agent_id}/actions
 ```
 
 ## Parâmetros de Caminho
@@ -363,7 +363,7 @@ console.log(result);
 
 ## Endpoints Relacionados
 
-- **Listar Ações**: `GET /api/v1/agents/{agent}/actions`
-- **Excluir Ação**: `DELETE /api/v1/agents/{agent}/actions/{action}`
-- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Listar Ações**: `GET /api/v1/agents/{agent_id}/actions`
+- **Excluir Ação**: `DELETE /api/v1/agents/{agent_id}/actions/{action_id}`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
 - **Listar Agentes**: `GET /api/v1/agents`

@@ -1,7 +1,7 @@
 ---
 title: "Excluir Treinamento"
 description: "Excluir um dado de treinamento específico de um agente"
-api: "DELETE /api/v1/agents/{agent}/trainings/{training}"
+api: "DELETE /api/v1/agents/{agent_id}/trainings/{training_id}"
 ---
 
 # Excluir Treinamento
@@ -11,7 +11,7 @@ Excluir um dado de treinamento específico de um agente. Esta operação remove 
 ## Endpoint
 
 ```
-DELETE /api/v1/agents/{agent}/trainings/{training}
+DELETE /api/v1/agents/{agent_id}/trainings/{training_id}
 ```
 
 ## Parâmetros de Caminho
@@ -194,7 +194,7 @@ console.log(result);
 
 ## Endpoints Relacionados
 
-- **Listar Treinamentos**: `GET /api/v1/agents/{agent}/trainings`
-- **Criar/Atualizar Treinamento**: `POST /api/v1/agents/{agent}/trainings`
-- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Listar Treinamentos**: `GET /api/v1/agents/{agent_id}/trainings`
+- **Criar/Atualizar Treinamento**: `POST /api/v1/agents/{agent_id}/trainings`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
 - **Listar Agentes**: `GET /api/v1/agents`

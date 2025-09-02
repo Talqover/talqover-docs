@@ -1,7 +1,7 @@
 ---
 title: "Gerar Demonstração de Voz"
 description: "Gerar um arquivo de áudio de demonstração para um modelo de voz específico"
-api: "GET /api/v1/voice-templates/{voiceTemplateId}/demo"
+api: "GET /api/v1/voice-templates/{voice_template_id}/demo"
 ---
 
 # Gerar Demonstração de Voz
@@ -11,7 +11,7 @@ Gerar um arquivo de áudio de demonstração para um modelo de voz específico. 
 ## Endpoint
 
 ```
-GET /api/v1/voice-templates/{voiceTemplateId}/demo
+GET /api/v1/voice-templates/{voice_template_id}/demo
 ```
 
 ## Parâmetros de Caminho
@@ -62,7 +62,7 @@ curl -X GET "https://talqover.app/api/v1/voice-templates/550e8400-e29b-41d4-a716
 ```javascript
 // Requisição 2: Gerar demonstração com ID específico
 const voiceTemplateId = '550e8400-e29b-41d4-a716-446655440000';
-const response = await fetch(`https://talqover.app/api/v1/voice-templates/${voiceTemplateId}/demo`, {
+const response = await fetch(`https://talqover.app/api/v1/voice-templates/${voice_template_id}/demo`, {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

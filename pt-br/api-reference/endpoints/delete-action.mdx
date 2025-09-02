@@ -1,7 +1,7 @@
 ---
 title: "Excluir Ação"
 description: "Excluir uma ação específica de um agente"
-api: "DELETE /api/v1/agents/{agent}/actions/{action}"
+api: "DELETE /api/v1/agents/{agent_id}/actions/{action_id}"
 ---
 
 # Excluir Ação
@@ -11,7 +11,7 @@ Excluir uma ação específica de um agente. Esta operação remove permanenteme
 ## Endpoint
 
 ```
-DELETE /api/v1/agents/{agent}/actions/{action}
+DELETE /api/v1/agents/{agent_id}/actions/{action_id}
 ```
 
 ## Parâmetros de Caminho
@@ -194,7 +194,7 @@ console.log(result);
 
 ## Endpoints Relacionados
 
-- **Listar Ações**: `GET /api/v1/agents/{agent}/actions`
-- **Criar/Atualizar Ação**: `POST /api/v1/agents/{agent}/actions`
-- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Listar Ações**: `GET /api/v1/agents/{agent_id}/actions`
+- **Criar/Atualizar Ação**: `POST /api/v1/agents/{agent_id}/actions`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
 - **Listar Agentes**: `GET /api/v1/agents`

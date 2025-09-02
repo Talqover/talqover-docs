@@ -1,7 +1,7 @@
 ---
 title: "Delete Campaign"
 description: "Permanently delete a campaign and all associated data"
-api: "DELETE /api/v1/campaigns/{campaign}"
+api: "DELETE /api/v1/campaigns/{campaign_id}"
 ---
 
 # Delete Campaign
@@ -11,7 +11,7 @@ Permanently delete a campaign and all associated data including calls, files, an
 ## Endpoint
 
 ```
-DELETE /api/v1/campaigns/{campaign}
+DELETE /api/v1/campaigns/{campaign_id}
 ```
 
 ## Path Parameters
@@ -215,8 +215,8 @@ console.log(result);
 
 ## Related Endpoints
 
-- **Get Campaign**: `GET /api/v1/campaigns/{campaign}`
-- **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign}/status`
+- **Get Campaign**: `GET /api/v1/campaigns/{campaign_id}`
+- **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign_id}/status`
 - **Create Campaign**: `POST /api/v1/campaigns`
-- **Update Campaign**: `PUT /api/v1/campaigns/{campaign}`
+- **Update Campaign**: `PUT /api/v1/campaigns/{campaign_id}`
 - **List Campaigns**: `GET /api/v1/campaigns`

@@ -1,7 +1,7 @@
 ---
 title: "Delete Training"
 description: "Delete a specific training data entry for a voice agent"
-api: "DELETE /api/v1/agents/{agent}/trainings/{training}"
+api: "DELETE /api/v1/agents/{agent_id}/trainings/{training_id}"
 ---
 
 # Delete Training
@@ -11,7 +11,7 @@ Delete a specific training data entry for a voice agent. This action is irrevers
 ## Endpoint
 
 ```
-DELETE /api/v1/agents/{agent}/trainings/{training}
+DELETE /api/v1/agents/{agent_id}/trainings/{training_id}
 ```
 
 ## Path Parameters
@@ -201,7 +201,7 @@ try {
 
 ## Related Endpoints
 
-- **List Trainings**: `GET /api/v1/agents/{agent}/trainings`
-- **Create/Update Training**: `POST /api/v1/agents/{agent}/trainings`
-- **Get Agent**: `GET /api/v1/agents/{agent}`
-- **Publish Agent**: `POST /api/v1/agents/{agent}/publish`
+- **List Trainings**: `GET /api/v1/agents/{agent_id}/trainings`
+- **Create/Update Training**: `POST /api/v1/agents/{agent_id}/trainings`
+- **Get Agent**: `GET /api/v1/agents/{agent_id}`
+- **Publish Agent**: `POST /api/v1/agents/{agent_id}/publish`

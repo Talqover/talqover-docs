@@ -1,7 +1,7 @@
 ---
 title: "List Actions"
 description: "Retrieve a list of actions for a specific voice agent"
-api: "GET /api/v1/agents/{agent}/actions"
+api: "GET /api/v1/agents/{agent_id}/actions"
 ---
 
 # List Actions
@@ -11,7 +11,7 @@ Retrieve all actions associated with a specific voice agent. This endpoint retur
 ## Endpoint
 
 ```
-GET /api/v1/agents/{agent}/actions
+GET /api/v1/agents/{agent_id}/actions
 ```
 
 ## Path Parameters
@@ -313,7 +313,7 @@ try {
 
 ## Related Endpoints
 
-- **Create/Update Action**: `POST /api/v1/agents/{agent}/actions`
-- **Delete Action**: `DELETE /api/v1/agents/{agent}/actions/{action}`
-- **Get Agent**: `GET /api/v1/agents/{agent}`
+- **Create/Update Action**: `POST /api/v1/agents/{agent_id}/actions`
+- **Delete Action**: `DELETE /api/v1/agents/{agent_id}/actions/{action_id}`
+- **Get Agent**: `GET /api/v1/agents/{agent_id}`
 - **List Agents**: `GET /api/v1/agents`

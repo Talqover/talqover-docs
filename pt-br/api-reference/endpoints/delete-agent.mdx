@@ -1,7 +1,7 @@
 ---
 title: "Excluir Agente"
 description: "Excluir um agente específico permanentemente"
-api: "DELETE /api/v1/agents/{agent}"
+api: "DELETE /api/v1/agents/{agent_id}"
 ---
 
 # Excluir Agente
@@ -11,7 +11,7 @@ Excluir um agente específico permanentemente. Esta operação não pode ser des
 ## Endpoint
 
 ```
-DELETE /api/v1/agents/{agent}
+DELETE /api/v1/agents/{agent_id}
 ```
 
 ## Parâmetros de Caminho
@@ -192,6 +192,6 @@ console.log(result);
 ## Endpoints Relacionados
 
 - **Listar Agentes**: `GET /api/v1/agents`
-- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
 - **Criar Agente**: `POST /api/v1/agents`
-- **Atualizar Conhecimento do Agente**: `PUT /api/v1/agents/{agent}/knowledge`
+- **Atualizar Conhecimento do Agente**: `PUT /api/v1/agents/{agent_id}/knowledge`

@@ -1,7 +1,7 @@
 ---
 title: "Obter Chamadas do Agente"
 description: "Recuperar uma lista de chamadas para um agente específico"
-api: "GET /api/v1/agents/{agent}/calls"
+api: "GET /api/v1/agents/{agent_id}/calls"
 ---
 
 # Obter Chamadas do Agente
@@ -11,7 +11,7 @@ Recuperar uma lista de chamadas para um agente específico com opções de filtr
 ## Endpoint
 
 ```
-GET /api/v1/agents/{agent}/calls
+GET /api/v1/agents/{agent_id}/calls
 ```
 
 ## Parâmetros de Caminho
@@ -359,6 +359,6 @@ console.log(result);
 ## Endpoints Relacionados
 
 - **Listar Chamadas**: `GET /api/v1/calls`
-- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
 - **Fazer Chamada**: `POST /api/v1/calls`
 - **Listar Agentes**: `GET /api/v1/agents`

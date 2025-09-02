@@ -1,7 +1,7 @@
 ---
 title: "Atualizar Voz do Agente"
 description: "Atualizar o modelo de voz de um agente específico"
-api: "PUT /api/v1/agents/{agent}/voice"
+api: "PUT /api/v1/agents/{agent_id}/voice"
 ---
 
 # Atualizar Voz do Agente
@@ -11,7 +11,7 @@ Atualizar o modelo de voz de um agente específico. Esta operação permite alte
 ## Endpoint
 
 ```
-PUT /api/v1/agents/{agent}/voice
+PUT /api/v1/agents/{agent_id}/voice
 ```
 
 ## Parâmetros de Caminho
@@ -260,8 +260,8 @@ console.log(result);
 
 ## Endpoints Relacionados
 
-- **Obter Agente**: `GET /api/v1/agents/{agent}`
-- **Atualizar Conhecimento do Agente**: `PUT /api/v1/agents/{agent}/knowledge`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
+- **Atualizar Conhecimento do Agente**: `PUT /api/v1/agents/{agent_id}/knowledge`
 - **Listar Modelos de Voz**: `GET /api/v1/voice-templates`
-- **Gerar Demonstração de Voz**: `GET /api/v1/voice-templates/{voiceTemplateId}/demo`
-- **Publicar Agente**: `POST /api/v1/agents/{agent}/publish`
+- **Gerar Demonstração de Voz**: `GET /api/v1/voice-templates/{voice_template_id}/demo`
+- **Publicar Agente**: `POST /api/v1/agents/{agent_id}/publish`

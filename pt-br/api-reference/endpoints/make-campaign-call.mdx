@@ -1,7 +1,7 @@
 ---
 title: "Fazer Chamada de Campanha"
 description: "Iniciar uma chamada como parte de uma campanha específica"
-api: "POST /api/v1/campaigns/{campaign}/call"
+api: "POST /api/v1/campaigns/{campaign_id}/call"
 ---
 
 # Fazer Chamada de Campanha
@@ -11,7 +11,7 @@ Iniciar uma chamada como parte de uma campanha específica. Este endpoint permit
 ## Endpoint
 
 ```
-POST /api/v1/campaigns/{campaign}/call
+POST /api/v1/campaigns/{campaign_id}/call
 ```
 
 ## Parâmetros de Caminho
@@ -300,7 +300,7 @@ console.log(result);
 ## Endpoints Relacionados
 
 - **Listar Campanhas**: `GET /api/v1/campaigns`
-- **Obter Campanha**: `GET /api/v1/campaigns/{campaign}`
+- **Obter Campanha**: `GET /api/v1/campaigns/{campaign_id}`
 - **Listar Chamadas**: `GET /api/v1/calls`
 - **Fazer Chamada**: `POST /api/v1/calls`
-- **Obter Chamadas do Agente**: `GET /api/v1/agents/{agent}/calls`
+- **Obter Chamadas do Agente**: `GET /api/v1/agents/{agent_id}/calls`

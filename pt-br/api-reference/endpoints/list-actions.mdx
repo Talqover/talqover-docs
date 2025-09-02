@@ -1,7 +1,7 @@
 ---
 title: "Listar Ações"
 description: "Recuperar uma lista de ações para um agente específico"
-api: "GET /api/v1/agents/{agent}/actions"
+api: "GET /api/v1/agents/{agent_id}/actions"
 ---
 
 # Listar Ações
@@ -11,7 +11,7 @@ Recuperar uma lista de ações configuradas para um agente específico com supor
 ## Endpoint
 
 ```
-GET /api/v1/agents/{agent}/actions
+GET /api/v1/agents/{agent_id}/actions
 ```
 
 ## Parâmetros de Caminho
@@ -330,7 +330,7 @@ console.log(result);
 
 ## Endpoints Relacionados
 
-- **Criar/Atualizar Ação**: `POST /api/v1/agents/{agent}/actions`
-- **Excluir Ação**: `DELETE /api/v1/agents/{agent}/actions/{action}`
-- **Obter Agente**: `GET /api/v1/agents/{agent}`
+- **Criar/Atualizar Ação**: `POST /api/v1/agents/{agent_id}/actions`
+- **Excluir Ação**: `DELETE /api/v1/agents/{agent_id}/actions/{action_id}`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
 - **Listar Agentes**: `GET /api/v1/agents`
