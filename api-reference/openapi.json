@@ -12,37 +12,6 @@
     }
   ],
   "paths": {
-
-
-
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthenticated"
-          }
-        },
-        "x-code-samples": {
-          "curl": {
-            "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/user' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
-          },
-          "php": {
-            "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/user', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
-          },
-          "nodejs": {
-            "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/user', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
-          }
-        }
-      }
-    },
     "/agents": {
       "get": {
         "tags": ["Agents"],
