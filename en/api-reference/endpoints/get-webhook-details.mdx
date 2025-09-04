@@ -1,0 +1,178 @@
+---
+title: "Get Webhook Details"
+api: "GET /api/v1/agents/{agent_id}/webhooks/{webhook_id}"
+description: "Retrieve detailed information about a specific webhook"
+---
+
+## Overview
+
+Retrieves detailed information about a specific webhook configuration, including its current status, configured events, and metadata.
+
+## Endpoint
+
+<ParamField path="agent_id" type="string" required>
+  Agent UUID
+</ParamField>
+
+<ParamField path="webhook_id" type="string" required>
+  Webhook UUID
+</ParamField>
+
+## Request
+
+<RequestExample>
+
+```bash
+curl -X GET \
+  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+```javascript
+const response = await fetch('https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer YOUR_TOKEN'
+  }
+});
+const data = await response.json();
+```
+
+```php
+<?php
+
+$client = new \GuzzleHttp\Client();
+$response = $client->get('https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a', [
+    'headers' => [
+        'Authorization' => 'Bearer YOUR_TOKEN',
+    ],
+]);
+$data = json_decode($response->getBody());
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseField name="success" type="boolean">
+  Indicates if the request was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Webhook configuration details
+</ResponseField>
+
+<ResponseField name="data.id" type="string">
+  Unique webhook identifier
+</ResponseField>
+
+<ResponseField name="data.agent_id" type="string">
+  Agent UUID this webhook belongs to
+</ResponseField>
+
+<ResponseField name="data.name" type="string">
+  Human-readable webhook name
+</ResponseField>
+
+<ResponseField name="data.webhook_url" type="string">
+  URL where webhook events will be sent
+</ResponseField>
+
+<ResponseField name="data.events" type="array">
+  Array of event types this webhook is configured to receive
+</ResponseField>
+
+<ResponseField name="data.timeout" type="integer">
+  Request timeout in seconds (5-120)
+</ResponseField>
+
+<ResponseField name="data.max_retries" type="integer">
+  Maximum number of retry attempts (0-10)
+</ResponseField>
+
+<ResponseField name="data.enabled" type="boolean">
+  Whether the webhook is currently active
+</ResponseField>
+
+<ResponseField name="data.created_at" type="string">
+  ISO 8601 timestamp when webhook was created
+</ResponseField>
+
+<ResponseField name="data.updated_at" type="string">
+  ISO 8601 timestamp when webhook was last updated
+</ResponseField>
+
+<ResponseField name="data.events_count" type="integer">
+  Number of events configured for this webhook
+</ResponseField>
+
+<ResponseField name="data.status" type="string">
+  Current webhook status (active, disabled, error)
+</ResponseField>
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "9fcafbf2-7593-44d6-8cd7-1b221beba62a",
+    "agent_id": "9fbef0b7-8d4e-4a08-9207-66c22155721d",
+    "name": "My Webhook",
+    "webhook_url": "https://example.com/webhook",
+    "events": ["event_phone_call_started", "event_phone_call_ended"],
+    "timeout": 30,
+    "max_retries": 3,
+    "enabled": true,
+    "created_at": "2025-09-03T23:19:51.000000Z",
+    "updated_at": "2025-09-03T23:37:01.000000Z",
+    "events_count": 2,
+    "status": "active"
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+<ResponseExample title="401 Unauthorized">
+
+```json
+{
+  "message": "Missing Bearer Token"
+}
+```
+
+</ResponseExample>
+
+<ResponseExample title="404 Not Found">
+
+```json
+{
+  "success": false,
+  "message": "Agent not found in this environment."
+}
+```
+
+</ResponseExample>
+
+<ResponseExample title="404 Webhook Not Found">
+
+```json
+{
+  "success": false,
+  "message": "Webhook not found."
+}
+```
+
+</ResponseExample>
+
+## Related Endpoints
+
+- [List Agent Webhooks](/api-reference/endpoints/list-agent-webhooks) - Get all webhooks for an agent
+- [Create Webhook](/api-reference/endpoints/create-webhook) - Set up a new webhook
+- [Update Webhook](/api-reference/endpoints/update-webhook) - Modify webhook configuration
+- [Delete Webhook](/api-reference/endpoints/delete-webhook) - Remove webhook configuration
+- [Toggle Webhook Status](/api-reference/endpoints/toggle-webhook-status) - Enable/disable webhook
+- [Test Webhook](/api-reference/endpoints/test-webhook) - Send test payload to verify connectivity

@@ -1,0 +1,257 @@
+---
+title: "Criar Webhook"
+api: "POST /api/v1/agents/{agent_id}/webhooks"
+description: "Criar uma nova configuração de webhook para um agente"
+---
+
+## Visão Geral
+
+Cria uma nova configuração de webhook para um agente. Webhooks permitem receber notificações em tempo real quando eventos específicos ocorrem durante chamadas.
+
+## Endpoint
+
+<ParamField path="agent_id" type="string" required>
+  UUID do Agente
+</ParamField>
+
+## Requisição
+
+<RequestField name="name" type="string" required>
+  Nome legível para o webhook (máximo 255 caracteres)
+</RequestField>
+
+<RequestField name="webhook_url" type="string" required>
+  URL onde os eventos do webhook serão enviados (máximo 500 caracteres, deve ser uma URL válida)
+</RequestField>
+
+<RequestField name="webhook_secret" type="string">
+  Segredo opcional para verificação de assinatura HMAC-SHA256 (máximo 255 caracteres)
+</RequestField>
+
+<RequestField name="events" type="array" required>
+  Array de tipos de eventos para se inscrever (mínimo 1 evento necessário). Cada evento deve estar na lista de eventos disponíveis.
+</RequestField>
+
+<RequestField name="timeout" type="integer">
+  Timeout da requisição em segundos (5-120, padrão: 30)
+</RequestField>
+
+<RequestField name="max_retries" type="integer">
+  Número máximo de tentativas de nova tentativa (0-10, padrão: 3)
+</RequestField>
+
+<RequestField name="enabled" type="boolean">
+  Se o webhook deve estar ativo (padrão: true)
+</RequestField>
+
+<RequestExample>
+
+```bash
+curl -X POST \
+  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "Meu Webhook",
+    "webhook_url": "https://example.com/webhook",
+    "webhook_secret": "segredo_opcional_para_hmac",
+    "events": ["event_phone_call_started", "event_phone_call_ended"],
+    "timeout": 30,
+    "max_retries": 3,
+    "enabled": true
+  }'
+```
+
+```javascript
+const response = await fetch('https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_TOKEN',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'Meu Webhook',
+    webhook_url: 'https://example.com/webhook',
+    webhook_secret: 'segredo_opcional_para_hmac',
+    events: ['event_phone_call_started', 'event_phone_call_ended'],
+    timeout: 30,
+    max_retries: 3,
+    enabled: true
+  })
+});
+const data = await response.json();
+```
+
+```php
+<?php
+
+$client = new \GuzzleHttp\Client();
+$response = $client->post('https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks', [
+    'headers' => [
+        'Authorization' => 'Bearer YOUR_TOKEN',
+        'Content-Type' => 'application/json',
+    ],
+    'json' => [
+        'name' => 'Meu Webhook',
+        'webhook_url' => 'https://example.com/webhook',
+        'webhook_secret' => 'segredo_opcional_para_hmac',
+        'events' => ['event_phone_call_started', 'event_phone_call_ended'],
+        'timeout' => 30,
+        'max_retries' => 3,
+        'enabled' => true
+    ],
+]);
+$data = json_decode($response->getBody());
+```
+
+</RequestExample>
+
+## Resposta
+
+<ResponseField name="success" type="boolean">
+  Indica se o webhook foi criado com sucesso
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  Mensagem de sucesso
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Objeto do webhook criado
+</ResponseField>
+
+<ResponseField name="data.id" type="string">
+  Identificador único do webhook
+</ResponseField>
+
+<ResponseField name="data.agent_id" type="string">
+  UUID do agente ao qual este webhook pertence
+</ResponseField>
+
+<ResponseField name="data.name" type="string">
+  Nome do webhook
+</ResponseField>
+
+<ResponseField name="data.webhook_url" type="string">
+  URL do webhook
+</ResponseField>
+
+<ResponseField name="data.events" type="array">
+  Array de tipos de eventos configurados
+</ResponseField>
+
+<ResponseField name="data.timeout" type="integer">
+  Timeout da requisição em segundos
+</ResponseField>
+
+<ResponseField name="data.max_retries" type="integer">
+  Máximo de tentativas de nova tentativa
+</ResponseField>
+
+<ResponseField name="data.enabled" type="boolean">
+  Se o webhook está ativo
+</ResponseField>
+
+<ResponseField name="data.created_at" type="string">
+  Timestamp ISO 8601 quando o webhook foi criado
+</ResponseField>
+
+<ResponseField name="data.updated_at" type="string">
+  Timestamp ISO 8601 quando o webhook foi atualizado pela última vez
+</ResponseField>
+
+<ResponseField name="data.events_count" type="integer">
+  Número de eventos configurados para este webhook
+</ResponseField>
+
+<ResponseField name="data.status" type="string">
+  Status atual do webhook
+</ResponseField>
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Webhook criado com sucesso",
+  "data": {
+    "id": "9fcafbf2-7593-44d6-8cd7-1b221beba62a",
+    "agent_id": "9fbef0b7-8d4e-4a08-9207-66c22155721d",
+    "name": "Meu Webhook",
+    "webhook_url": "https://example.com/webhook",
+    "events": ["event_phone_call_started", "event_phone_call_ended"],
+    "timeout": 30,
+    "max_retries": 3,
+    "enabled": true,
+    "created_at": "2025-09-03T23:19:51.000000Z",
+    "updated_at": "2025-09-03T23:19:51.000000Z",
+    "events_count": 2,
+    "status": "active"
+  }
+}
+```
+
+</ResponseExample>
+
+## Respostas de Erro
+
+<ResponseExample title="401 Não Autorizado">
+
+```json
+{
+  "message": "Token Bearer ausente"
+}
+```
+
+</ResponseExample>
+
+<ResponseExample title="404 Não Encontrado">
+
+```json
+{
+  "success": false,
+  "message": "Agente não encontrado neste ambiente."
+}
+```
+
+</ResponseExample>
+
+<ResponseExample title="422 Erro de Validação">
+
+```json
+{
+  "message": "Os dados fornecidos eram inválidos.",
+  "errors": {
+    "webhook_url": ["O campo webhook url é obrigatório."],
+    "events": ["O campo events deve conter pelo menos 1 item."]
+  }
+}
+```
+
+</ResponseExample>
+
+## Regras de Validação
+
+- **name**: Obrigatório, string, máximo 255 caracteres
+- **webhook_url**: Obrigatório, URL válida, máximo 500 caracteres
+- **webhook_secret**: Opcional, string, máximo 255 caracteres
+- **events**: Obrigatório, array com mínimo 1 evento, cada evento deve estar na lista de eventos disponíveis
+- **timeout**: Opcional, inteiro entre 5-120 segundos (padrão: 30)
+- **max_retries**: Opcional, inteiro entre 0-10 (padrão: 3)
+- **enabled**: Opcional, boolean (padrão: true)
+
+## Notas Importantes
+
+- Operações de webhook limpam automaticamente o cache do agente para efeito imediato
+- Use endpoints HTTPS para URLs de webhook em produção
+- Implemente verificação de assinatura adequada usando o segredo do webhook para segurança
+- Teste seu endpoint de webhook antes de ir ao ar usando o endpoint de teste
+
+## Endpoints Relacionados
+
+- [Listar Webhooks do Agente](/api-reference/endpoints/list-agent-webhooks) - Obter todos os webhooks de um agente
+- [Obter Detalhes do Webhook](/api-reference/endpoints/get-webhook-details) - Recuperar informações específicas do webhook
+- [Atualizar Webhook](/api-reference/endpoints/update-webhook) - Modificar configuração do webhook
+- [Excluir Webhook](/api-reference/endpoints/delete-webhook) - Remover configuração do webhook
+- [Alternar Status do Webhook](/api-reference/endpoints/toggle-webhook-status) - Habilitar/desabilitar webhook
+- [Testar Webhook](/api-reference/endpoints/test-webhook) - Enviar payload de teste para verificar conectividade

@@ -104,6 +104,19 @@
                   "en/api-reference/endpoints/make-external-call",
                   "en/api-reference/endpoints/websocket-connection"
                 ]
+              },
+              {
+                "group": "Webhooks",
+                "pages": [
+                  "en/api-reference/endpoints/webhook-management",
+                  "en/api-reference/endpoints/list-agent-webhooks",
+                  "en/api-reference/endpoints/create-webhook",
+                  "en/api-reference/endpoints/get-webhook-details",
+                  "en/api-reference/endpoints/update-webhook",
+                  "en/api-reference/endpoints/delete-webhook",
+                  "en/api-reference/endpoints/toggle-webhook-status",
+                  "en/api-reference/endpoints/test-webhook"
+                ]
               }
             ]
           },
@@ -209,6 +222,19 @@
                 "pages": [
                   "pt-br/api-reference/endpoints/make-external-call",
                   "pt-br/api-reference/endpoints/websocket-connection"
+                ]
+              },
+              {
+                "group": "Webhooks",
+                "pages": [
+                  "pt-br/api-reference/endpoints/webhook-management",
+                  "pt-br/api-reference/endpoints/list-agent-webhooks",
+                  "pt-br/api-reference/endpoints/create-webhook",
+                  "pt-br/api-reference/endpoints/get-webhook-details",
+                  "pt-br/api-reference/endpoints/update-webhook",
+                  "pt-br/api-reference/endpoints/delete-webhook",
+                  "pt-br/api-reference/endpoints/toggle-webhook-status",
+                  "pt-br/api-reference/endpoints/test-webhook"
                 ]
               }
             ]

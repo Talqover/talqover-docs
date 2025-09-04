@@ -1951,6 +1951,460 @@
           }
         }
       }
+    },
+    "/agents/{agent_id}/webhooks": {
+      "get": {
+        "tags": ["Webhooks"],
+        "summary": "List agent webhooks",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent UUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhooks retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "webhooks": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Webhook"
+                          }
+                        },
+                        "available_events": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Agent not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Webhooks"],
+        "summary": "Create webhook",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent UUID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWebhookRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Webhook created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Webhook"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Agent not found"
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"name\": \"My Webhook\",\n    \"webhook_url\": \"https://example.com/webhook\",\n    \"events\": [\"event_phone_call_started\", \"event_phone_call_ended\"]\n  }'"
+          }
+        }
+      }
+    },
+    "/agents/{agent_id}/webhooks/{webhook_id}": {
+      "get": {
+        "tags": ["Webhooks"],
+        "summary": "Get webhook details",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent UUID"
+          },
+          {
+            "name": "webhook_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Webhook UUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook details retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Webhook"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Webhook not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Webhooks"],
+        "summary": "Update webhook",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent UUID"
+          },
+          {
+            "name": "webhook_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Webhook UUID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWebhookRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Webhook updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Webhook"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Webhook not found"
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X PUT \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"name\": \"Updated Webhook\",\n    \"enabled\": false\n  }'"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Webhooks"],
+        "summary": "Delete webhook",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent UUID"
+          },
+          {
+            "name": "webhook_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Webhook UUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Webhook not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X DELETE \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          }
+        }
+      }
+    },
+    "/agents/{agent_id}/webhooks/{webhook_id}/toggle": {
+      "patch": {
+        "tags": ["Webhooks"],
+        "summary": "Toggle webhook status",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent UUID"
+          },
+          {
+            "name": "webhook_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Webhook UUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook status toggled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Webhook"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Webhook not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X PATCH \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/toggle' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          }
+        }
+      }
+    },
+    "/agents/{agent_id}/webhooks/{webhook_id}/test": {
+      "post": {
+        "tags": ["Webhooks"],
+        "summary": "Test webhook",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Agent UUID"
+          },
+          {
+            "name": "webhook_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Webhook UUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook test sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "status_code": {
+                          "type": "integer"
+                        },
+                        "response_time": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Webhook not found"
+          }
+        },
+        "x-code-samples": {
+          "curl": {
+            "lang": "curl",
+            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/test' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2479,6 +2933,172 @@
           },
           "created_at": "2024-01-01T00:00:00Z",
           "updated_at": "2024-01-01T00:00:00Z"
+        }
+      },
+      "Webhook": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "agent_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "webhook_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "timeout": {
+            "type": "integer",
+            "minimum": 5,
+            "maximum": 120
+          },
+          "max_retries": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "events_count": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "disabled", "error"]
+          }
+        },
+        "example": {
+          "id": "9fcafbf2-7593-44d6-8cd7-1b221beba62a",
+          "agent_id": "9fbef0b7-8d4e-4a08-9207-66c22155721d",
+          "name": "My Webhook",
+          "webhook_url": "https://example.com/webhook",
+          "events": ["event_phone_call_started", "event_phone_call_ended"],
+          "timeout": 30,
+          "max_retries": 3,
+          "enabled": true,
+          "created_at": "2025-09-03T23:19:51.000000Z",
+          "updated_at": "2025-09-03T23:37:01.000000Z",
+          "events_count": 2,
+          "status": "active"
+        }
+      },
+      "CreateWebhookRequest": {
+        "type": "object",
+        "required": ["name", "webhook_url", "events"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "webhook_url": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 500
+          },
+          "webhook_secret": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "timeout": {
+            "type": "integer",
+            "minimum": 5,
+            "maximum": 120,
+            "default": 30
+          },
+          "max_retries": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10,
+            "default": 3
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "example": {
+          "name": "My Webhook",
+          "webhook_url": "https://example.com/webhook",
+          "webhook_secret": "optional_secret_for_hmac",
+          "events": ["event_phone_call_started", "event_phone_call_ended"],
+          "timeout": 30,
+          "max_retries": 3,
+          "enabled": true
+        }
+      },
+      "UpdateWebhookRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "webhook_url": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 500
+          },
+          "webhook_secret": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "timeout": {
+            "type": "integer",
+            "minimum": 5,
+            "maximum": 120
+          },
+          "max_retries": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "name": "Updated Webhook Name",
+          "webhook_url": "https://newexample.com/webhook",
+          "webhook_secret": "new_secret",
+          "events": ["event_phone_call_started", "event_conversation_started"],
+          "timeout": 45,
+          "max_retries": 5,
+          "enabled": false
         }
       }
     },

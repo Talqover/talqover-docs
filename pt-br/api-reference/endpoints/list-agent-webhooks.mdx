@@ -1,0 +1,199 @@
+---
+title: "Listar Webhooks do Agente"
+api: "GET /api/v1/agents/{agent_id}/webhooks"
+description: "Recuperar todos os webhooks configurados para um agente específico"
+---
+
+## Visão Geral
+
+Lista todos os webhooks configurados para um agente específico, incluindo seu status atual, eventos configurados e metadados.
+
+## Endpoint
+
+<ParamField path="agent_id" type="string" required>
+  UUID do Agente
+</ParamField>
+
+## Requisição
+
+<RequestExample>
+
+```bash
+curl -X GET \
+  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+```javascript
+const response = await fetch('https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer YOUR_TOKEN'
+  }
+});
+const data = await response.json();
+```
+
+```php
+<?php
+
+$client = new \GuzzleHttp\Client();
+$response = $client->get('https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks', [
+    'headers' => [
+        'Authorization' => 'Bearer YOUR_TOKEN',
+    ],
+]);
+$data = json_decode($response->getBody());
+```
+
+</RequestExample>
+
+## Resposta
+
+<ResponseField name="success" type="boolean">
+  Indica se a requisição foi bem-sucedida
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Dados de resposta contendo webhooks e eventos disponíveis
+</ResponseField>
+
+<ResponseField name="data.webhooks" type="array">
+  Array de configurações de webhook para o agente
+</ResponseField>
+
+<ResponseField name="data.webhooks[].id" type="string">
+  Identificador único do webhook
+</ResponseField>
+
+<ResponseField name="data.webhooks[].agent_id" type="string">
+  UUID do agente ao qual este webhook pertence
+</ResponseField>
+
+<ResponseField name="data.webhooks[].name" type="string">
+  Nome legível do webhook
+</ResponseField>
+
+<ResponseField name="data.webhooks[].webhook_url" type="string">
+  URL onde os eventos do webhook serão enviados
+</ResponseField>
+
+<ResponseField name="data.webhooks[].events" type="array">
+  Array de tipos de eventos que este webhook está configurado para receber
+</ResponseField>
+
+<ResponseField name="data.webhooks[].timeout" type="integer">
+  Timeout da requisição em segundos (5-120)
+</ResponseField>
+
+<ResponseField name="data.webhooks[].max_retries" type="integer">
+  Número máximo de tentativas de nova tentativa (0-10)
+</ResponseField>
+
+<ResponseField name="data.webhooks[].enabled" type="boolean">
+  Se o webhook está atualmente ativo
+</ResponseField>
+
+<ResponseField name="data.webhooks[].created_at" type="string">
+  Timestamp ISO 8601 quando o webhook foi criado
+</ResponseField>
+
+<ResponseField name="data.webhooks[].updated_at" type="string">
+  Timestamp ISO 8601 quando o webhook foi atualizado pela última vez
+</ResponseField>
+
+<ResponseField name="data.webhooks[].events_count" type="integer">
+  Número de eventos configurados para este webhook
+</ResponseField>
+
+<ResponseField name="data.webhooks[].status" type="string">
+  Status atual do webhook (ativo, desabilitado, erro)
+</ResponseField>
+
+<ResponseField name="data.available_events" type="object">
+  Objeto contendo todos os eventos de webhook disponíveis e suas descrições
+</ResponseField>
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "webhooks": [
+      {
+        "id": "9fcafbf2-7593-44d6-8cd7-1b221beba62a",
+        "agent_id": "9fbef0b7-8d4e-4a08-9207-66c22155721d",
+        "name": "Meu Webhook",
+        "webhook_url": "https://example.com/webhook",
+        "events": ["event_phone_call_started", "event_phone_call_ended"],
+        "timeout": 30,
+        "max_retries": 3,
+        "enabled": true,
+        "created_at": "2025-09-03T23:19:51.000000Z",
+        "updated_at": "2025-09-03T23:37:01.000000Z",
+        "events_count": 2,
+        "status": "active"
+      }
+    ],
+    "available_events": {
+      "event_phone_call_started": "Chamada telefônica iniciada",
+      "event_phone_call_ended": "Chamada telefônica finalizada",
+      "event_phone_call_did_not_connect": "Chamada telefônica falhou ao conectar",
+      "event_phone_call_connected": "Conexão da chamada telefônica estabelecida",
+      "event_phone_call_disconnected": "Conexão da chamada telefônica fechada",
+      "event_phone_call_error": "Erro de conexão da chamada telefônica ocorreu",
+      "event_participant_joined": "Participante entrou na chamada",
+      "event_participant_left": "Participante saiu da chamada",
+      "event_voicemail_detected": "Sistema de correio de voz detectado",
+      "event_voicemail_message_left": "Mensagem deixada no correio de voz",
+      "event_conversation_started": "Conversa humana iniciada",
+      "event_conversation_ended": "Conversa humana finalizada",
+      "event_action": "Agente executou uma ação",
+      "event_action_failed": "Ação do agente falhou",
+      "event_recording": "Evento de gravação da chamada",
+      "event_connection_established": "Conexão da chamada estabelecida",
+      "event_connection_closed": "Conexão da chamada fechada",
+      "event_connection_error": "Erro de conexão da chamada ocorreu",
+      "event_user_connected": "Usuário conectado à chamada",
+      "event_user_disconnected": "Usuário desconectado da chamada",
+      "event_client_connected": "Cliente conectado à chamada",
+      "event_client_disconnected": "Cliente desconectado da chamada"
+    }
+  }
+}
+```
+
+</ResponseExample>
+
+## Respostas de Erro
+
+<ResponseExample title="401 Não Autorizado">
+
+```json
+{
+  "message": "Token Bearer ausente"
+}
+```
+
+</ResponseExample>
+
+<ResponseExample title="404 Não Encontrado">
+
+```json
+{
+  "success": false,
+  "message": "Agente não encontrado neste ambiente."
+}
+```
+
+</ResponseExample>
+
+## Endpoints Relacionados
+
+- [Criar Webhook](/api-reference/endpoints/create-webhook) - Configurar um novo webhook
+- [Obter Detalhes do Webhook](/api-reference/endpoints/get-webhook-details) - Recuperar informações específicas do webhook
+- [Atualizar Webhook](/api-reference/endpoints/update-webhook) - Modificar configuração do webhook
+- [Excluir Webhook](/api-reference/endpoints/delete-webhook) - Remover configuração do webhook
+- [Alternar Status do Webhook](/api-reference/endpoints/toggle-webhook-status) - Habilitar/desabilitar webhook
+- [Testar Webhook](/api-reference/endpoints/test-webhook) - Enviar payload de teste para verificar conectividade
