@@ -276,5 +276,11 @@
     "socials": {
       "linkedin": "https://linkedin.com/company/talqover"
     }
+  },
+  "api": {
+    "baseUrl": "https://talqover.app/api/v1",
+    "auth": {
+      "method": "bearer"
+    }
   }
 }

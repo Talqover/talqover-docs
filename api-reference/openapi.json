@@ -86,22 +86,22 @@
                     }
                   }
                 }
+                }
               }
             }
-          }
-        },
+          },
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/agents' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/agents', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('{{baseUrl}}/agents', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/agents', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('{{baseUrl}}/agents', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       },
@@ -236,15 +236,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"label\": \"Customer Service Agent\",\n    \"name\": \"Customer Service Agent\",\n    \"language\": \"en-US\",\n    \"interrupt_sensitivity\": \"medium\",\n    \"endpointing_sensitivity\": \"medium\",\n    \"ivr_navigation_mode\": \"standard\",\n    \"conversation_speed\": 1.0,\n    \"initial_message_delay\": 2,\n    \"ask_if_human_present_on_idle\": true,\n    \"idle_time_seconds\": 30,\n    \"llm_temperature\": 0.7,\n    \"enable_recording\": true,\n    \"direction\": \"inbound\",\n    \"who_speaks_first\": \"agent\"\n  }'"
+            "source": "curl -X POST \\\n  '{{baseUrl}}/agents' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"label\": \"Customer Service Agent\",\n    \"name\": \"Customer Service Agent\",\n    \"language\": \"en-US\",\n    \"interrupt_sensitivity\": \"medium\",\n    \"endpointing_sensitivity\": \"medium\",\n    \"ivr_navigation_mode\": \"standard\",\n    \"conversation_speed\": 1.0,\n    \"initial_message_delay\": 2,\n    \"ask_if_human_present_on_idle\": true,\n    \"idle_time_seconds\": 30,\n    \"llm_temperature\": 0.7,\n    \"enable_recording\": true,\n    \"direction\": \"inbound\",\n    \"who_speaks_first\": \"agent\"\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('https://talqover.app/api/v1/agents', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'label' => 'Customer Service Agent',\n        'name' => 'Customer Service Agent',\n        'language' => 'en-US',\n        'interrupt_sensitivity' => 'medium',\n        'endpointing_sensitivity' => 'medium',\n        'ivr_navigation_mode' => 'standard',\n        'conversation_speed' => 1.0,\n        'initial_message_delay' => 2,\n        'ask_if_human_present_on_idle' => true,\n        'idle_time_seconds' => 30,\n        'llm_temperature' => 0.7,\n        'enable_recording' => true,\n        'direction' => 'inbound',\n        'who_speaks_first' => 'agent'\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('{{baseUrl}}/agents', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'label' => 'Customer Service Agent',\n        'name' => 'Customer Service Agent',\n        'language' => 'en-US',\n        'interrupt_sensitivity' => 'medium',\n        'endpointing_sensitivity' => 'medium',\n        'ivr_navigation_mode' => 'standard',\n        'conversation_speed' => 1.0,\n        'initial_message_delay' => 2,\n        'ask_if_human_present_on_idle' => true,\n        'idle_time_seconds' => 30,\n        'llm_temperature' => 0.7,\n        'enable_recording' => true,\n        'direction' => 'inbound',\n        'who_speaks_first' => 'agent'\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/agents', {\n  label: 'Customer Service Agent',\n  name: 'Customer Service Agent',\n  language: 'en-US',\n  interrupt_sensitivity: 'medium',\n  endpointing_sensitivity: 'medium',\n  ivr_navigation_mode: 'standard',\n  conversation_speed: 1.0,\n  initial_message_delay: 2,\n  ask_if_human_present_on_idle: true,\n  idle_time_seconds: 30,\n  llm_temperature: 0.7,\n  enable_recording: true,\n  direction: 'inbound',\n  who_speaks_first: 'agent'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('{{baseUrl}}/agents', {\n  label: 'Customer Service Agent',\n  name: 'Customer Service Agent',\n  language: 'en-US',\n  interrupt_sensitivity: 'medium',\n  endpointing_sensitivity: 'medium',\n  ivr_navigation_mode: 'standard',\n  conversation_speed: 1.0,\n  initial_message_delay: 2,\n  ask_if_human_present_on_idle: true,\n  idle_time_seconds: 30,\n  llm_temperature: 0.7,\n  enable_recording: true,\n  direction: 'inbound',\n  who_speaks_first: 'agent'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -272,10 +272,10 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Agent"
-                }
-              }
-            }
-          },
+          }
+        }
+      }
+    },
           "404": {
             "description": "Agent not found"
           }
@@ -283,15 +283,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       },
@@ -321,15 +321,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X DELETE \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X DELETE \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->delete('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->delete('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.delete('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});"
+            "source": "const axios = require('axios');\n\nconst response = await axios.delete('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});"
           }
         }
       }
@@ -391,10 +391,10 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Agent"
-                }
-              }
-            }
-          },
+          }
+        }
+      }
+    },
           "404": {
             "description": "Agent or voice template not found"
           }
@@ -402,15 +402,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X PUT \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/voice' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"voice_id\": \"voice-template-uuid\",\n    \"similarity\": 0.75,\n    \"stability\": 0.8\n  }'"
+            "source": "curl -X PUT \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/voice' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"voice_id\": \"voice-template-uuid\",\n    \"similarity\": 0.75,\n    \"stability\": 0.8\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->put('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/voice', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'voice_id' => 'voice-template-uuid',\n        'similarity' => 0.75,\n        'stability' => 0.8\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->put('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/voice', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'voice_id' => 'voice-template-uuid',\n        'similarity' => 0.75,\n        'stability' => 0.8\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.put('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/voice', {\n  voice_id: 'voice-template-uuid',\n  similarity: 0.75,\n  stability: 0.8\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.put('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/voice', {\n  voice_id: 'voice-template-uuid',\n  similarity: 0.75,\n  stability: 0.8\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -469,15 +469,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X PUT \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/knowledge' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"prompt\": \"You are a helpful customer service agent...\"\n  }'"
+            "source": "curl -X PUT \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/knowledge' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"prompt\": \"You are a helpful customer service agent...\"\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->put('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/knowledge', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'prompt' => 'You are a helpful customer service agent...'\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->put('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/knowledge', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'prompt' => 'You are a helpful customer service agent...'\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.put('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/knowledge', {\n  prompt: 'You are a helpful customer service agent...'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.put('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/knowledge', {\n  prompt: 'You are a helpful customer service agent...'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -553,15 +553,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/calls' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/calls' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/calls', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/calls', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/calls', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/calls', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -621,22 +621,22 @@
                     }
                   }
                 }
-              }
-            }
           }
-        },
+        }
+      }
+    },
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/trainings' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/trainings', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/trainings', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       },
@@ -693,15 +693,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"instruction\": \"When a customer asks about refunds, explain the 30-day return policy...\"\n  }'"
+            "source": "curl -X POST \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/trainings' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"instruction\": \"When a customer asks about refunds, explain the 30-day return policy...\"\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'instruction' => 'When a customer asks about refunds, explain the 30-day return policy...'\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/trainings', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'instruction' => 'When a customer asks about refunds, explain the 30-day return policy...'\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings', {\n  instruction: 'When a customer asks about refunds, explain the 30-day return policy...'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/trainings', {\n  instruction: 'When a customer asks about refunds, explain the 30-day return policy...'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -743,15 +743,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X DELETE \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings/456e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X DELETE \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/trainings/456e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->delete('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings/456e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->delete('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/trainings/456e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.delete('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/trainings/456e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});"
+            "source": "const axios = require('axios');\n\nconst response = await axios.delete('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/trainings/456e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});"
           }
         }
       }
@@ -801,32 +801,32 @@
                   "type": "object",
                   "properties": {
                     "data": {
-                      "type": "array",
-                      "items": {
+                  "type": "array",
+                  "items": {
                         "$ref": "#/components/schemas/Action"
-                      }
+                  }
                     },
                     "meta": {
                       "$ref": "#/components/schemas/PaginationMeta"
-                    }
-                  }
                 }
               }
             }
           }
-        },
+        }
+      }
+    },
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/actions' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/actions', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/actions', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       },
@@ -901,15 +901,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"name\": \"Transfer to Human\",\n    \"type\": \"transfer\",\n    \"trigger\": \"customer asks for human\",\n    \"config\": {\n      \"phone_number\": \"+1234567890\"\n    }\n  }'"
+            "source": "curl -X POST \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/actions' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"name\": \"Transfer to Human\",\n    \"type\": \"transfer\",\n    \"trigger\": \"customer asks for human\",\n    \"config\": {\n      \"phone_number\": \"+1234567890\"\n    }\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'name' => 'Transfer to Human',\n        'type' => 'transfer',\n        'trigger' => 'customer asks for human',\n        'config' => [\n            'phone_number' => '+1234567890'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/actions', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'name' => 'Transfer to Human',\n        'type' => 'transfer',\n        'trigger' => 'customer asks for human',\n        'config' => [\n            'phone_number' => '+1234567890'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions', {\n  name: 'Transfer to Human',\n  type: 'transfer',\n  trigger: 'customer asks for human',\n  config: {\n    phone_number: '+1234567890'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/actions', {\n  name: 'Transfer to Human',\n  type: 'transfer',\n  trigger: 'customer asks for human',\n  config: {\n    phone_number: '+1234567890'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -951,15 +951,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X DELETE \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions/456e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X DELETE \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/actions/456e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->delete('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions/456e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->delete('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/actions/456e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.delete('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/actions/456e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});"
+            "source": "const axios = require('axios');\n\nconst response = await axios.delete('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/actions/456e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});"
           }
         }
       }
@@ -1025,15 +1025,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/calls' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/calls' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/calls', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('{{baseUrl}}/calls', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/calls', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('{{baseUrl}}/calls', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -1100,15 +1100,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/campaigns' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/campaigns' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/campaigns', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('{{baseUrl}}/campaigns', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/campaigns', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('{{baseUrl}}/campaigns', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       },
@@ -1194,15 +1194,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/campaigns' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"name\": \"Customer Outreach Campaign\",\n    \"agent_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"phone_number_id\": \"456e4567-e89b-12d3-a456-426614174000\",\n    \"max_calls_per_hour\": 10,\n    \"max_calls_per_day\": 100\n  }'"
+            "source": "curl -X POST \\\n  '{{baseUrl}}/campaigns' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"name\": \"Customer Outreach Campaign\",\n    \"agent_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"phone_number_id\": \"456e4567-e89b-12d3-a456-426614174000\",\n    \"max_calls_per_hour\": 10,\n    \"max_calls_per_day\": 100\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('https://talqover.app/api/v1/campaigns', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'name' => 'Customer Outreach Campaign',\n        'agent_id' => '123e4567-e89b-12d3-a456-426614174000',\n        'phone_number_id' => '456e4567-e89b-12d3-a456-426614174000',\n        'max_calls_per_hour' => 10,\n        'max_calls_per_day' => 100\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('{{baseUrl}}/campaigns', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'name' => 'Customer Outreach Campaign',\n        'agent_id' => '123e4567-e89b-12d3-a456-426614174000',\n        'phone_number_id' => '456e4567-e89b-12d3-a456-426614174000',\n        'max_calls_per_hour' => 10,\n        'max_calls_per_day' => 100\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/campaigns', {\n  name: 'Customer Outreach Campaign',\n  agent_id: '123e4567-e89b-12d3-a456-426614174000',\n  phone_number_id: '456e4567-e89b-12d3-a456-426614174000',\n  max_calls_per_hour: 10,\n  max_calls_per_day: 100\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('{{baseUrl}}/campaigns', {\n  name: 'Customer Outreach Campaign',\n  agent_id: '123e4567-e89b-12d3-a456-426614174000',\n  phone_number_id: '456e4567-e89b-12d3-a456-426614174000',\n  max_calls_per_hour: 10,\n  max_calls_per_day: 100\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -1241,15 +1241,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       },
@@ -1331,15 +1331,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X PUT \\\n  'https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"name\": \"Updated Customer Outreach Campaign\",\n    \"max_calls_per_hour\": 15,\n    \"max_calls_per_day\": 150\n  }'"
+            "source": "curl -X PUT \\\n  '{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"name\": \"Updated Customer Outreach Campaign\",\n    \"max_calls_per_hour\": 15,\n    \"max_calls_per_day\": 150\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->put('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'name' => 'Updated Customer Outreach Campaign',\n        'max_calls_per_hour' => 15,\n        'max_calls_per_day' => 150\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->put('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'name' => 'Updated Customer Outreach Campaign',\n        'max_calls_per_hour' => 15,\n        'max_calls_per_day' => 150\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.put('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', {\n  name: 'Updated Customer Outreach Campaign',\n  max_calls_per_hour: 15,\n  max_calls_per_day: 150\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.put('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000', {\n  name: 'Updated Customer Outreach Campaign',\n  max_calls_per_hour: 15,\n  max_calls_per_day: 150\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       },
@@ -1369,15 +1369,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X DELETE \\\n  'https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X DELETE \\\n  '{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->delete('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->delete('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.delete('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});"
+            "source": "const axios = require('axios');\n\nconst response = await axios.delete('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});"
           }
         }
       }
@@ -1413,7 +1413,7 @@
                   }
                 }
               },
-              "example": {
+                "example": {
                 "status": "active"
               }
             }
@@ -1437,15 +1437,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X PATCH \\\n  'https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/status' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"status\": \"active\"\n  }'"
+            "source": "curl -X PATCH \\\n  '{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/status' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"status\": \"active\"\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->patch('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/status', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'status' => 'active'\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->patch('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/status', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'status' => 'active'\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.patch('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/status', {\n  status: 'active'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.patch('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/status', {\n  status: 'active'\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -1512,15 +1512,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"to\": \"+1234567890\",\n    \"payload\": {\n      \"customer_name\": \"John Doe\",\n      \"order_id\": \"12345\"\n    }\n  }'"
+            "source": "curl -X POST \\\n  '{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"to\": \"+1234567890\",\n    \"payload\": {\n      \"customer_name\": \"John Doe\",\n      \"order_id\": \"12345\"\n    }\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890',\n        'payload' => [\n            'customer_name' => 'John Doe',\n            'order_id' => '12345'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890',\n        'payload' => [\n            'customer_name' => 'John Doe',\n            'order_id' => '12345'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/campaigns/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890',\n  payload: {\n    customer_name: 'John Doe',\n    order_id: '12345'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890',\n  payload: {\n    customer_name: 'John Doe',\n    order_id: '12345'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -1642,11 +1642,11 @@
                     "summary": "Existing Telephony Response",
                     "description": "Response when using existing telephony flow",
                     "value": {
-                      "id": "123e4567-e89b-12d3-a456-426614174000",
+                    "id": "123e4567-e89b-12d3-a456-426614174000",
                       "sid": "TQ123456789",
                       "status": "initiated",
-                      "to": "+1234567890",
-                      "from": "+0987654321",
+                    "to": "+1234567890",
+                    "from": "+0987654321",
                       "created_at": "2024-01-01T00:00:00Z"
                     }
                   },
@@ -1682,15 +1682,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"sid\": \"EX123456789\",\n    \"from\": \"+1234567890\",\n    \"to\": \"+0987654321\",\n    \"direction\": \"outbound\",\n    \"payload\": [\n      \"customer_name\",\n      \"John Doe\",\n      \"account_id\",\n      \"ACC123\"\n    ]\n  }'"
+            "source": "curl -X POST \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"sid\": \"EX123456789\",\n    \"from\": \"+1234567890\",\n    \"to\": \"+0987654321\",\n    \"direction\": \"outbound\",\n    \"payload\": [\n      \"customer_name\",\n      \"John Doe\",\n      \"account_id\",\n      \"ACC123\"\n    ]\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890',\n        'payload' => [\n            'customer_name' => 'John Doe'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890',\n        'payload' => [\n            'customer_name' => 'John Doe'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.post('https://talqover.app/api/v1/agents/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890',\n  payload: {\n    customer_name: 'John Doe'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890',\n  payload: {\n    customer_name: 'John Doe'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -1811,15 +1811,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/voice-templates' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/voice-templates' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/voice-templates', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('{{baseUrl}}/voice-templates', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/voice-templates', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('{{baseUrl}}/voice-templates', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -1849,7 +1849,7 @@
                   "type": "object",
                   "properties": {
                     "demo_url": {
-                      "type": "string",
+                  "type": "string",
                       "format": "uri",
                       "description": "URL to the demo audio file"
                     }
@@ -1865,15 +1865,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/voice-templates/123e4567-e89b-12d3-a456-426614174000/demo' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/voice-templates/123e4567-e89b-12d3-a456-426614174000/demo' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/voice-templates/123e4567-e89b-12d3-a456-426614174000/demo', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('{{baseUrl}}/voice-templates/123e4567-e89b-12d3-a456-426614174000/demo', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/voice-templates/123e4567-e89b-12d3-a456-426614174000/demo', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('{{baseUrl}}/voice-templates/123e4567-e89b-12d3-a456-426614174000/demo', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -1939,15 +1939,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/phone-numbers' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/phone-numbers' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('https://talqover.app/api/v1/phone-numbers', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->get('{{baseUrl}}/phone-numbers', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.get('https://talqover.app/api/v1/phone-numbers', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.get('{{baseUrl}}/phone-numbers', {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -1974,8 +1974,8 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
+        "type": "object",
+        "properties": {
                     "success": {
                       "type": "boolean"
                     },
@@ -2011,7 +2011,7 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           }
         }
       },
@@ -2024,9 +2024,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
+            "type": "string",
+            "format": "uuid"
+          },
             "description": "Agent UUID"
           }
         ],
@@ -2052,8 +2052,8 @@
                       "type": "boolean"
                     },
                     "message": {
-                      "type": "string"
-                    },
+            "type": "string"
+          },
                     "data": {
                       "$ref": "#/components/schemas/Webhook"
                     }
@@ -2075,7 +2075,7 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"name\": \"My Webhook\",\n    \"webhook_url\": \"https://example.com/webhook\",\n    \"events\": [\"event_phone_call_started\", \"event_phone_call_ended\"]\n  }'"
+            "source": "curl -X POST \\\n  '{{baseUrl}}/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"name\": \"My Webhook\",\n    \"webhook_url\": \"https://example.com/webhook\",\n    \"events\": [\"event_phone_call_started\", \"event_phone_call_ended\"]\n  }'"
           }
         }
       }
@@ -2090,7 +2090,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
+            "type": "string",
               "format": "uuid"
             },
             "description": "Agent UUID"
@@ -2135,7 +2135,7 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X GET \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X GET \\\n  '{{baseUrl}}/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           }
         }
       },
@@ -2209,7 +2209,7 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X PUT \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"name\": \"Updated Webhook\",\n    \"enabled\": false\n  }'"
+            "source": "curl -X PUT \\\n  '{{baseUrl}}/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"name\": \"Updated Webhook\",\n    \"enabled\": false\n  }'"
           }
         }
       },
@@ -2267,7 +2267,7 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X DELETE \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X DELETE \\\n  '{{baseUrl}}/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           }
         }
       }
@@ -2330,7 +2330,7 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X PATCH \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/toggle' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X PATCH \\\n  '{{baseUrl}}/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/toggle' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
           }
         }
       }
@@ -2361,6 +2361,27 @@
             "description": "Webhook UUID"
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["url"],
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "The webhook URL to test"
+                  }
+          }
+        },
+        "example": {
+                "url": "https://example.com/webhook"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Webhook test sent successfully",
@@ -2401,7 +2422,7 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X POST \\\n  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/test' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'"
+            "source": "curl -X POST \\\n  '{{baseUrl}}/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/test' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"url\": \"https://example.com/webhook\"\n  }'"
           }
         }
       }
