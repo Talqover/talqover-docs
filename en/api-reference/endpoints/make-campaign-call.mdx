@@ -78,6 +78,14 @@ POST /api/v1/campaigns/{campaign_id}/call
   Phone number to call in E.164 format (e.g., "+1234567890").
 </ParamField>
 
+<ParamField body="payload" type="object" required={false}>
+  Replacement variables for the campaign agent prompt. Use this to personalize the conversation with dynamic data. Keys should match placeholders in your agent's prompt.
+</ParamField>
+
+<ParamField body="context" type="object" required={false}>
+  Custom data to be sent back to your client via webhooks. This data is not used in the conversation but will be included in all webhook events related to this call, allowing you to track and associate calls with your internal records.
+</ParamField>
+
 <ParamField body="is_testing" type="boolean" required={false}>
   Whether this is a test call (default: false).
 </ParamField>
@@ -151,26 +159,45 @@ console.log(result);
 <RequestExample>
 
 ```bash
-# Request 3: Make campaign call with specific campaign ID
-curl -X POST "https://talqover.app/api/v1/campaigns/550e8400-e29b-41d4-a716-446655440000/call" \
+# Request 3: Make campaign call with payload and context
+curl -X POST "https://talqover.app/api/v1/campaigns/campaign-uuid-1/call" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
-    "to": "+1987654321"
+    "to": "+1987654321",
+    "payload": {
+      "customer_name": "John Doe",
+      "order_id": "12345",
+      "product_name": "Premium Plan"
+    },
+    "context": {
+      "user_id": "user_123",
+      "source": "web_app",
+      "campaign_batch": "2024_Q1"
+    }
   }'
 ```
 
 ```javascript
-// Request 3: Make campaign call with specific campaign ID
-const campaignId = '550e8400-e29b-41d4-a716-446655440000';
-const response = await fetch(`https://talqover.app/api/v1/campaigns/${campaignId}/call`, {
+// Request 3: Make campaign call with payload and context
+const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1/call', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    to: '+1987654321'
+    to: '+1987654321',
+    payload: {
+      customer_name: 'John Doe',
+      order_id: '12345',
+      product_name: 'Premium Plan'
+    },
+    context: {
+      user_id: 'user_123',
+      source: 'web_app',
+      campaign_batch: '2024_Q1'
+    }
   })
 });
 

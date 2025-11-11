@@ -50,14 +50,26 @@ POST /api/v1/campaigns/{campaign_id}/call
   O número de telefone para chamar. Deve estar no formato internacional (ex: +1234567890).
 </ParamField>
 
+<ParamField body="payload" type="object" required={false}>
+  Variáveis de substituição para o prompt do agente. Use isso para personalizar a conversa com dados dinâmicos. As chaves devem corresponder aos placeholders no prompt do seu agente.
+</ParamField>
+
+<ParamField body="context" type="object" required={false}>
+  Dados personalizados a serem enviados de volta ao seu cliente via webhooks. Esses dados não são usados na conversa, mas serão incluídos em todos os eventos de webhook relacionados a esta chamada, permitindo que você rastreie e associe chamadas com seus registros internos.
+</ParamField>
+
 ### Para Chamadas de Campanha
 
 <ParamField body="to" type="string" required>
   O número de telefone para chamar. Deve estar no formato internacional (ex: +1234567890).
 </ParamField>
 
-<ParamField body="payload" type="object" required>
-  Dados personalizados para passar para a campanha. Esses dados estarão disponíveis durante a chamada para personalização.
+<ParamField body="payload" type="object" required={false}>
+  Variáveis de substituição para o prompt do agente da campanha. Use isso para personalizar a conversa com dados dinâmicos. As chaves devem corresponder aos placeholders no prompt do seu agente.
+</ParamField>
+
+<ParamField body="context" type="object" required={false}>
+  Dados personalizados a serem enviados de volta ao seu cliente via webhooks. Esses dados não são usados na conversa, mas serão incluídos em todos os eventos de webhook relacionados a esta chamada, permitindo que você rastreie e associe chamadas com seus registros internos.
 </ParamField>
 
 ## Exemplos de Requisições
@@ -71,7 +83,15 @@ curl -X POST "https://talqover.app/api/v1/agents/agent_123456/call" \
   -H "Authorization: Bearer talq_seu_token_de_ambiente_aqui" \
   -H "Content-Type: application/json" \
   -d '{
-    "to": "+1234567890"
+    "to": "+1234567890",
+    "payload": {
+      "customer_name": "João Silva",
+      "account_id": "ACC123"
+    },
+    "context": {
+      "user_id": "user_123",
+      "source": "web_app"
+    }
   }'
 ```
 
@@ -83,7 +103,15 @@ const response = await fetch('https://talqover.app/api/v1/agents/agent_123456/ca
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    to: '+1234567890'
+    to: '+1234567890',
+    payload: {
+      customer_name: 'João Silva',
+      account_id: 'ACC123'
+    },
+    context: {
+      user_id: 'user_123',
+      source: 'web_app'
+    }
   })
 });
 
@@ -102,6 +130,10 @@ curl -X POST "https://talqover.app/api/v1/campaigns/campaign_789012/call" \
     "payload": {
       "customer_name": "João Silva",
       "customer_id": "12345"
+    },
+    "context": {
+      "user_id": "user_123",
+      "source": "web_app"
     }
   }'
 ```
@@ -118,6 +150,10 @@ const response = await fetch('https://talqover.app/api/v1/campaigns/campaign_789
     payload: {
       customer_name: 'João Silva',
       customer_id: '12345'
+    },
+    context: {
+      user_id: 'user_123',
+      source: 'web_app'
     }
   })
 });
@@ -136,7 +172,15 @@ headers = {
     "Content-Type": "application/json"
 }
 data = {
-    "to": "+1234567890"
+    "to": "+1234567890",
+    "payload": {
+        "customer_name": "João Silva",
+        "account_id": "ACC123"
+    },
+    "context": {
+        "user_id": "user_123",
+        "source": "web_app"
+    }
 }
 
 response = requests.post(url, headers=headers, json=data)
@@ -150,6 +194,10 @@ data = {
     "payload": {
         "customer_name": "João Silva",
         "customer_id": "12345"
+    },
+    "context": {
+        "user_id": "user_123",
+        "source": "web_app"
     }
 }
 
@@ -167,7 +215,15 @@ $headers = [
     'Content-Type: application/json'
 ];
 $data = [
-    'to' => '+1234567890'
+    'to' => '+1234567890',
+    'payload' => [
+        'customer_name' => 'João Silva',
+        'account_id' => 'ACC123'
+    ],
+    'context' => [
+        'user_id' => 'user_123',
+        'source' => 'web_app'
+    ]
 ];
 
 $ch = curl_init();
@@ -190,6 +246,10 @@ $data = [
     'payload' => [
         'customer_name' => 'João Silva',
         'customer_id' => '12345'
+    ],
+    'context' => [
+        'user_id' => 'user_123',
+        'source' => 'web_app'
     ]
 ];
 

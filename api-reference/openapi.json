@@ -1480,7 +1480,11 @@
                   },
                   "payload": {
                     "type": "object",
-                    "description": "Custom data to pass to the campaign"
+                    "description": "Replacement variables for the campaign agent prompt"
+                  },
+                  "context": {
+                    "type": "object",
+                    "description": "Custom data to be sent back to client via webhooks"
                   }
                 }
               },
@@ -1489,6 +1493,10 @@
                 "payload": {
                   "customer_name": "John Doe",
                   "order_id": "12345"
+                },
+                "context": {
+                  "user_id": "user_123",
+                  "source": "web_app"
                 }
               }
             }
@@ -1512,15 +1520,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X POST \\\n  '{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"to\": \"+1234567890\",\n    \"payload\": {\n      \"customer_name\": \"John Doe\",\n      \"order_id\": \"12345\"\n    }\n  }'"
+            "source": "curl -X POST \\\n  '{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"to\": \"+1234567890\",\n    \"payload\": {\n      \"customer_name\": \"John Doe\",\n      \"order_id\": \"12345\"\n    },\n    \"context\": {\n      \"user_id\": \"user_123\",\n      \"source\": \"web_app\"\n    }\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890',\n        'payload' => [\n            'customer_name' => 'John Doe',\n            'order_id' => '12345'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890',\n        'payload' => [\n            'customer_name' => 'John Doe',\n            'order_id' => '12345'\n        ],\n        'context' => [\n            'user_id' => 'user_123',\n            'source' => 'web_app'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.post('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890',\n  payload: {\n    customer_name: 'John Doe',\n    order_id: '12345'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('{{baseUrl}}/campaigns/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890',\n  payload: {\n    customer_name: 'John Doe',\n    order_id: '12345'\n  },\n  context: {\n    user_id: 'user_123',\n    source: 'web_app'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
@@ -1558,7 +1566,11 @@
                       },
                       "payload": {
                         "type": "object",
-                        "description": "Custom data to pass to the call"
+                        "description": "Replacement variables for the agent prompt"
+                      },
+                      "context": {
+                        "type": "object",
+                        "description": "Custom data to be sent back to client via webhooks"
                       }
                     }
                   },
@@ -1583,8 +1595,12 @@
                         "description": "Call direction. Typically \"outbound\" for outgoing calls."
                       },
                       "payload": {
-                        "type": "array",
-                        "description": "Custom data to pass to the call. This data will be available during the call for personalization."
+                        "type": "object",
+                        "description": "Replacement variables for the agent prompt."
+                      },
+                      "context": {
+                        "type": "object",
+                        "description": "Custom data to be sent back to client via webhooks"
                       }
                     }
                   }
@@ -1599,6 +1615,10 @@
                     "payload": {
                       "customer_name": "John Doe",
                       "account_id": "ACC123"
+                    },
+                    "context": {
+                      "user_id": "user_123",
+                      "source": "web_app"
                     }
                   }
                 },
@@ -1610,12 +1630,14 @@
                     "from": "+1234567890",
                     "to": "+0987654321",
                     "direction": "outbound",
-                    "payload": [
-                      "customer_name",
-                      "John Doe",
-                      "account_id",
-                      "ACC123"
-                    ]
+                    "payload": {
+                      "customer_name": "John Doe",
+                      "account_id": "ACC123"
+                    },
+                    "context": {
+                      "user_id": "user_123",
+                      "source": "web_app"
+                    }
                   }
                 }
               }
@@ -1682,15 +1704,15 @@
         "x-code-samples": {
           "curl": {
             "lang": "curl",
-            "source": "curl -X POST \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"sid\": \"EX123456789\",\n    \"from\": \"+1234567890\",\n    \"to\": \"+0987654321\",\n    \"direction\": \"outbound\",\n    \"payload\": [\n      \"customer_name\",\n      \"John Doe\",\n      \"account_id\",\n      \"ACC123\"\n    ]\n  }'"
+            "source": "curl -X POST \\\n  '{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/call' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer YOUR_TOKEN' \\\n  -d '{\n    \"sid\": \"EX123456789\",\n    \"from\": \"+1234567890\",\n    \"to\": \"+0987654321\",\n    \"direction\": \"outbound\",\n    \"payload\": {\n      \"customer_name\": \"John Doe\",\n      \"account_id\": \"ACC123\"\n    },\n    \"context\": {\n      \"user_id\": \"user_123\",\n      \"source\": \"web_app\"\n    }\n  }'"
           },
           "php": {
             "lang": "php",
-            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890',\n        'payload' => [\n            'customer_name' => 'John Doe'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
+            "source": "<?php\n\n$client = new \\GuzzleHttp\\Client();\n$response = $client->post('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/call', [\n    'headers' => [\n        'Authorization' => 'Bearer YOUR_TOKEN',\n        'Content-Type' => 'application/json',\n    ],\n    'json' => [\n        'to' => '+1234567890',\n        'payload' => [\n            'customer_name' => 'John Doe'\n        ],\n        'context' => [\n            'user_id' => 'user_123',\n            'source' => 'web_app'\n        ]\n    ],\n]);\n$data = json_decode($response->getBody());"
           },
           "nodejs": {
             "lang": "javascript",
-            "source": "const axios = require('axios');\n\nconst response = await axios.post('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890',\n  payload: {\n    customer_name: 'John Doe'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
+            "source": "const axios = require('axios');\n\nconst response = await axios.post('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890',\n  payload: {\n    customer_name: 'John Doe'\n  },\n  context: {\n    user_id: 'user_123',\n    source: 'web_app'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
           }
         }
       }
