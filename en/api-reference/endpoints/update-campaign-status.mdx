@@ -52,7 +52,7 @@ PATCH /api/v1/campaigns/{campaign_id}/status
 
 ```bash
 # Request 1: Activate a draft campaign
-curl -X PATCH "https://talkover.app/api/v1/campaigns/campaign-uuid-1/status" \
+curl -X PATCH "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1/status" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -62,7 +62,7 @@ curl -X PATCH "https://talkover.app/api/v1/campaigns/campaign-uuid-1/status" \
 
 ```javascript
 // Request 1: Activate a draft campaign
-const response = await fetch('https://talkover.app/api/v1/campaigns/campaign-uuid-1/status', {
+const response = await fetch('https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1/status', {
   method: 'PATCH',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -83,7 +83,7 @@ console.log(result);
 
 ```bash
 # Request 2: Pause an active campaign
-curl -X PATCH "https://talkover.app/api/v1/campaigns/campaign-uuid-1/status" \
+curl -X PATCH "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1/status" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -93,7 +93,7 @@ curl -X PATCH "https://talkover.app/api/v1/campaigns/campaign-uuid-1/status" \
 
 ```javascript
 // Request 2: Pause an active campaign
-const response = await fetch('https://talkover.app/api/v1/campaigns/campaign-uuid-1/status', {
+const response = await fetch('https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1/status', {
   method: 'PATCH',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -114,7 +114,7 @@ console.log(result);
 
 ```bash
 # Request 3: Cancel a campaign
-curl -X PATCH "https://talkover.app/api/v1/campaigns/campaign-uuid-1/status" \
+curl -X PATCH "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1/status" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -124,7 +124,7 @@ curl -X PATCH "https://talkover.app/api/v1/campaigns/campaign-uuid-1/status" \
 
 ```javascript
 // Request 3: Cancel a campaign
-const response = await fetch('https://talkover.app/api/v1/campaigns/campaign-uuid-1/status', {
+const response = await fetch('https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1/status', {
   method: 'PATCH',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',

@@ -9,7 +9,7 @@ Get started with Talkover AI Voice Agent platform in just 5 minutes. This guide 
 
 ## Prerequisites
 
-- A Talkover account (sign up at [talkover.app](https://talkover.app))
+- A Talkover account (sign up at [app.talkover.ai](https://app.talkover.ai))
 - A phone number for testing
 - Basic knowledge of HTTP requests
 
@@ -19,7 +19,7 @@ Your environment token is your API key for authenticating requests to the Talkov
 
 ### How to Get Your Token:
 
-1. **Log in to your Talkover dashboard** at [talkover.app](https://talkover.app)
+1. **Log in to your Talkover dashboard** at [app.talkover.ai](https://app.talkover.ai)
 2. **Navigate to Account** → **Environments**
 3. **Copy your Environment Token** from the list (it starts with `talq_`)
 
@@ -67,7 +67,7 @@ POST /api/v1/campaigns/{campaign_id}/call
 
 #### Agent Call
 ```bash
-curl -X POST "https://talkover.app/api/v1/agents/agent_123456/call" \
+curl -X POST "https://app.talkover.ai/api/v1/agents/agent_123456/call" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -77,7 +77,7 @@ curl -X POST "https://talkover.app/api/v1/agents/agent_123456/call" \
 
 #### Campaign Call
 ```bash
-curl -X POST "https://talkover.app/api/v1/campaigns/campaign_789012/call" \
+curl -X POST "https://app.talkover.ai/api/v1/campaigns/campaign_789012/call" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{

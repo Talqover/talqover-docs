@@ -60,13 +60,13 @@ GET /api/v1/calls
 
 ```bash
 # Requisição 1: Obter todas as chamadas
-curl -X GET "https://talkover.app/api/v1/calls" \
+curl -X GET "https://app.talkover.ai/api/v1/calls" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 1: Obter todas as chamadas
-const response = await fetch('https://talkover.app/api/v1/calls', {
+const response = await fetch('https://app.talkover.ai/api/v1/calls', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -83,13 +83,13 @@ console.log(result);
 
 ```bash
 # Requisição 2: Filtrar por chamadas completadas
-curl -X GET "https://talkover.app/api/v1/calls?status=completed&direction=outbound&per_page=50" \
+curl -X GET "https://app.talkover.ai/api/v1/calls?status=completed&direction=outbound&per_page=50" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 2: Filtrar por chamadas completadas
-const response = await fetch('https://talkover.app/api/v1/calls?status=completed&direction=outbound&per_page=50', {
+const response = await fetch('https://app.talkover.ai/api/v1/calls?status=completed&direction=outbound&per_page=50', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -106,13 +106,13 @@ console.log(result);
 
 ```bash
 # Requisição 3: Filtrar por período específico
-curl -X GET "https://talkover.app/api/v1/calls?date_from=2024-01-01&date_to=2024-01-31&agent_id=agent-uuid-1" \
+curl -X GET "https://app.talkover.ai/api/v1/calls?date_from=2024-01-01&date_to=2024-01-31&agent_id=agent-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 3: Filtrar por período específico
-const response = await fetch('https://talkover.app/api/v1/calls?date_from=2024-01-01&date_to=2024-01-31&agent_id=agent-uuid-1', {
+const response = await fetch('https://app.talkover.ai/api/v1/calls?date_from=2024-01-01&date_to=2024-01-31&agent_id=agent-uuid-1', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

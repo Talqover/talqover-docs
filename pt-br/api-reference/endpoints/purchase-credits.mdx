@@ -1,15 +1,15 @@
 ---
-title: "Purchase Credits"
-description: "Purchase credits to top up your account balance"
+title: "Comprar Créditos"
+description: "Comprar créditos para recarregar o saldo da sua conta"
 api: "POST /api/v1/credits/purchase"
 ---
 
-# Purchase Credits
+# Comprar Créditos
 
-Purchase credits to top up your account balance. The transaction is charged to the saved payment method.
+Compra créditos para recarregar o saldo da sua conta. A transação é cobrada do método de pagamento salvo.
 
 <Info>
-  This endpoint is part of the **Account API** and is authenticated with a user session token.
+  Este endpoint faz parte da **API de Conta** e é autenticado com um token de sessão de usuário.
 </Info>
 
 ## Endpoint
@@ -18,32 +18,32 @@ Purchase credits to top up your account balance. The transaction is charged to t
 POST /api/v1/credits/purchase
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  User session token. Format: `Bearer <user_session_token>`.
+  Token de sessão do usuário. Formato: `Bearer <user_session_token>`.
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="amount" type="number" required>
-  Credit amount to purchase, in account currency. Must be greater than `0`.
+  Valor de créditos a comprar, na moeda da conta. Deve ser maior que `0`.
 </ParamField>
 
 <ParamField body="payment_method_id" type="string">
-  Optional payment method ID. If omitted, the default payment method is charged.
+  ID do método de pagamento opcional. Se omitido, o método de pagamento padrão é cobrado.
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/credits/purchase" \
+curl -X POST "https://app.talkover.ai/api/v1/credits/purchase" \
   -H "Authorization: Bearer your_user_session_token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -54,7 +54,7 @@ curl -X POST "https://talkover.app/api/v1/credits/purchase" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -72,9 +72,9 @@ curl -X POST "https://talkover.app/api/v1/credits/purchase" \
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 402 — Payment Failed
+### 402 — Pagamento Recusado
 
 <ResponseExample>
 
@@ -88,6 +88,6 @@ curl -X POST "https://talkover.app/api/v1/credits/purchase" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- For automated, recurring top-ups, use [Auto Topup](/api-reference/endpoints/get-auto-topup-settings) with an environment token instead.
+- Para recargas automatizadas e recorrentes, use [Recarga Automática](/api-reference/endpoints/get-auto-topup-settings) com um token de ambiente.

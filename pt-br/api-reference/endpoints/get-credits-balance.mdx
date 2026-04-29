@@ -1,15 +1,15 @@
 ---
-title: "Get Credits Balance"
-description: "Retrieve the current account credit balance"
+title: "Obter Saldo de Créditos"
+description: "Recuperar o saldo atual de créditos da conta"
 api: "GET /api/v1/credits/balance"
 ---
 
-# Get Credits Balance
+# Obter Saldo de Créditos
 
-Retrieve the current credit balance for the account.
+Recupera o saldo atual de créditos da conta.
 
 <Info>
-  This endpoint is part of the **Account API** and is authenticated with a user session token.
+  Este endpoint faz parte da **API de Conta** e é autenticado com um token de sessão de usuário.
 </Info>
 
 ## Endpoint
@@ -18,24 +18,24 @@ Retrieve the current credit balance for the account.
 GET /api/v1/credits/balance
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  User session token. Format: `Bearer <user_session_token>`.
+  Token de sessão do usuário. Formato: `Bearer <user_session_token>`.
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/credits/balance" \
+curl "https://app.talkover.ai/api/v1/credits/balance" \
   -H "Authorization: Bearer your_user_session_token"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -53,7 +53,7 @@ curl "https://talkover.app/api/v1/credits/balance" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Balance updates in near real-time as calls complete and recharges process.
-- For per-agent or per-call cost detail, use [Get Agent Pricing](/api-reference/endpoints/get-agent-pricing).
+- O saldo é atualizado quase em tempo real conforme as chamadas são concluídas e as recargas processadas.
+- Para detalhes de custo por agente ou por chamada, use [Obter Precificação do Agente](/api-reference/endpoints/get-agent-pricing).

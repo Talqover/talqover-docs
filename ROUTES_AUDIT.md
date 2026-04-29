@@ -276,7 +276,7 @@
 ## ⚠️ Páginas atuais a revisar/remover
 
 - [ ] ⚠️ `make-external-call.mdx` — remover (rota não existe mais; expõe websocket interno)
-- [ ] ⚠️ `websocket-connection.mdx` — revisar se hostnames `{us|br|eu}-agent.talkover.app` devem mesmo ser públicos; se sim, remover regiões e usar host neutro
+- [ ] ⚠️ `websocket-connection.mdx` — revisar se hostnames `{us|br|eu}-agent.app.talkover.ai` devem mesmo ser públicos; se sim, remover regiões e usar host neutro
 - [ ] ⚠️ `agent-trainings.mdx` (overview) — duplica os 3 .mdx específicos; consolidar
 - [ ] ⚠️ `agent-actions.mdx` (overview) — duplica os 3 .mdx específicos; consolidar
 - [ ] ⚠️ `make-call.mdx` — documenta 2 paths num só arquivo (agent + campaign); separar
@@ -287,7 +287,7 @@
 ## 🏷️ Rebrand Talkover → Talkover
 
 - [ ] Renomear `Talkover` / `talkover` em **104 arquivos / 594 ocorrências**
-- [ ] Variantes: `talkover`, `Talkover`, `TALKOVER`, `talkover.app`, `talq_<token>` (decidir se prefixo de token também muda)
+- [ ] Variantes: `talkover`, `Talkover`, `TALKOVER`, `app.talkover.ai`, `talq_<token>` (decidir se prefixo de token também muda)
 - [ ] Diretório `pt-br/` espelhado (mesmo conteúdo, fazer rename junto)
 - [ ] Arquivos não-docs: `docs.json`, `MULTI_LANGUAGE_GUIDE.md`, `README.md`, `introduction.mdx` (raiz + locales)
 

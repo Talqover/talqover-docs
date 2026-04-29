@@ -32,13 +32,13 @@ GET /api/v1/voice-templates/{voice_template_id}/demo
 
 ```bash
 # Request 1: Generate demo for a specific voice template
-curl -X GET "https://talkover.app/api/v1/voice-templates/voice-template-uuid-1/demo" \
+curl -X GET "https://app.talkover.ai/api/v1/voice-templates/voice-template-uuid-1/demo" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 1: Generate demo for a specific voice template
-const response = await fetch('https://talkover.app/api/v1/voice-templates/voice-template-uuid-1/demo', {
+const response = await fetch('https://app.talkover.ai/api/v1/voice-templates/voice-template-uuid-1/demo', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -55,7 +55,7 @@ console.log(result);
 
 ```bash
 # Request 2: Generate demo with error handling
-curl -X GET "https://talkover.app/api/v1/voice-templates/voice-template-uuid-1/demo" \
+curl -X GET "https://app.talkover.ai/api/v1/voice-templates/voice-template-uuid-1/demo" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -w "\nHTTP Status: %{http_code}\n"
 ```
@@ -63,7 +63,7 @@ curl -X GET "https://talkover.app/api/v1/voice-templates/voice-template-uuid-1/d
 ```javascript
 // Request 2: Generate demo with error handling
 try {
-  const response = await fetch('https://talkover.app/api/v1/voice-templates/voice-template-uuid-1/demo', {
+  const response = await fetch('https://app.talkover.ai/api/v1/voice-templates/voice-template-uuid-1/demo', {
     method: 'GET',
     headers: {
       'Authorization': 'Bearer talq_your_environment_token_here'

@@ -1,12 +1,12 @@
 ---
-title: "Get Active Call by Phone"
-description: "Find the active call between an agent and a phone number"
+title: "Obter Chamada Ativa por Telefone"
+description: "Encontrar a chamada ativa entre um agente e um número de telefone"
 api: "GET /api/v1/agents/{agent_id}/active-call/{phone}"
 ---
 
-# Get Active Call by Phone
+# Obter Chamada Ativa por Telefone
 
-Find the active call (if any) between an agent and a specific phone number. Useful for de-duplication checks before placing a new call, or to look up the call ID associated with an inbound caller.
+Encontra a chamada ativa (se houver) entre um agente e um número de telefone específico. Útil para verificações de deduplicação antes de realizar uma nova chamada, ou para localizar o ID da chamada associado a um chamador de entrada.
 
 ## Endpoint
 
@@ -14,33 +14,33 @@ Find the active call (if any) between an agent and a specific phone number. Usef
 GET /api/v1/agents/{agent_id}/active-call/{phone}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente.</ParamField>
 <ParamField path="phone" type="string" required>
-  Phone number in E.164 format (e.g., `+15551234567`). URL-encode the `+` sign as `%2B`.
+  Número de telefone no formato E.164 (ex: `+15551234567`). Codifique em URL o sinal `+` como `%2B`.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/agents/agent-uuid/active-call/%2B15551234567" \
+curl "https://app.talkover.ai/api/v1/agents/agent-uuid/active-call/%2B15551234567" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
-### Active Call Found
+### Chamada Ativa Encontrada
 
 <ResponseExample>
 
@@ -62,9 +62,9 @@ curl "https://talkover.app/api/v1/agents/agent-uuid/active-call/%2B15551234567" 
 
 </ResponseExample>
 
-### No Active Call
+### Nenhuma Chamada Ativa
 
-Returns `404 Not Found`.
+Retorna `404 Not Found`.
 
 <ResponseExample>
 
@@ -77,8 +77,8 @@ Returns `404 Not Found`.
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Only calls with status `initiated`, `ringing`, or `answered` are considered active.
-- If multiple active calls exist (rare — typically only one), all are returned in the array.
-- For historical lookups, use [List Calls](/api-reference/endpoints/list-calls) with `to` filter.
+- Apenas chamadas com status `initiated`, `ringing` ou `answered` são consideradas ativas.
+- Se múltiplas chamadas ativas existirem (raro — tipicamente apenas uma), todas são retornadas no array.
+- Para buscas históricas, use [Listar Chamadas](/api-reference/endpoints/list-calls) com filtro `to`.

@@ -48,7 +48,7 @@ POST /api/v1/calendars/{calendar_id}/availability-rules
 
 ```bash
 # Janela recorrente em dias úteis
-curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/availability-rules" \
+curl -X POST "https://app.talkover.ai/api/v1/calendars/calendar-uuid-1/availability-rules" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -61,7 +61,7 @@ curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/availability
 
 ```bash
 # Exceção de feriado (bloquear 25 de dezembro)
-curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/availability-rules" \
+curl -X POST "https://app.talkover.ai/api/v1/calendars/calendar-uuid-1/availability-rules" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{ "type": "exception", "date": "2024-12-25", "available": false }'

@@ -1,12 +1,12 @@
 ---
-title: "Update Campaign"
-description: "Partially update a campaign's configuration"
+title: "Atualizar Campanha"
+description: "Atualizar parcialmente a configuração de uma campanha"
 api: "PUT /api/v1/campaigns/{campaign_id}"
 ---
 
-# Update Campaign
+# Atualizar Campanha
 
-Partially update an existing campaign. All fields are optional — only the fields you send are updated. Use [Update Campaign Status](/api-reference/endpoints/update-campaign-status) instead to change just the status (`draft → active → paused → completed`).
+Atualiza parcialmente uma campanha existente. Todos os campos são opcionais — apenas os campos que você enviar serão atualizados. Use [Atualizar Status da Campanha](/api-reference/endpoints/update-campaign-status) para alterar apenas o status (`draft → active → paused → completed`).
 
 ## Endpoint
 
@@ -14,112 +14,112 @@ Partially update an existing campaign. All fields are optional — only the fiel
 PUT /api/v1/campaigns/{campaign_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="campaign_id" type="string" required>
-  UUID of the campaign to update.
+  UUID da campanha a ser atualizada.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-All fields are optional. Send only what you want to change. Validation rules and ranges match [Create Campaign](/api-reference/endpoints/create-campaign).
+Todos os campos são opcionais. Envie apenas o que você quer alterar. As regras de validação e faixas correspondem a [Criar Campanha](/api-reference/endpoints/create-campaign).
 
-### Identification
+### Identificação
 
 <ParamField body="name" type="string">
-  Campaign name. Max 255 characters.
+  Nome da campanha. Máximo de 255 caracteres.
 </ParamField>
 
 <ParamField body="description" type="string">
-  Free-form description.
+  Descrição livre.
 </ParamField>
 
 <ParamField body="campaign_type" type="string">
-  Campaign category. Options: `sales`, `follow_up`, `reminder`, `custom`.
+  Categoria da campanha. Opções: `sales`, `follow_up`, `reminder`, `custom`.
 </ParamField>
 
 <ParamField body="agent_id" type="string">
-  UUID of the agent. Must exist in your environment.
+  UUID do agente. Deve existir em seu ambiente.
 </ParamField>
 
-### Schedule
+### Agendamento
 
 <ParamField body="start_date" type="string">
-  Format: `YYYY-MM-DD`.
+  Formato: `YYYY-MM-DD`.
 </ParamField>
 
 <ParamField body="end_date" type="string">
-  Optional end date. Must be after `start_date`. Format: `YYYY-MM-DD`. Send `null` to clear.
+  Data de término opcional. Deve ser após `start_date`. Formato: `YYYY-MM-DD`. Envie `null` para limpar.
 </ParamField>
 
 <ParamField body="days_of_week" type="array">
-  Array of weekday numbers (`1`–`7`, where `1` = Monday). Min 1 entry.
+  Array de números de dias da semana (`1`–`7`, onde `1` = Segunda-feira). Mínimo de 1 entrada.
 </ParamField>
 
 <ParamField body="call_time_ranges" type="array">
-  Time windows. Array of `{start: "HH:MM", end: "HH:MM"}` objects (24h format). Min 1 entry. Each window's `end` must be after its `start`.
+  Janelas de horário. Array de objetos `{start: "HH:MM", end: "HH:MM"}` (formato 24h). Mínimo de 1 entrada. O `end` de cada janela deve ser após seu `start`.
 </ParamField>
 
 <ParamField body="timezone" type="string">
-  IANA timezone (e.g., `America/New_York`). Max 50 characters.
+  Fuso horário IANA (ex: `America/New_York`). Máximo de 50 caracteres.
 </ParamField>
 
-### Retry & Cooldown
+### Retry e Cooldown
 
 <ParamField body="initial_call_delay" type="integer">
-  Initial delay in seconds. Range: `0`+.
+  Atraso inicial em segundos. Faixa: `0`+.
 </ParamField>
 
 <ParamField body="max_retries" type="integer">
-  Range: `0`–`10`.
+  Faixa: `0`–`10`.
 </ParamField>
 
 <ParamField body="retry_cooldown_hours" type="integer">
-  Range: `1`–`168`.
+  Faixa: `1`–`168`.
 </ParamField>
 
 <ParamField body="auto_complete" type="boolean">
-  Auto-transition to `completed` when all contacts are processed.
+  Auto-transição para `completed` quando todos os contatos forem processados.
 </ParamField>
 
 <ParamField body="retry_on_no_conversion" type="boolean">
-  Retry calls that completed without conversion.
+  Retenta chamadas que foram completadas sem conversão.
 </ParamField>
 
 <ParamField body="enable_post_completion_cooldown" type="boolean" />
 
 <ParamField body="post_completion_cooldown_hours" type="integer">
-  Range: `1`–`168`.
+  Faixa: `1`–`168`.
 </ParamField>
 
 <ParamField body="success_cooldown_hours" type="integer">
-  Range: `1`–`168`.
+  Faixa: `1`–`168`.
 </ParamField>
 
 <ParamField body="voicemail_cooldown_hours" type="integer">
-  Range: `1`–`168`.
+  Faixa: `1`–`168`.
 </ParamField>
 
 <ParamField body="no_answer_cooldown_hours" type="integer">
-  Range: `1`–`168`.
+  Faixa: `1`–`168`.
 </ParamField>
 
 <ParamField body="busy_cooldown_hours" type="integer">
-  Range: `1`–`168`.
+  Faixa: `1`–`168`.
 </ParamField>
 
 <ParamField body="failed_cooldown_hours" type="integer">
-  Range: `1`–`168`.
+  Faixa: `1`–`168`.
 </ParamField>
 
 ### Do-Not-Call (DNC)
@@ -127,11 +127,11 @@ All fields are optional. Send only what you want to change. Validation rules and
 <ParamField body="do_not_call_enabled" type="boolean" />
 
 <ParamField body="do_not_call_list_source" type="string">
-  Options: `environment`, `global`, `custom`.
+  Opções: `environment`, `global`, `custom`.
 </ParamField>
 
 <ParamField body="do_not_call_custom_list" type="array">
-  Array of phone numbers (E.164). Used when `do_not_call_list_source` is `custom`.
+  Array de números de telefone (E.164). Usado quando `do_not_call_list_source` é `custom`.
 </ParamField>
 
 <ParamField body="auto_add_to_dnc_enabled" type="boolean" />
@@ -140,13 +140,13 @@ All fields are optional. Send only what you want to change. Validation rules and
 
 <ParamField body="auto_dnc_trigger_errors" type="array" />
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
 # Update only the call windows + timezone
-curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid-1" \
+curl -X PUT "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -159,7 +159,7 @@ curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid-1" \
 ```
 
 ```javascript
-const response = await fetch('https://talkover.app/api/v1/campaigns/campaign-uuid-1', {
+const response = await fetch('https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1', {
   method: 'PUT',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -180,7 +180,7 @@ const result = await response.json();
 ```python
 import requests
 
-url = "https://talkover.app/api/v1/campaigns/campaign-uuid-1"
+url = "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1"
 headers = {
     "Authorization": "Bearer talq_your_environment_token_here",
     "Content-Type": "application/json"
@@ -203,7 +203,7 @@ result = response.json()
 
 ```bash
 # Switch to custom DNC list and tighten retry policy
-curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid-1" \
+curl -X PUT "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -220,9 +220,9 @@ curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid-1" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
-### Success Response (200 OK)
+### Resposta de Sucesso (200 OK)
 
 <ResponseExample>
 
@@ -253,9 +253,9 @@ curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid-1" \
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 422 Validation Error
+### 422 Erro de Validação
 
 <ResponseExample>
 
@@ -273,7 +273,7 @@ curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid-1" \
 
 </ResponseExample>
 
-### 404 Not Found
+### 404 Não Encontrada
 
 <ResponseExample>
 
@@ -286,7 +286,7 @@ curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid-1" \
 
 </ResponseExample>
 
-### 409 Conflict — Active Calls
+### 409 Conflict — Chamadas Ativas
 
 <ResponseExample>
 
@@ -300,15 +300,15 @@ curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid-1" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Use `PATCH /v1/campaigns/{id}/status` to change status — it's a separate endpoint with its own validation.
-- Updating `call_time_ranges` or `timezone` while the campaign is `active` may delay queued calls until they fall back into the new windows.
-- Sending `"end_date": null` clears a previously set end date.
+- Use `PATCH /v1/campaigns/{id}/status` para alterar o status — é um endpoint separado com sua própria validação.
+- Atualizar `call_time_ranges` ou `timezone` enquanto a campanha está `active` pode atrasar chamadas enfileiradas até que elas voltem a se encaixar nas novas janelas.
+- Enviar `"end_date": null` limpa uma data de término previamente definida.
 
-## Related Endpoints
+## Endpoints Relacionados
 
-- [Get Campaign](/api-reference/endpoints/get-campaign)
-- [Update Campaign Status](/api-reference/endpoints/update-campaign-status)
-- [Delete Campaign](/api-reference/endpoints/delete-campaign)
-- [List Campaigns](/api-reference/endpoints/list-campaigns)
+- [Obter Campanha](/api-reference/endpoints/get-campaign)
+- [Atualizar Status da Campanha](/api-reference/endpoints/update-campaign-status)
+- [Excluir Campanha](/api-reference/endpoints/delete-campaign)
+- [Listar Campanhas](/api-reference/endpoints/list-campaigns)

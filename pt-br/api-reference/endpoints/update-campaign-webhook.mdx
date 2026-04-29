@@ -1,12 +1,12 @@
 ---
-title: "Update Campaign Webhook"
-description: "Partially update a campaign webhook"
+title: "Atualizar Webhook da Campanha"
+description: "Atualizar parcialmente um webhook de campanha"
 api: "PUT /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}"
 ---
 
-# Update Campaign Webhook
+# Atualizar Webhook da Campanha
 
-Partially update a campaign webhook. All fields are optional — only fields you send are updated. Field semantics match [Create Campaign Webhook](/api-reference/endpoints/create-campaign-webhook).
+Atualiza parcialmente um webhook de campanha. Todos os campos são opcionais — apenas os campos enviados serão atualizados. A semântica dos campos corresponde a [Criar Webhook da Campanha](/api-reference/endpoints/create-campaign-webhook).
 
 ## Endpoint
 
@@ -14,27 +14,27 @@ Partially update a campaign webhook. All fields are optional — only fields you
 PUT /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
-<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
+<ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1" \
+curl -X PUT "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -45,7 +45,7 @@ curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhoo
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

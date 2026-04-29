@@ -31,12 +31,12 @@ POST /api/v1/agents/{agent_id}/unpublish
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/unpublish" \
+curl -X POST "https://app.talkover.ai/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/unpublish" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
-const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/unpublish', {
+const response = await fetch('https://app.talkover.ai/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/unpublish', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -49,7 +49,7 @@ const result = await response.json();
 ```python
 import requests
 
-url = "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/unpublish"
+url = "https://app.talkover.ai/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/unpublish"
 headers = {"Authorization": "Bearer talq_your_environment_token_here"}
 
 response = requests.post(url, headers=headers)

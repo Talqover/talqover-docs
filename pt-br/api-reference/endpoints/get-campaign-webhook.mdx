@@ -1,12 +1,12 @@
 ---
-title: "Get Campaign Webhook"
-description: "Retrieve a campaign webhook by ID"
+title: "Obter Webhook da Campanha"
+description: "Recuperar um webhook de campanha pelo ID"
 api: "GET /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}"
 ---
 
-# Get Campaign Webhook
+# Obter Webhook da Campanha
 
-Retrieve a campaign webhook configuration.
+Recupera a configuração de um webhook de campanha.
 
 ## Endpoint
 
@@ -14,29 +14,29 @@ Retrieve a campaign webhook configuration.
 GET /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
-<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
+<ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1" \
+curl "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

@@ -41,7 +41,7 @@ POST /api/v1/phone-numbers/{phone_number_id}/request-release
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-release" \
+curl -X POST "https://app.talkover.ai/api/v1/phone-numbers/phone-uuid-1/request-release" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -50,7 +50,7 @@ curl -X POST "https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-rel
 ```
 
 ```javascript
-await fetch('https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-release', {
+await fetch('https://app.talkover.ai/api/v1/phone-numbers/phone-uuid-1/request-release', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',

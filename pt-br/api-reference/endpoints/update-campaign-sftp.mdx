@@ -1,12 +1,12 @@
 ---
-title: "Update Campaign SFTP Config"
-description: "Update a campaign's SFTP configuration"
+title: "Atualizar Configuração SFTP da Campanha"
+description: "Atualizar a configuração SFTP de uma campanha"
 api: "PUT /api/v1/campaigns/{campaign_id}/sftp"
 ---
 
-# Update Campaign SFTP Config
+# Atualizar Configuração SFTP da Campanha
 
-Update a campaign's SFTP configuration. Enabling (`is_enabled: true`) requires a successful test connection on file — otherwise the request fails with 422.
+Atualiza a configuração SFTP de uma campanha. Habilitar (`is_enabled: true`) requer um teste de conexão bem-sucedido registrado — caso contrário, a requisição falha com 422.
 
 ## Endpoint
 
@@ -14,34 +14,34 @@ Update a campaign's SFTP configuration. Enabling (`is_enabled: true`) requires a
 PUT /api/v1/campaigns/{campaign_id}/sftp
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-Same fields as [Create Campaign SFTP Config](/api-reference/endpoints/create-campaign-sftp), all optional, plus:
+Mesmos campos que [Criar Configuração SFTP da Campanha](/api-reference/endpoints/create-campaign-sftp), todos opcionais, mais:
 
 <ParamField body="is_enabled" type="boolean">
-  Toggle integration. Setting to `true` requires a successful test result.
+  Alterna a integração. Definir como `true` requer um resultado de teste bem-sucedido.
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp" \
+curl -X PUT "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/sftp" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -52,7 +52,7 @@ curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -70,9 +70,9 @@ curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp" \
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 422 — Cannot Enable
+### 422 — Não é Possível Habilitar
 
 <ResponseExample>
 

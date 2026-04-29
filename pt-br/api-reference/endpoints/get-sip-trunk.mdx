@@ -1,12 +1,12 @@
 ---
-title: "Get SIP Trunk"
-description: "Retrieve a SIP trunk by ID"
+title: "Obter SIP Trunk"
+description: "Recuperar um SIP Trunk pelo ID"
 api: "GET /api/v1/sip-trunks/{trunk_id}"
 ---
 
-# Get SIP Trunk
+# Obter SIP Trunk
 
-Retrieve full configuration and status for a SIP trunk.
+Recupera a configuração e status completos de um SIP Trunk.
 
 ## Endpoint
 
@@ -14,28 +14,28 @@ Retrieve full configuration and status for a SIP trunk.
 GET /api/v1/sip-trunks/{trunk_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+<ParamField path="trunk_id" type="string" required>UUID do SIP Trunk.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1" \
+curl "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -64,7 +64,7 @@ curl "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- The `password` field is write-only and never returned.
-- Use [Get SIP Trunk Health](/api-reference/endpoints/get-sip-trunk-health) for the latest live health check.
+- O campo `password` é write-only e nunca é retornado.
+- Use [Obter Saúde do SIP Trunk](/api-reference/endpoints/get-sip-trunk-health) para a verificação de saúde mais recente em tempo real.

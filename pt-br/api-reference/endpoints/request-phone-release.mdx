@@ -1,12 +1,12 @@
 ---
-title: "Request Phone Number Release"
-description: "Submit a request to release a phone number from your environment"
+title: "Solicitar Liberação de Número de Telefone"
+description: "Enviar uma solicitação para liberar um número de telefone do seu ambiente"
 api: "POST /api/v1/phone-numbers/{phone_number_id}/request-release"
 ---
 
-# Request Phone Number Release
+# Solicitar Liberação de Número de Telefone
 
-Submit a release request for a phone number you no longer need. The request enters `pending` status and is reviewed before the number is actually released.
+Envia uma solicitação de liberação para um número de telefone que você não precisa mais. A solicitação entra com status `pending` e é analisada antes que o número seja efetivamente liberado.
 
 ## Endpoint
 
@@ -14,34 +14,34 @@ Submit a release request for a phone number you no longer need. The request ente
 POST /api/v1/phone-numbers/{phone_number_id}/request-release
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="phone_number_id" type="string" required>
-  UUID of the phone number to release.
+  UUID do número de telefone a ser liberado.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="reason" type="string" required>
-  Reason for the release. Length: 10–500 characters. Helps support staff review the request faster.
+  Motivo da liberação. Tamanho: 10–500 caracteres. Ajuda a equipe de suporte a analisar a solicitação mais rapidamente.
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-release" \
+curl -X POST "https://app.talkover.ai/api/v1/phone-numbers/phone-uuid-1/request-release" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -50,7 +50,7 @@ curl -X POST "https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-rel
 ```
 
 ```javascript
-await fetch('https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-release', {
+await fetch('https://app.talkover.ai/api/v1/phone-numbers/phone-uuid-1/request-release', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -64,9 +64,9 @@ await fetch('https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-rele
 
 </RequestExample>
 
-## Response
+## Resposta
 
-### Success Response (201 Created)
+### Resposta de Sucesso (201 Created)
 
 <ResponseExample>
 
@@ -86,9 +86,9 @@ await fetch('https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-rele
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 409 — Already Pending
+### 409 — Já Pendente
 
 <ResponseExample>
 
@@ -102,7 +102,7 @@ await fetch('https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-rele
 
 </ResponseExample>
 
-### 422 — Number In Use
+### 422 — Número em Uso
 
 <ResponseExample>
 
@@ -116,8 +116,8 @@ await fetch('https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-rele
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Detach the number from any agents (via [Update Agent Calling](/api-reference/endpoints/update-agent-calling)) before requesting release.
-- A pending request can be cancelled with [Cancel Release Request](/api-reference/endpoints/cancel-release-request).
-- Once approved, the number is released and **cannot be recovered**.
+- Desvincule o número de quaisquer agentes (via [Atualizar Chamadas do Agente](/api-reference/endpoints/update-agent-calling)) antes de solicitar a liberação.
+- Uma solicitação pendente pode ser cancelada com [Cancelar Solicitação de Liberação](/api-reference/endpoints/cancel-release-request).
+- Uma vez aprovada, o número é liberado e **não pode ser recuperado**.

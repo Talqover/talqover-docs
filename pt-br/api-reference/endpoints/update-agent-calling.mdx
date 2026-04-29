@@ -46,7 +46,7 @@ PUT /api/v1/agents/{agent_id}/calling
 
 ```bash
 # Outbound with multiple phone numbers
-curl -X PUT "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/calling" \
+curl -X PUT "https://app.talkover.ai/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/calling" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -56,7 +56,7 @@ curl -X PUT "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-44665544
 ```
 
 ```javascript
-const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/calling', {
+const response = await fetch('https://app.talkover.ai/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/calling', {
   method: 'PUT',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -74,7 +74,7 @@ const result = await response.json();
 ```python
 import requests
 
-url = "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/calling"
+url = "https://app.talkover.ai/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/calling"
 headers = {
     "Authorization": "Bearer talq_your_environment_token_here",
     "Content-Type": "application/json"

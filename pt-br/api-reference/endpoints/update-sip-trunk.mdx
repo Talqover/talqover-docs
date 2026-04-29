@@ -1,12 +1,12 @@
 ---
-title: "Update SIP Trunk"
-description: "Update a SIP trunk's configuration"
+title: "Atualizar SIP Trunk"
+description: "Atualizar a configuração de um SIP Trunk"
 api: "PUT /api/v1/sip-trunks/{trunk_id}"
 ---
 
-# Update SIP Trunk
+# Atualizar SIP Trunk
 
-Update a SIP trunk's configuration. All fields are optional — only fields you send are updated. Changes that affect connectivity (domain, transport, credentials) automatically reset `is_verified` to `false`.
+Atualiza a configuração de um SIP Trunk. Todos os campos são opcionais — apenas os campos enviados são atualizados. Alterações que afetem a conectividade (domínio, transporte, credenciais) automaticamente redefinem `is_verified` para `false`.
 
 ## Endpoint
 
@@ -14,30 +14,30 @@ Update a SIP trunk's configuration. All fields are optional — only fields you 
 PUT /api/v1/sip-trunks/{trunk_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+<ParamField path="trunk_id" type="string" required>UUID do SIP Trunk.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-Same fields as [Create SIP Trunk](/api-reference/endpoints/create-sip-trunk), all optional.
+Mesmos campos de [Criar SIP Trunk](/api-reference/endpoints/create-sip-trunk), todos opcionais.
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X PUT "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1" \
+curl -X PUT "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -48,7 +48,7 @@ curl -X PUT "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -67,6 +67,6 @@ curl -X PUT "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- After updating credentials/domain/transport, re-run [Verify SIP Trunk](/api-reference/endpoints/verify-sip-trunk) before reactivating.
+- Após atualizar credenciais/domínio/transporte, execute novamente [Verificar SIP Trunk](/api-reference/endpoints/verify-sip-trunk) antes de reativar.

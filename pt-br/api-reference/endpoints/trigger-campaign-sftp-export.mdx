@@ -1,12 +1,12 @@
 ---
-title: "Trigger SFTP Export"
-description: "Manually trigger an SFTP export of call results"
+title: "Acionar Exportação SFTP"
+description: "Acionar manualmente uma exportação SFTP de resultados de chamadas"
 api: "POST /api/v1/campaigns/{campaign_id}/sftp/trigger-export"
 ---
 
-# Trigger SFTP Export
+# Acionar Exportação SFTP
 
-Export selected campaign result files to the configured `export_path` on the SFTP server.
+Exporta arquivos de resultado de campanha selecionados para o `export_path` configurado no servidor SFTP.
 
 ## Endpoint
 
@@ -14,27 +14,27 @@ Export selected campaign result files to the configured `export_path` on the SFT
 POST /api/v1/campaigns/{campaign_id}/sftp/trigger-export
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="file_data_ids" type="array" required>
-  Array of file UUIDs to export. Use [Get Campaign](/api-reference/endpoints/get-campaign) to retrieve available `campaign_files`.
+  Array de UUIDs de arquivos a exportar. Use [Obter Campanha](/api-reference/endpoints/get-campaign) para recuperar os `campaign_files` disponíveis.
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -49,7 +49,7 @@ curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/trigger-e
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -66,9 +66,9 @@ curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/trigger-e
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 409 — Already Running
+### 409 — Já em Execução
 
 <ResponseExample>
 

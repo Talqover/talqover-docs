@@ -581,7 +581,7 @@
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://talkover.app"
+      "href": "https://app.talkover.ai"
     }
   },
   "footer": {
@@ -590,7 +590,7 @@
     }
   },
   "api": {
-    "baseUrl": "https://talkover.app/api/v1",
+    "baseUrl": "https://app.talkover.ai/api/v1",
     "auth": {
       "method": "bearer"
     }

@@ -1,74 +1,74 @@
 ---
-title: "Update Webhook"
+title: "Atualizar Webhook"
 api: "PUT /api/v1/agents/{agent_id}/webhooks/{webhook_id}"
-description: "Update an existing webhook configuration"
+description: "Atualizar uma configuração de webhook existente"
 ---
 
-## Overview
+## Visão Geral
 
-Updates an existing webhook configuration. All fields are optional - only provided fields will be updated.
+Atualiza uma configuração de webhook existente. Todos os campos são opcionais — apenas os campos fornecidos serão atualizados.
 
 ## Endpoint
 
 <ParamField path="agent_id" type="string" required>
-  Agent UUID
+  UUID do agente
 </ParamField>
 
 <ParamField path="webhook_id" type="string" required>
-  Webhook UUID
+  UUID do webhook
 </ParamField>
 
-## Request
+## Requisição
 
 <RequestField name="name" type="string">
-  Human-readable name for the webhook (max 255 characters)
+  Nome legível para o webhook (máximo de 255 caracteres)
 </RequestField>
 
 <RequestField name="webhook_url" type="string">
-  URL where webhook events will be sent (max 500 characters, must be valid URL)
+  URL para onde os eventos do webhook serão enviados (máximo de 500 caracteres, deve ser uma URL válida)
 </RequestField>
 
 <RequestField name="webhook_secret" type="string">
-  Optional secret for HMAC-SHA256 signature verification (max 255 characters).
+  Secret opcional para verificação de assinatura HMAC-SHA256 (máximo de 255 caracteres).
 </RequestField>
 
 <RequestField name="events" type="array">
-  Array of event types to subscribe to (minimum 1 event required). Each event must be from the available events list returned by [List Agent Webhooks](/api-reference/endpoints/list-agent-webhooks).
+  Array de tipos de evento aos quais se inscrever (mínimo de 1 evento obrigatório). Cada evento deve estar na lista de eventos disponíveis retornada por [Listar Webhooks do Agente](/api-reference/endpoints/list-agent-webhooks).
 </RequestField>
 
 <RequestField name="timeout" type="integer">
-  Request timeout in seconds. Range: `5`–`120`.
+  Timeout da requisição em segundos. Faixa: `5`–`120`.
 </RequestField>
 
 <RequestField name="max_retries" type="integer">
-  Maximum number of retry attempts. Range: `0`–`10`.
+  Número máximo de tentativas de retry. Faixa: `0`–`10`.
 </RequestField>
 
 <RequestField name="enabled" type="boolean">
-  Whether the webhook should be active.
+  Se o webhook deve estar ativo.
 </RequestField>
 
 <RequestField name="http_method" type="string">
-  HTTP method used to deliver webhook events. Options: `POST`, `PUT`, `PATCH`.
+  Método HTTP usado para entregar eventos do webhook. Opções: `POST`, `PUT`, `PATCH`.
 </RequestField>
 
 <RequestField name="authorization_scheme" type="string">
-  Authorization scheme applied to outgoing requests. Options: `none`, `bearer`, `basic`, `api_key`, `custom`.
+  Esquema de autorização aplicado às requisições de saída. Opções: `none`, `bearer`, `basic`, `api_key`, `custom`.
 </RequestField>
 
 <RequestField name="custom_headers" type="array">
-  Array of custom HTTP headers to include in every delivery. Each item: `{ "key": "Header-Name", "value": "header-value" }`.
+  Array de cabeçalhos HTTP customizados a incluir em cada entrega. Cada item: `{ "key": "Header-Name", "value": "header-value" }`.
 </RequestField>
 
 <RequestField name="payload_templates" type="object">
-  Per-event payload template overrides. Keys are event names; values are template objects supporting variable interpolation.
+  Sobrescritas de template de payload por evento. As chaves são nomes de eventos; os valores são objetos de template que suportam interpolação de variáveis.
 </RequestField>
 
 <RequestExample>
 
 ```bash
 curl -X PUT \
-  'https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \
+  'https://app.talkover.ai/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \
   -H 'Authorization: Bearer YOUR_TOKEN' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -83,7 +83,7 @@ curl -X PUT \
 ```
 
 ```javascript
-const response = await fetch('https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a', {
+const response = await fetch('https://app.talkover.ai/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a', {
   method: 'PUT',
   headers: {
     'Authorization': 'Bearer YOUR_TOKEN',
@@ -106,7 +106,7 @@ const data = await response.json();
 <?php
 
 $client = new \GuzzleHttp\Client();
-$response = $client->put('https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a', [
+$response = $client->put('https://app.talkover.ai/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a', [
     'headers' => [
         'Authorization' => 'Bearer YOUR_TOKEN',
         'Content-Type' => 'application/json',
@@ -126,66 +126,66 @@ $data = json_decode($response->getBody());
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseField name="success" type="boolean">
-  Indicates if the webhook was updated successfully
+  Indica se o webhook foi atualizado com sucesso
 </ResponseField>
 
 <ResponseField name="message" type="string">
-  Success message
+  Mensagem de sucesso
 </ResponseField>
 
 <ResponseField name="data" type="object">
-  Updated webhook object
+  Objeto do webhook atualizado
 </ResponseField>
 
 <ResponseField name="data.id" type="string">
-  Unique webhook identifier
+  Identificador único do webhook
 </ResponseField>
 
 <ResponseField name="data.agent_id" type="string">
-  Agent UUID this webhook belongs to
+  UUID do agente ao qual este webhook pertence
 </ResponseField>
 
 <ResponseField name="data.name" type="string">
-  Updated webhook name
+  Nome atualizado do webhook
 </ResponseField>
 
 <ResponseField name="data.webhook_url" type="string">
-  Updated webhook URL
+  URL atualizada do webhook
 </ResponseField>
 
 <ResponseField name="data.events" type="array">
-  Updated array of configured event types
+  Array atualizado de tipos de evento configurados
 </ResponseField>
 
 <ResponseField name="data.timeout" type="integer">
-  Updated request timeout in seconds
+  Timeout atualizado da requisição em segundos
 </ResponseField>
 
 <ResponseField name="data.max_retries" type="integer">
-  Updated maximum retry attempts
+  Tentativas máximas de retry atualizadas
 </ResponseField>
 
 <ResponseField name="data.enabled" type="boolean">
-  Updated webhook status
+  Status atualizado do webhook
 </ResponseField>
 
 <ResponseField name="data.created_at" type="string">
-  ISO 8601 timestamp when webhook was created
+  Timestamp ISO 8601 quando o webhook foi criado
 </ResponseField>
 
 <ResponseField name="data.updated_at" type="string">
-  ISO 8601 timestamp when webhook was last updated
+  Timestamp ISO 8601 quando o webhook foi atualizado pela última vez
 </ResponseField>
 
 <ResponseField name="data.events_count" type="integer">
-  Number of events configured for this webhook
+  Número de eventos configurados para este webhook
 </ResponseField>
 
 <ResponseField name="data.status" type="string">
-  Current webhook status
+  Status atual do webhook
 </ResponseField>
 
 <ResponseExample>
@@ -213,9 +213,9 @@ $data = json_decode($response->getBody());
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-<ResponseExample title="401 Unauthorized">
+<ResponseExample title="401 Não Autorizado">
 
 ```json
 {
@@ -225,7 +225,7 @@ $data = json_decode($response->getBody());
 
 </ResponseExample>
 
-<ResponseExample title="404 Not Found">
+<ResponseExample title="404 Não Encontrado">
 
 ```json
 {
@@ -236,7 +236,7 @@ $data = json_decode($response->getBody());
 
 </ResponseExample>
 
-<ResponseExample title="404 Webhook Not Found">
+<ResponseExample title="404 Webhook Não Encontrado">
 
 ```json
 {
@@ -247,7 +247,7 @@ $data = json_decode($response->getBody());
 
 </ResponseExample>
 
-<ResponseExample title="422 Validation Error">
+<ResponseExample title="422 Erro de Validação">
 
 ```json
 {
@@ -261,28 +261,28 @@ $data = json_decode($response->getBody());
 
 </ResponseExample>
 
-## Validation Rules
+## Regras de Validação
 
-- **name**: Optional, string, maximum 255 characters
-- **webhook_url**: Optional, valid URL, maximum 500 characters
-- **webhook_secret**: Optional, string, maximum 255 characters
-- **events**: Optional, array with minimum 1 event, each event must be from available events list
-- **timeout**: Optional, integer between 5-120 seconds
-- **max_retries**: Optional, integer between 0-10
-- **enabled**: Optional, boolean
+- **name**: Opcional, string, máximo de 255 caracteres
+- **webhook_url**: Opcional, URL válida, máximo de 500 caracteres
+- **webhook_secret**: Opcional, string, máximo de 255 caracteres
+- **events**: Opcional, array com mínimo de 1 evento, cada evento deve estar na lista de eventos disponíveis
+- **timeout**: Opcional, inteiro entre 5-120 segundos
+- **max_retries**: Opcional, inteiro entre 0-10
+- **enabled**: Opcional, booleano
 
-## Important Notes
+## Observações Importantes
 
-- All fields are optional - only provided fields will be updated
-- Webhook operations automatically clear the agent cache for immediate effect
-- Use HTTPS endpoints for webhook URLs in production
-- Implement proper signature verification using the webhook secret for security
+- Todos os campos são opcionais — apenas os campos fornecidos serão atualizados
+- Operações de webhook limpam automaticamente o cache do agente para efeito imediato
+- Use endpoints HTTPS para URLs de webhook em produção
+- Implemente verificação adequada de assinatura usando o webhook secret para segurança
 
-## Related Endpoints
+## Endpoints Relacionados
 
-- [List Agent Webhooks](/api-reference/endpoints/list-agent-webhooks) - Get all webhooks for an agent
-- [Create Webhook](/api-reference/endpoints/create-webhook) - Set up a new webhook
-- [Get Webhook Details](/api-reference/endpoints/get-webhook-details) - Retrieve specific webhook information
-- [Delete Webhook](/api-reference/endpoints/delete-webhook) - Remove webhook configuration
-- [Toggle Webhook Status](/api-reference/endpoints/toggle-webhook-status) - Enable/disable webhook
-- [Test Webhook](/api-reference/endpoints/test-webhook) - Send test payload to verify connectivity
+- [Listar Webhooks do Agente](/api-reference/endpoints/list-agent-webhooks) - Obter todos os webhooks de um agente
+- [Criar Webhook](/api-reference/endpoints/create-webhook) - Configurar um novo webhook
+- [Obter Detalhes do Webhook](/api-reference/endpoints/get-webhook-details) - Recuperar informações de um webhook específico
+- [Excluir Webhook](/api-reference/endpoints/delete-webhook) - Remover a configuração do webhook
+- [Alternar Status do Webhook](/api-reference/endpoints/toggle-webhook-status) - Habilitar/desabilitar webhook
+- [Testar Webhook](/api-reference/endpoints/test-webhook) - Enviar payload de teste para verificar conectividade

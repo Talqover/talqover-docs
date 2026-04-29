@@ -1,12 +1,12 @@
 ---
-title: "End Call"
-description: "Hang up an active call placed by an agent"
+title: "Encerrar Chamada"
+description: "Desligar uma chamada ativa realizada por um agente"
 api: "POST /api/v1/agents/{agent_id}/end-call"
 ---
 
-# End Call
+# Encerrar Chamada
 
-Hang up an active call placed by a specific agent. Use this for emergency stops, user-requested cancellations, or to enforce custom timeout logic from your application.
+Desliga uma chamada ativa realizada por um agente específico. Use isto para paradas de emergência, cancelamentos solicitados pelo usuário ou para impor lógica de timeout customizada a partir da sua aplicação.
 
 ## Endpoint
 
@@ -14,41 +14,41 @@ Hang up an active call placed by a specific agent. Use this for emergency stops,
 POST /api/v1/agents/{agent_id}/end-call
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="agent_id" type="string" required>
-  Agent UUID owning the call.
+  UUID do agente que possui a chamada.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="call_sid" type="string" required>
-  Identifier of the call to hang up. Use the `id` returned by [Make a Call](/api-reference/endpoints/make-call).
+  Identificador da chamada a desligar. Use o `id` retornado por [Realizar uma Chamada](/api-reference/endpoints/make-call).
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/agents/agent-uuid/end-call" \
+curl -X POST "https://app.talkover.ai/api/v1/agents/agent-uuid/end-call" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{ "call_sid": "call-uuid-123" }'
 ```
 
 ```javascript
-await fetch('https://talkover.app/api/v1/agents/agent-uuid/end-call', {
+await fetch('https://app.talkover.ai/api/v1/agents/agent-uuid/end-call', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -60,7 +60,7 @@ await fetch('https://talkover.app/api/v1/agents/agent-uuid/end-call', {
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -78,9 +78,9 @@ await fetch('https://talkover.app/api/v1/agents/agent-uuid/end-call', {
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 404 — Call Not Found
+### 404 — Chamada Não Encontrada
 
 <ResponseExample>
 
@@ -93,7 +93,7 @@ await fetch('https://talkover.app/api/v1/agents/agent-uuid/end-call', {
 
 </ResponseExample>
 
-### 409 — Call Already Ended
+### 409 — Chamada Já Encerrada
 
 <ResponseExample>
 
@@ -107,8 +107,8 @@ await fetch('https://talkover.app/api/v1/agents/agent-uuid/end-call', {
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Hangup propagation is asynchronous. The call status moves to `completed` shortly after this endpoint returns.
-- The `ended_reason` will be `ended_by_api` to differentiate from natural hangups.
-- Webhook events `event_phone_call_ended` will fire normally.
+- A propagação do hangup é assíncrona. O status da chamada muda para `completed` logo após este endpoint retornar.
+- O `ended_reason` será `ended_by_api` para diferenciar de hangups naturais.
+- Eventos de webhook `event_phone_call_ended` serão disparados normalmente.

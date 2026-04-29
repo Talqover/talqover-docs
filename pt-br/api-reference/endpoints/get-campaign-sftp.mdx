@@ -1,12 +1,12 @@
 ---
-title: "Get Campaign SFTP Config"
-description: "Retrieve a campaign's SFTP integration configuration"
+title: "Obter Configuração SFTP da Campanha"
+description: "Recuperar a configuração de integração SFTP de uma campanha"
 api: "GET /api/v1/campaigns/{campaign_id}/sftp"
 ---
 
-# Get Campaign SFTP Config
+# Obter Configuração SFTP da Campanha
 
-Retrieve the SFTP integration configuration for a campaign. Campaign SFTP lets you import contact lists from a remote SFTP server and export call results back.
+Recupera a configuração de integração SFTP para uma campanha. O SFTP de campanha permite importar listas de contatos de um servidor SFTP remoto e exportar resultados de chamadas de volta.
 
 ## Endpoint
 
@@ -14,28 +14,28 @@ Retrieve the SFTP integration configuration for a campaign. Campaign SFTP lets y
 GET /api/v1/campaigns/{campaign_id}/sftp
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp" \
+curl "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/sftp" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -62,7 +62,7 @@ curl "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- The configured `password` or `private_key` is never returned.
-- A new SFTP config starts disabled — run [Test SFTP Connection](/api-reference/endpoints/test-campaign-sftp-connection) successfully before enabling it.
+- O `password` ou `private_key` configurado nunca é retornado.
+- Uma nova configuração SFTP começa desabilitada — execute [Testar Conexão SFTP](/api-reference/endpoints/test-campaign-sftp-connection) com sucesso antes de habilitá-la.

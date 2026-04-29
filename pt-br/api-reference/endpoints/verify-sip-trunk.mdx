@@ -1,12 +1,12 @@
 ---
-title: "Verify SIP Trunk"
-description: "Run a connectivity check against a SIP trunk"
+title: "Verificar SIP Trunk"
+description: "Executar uma verificação de conectividade em um SIP Trunk"
 api: "POST /api/v1/sip-trunks/{trunk_id}/verify"
 ---
 
-# Verify SIP Trunk
+# Verificar SIP Trunk
 
-Run a connectivity check against a SIP trunk. The platform attempts to register/connect using the configured credentials and reports success or failure. Trunks must be verified before they can be activated.
+Executa uma verificação de conectividade em um SIP Trunk. A plataforma tenta registrar/conectar usando as credenciais configuradas e relata sucesso ou falha. Os trunks devem ser verificados antes de poderem ser ativados.
 
 ## Endpoint
 
@@ -14,30 +14,30 @@ Run a connectivity check against a SIP trunk. The platform attempts to register/
 POST /api/v1/sip-trunks/{trunk_id}/verify
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+<ParamField path="trunk_id" type="string" required>UUID do SIP Trunk.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/verify" \
+curl -X POST "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1/verify" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
-### Verification Successful
+### Verificação Bem-Sucedida
 
 <ResponseExample>
 
@@ -54,7 +54,7 @@ curl -X POST "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/verify" \
 
 </ResponseExample>
 
-### Verification Failed
+### Verificação Falhou
 
 <ResponseExample>
 

@@ -1,12 +1,12 @@
 ---
 title: "Health Check"
-description: "Service liveness probe"
+description: "Verificação de liveness do serviço"
 api: "GET /api/v1/health"
 ---
 
 # Health Check
 
-Lightweight liveness probe. Returns `200 OK` when the API is reachable. Use it for uptime monitors or load-balancer health checks.
+Verificação de liveness leve. Retorna `200 OK` quando a API está acessível. Use para monitores de uptime ou health checks de balanceadores de carga.
 
 ## Endpoint
 
@@ -14,21 +14,21 @@ Lightweight liveness probe. Returns `200 OK` when the API is reachable. Use it f
 GET /api/v1/health
 ```
 
-## Authentication
+## Autenticação
 
-**None.** This endpoint is unauthenticated.
+**Nenhuma.** Este endpoint não requer autenticação.
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/health"
+curl "https://app.talkover.ai/api/v1/health"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -40,7 +40,7 @@ curl "https://talkover.app/api/v1/health"
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- This is a liveness check only — it does not exercise downstream dependencies.
-- Safe to poll frequently; the endpoint is rate-limit exempt.
+- Esta é uma verificação de liveness apenas — ela não exercita dependências downstream.
+- Seguro para polling frequente; o endpoint é isento de rate limit.

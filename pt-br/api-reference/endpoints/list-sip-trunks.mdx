@@ -1,15 +1,15 @@
 ---
-title: "List SIP Trunks"
-description: "List custom SIP trunks configured for your environment"
+title: "Listar SIP Trunks"
+description: "Listar SIP Trunks personalizados configurados para o seu ambiente"
 api: "GET /api/v1/sip-trunks"
 ---
 
-# List SIP Trunks
+# Listar SIP Trunks
 
-List the custom SIP trunks configured in your environment. Custom SIP trunks let Enterprise customers route calls through their own carrier instead of the default platform-managed transport.
+Lista os SIP Trunks personalizados configurados no seu ambiente. SIP Trunks personalizados permitem que clientes Enterprise roteiem chamadas pela própria operadora em vez do transporte padrão gerenciado pela plataforma.
 
 <Info>
-  This feature is available only on plans where `allow_custom_sip_trunks` is enabled. Contact your account manager to enable it.
+  Este recurso está disponível apenas em planos onde `allow_custom_sip_trunks` está habilitado. Entre em contato com o gerente da sua conta para habilitá-lo.
 </Info>
 
 ## Endpoint
@@ -18,24 +18,24 @@ List the custom SIP trunks configured in your environment. Custom SIP trunks let
 GET /api/v1/sip-trunks
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/sip-trunks" \
+curl "https://app.talkover.ai/api/v1/sip-trunks" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

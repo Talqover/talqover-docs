@@ -1,12 +1,12 @@
 ---
-title: "Delete SIP Trunk"
-description: "Permanently delete a SIP trunk"
+title: "Excluir SIP Trunk"
+description: "Excluir permanentemente um SIP Trunk"
 api: "DELETE /api/v1/sip-trunks/{trunk_id}"
 ---
 
-# Delete SIP Trunk
+# Excluir SIP Trunk
 
-Permanently delete a SIP trunk. The trunk must have no active calls and no DIDs attached — delete its DIDs first via [Delete SIP Trunk DID](/api-reference/endpoints/delete-sip-trunk-did).
+Exclui permanentemente um SIP Trunk. O trunk não pode ter chamadas ativas nem DIDs associados — exclua os DIDs primeiro via [Excluir DID do SIP Trunk](/api-reference/endpoints/delete-sip-trunk-did).
 
 ## Endpoint
 
@@ -14,28 +14,28 @@ Permanently delete a SIP trunk. The trunk must have no active calls and no DIDs 
 DELETE /api/v1/sip-trunks/{trunk_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+<ParamField path="trunk_id" type="string" required>UUID do SIP Trunk.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X DELETE "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1" \
+curl -X DELETE "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -48,9 +48,9 @@ curl -X DELETE "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1" \
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 409 — Trunk Has DIDs
+### 409 — Trunk Possui DIDs
 
 <ResponseExample>
 

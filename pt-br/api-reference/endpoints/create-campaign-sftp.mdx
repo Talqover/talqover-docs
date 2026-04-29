@@ -1,12 +1,12 @@
 ---
-title: "Create Campaign SFTP Config"
-description: "Configure SFTP integration for a campaign"
+title: "Criar Configuração SFTP da Campanha"
+description: "Configurar integração SFTP para uma campanha"
 api: "POST /api/v1/campaigns/{campaign_id}/sftp"
 ---
 
-# Create Campaign SFTP Config
+# Criar Configuração SFTP da Campanha
 
-Configure SFTP integration for a campaign. The configuration is created in `disabled` state — test the connection successfully before enabling.
+Configura a integração SFTP para uma campanha. A configuração é criada no estado `disabled` — teste a conexão com sucesso antes de habilitar.
 
 ## Endpoint
 
@@ -14,39 +14,39 @@ Configure SFTP integration for a campaign. The configuration is created in `disa
 POST /api/v1/campaigns/{campaign_id}/sftp
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-<ParamField body="host" type="string" required>SFTP server hostname.</ParamField>
-<ParamField body="port" type="integer">SFTP port. Range: `1`–`65535`. Default: `22`.</ParamField>
-<ParamField body="username" type="string" required>SFTP username.</ParamField>
-<ParamField body="auth_type" type="string" required>Auth method. Options: `password`, `private_key`.</ParamField>
-<ParamField body="password" type="string">Required when `auth_type` is `password`.</ParamField>
-<ParamField body="private_key" type="string">Required when `auth_type` is `private_key`. PEM-encoded private key.</ParamField>
-<ParamField body="private_key_passphrase" type="string">Optional passphrase for the private key.</ParamField>
-<ParamField body="import_path" type="string">Remote directory to scan for contact list imports (e.g., `/inbox`).</ParamField>
-<ParamField body="export_path" type="string">Remote directory where call result files are uploaded (e.g., `/outbox`).</ParamField>
-<ParamField body="import_schedule" type="string">Auto-import schedule. Options: `manual`, `hourly`, `daily`. Default: `manual`.</ParamField>
+<ParamField body="host" type="string" required>Hostname do servidor SFTP.</ParamField>
+<ParamField body="port" type="integer">Porta SFTP. Faixa: `1`–`65535`. Padrão: `22`.</ParamField>
+<ParamField body="username" type="string" required>Usuário SFTP.</ParamField>
+<ParamField body="auth_type" type="string" required>Método de autenticação. Opções: `password`, `private_key`.</ParamField>
+<ParamField body="password" type="string">Obrigatório quando `auth_type` é `password`.</ParamField>
+<ParamField body="private_key" type="string">Obrigatório quando `auth_type` é `private_key`. Chave privada codificada em PEM.</ParamField>
+<ParamField body="private_key_passphrase" type="string">Passphrase opcional para a chave privada.</ParamField>
+<ParamField body="import_path" type="string">Diretório remoto a varrer para importações de lista de contatos (ex: `/inbox`).</ParamField>
+<ParamField body="export_path" type="string">Diretório remoto onde arquivos de resultado de chamadas são enviados (ex: `/outbox`).</ParamField>
+<ParamField body="import_schedule" type="string">Agenda de importação automática. Opções: `manual`, `hourly`, `daily`. Padrão: `manual`.</ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp" \
+curl -X POST "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/sftp" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -63,7 +63,7 @@ curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

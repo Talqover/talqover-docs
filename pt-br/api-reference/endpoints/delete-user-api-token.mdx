@@ -1,15 +1,15 @@
 ---
-title: "Delete User API Token"
-description: "Revoke a personal access token (PAT)"
+title: "Excluir Token de API do Usuário"
+description: "Revogar um Personal Access Token (PAT)"
 api: "DELETE /api/v1/user/api-tokens/{token_id}"
 ---
 
-# Delete User API Token
+# Excluir Token de API do Usuário
 
-Revoke a personal access token. The token is invalidated immediately and any further requests using it return `401`.
+Revoga um Personal Access Token. O token é invalidado imediatamente e quaisquer requisições subsequentes que o utilizem retornam `401`.
 
 <Info>
-  This endpoint is part of the **Account API** and is authenticated with a user session token.
+  Este endpoint faz parte da **API de Conta** e é autenticado com um token de sessão de usuário.
 </Info>
 
 ## Endpoint
@@ -18,30 +18,30 @@ Revoke a personal access token. The token is invalidated immediately and any fur
 DELETE /api/v1/user/api-tokens/{token_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="token_id" type="string" required>
-  ID of the token to revoke. Use [List User API Tokens](/api-reference/endpoints/list-user-api-tokens) to find the ID.
+  ID do token a ser revogado. Use [Listar Tokens de API do Usuário](/api-reference/endpoints/list-user-api-tokens) para encontrar o ID.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  User session token. Format: `Bearer <user_session_token>`.
+  Token de sessão do usuário. Formato: `Bearer <user_session_token>`.
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X DELETE "https://talkover.app/api/v1/user/api-tokens/token-uuid-1" \
+curl -X DELETE "https://app.talkover.ai/api/v1/user/api-tokens/token-uuid-1" \
   -H "Authorization: Bearer your_user_session_token"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -53,7 +53,7 @@ curl -X DELETE "https://talkover.app/api/v1/user/api-tokens/token-uuid-1" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Revocation is immediate and irreversible.
-- Existing requests in flight using the revoked token will complete; new requests will fail with `401`.
+- A revogação é imediata e irreversível.
+- Requisições já em curso usando o token revogado serão concluídas; novas requisições falharão com `401`.

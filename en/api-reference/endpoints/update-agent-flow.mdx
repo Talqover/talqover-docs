@@ -61,7 +61,7 @@ PUT /api/v1/agents/{agent_id}/flow
 
 ```bash
 # Switch to llm_driven mode
-curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid/flow" \
+curl -X PUT "https://app.talkover.ai/api/v1/agents/agent-uuid/flow" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{ "conversation_mode": "llm_driven" }'
@@ -69,7 +69,7 @@ curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid/flow" \
 
 ```bash
 # Set a flow-driven configuration
-curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid/flow" \
+curl -X PUT "https://app.talkover.ai/api/v1/agents/agent-uuid/flow" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{

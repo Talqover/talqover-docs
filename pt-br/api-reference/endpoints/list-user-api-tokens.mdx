@@ -1,15 +1,15 @@
 ---
-title: "List User API Tokens"
-description: "List the personal access tokens (PATs) for the current user"
+title: "Listar Tokens de API do Usuário"
+description: "Listar os Personal Access Tokens (PATs) do usuário atual"
 api: "GET /api/v1/user/api-tokens"
 ---
 
-# List User API Tokens
+# Listar Tokens de API do Usuário
 
-List the personal access tokens (PATs) associated with the current user. PATs are user-scoped, distinct from environment tokens which are scoped to a specific environment.
+Lista os Personal Access Tokens (PATs) associados ao usuário atual. PATs têm escopo de usuário, distintos dos tokens de ambiente, que têm escopo de um ambiente específico.
 
 <Info>
-  This endpoint is part of the **Account API** and is authenticated with a user session token, not an environment token.
+  Este endpoint faz parte da **API de Conta** e é autenticado com um token de sessão de usuário, não um token de ambiente.
 </Info>
 
 ## Endpoint
@@ -18,24 +18,24 @@ List the personal access tokens (PATs) associated with the current user. PATs ar
 GET /api/v1/user/api-tokens
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  User session token. Format: `Bearer <user_session_token>`.
+  Token de sessão do usuário. Formato: `Bearer <user_session_token>`.
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/user/api-tokens" \
+curl "https://app.talkover.ai/api/v1/user/api-tokens" \
   -H "Authorization: Bearer your_user_session_token"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -62,6 +62,6 @@ curl "https://talkover.app/api/v1/user/api-tokens" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Token values are never returned by this endpoint — only metadata. The full token string is shown only once, when the token is created.
+- Os valores dos tokens nunca são retornados por este endpoint — apenas metadados. A string completa do token é exibida apenas uma vez, no momento de criação.

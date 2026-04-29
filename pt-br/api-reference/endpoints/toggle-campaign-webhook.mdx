@@ -1,12 +1,12 @@
 ---
-title: "Toggle Campaign Webhook"
-description: "Enable or disable a campaign webhook"
+title: "Alternar Webhook da Campanha"
+description: "Habilitar ou desabilitar um webhook de campanha"
 api: "PATCH /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/toggle"
 ---
 
-# Toggle Campaign Webhook
+# Alternar Webhook da Campanha
 
-Toggle a campaign webhook between enabled and disabled. Disabling stops all deliveries without deleting the configuration.
+Alterna um webhook de campanha entre habilitado e desabilitado. Desabilitar interrompe todas as entregas sem excluir a configuração.
 
 ## Endpoint
 
@@ -14,29 +14,29 @@ Toggle a campaign webhook between enabled and disabled. Disabling stops all deli
 PATCH /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/toggle
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
-<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
+<ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X PATCH "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/toggle" \
+curl -X PATCH "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/toggle" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

@@ -1,12 +1,12 @@
 ---
-title: "Create SIP Trunk DID"
-description: "Add a DID (phone number) to a SIP trunk"
+title: "Criar DID no SIP Trunk"
+description: "Adicionar um DID (número de telefone) a um SIP Trunk"
 api: "POST /api/v1/sip-trunks/{trunk_id}/dids"
 ---
 
-# Create SIP Trunk DID
+# Criar DID no SIP Trunk
 
-Register a new DID (phone number) on a SIP trunk. Once added, the DID can be assigned to agents for inbound or outbound calling.
+Registra um novo DID (número de telefone) em um SIP Trunk. Após adicionado, o DID pode ser atribuído a agentes para chamadas inbound ou outbound.
 
 ## Endpoint
 
@@ -14,36 +14,36 @@ Register a new DID (phone number) on a SIP trunk. Once added, the DID can be ass
 POST /api/v1/sip-trunks/{trunk_id}/dids
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+<ParamField path="trunk_id" type="string" required>UUID do SIP Trunk.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="country_code" type="string" required>
-  ISO 3166-1 alpha-2 country code (e.g., `US`, `BR`, `GB`).
+  Código de país no formato ISO 3166-1 alpha-2 (ex: `US`, `BR`, `GB`).
 </ParamField>
 
 <ParamField body="number" type="string" required>
-  Phone number in E.164 format (e.g., `+15551234567`).
+  Número de telefone no formato E.164 (ex: `+15551234567`).
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/dids" \
+curl -X POST "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1/dids" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -54,7 +54,7 @@ curl -X POST "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/dids" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -73,9 +73,9 @@ curl -X POST "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/dids" \
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 409 — Number Already Exists
+### 409 — Número Já Existe
 
 <ResponseExample>
 

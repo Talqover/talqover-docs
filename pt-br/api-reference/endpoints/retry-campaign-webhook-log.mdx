@@ -1,12 +1,12 @@
 ---
-title: "Retry Campaign Webhook Delivery"
-description: "Manually retry a failed campaign webhook delivery"
+title: "Retentar Entrega de Webhook da Campanha"
+description: "Retentar manualmente uma entrega de webhook de campanha que falhou"
 api: "POST /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/logs/{log_id}/retry"
 ---
 
-# Retry Campaign Webhook Delivery
+# Retentar Entrega de Webhook da Campanha
 
-Manually retry a failed campaign webhook delivery. Creates a new log entry for the retry — original log is preserved.
+Retentar manualmente uma entrega de webhook de campanha que falhou. Cria uma nova entrada de log para o retry — o log original é preservado.
 
 ## Endpoint
 
@@ -14,30 +14,30 @@ Manually retry a failed campaign webhook delivery. Creates a new log entry for t
 POST /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/logs/{log_id}/retry
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
-<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
-<ParamField path="log_id" type="string" required>Log UUID of the failed delivery.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
+<ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
+<ParamField path="log_id" type="string" required>UUID do log da entrega que falhou.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/logs/log-uuid-1/retry" \
+curl -X POST "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/logs/log-uuid-1/retry" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

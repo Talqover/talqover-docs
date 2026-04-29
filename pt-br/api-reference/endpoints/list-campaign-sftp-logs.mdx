@@ -1,12 +1,12 @@
 ---
-title: "List Campaign SFTP Logs"
-description: "List SFTP import and export job logs for a campaign"
+title: "Listar Logs SFTP da Campanha"
+description: "Listar logs de jobs de importação e exportação SFTP de uma campanha"
 api: "GET /api/v1/campaigns/{campaign_id}/sftp/logs"
 ---
 
-# List Campaign SFTP Logs
+# Listar Logs SFTP da Campanha
 
-List recent SFTP import and export jobs for a campaign, including status, file counts, and any errors.
+Lista os jobs SFTP recentes de importação e exportação para uma campanha, incluindo status, contagem de arquivos e quaisquer erros.
 
 ## Endpoint
 
@@ -14,22 +14,22 @@ List recent SFTP import and export jobs for a campaign, including status, file c
 GET /api/v1/campaigns/{campaign_id}/sftp/logs
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Query Parameters
+## Parâmetros de Consulta
 
-<ParamField query="per_page" type="integer">Items per page. Range: `1`–`100`. Default: `25`.</ParamField>
-<ParamField query="page" type="integer">Default: `1`.</ParamField>
+<ParamField query="per_page" type="integer">Itens por página. Faixa: `1`–`100`. Padrão: `25`.</ParamField>
+<ParamField query="page" type="integer">Padrão: `1`.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -40,7 +40,7 @@ curl "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/logs" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -76,9 +76,9 @@ curl "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/logs" \
 
 </ResponseExample>
 
-### Status Values
+### Valores de Status
 
-- `running` — job in progress
-- `succeeded` — completed successfully
-- `failed` — completed with errors
-- `cancelled` — manually cancelled
+- `running` — job em andamento
+- `succeeded` — concluído com sucesso
+- `failed` — concluído com erros
+- `cancelled` — cancelado manualmente

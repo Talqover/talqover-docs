@@ -1,12 +1,12 @@
 ---
-title: "Get SIP Trunk Health"
-description: "Run a live health check on a SIP trunk"
+title: "Obter Saúde do SIP Trunk"
+description: "Executar uma verificação de saúde em tempo real em um SIP Trunk"
 api: "GET /api/v1/sip-trunks/{trunk_id}/health"
 ---
 
-# Get SIP Trunk Health
+# Obter Saúde do SIP Trunk
 
-Run a live health check on a SIP trunk and return the current status. Lightweight version of [Verify SIP Trunk](/api-reference/endpoints/verify-sip-trunk) — does not change the trunk's `is_verified` flag.
+Executa uma verificação de saúde em tempo real em um SIP Trunk e retorna o status atual. Versão leve de [Verificar SIP Trunk](/api-reference/endpoints/verify-sip-trunk) — não altera a flag `is_verified` do trunk.
 
 ## Endpoint
 
@@ -14,28 +14,28 @@ Run a live health check on a SIP trunk and return the current status. Lightweigh
 GET /api/v1/sip-trunks/{trunk_id}/health
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+<ParamField path="trunk_id" type="string" required>UUID do SIP Trunk.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/health" \
+curl "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1/health" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -52,7 +52,7 @@ curl "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/health" \
 
 </ResponseExample>
 
-### Unhealthy Response
+### Resposta Não Saudável
 
 <ResponseExample>
 
@@ -70,7 +70,7 @@ curl "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/health" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Use this endpoint for monitoring/alerting integrations.
-- Frequent polling is fine — checks are cached for short windows.
+- Use este endpoint para integrações de monitoramento/alertas.
+- Polling frequente é seguro — as verificações são cacheadas por curtos intervalos.

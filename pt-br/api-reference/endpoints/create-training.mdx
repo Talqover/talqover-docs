@@ -46,7 +46,7 @@ POST /api/v1/agents/{agent_id}/trainings
 
 ```bash
 # Requisição 1: Criar novo treinamento
-curl -X POST "https://talkover.app/api/v1/agents/agent-uuid-1/trainings" \
+curl -X POST "https://app.talkover.ai/api/v1/agents/agent-uuid-1/trainings" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -57,7 +57,7 @@ curl -X POST "https://talkover.app/api/v1/agents/agent-uuid-1/trainings" \
 
 ```javascript
 // Requisição 1: Criar novo treinamento
-const response = await fetch('https://talkover.app/api/v1/agents/agent-uuid-1/trainings', {
+const response = await fetch('https://app.talkover.ai/api/v1/agents/agent-uuid-1/trainings', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -79,7 +79,7 @@ console.log(result);
 
 ```bash
 # Requisição 2: Criar treinamento para suporte técnico
-curl -X POST "https://talkover.app/api/v1/agents/agent-uuid-1/trainings" \
+curl -X POST "https://app.talkover.ai/api/v1/agents/agent-uuid-1/trainings" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -90,7 +90,7 @@ curl -X POST "https://talkover.app/api/v1/agents/agent-uuid-1/trainings" \
 
 ```javascript
 // Requisição 2: Criar treinamento para suporte técnico
-const response = await fetch('https://talkover.app/api/v1/agents/agent-uuid-1/trainings', {
+const response = await fetch('https://app.talkover.ai/api/v1/agents/agent-uuid-1/trainings', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',

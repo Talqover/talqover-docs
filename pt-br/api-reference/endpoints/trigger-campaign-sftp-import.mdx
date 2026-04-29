@@ -1,12 +1,12 @@
 ---
-title: "Trigger SFTP Import"
-description: "Manually trigger an SFTP contact list import"
+title: "Acionar Importação SFTP"
+description: "Acionar manualmente uma importação de lista de contatos via SFTP"
 api: "POST /api/v1/campaigns/{campaign_id}/sftp/trigger-import"
 ---
 
-# Trigger SFTP Import
+# Acionar Importação SFTP
 
-Manually trigger an SFTP import of new contact list files for a campaign. The platform scans `import_path`, downloads new files, and queues contacts.
+Aciona manualmente uma importação SFTP de novos arquivos de lista de contatos para uma campanha. A plataforma varre `import_path`, baixa novos arquivos e enfileira contatos.
 
 ## Endpoint
 
@@ -14,17 +14,17 @@ Manually trigger an SFTP import of new contact list files for a campaign. The pl
 POST /api/v1/campaigns/{campaign_id}/sftp/trigger-import
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -35,7 +35,7 @@ curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/trigger-i
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -52,9 +52,9 @@ curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/trigger-i
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 409 — Already Running
+### 409 — Já em Execução
 
 <ResponseExample>
 
@@ -68,6 +68,6 @@ curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/trigger-i
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Import progress and results appear in [List SFTP Logs](/api-reference/endpoints/list-campaign-sftp-logs).
+- O progresso e os resultados da importação aparecem em [Listar Logs SFTP](/api-reference/endpoints/list-campaign-sftp-logs).

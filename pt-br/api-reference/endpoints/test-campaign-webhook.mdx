@@ -1,12 +1,12 @@
 ---
-title: "Test Campaign Webhook"
-description: "Send a test payload to a campaign webhook"
+title: "Testar Webhook da Campanha"
+description: "Enviar um payload de teste para um webhook de campanha"
 api: "POST /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/test"
 ---
 
-# Test Campaign Webhook
+# Testar Webhook da Campanha
 
-Send a test payload to verify a campaign webhook's configuration. The test fires one synthetic event matching the webhook's subscribed events.
+Envia um payload de teste para verificar a configuração de um webhook de campanha. O teste dispara um evento sintético correspondente aos eventos inscritos no webhook.
 
 ## Endpoint
 
@@ -14,29 +14,29 @@ Send a test payload to verify a campaign webhook's configuration. The test fires
 POST /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/test
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
-<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
+<ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/test" \
+curl -X POST "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/test" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

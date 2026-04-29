@@ -1,12 +1,12 @@
 ---
-title: "List SIP Trunk DIDs"
-description: "List the DIDs (numbers) attached to a SIP trunk"
+title: "Listar DIDs do SIP Trunk"
+description: "Listar os DIDs (números) associados a um SIP Trunk"
 api: "GET /api/v1/sip-trunks/{trunk_id}/dids"
 ---
 
-# List SIP Trunk DIDs
+# Listar DIDs do SIP Trunk
 
-List the DIDs (Direct Inward Dialing numbers) attached to a SIP trunk. DIDs are the phone numbers that route through this trunk for inbound and/or outbound calls.
+Lista os DIDs (números de Direct Inward Dialing) associados a um SIP Trunk. DIDs são os números de telefone que roteiam por este trunk para chamadas inbound e/ou outbound.
 
 ## Endpoint
 
@@ -14,28 +14,28 @@ List the DIDs (Direct Inward Dialing numbers) attached to a SIP trunk. DIDs are 
 GET /api/v1/sip-trunks/{trunk_id}/dids
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+<ParamField path="trunk_id" type="string" required>UUID do SIP Trunk.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/dids" \
+curl "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1/dids" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -61,6 +61,6 @@ curl "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/dids" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- DIDs created through this trunk also appear in the global [List Phone Numbers](/api-reference/endpoints/list-phone-numbers) endpoint.
+- DIDs criados através deste trunk também aparecem no endpoint global [Listar Números de Telefone](/api-reference/endpoints/list-phone-numbers).

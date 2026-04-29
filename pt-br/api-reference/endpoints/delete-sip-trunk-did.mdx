@@ -1,12 +1,12 @@
 ---
-title: "Delete SIP Trunk DID"
-description: "Remove a DID from a SIP trunk"
+title: "Excluir DID do SIP Trunk"
+description: "Remover um DID de um SIP Trunk"
 api: "DELETE /api/v1/sip-trunks/{trunk_id}/dids/{phone_number_id}"
 ---
 
-# Delete SIP Trunk DID
+# Excluir DID do SIP Trunk
 
-Remove a DID from a SIP trunk. The DID is also removed from your environment's phone number pool. Detach it from any agents first.
+Remove um DID de um SIP Trunk. O DID também é removido do conjunto de números de telefone do seu ambiente. Desassocie-o de quaisquer agentes primeiro.
 
 ## Endpoint
 
@@ -14,29 +14,29 @@ Remove a DID from a SIP trunk. The DID is also removed from your environment's p
 DELETE /api/v1/sip-trunks/{trunk_id}/dids/{phone_number_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
-<ParamField path="phone_number_id" type="string" required>UUID of the DID/phone number.</ParamField>
+<ParamField path="trunk_id" type="string" required>UUID do SIP Trunk.</ParamField>
+<ParamField path="phone_number_id" type="string" required>UUID do DID/número de telefone.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X DELETE "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/dids/phone-uuid-1" \
+curl -X DELETE "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1/dids/phone-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -49,9 +49,9 @@ curl -X DELETE "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/dids/phone-u
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 409 — DID In Use
+### 409 — DID Em Uso
 
 <ResponseExample>
 

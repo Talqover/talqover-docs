@@ -1,12 +1,12 @@
 ---
-title: "Cancel Release Request"
-description: "Cancel a pending phone number release request"
+title: "Cancelar Solicitação de Liberação"
+description: "Cancelar uma solicitação pendente de liberação de número de telefone"
 api: "DELETE /api/v1/phone-numbers/release-requests/{release_request_id}"
 ---
 
-# Cancel Release Request
+# Cancelar Solicitação de Liberação
 
-Cancel a pending phone number release request before it is approved or rejected. Once cancelled, the phone number remains in your environment.
+Cancela uma solicitação pendente de liberação de número de telefone antes que ela seja aprovada ou rejeitada. Uma vez cancelada, o número de telefone permanece em seu ambiente.
 
 ## Endpoint
 
@@ -14,30 +14,30 @@ Cancel a pending phone number release request before it is approved or rejected.
 DELETE /api/v1/phone-numbers/release-requests/{release_request_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="release_request_id" type="string" required>
-  UUID of the release request to cancel.
+  UUID da solicitação de liberação a cancelar.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X DELETE "https://talkover.app/api/v1/phone-numbers/release-requests/request-uuid-1" \
+curl -X DELETE "https://app.talkover.ai/api/v1/phone-numbers/release-requests/request-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -50,9 +50,9 @@ curl -X DELETE "https://talkover.app/api/v1/phone-numbers/release-requests/reque
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 404 — Not Found
+### 404 — Não Encontrada
 
 <ResponseExample>
 
@@ -65,7 +65,7 @@ curl -X DELETE "https://talkover.app/api/v1/phone-numbers/release-requests/reque
 
 </ResponseExample>
 
-### 409 — Already Resolved
+### 409 — Já Resolvida
 
 <ResponseExample>
 
@@ -79,7 +79,7 @@ curl -X DELETE "https://talkover.app/api/v1/phone-numbers/release-requests/reque
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Only requests in `pending` status can be cancelled.
-- Cancelling a request does not delete it — its status is updated to `cancelled` and remains in [List Release Requests](/api-reference/endpoints/list-release-requests).
+- Apenas solicitações com status `pending` podem ser canceladas.
+- Cancelar uma solicitação não a exclui — seu status é atualizado para `cancelled` e ela permanece em [Listar Solicitações de Liberação](/api-reference/endpoints/list-release-requests).

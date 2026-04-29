@@ -1,12 +1,12 @@
 ---
-title: "List Webhook Delivery Logs"
-description: "Retrieve delivery attempts and responses for an agent webhook"
+title: "Listar Logs de Entrega de Webhook"
+description: "Recuperar tentativas de entrega e respostas para um webhook do agente"
 api: "GET /api/v1/agents/{agent_id}/webhooks/{webhook_id}/logs"
 ---
 
-# List Webhook Delivery Logs
+# Listar Logs de Entrega de Webhook
 
-Retrieve a paginated list of delivery attempts for a specific webhook, including HTTP status, response body, attempt number, and timing. Use these logs to debug webhook delivery issues.
+Recupera uma lista paginada de tentativas de entrega para um webhook específico, incluindo status HTTP, corpo da resposta, número da tentativa e tempo. Use estes logs para depurar problemas de entrega de webhook.
 
 ## Endpoint
 
@@ -14,34 +14,34 @@ Retrieve a paginated list of delivery attempts for a specific webhook, including
 GET /api/v1/agents/{agent_id}/webhooks/{webhook_id}/logs
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
-<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente.</ParamField>
+<ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 
-## Query Parameters
+## Parâmetros de Consulta
 
-<ParamField query="per_page" type="integer">Items per page. Range: `1`–`100`. Default: `25`.</ParamField>
-<ParamField query="page" type="integer">Page number. Default: `1`.</ParamField>
+<ParamField query="per_page" type="integer">Itens por página. Faixa: `1`–`100`. Padrão: `25`.</ParamField>
+<ParamField query="page" type="integer">Número da página. Padrão: `1`.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/agents/agent-uuid/webhooks/webhook-uuid/logs?per_page=50" \
+curl "https://app.talkover.ai/api/v1/agents/agent-uuid/webhooks/webhook-uuid/logs?per_page=50" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -86,15 +86,15 @@ curl "https://talkover.app/api/v1/agents/agent-uuid/webhooks/webhook-uuid/logs?p
 
 </ResponseExample>
 
-### Log Status Values
+### Valores de Status do Log
 
-- `pending` — queued for delivery
-- `success` — delivered, target responded with 2xx
-- `failed` — delivered but target responded with non-2xx, or connection failed
-- `retrying` — failed, will retry according to `max_retries`
+- `pending` — enfileirado para entrega
+- `success` — entregue, alvo respondeu com 2xx
+- `failed` — entregue mas o alvo respondeu com não-2xx, ou conexão falhou
+- `retrying` — falhou, será retentado de acordo com `max_retries`
 
-## Notes
+## Observações
 
-- Logs are retained for 30 days.
-- Failed deliveries can be retried manually via [Retry Webhook Log](/api-reference/endpoints/retry-webhook-log).
-- Each retry attempt creates a new log entry with incremented `attempt`.
+- Os logs são retidos por 30 dias.
+- Entregas com falha podem ser retentadas manualmente via [Retentar Log de Webhook](/api-reference/endpoints/retry-webhook-log).
+- Cada tentativa de retry cria uma nova entrada de log com `attempt` incrementado.

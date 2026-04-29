@@ -1,0 +1,12 @@
+{
+  "slug": "talk-direct-call",
+  "name": "Talk Direct Call",
+  "tagline": "Voice automation for sales and support",
+  "primary_color": "#de4f24",
+  "accent_color": "#24241c",
+  "domain": "talk.directmkt.com.br",
+  "api_base_url": "https://talk.directmkt.com.br/api/v1",
+  "support_email": "suporte@directmkt.com.br",
+  "token_prefix": "dc_",
+  "websocket_host": "rt.directmkt.com.br"
+}

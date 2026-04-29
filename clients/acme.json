@@ -1,0 +1,12 @@
+{
+  "slug": "acme",
+  "name": "Acme Voice API",
+  "tagline": "Voice agents that actually close",
+  "primary_color": "#F97316",
+  "accent_color": "#EA580C",
+  "domain": "voice.acme.com",
+  "api_base_url": "https://voice.acme.com/api/v1",
+  "support_email": "support@acme.com",
+  "token_prefix": "acme_",
+  "websocket_host": "rt.acme.com"
+}

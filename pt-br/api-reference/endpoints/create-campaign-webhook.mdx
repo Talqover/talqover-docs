@@ -1,12 +1,12 @@
 ---
-title: "Create Campaign Webhook"
-description: "Create a webhook for campaign-level events"
+title: "Criar Webhook da Campanha"
+description: "Criar um webhook para eventos de nível de campanha"
 api: "POST /api/v1/campaigns/{campaign_id}/webhooks"
 ---
 
-# Create Campaign Webhook
+# Criar Webhook da Campanha
 
-Create a webhook subscribed to campaign lifecycle and per-campaign-call events.
+Cria um webhook inscrito em eventos de ciclo de vida da campanha e por chamada de campanha.
 
 ## Endpoint
 
@@ -14,41 +14,41 @@ Create a webhook subscribed to campaign lifecycle and per-campaign-call events.
 POST /api/v1/campaigns/{campaign_id}/webhooks
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-<ParamField body="name" type="string" required>Webhook name. Max 255 characters.</ParamField>
-<ParamField body="webhook_url" type="string" required>Delivery URL. Max 500 characters.</ParamField>
-<ParamField body="events" type="array" required>Array of subscribed events. Min 1.</ParamField>
-<ParamField body="webhook_secret" type="string">Optional HMAC-SHA256 signing secret. Max 255 characters.</ParamField>
-<ParamField body="timeout" type="integer">Request timeout in seconds. Range: `5`–`120`. Default: `30`.</ParamField>
-<ParamField body="max_retries" type="integer">Retry attempts on failure. Range: `0`–`10`. Default: `3`.</ParamField>
-<ParamField body="enabled" type="boolean">Default: `true`.</ParamField>
-<ParamField body="http_method" type="string">Options: `POST`, `PUT`, `PATCH`. Default: `POST`.</ParamField>
-<ParamField body="authorization_scheme" type="string">Options: `none`, `bearer`, `basic`, `api_key`, `custom`. Default: `none`.</ParamField>
-<ParamField body="custom_headers" type="array">Array of `{key, value}` objects.</ParamField>
-<ParamField body="payload_templates" type="object">Per-event template overrides.</ParamField>
-<ParamField body="include_call_events" type="boolean">When `true`, also delivers per-call events for calls in this campaign (in addition to campaign-level events).</ParamField>
+<ParamField body="name" type="string" required>Nome do webhook. Máximo de 255 caracteres.</ParamField>
+<ParamField body="webhook_url" type="string" required>URL de entrega. Máximo de 500 caracteres.</ParamField>
+<ParamField body="events" type="array" required>Array de eventos inscritos. Mínimo de 1.</ParamField>
+<ParamField body="webhook_secret" type="string">Secret opcional de assinatura HMAC-SHA256. Máximo de 255 caracteres.</ParamField>
+<ParamField body="timeout" type="integer">Timeout da requisição em segundos. Faixa: `5`–`120`. Padrão: `30`.</ParamField>
+<ParamField body="max_retries" type="integer">Tentativas de retry em caso de falha. Faixa: `0`–`10`. Padrão: `3`.</ParamField>
+<ParamField body="enabled" type="boolean">Padrão: `true`.</ParamField>
+<ParamField body="http_method" type="string">Opções: `POST`, `PUT`, `PATCH`. Padrão: `POST`.</ParamField>
+<ParamField body="authorization_scheme" type="string">Opções: `none`, `bearer`, `basic`, `api_key`, `custom`. Padrão: `none`.</ParamField>
+<ParamField body="custom_headers" type="array">Array de objetos `{key, value}`.</ParamField>
+<ParamField body="payload_templates" type="object">Sobrescritas de template por evento.</ParamField>
+<ParamField body="include_call_events" type="boolean">Quando `true`, também entrega eventos por chamada para chamadas desta campanha (além dos eventos de nível de campanha).</ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks" \
+curl -X POST "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/webhooks" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -61,7 +61,7 @@ curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

@@ -44,13 +44,13 @@ GET /api/v1/phone-numbers
 
 ```bash
 # Request 1: Get all phone numbers
-curl -X GET "https://talkover.app/api/v1/phone-numbers" \
+curl -X GET "https://app.talkover.ai/api/v1/phone-numbers" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 1: Get all phone numbers
-const response = await fetch('https://talkover.app/api/v1/phone-numbers', {
+const response = await fetch('https://app.talkover.ai/api/v1/phone-numbers', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -67,13 +67,13 @@ console.log(result);
 
 ```bash
 # Request 2: Get phone numbers with voice capability
-curl -X GET "https://talkover.app/api/v1/phone-numbers?has_voice=true" \
+curl -X GET "https://app.talkover.ai/api/v1/phone-numbers?has_voice=true" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 2: Get phone numbers with voice capability
-const response = await fetch('https://talkover.app/api/v1/phone-numbers?has_voice=true', {
+const response = await fetch('https://app.talkover.ai/api/v1/phone-numbers?has_voice=true', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -90,13 +90,13 @@ console.log(result);
 
 ```bash
 # Request 3: Search for a specific phone number
-curl -X GET "https://talkover.app/api/v1/phone-numbers?search=+1234567890" \
+curl -X GET "https://app.talkover.ai/api/v1/phone-numbers?search=+1234567890" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 3: Search for a specific phone number
-const response = await fetch('https://talkover.app/api/v1/phone-numbers?search=+1234567890', {
+const response = await fetch('https://app.talkover.ai/api/v1/phone-numbers?search=+1234567890', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

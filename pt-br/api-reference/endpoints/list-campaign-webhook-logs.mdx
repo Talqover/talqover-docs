@@ -1,12 +1,12 @@
 ---
-title: "List Campaign Webhook Logs"
-description: "List delivery attempts for a campaign webhook"
+title: "Listar Logs do Webhook da Campanha"
+description: "Listar tentativas de entrega para um webhook de campanha"
 api: "GET /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/logs"
 ---
 
-# List Campaign Webhook Logs
+# Listar Logs do Webhook da Campanha
 
-List delivery attempts for a campaign webhook, including HTTP status, response, attempt number, and timing. Same shape as [List Webhook Delivery Logs](/api-reference/endpoints/list-webhook-logs).
+Lista as tentativas de entrega para um webhook de campanha, incluindo status HTTP, resposta, número da tentativa e tempo. Mesma estrutura de [Listar Logs de Entrega de Webhook](/api-reference/endpoints/list-webhook-logs).
 
 ## Endpoint
 
@@ -14,34 +14,34 @@ List delivery attempts for a campaign webhook, including HTTP status, response, 
 GET /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/logs
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
-<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
+<ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 
-## Query Parameters
+## Parâmetros de Consulta
 
-<ParamField query="per_page" type="integer">Items per page. Range: `1`–`100`. Default: `25`.</ParamField>
-<ParamField query="page" type="integer">Default: `1`.</ParamField>
+<ParamField query="per_page" type="integer">Itens por página. Faixa: `1`–`100`. Padrão: `25`.</ParamField>
+<ParamField query="page" type="integer">Padrão: `1`.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/logs" \
+curl "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/logs" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

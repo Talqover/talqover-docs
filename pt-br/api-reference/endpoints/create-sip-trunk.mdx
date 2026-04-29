@@ -1,15 +1,15 @@
 ---
-title: "Create SIP Trunk"
-description: "Register a custom SIP trunk for your environment"
+title: "Criar SIP Trunk"
+description: "Registrar um SIP Trunk personalizado para o seu ambiente"
 api: "POST /api/v1/sip-trunks"
 ---
 
-# Create SIP Trunk
+# Criar SIP Trunk
 
-Register a custom SIP trunk for your environment. Once created, you must verify the trunk via [Verify SIP Trunk](/api-reference/endpoints/verify-sip-trunk) before it can be used.
+Registra um SIP Trunk personalizado para o seu ambiente. Após criado, é necessário verificar o trunk via [Verificar SIP Trunk](/api-reference/endpoints/verify-sip-trunk) antes que ele possa ser utilizado.
 
 <Info>
-  This feature is available only on plans where `allow_custom_sip_trunks` is enabled.
+  Este recurso está disponível apenas em planos onde `allow_custom_sip_trunks` está habilitado.
 </Info>
 
 ## Endpoint
@@ -18,35 +18,35 @@ Register a custom SIP trunk for your environment. Once created, you must verify 
 POST /api/v1/sip-trunks
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-<ParamField body="name" type="string" required>Human-readable trunk name. Max 255 characters.</ParamField>
-<ParamField body="provider_name" type="string" required>Identifier of your carrier or SIP provider.</ParamField>
-<ParamField body="domain" type="string" required>SIP domain or proxy host (e.g., `sip.carrier-x.com`).</ParamField>
-<ParamField body="username" type="string" required>SIP authentication username.</ParamField>
-<ParamField body="password" type="string" required>SIP authentication password. Stored encrypted.</ParamField>
-<ParamField body="port" type="integer">SIP port. Range: `1`–`65535`. Default depends on transport (`5060` UDP/TCP, `5061` TLS).</ParamField>
-<ParamField body="transport" type="string">Transport protocol. Options: `udp`, `tcp`, `tls`. Default: `tls`.</ParamField>
-<ParamField body="outbound_proxy" type="string">Optional outbound proxy host.</ParamField>
-<ParamField body="auth_realm" type="string">Optional SIP auth realm if your carrier requires one.</ParamField>
-<ParamField body="is_active" type="boolean">Whether the trunk is active. Default: `false` (you must verify before activating).</ParamField>
+<ParamField body="name" type="string" required>Nome legível do trunk. Máximo de 255 caracteres.</ParamField>
+<ParamField body="provider_name" type="string" required>Identificador da sua operadora ou provedor SIP.</ParamField>
+<ParamField body="domain" type="string" required>Domínio SIP ou host do proxy (ex: `sip.carrier-x.com`).</ParamField>
+<ParamField body="username" type="string" required>Nome de usuário para autenticação SIP.</ParamField>
+<ParamField body="password" type="string" required>Senha para autenticação SIP. Armazenada de forma criptografada.</ParamField>
+<ParamField body="port" type="integer">Porta SIP. Faixa: `1`–`65535`. O padrão depende do transporte (`5060` UDP/TCP, `5061` TLS).</ParamField>
+<ParamField body="transport" type="string">Protocolo de transporte. Opções: `udp`, `tcp`, `tls`. Padrão: `tls`.</ParamField>
+<ParamField body="outbound_proxy" type="string">Host do proxy outbound opcional.</ParamField>
+<ParamField body="auth_realm" type="string">Realm de autenticação SIP opcional, caso a sua operadora exija.</ParamField>
+<ParamField body="is_active" type="boolean">Indica se o trunk está ativo. Padrão: `false` (você deve verificar antes de ativar).</ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/sip-trunks" \
+curl -X POST "https://app.talkover.ai/api/v1/sip-trunks" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -62,7 +62,7 @@ curl -X POST "https://talkover.app/api/v1/sip-trunks" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -85,7 +85,7 @@ curl -X POST "https://talkover.app/api/v1/sip-trunks" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- `password` is never returned in responses after creation.
-- Run [Verify SIP Trunk](/api-reference/endpoints/verify-sip-trunk) to test connectivity before activating.
+- O `password` nunca é retornado nas respostas após a criação.
+- Execute [Verificar SIP Trunk](/api-reference/endpoints/verify-sip-trunk) para testar a conectividade antes de ativar.

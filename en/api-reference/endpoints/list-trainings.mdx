@@ -32,13 +32,13 @@ GET /api/v1/agents/{agent_id}/trainings
 
 ```bash
 # Request 1: List all trainings for an agent
-curl -X GET "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings" \
+curl -X GET "https://app.talkover.ai/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 1: List all trainings for an agent
-const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings', {
+const response = await fetch('https://app.talkover.ai/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -55,7 +55,7 @@ console.log(result);
 
 ```bash
 # Request 2: List trainings with error handling
-curl -X GET "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings" \
+curl -X GET "https://app.talkover.ai/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -w "\nHTTP Status: %{http_code}\n"
 ```
@@ -63,7 +63,7 @@ curl -X GET "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-44665544
 ```javascript
 // Request 2: List trainings with error handling
 try {
-  const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings', {
+  const response = await fetch('https://app.talkover.ai/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/trainings', {
     method: 'GET',
     headers: {
       'Authorization': 'Bearer talq_your_environment_token_here'

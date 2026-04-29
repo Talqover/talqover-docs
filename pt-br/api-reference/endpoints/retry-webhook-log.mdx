@@ -1,12 +1,12 @@
 ---
-title: "Retry Webhook Delivery"
-description: "Manually retry a failed webhook delivery"
+title: "Retentar Entrega de Webhook"
+description: "Retentar manualmente uma entrega de webhook que falhou"
 api: "POST /api/v1/agents/{agent_id}/webhooks/{webhook_id}/logs/{log_id}/retry"
 ---
 
-# Retry Webhook Delivery
+# Retentar Entrega de Webhook
 
-Manually retry a failed webhook delivery. The retry creates a new log entry — the original log is preserved.
+Retentar manualmente uma entrega de webhook que falhou. O retry cria uma nova entrada de log — o log original é preservado.
 
 ## Endpoint
 
@@ -14,30 +14,30 @@ Manually retry a failed webhook delivery. The retry creates a new log entry — 
 POST /api/v1/agents/{agent_id}/webhooks/{webhook_id}/logs/{log_id}/retry
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
-<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
-<ParamField path="log_id" type="string" required>Log UUID of the failed delivery to retry.</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente.</ParamField>
+<ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
+<ParamField path="log_id" type="string" required>UUID do log da entrega que falhou a ser retentada.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X POST "https://talkover.app/api/v1/agents/agent-uuid/webhooks/webhook-uuid/logs/log-uuid/retry" \
+curl -X POST "https://app.talkover.ai/api/v1/agents/agent-uuid/webhooks/webhook-uuid/logs/log-uuid/retry" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -55,11 +55,11 @@ curl -X POST "https://talkover.app/api/v1/agents/agent-uuid/webhooks/webhook-uui
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 422 — Cannot Retry
+### 422 — Não é Possível Retentar
 
-Returned when the log is not in a retriable state (e.g., already succeeded, too old, or webhook is disabled).
+Retornado quando o log não está em um estado retentável (ex: já teve sucesso, é muito antigo ou o webhook está desativado).
 
 <ResponseExample>
 
@@ -73,7 +73,7 @@ Returned when the log is not in a retriable state (e.g., already succeeded, too 
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Retries respect the webhook's current configuration (URL, headers, timeout) — not the configuration at the time of the original attempt.
-- Use [List Webhook Delivery Logs](/api-reference/endpoints/list-webhook-logs) to track the new attempt.
+- Os retries respeitam a configuração atual do webhook (URL, cabeçalhos, timeout) — não a configuração no momento da tentativa original.
+- Use [Listar Logs de Entrega de Webhook](/api-reference/endpoints/list-webhook-logs) para acompanhar a nova tentativa.

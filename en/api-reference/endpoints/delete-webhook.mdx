@@ -24,12 +24,12 @@ Permanently deletes a webhook configuration. This action cannot be undone.
 
 ```bash
 curl -X DELETE \
-  'https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \
+  'https://app.talkover.ai/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a' \
   -H 'Authorization: Bearer YOUR_TOKEN'
 ```
 
 ```javascript
-const response = await fetch('https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a', {
+const response = await fetch('https://app.talkover.ai/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a', {
   method: 'DELETE',
   headers: {
     'Authorization': 'Bearer YOUR_TOKEN'
@@ -42,7 +42,7 @@ const data = await response.json();
 <?php
 
 $client = new \GuzzleHttp\Client();
-$response = $client->delete('https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a', [
+$response = $client->delete('https://app.talkover.ai/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a', [
     'headers' => [
         'Authorization' => 'Bearer YOUR_TOKEN',
     ],

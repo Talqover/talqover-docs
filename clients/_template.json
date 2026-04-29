@@ -1,0 +1,12 @@
+{
+  "slug": "client",
+  "name": "<Client> Voice API",
+  "tagline": "Short description shown on the cover page.",
+  "primary_color": "#155DFC",
+  "accent_color": "#3730a3",
+  "domain": "voice.client.com",
+  "api_base_url": "https://voice.client.com/api/v1",
+  "support_email": "support@client.com",
+  "token_prefix": "client_",
+  "websocket_host": "rt.client.com"
+}

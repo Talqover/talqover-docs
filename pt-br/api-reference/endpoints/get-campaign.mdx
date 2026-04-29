@@ -32,13 +32,13 @@ GET /api/v1/campaigns/{campaign_id}
 
 ```bash
 # Requisição 1: Obter detalhes de uma campanha específica
-curl -X GET "https://talkover.app/api/v1/campaigns/campaign-uuid-1" \
+curl -X GET "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 1: Obter detalhes de uma campanha específica
-const response = await fetch('https://talkover.app/api/v1/campaigns/campaign-uuid-1', {
+const response = await fetch('https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -55,14 +55,14 @@ console.log(result);
 
 ```bash
 # Requisição 2: Obter campanha com ID específico
-curl -X GET "https://talkover.app/api/v1/campaigns/550e8400-e29b-41d4-a716-446655440000" \
+curl -X GET "https://app.talkover.ai/api/v1/campaigns/550e8400-e29b-41d4-a716-446655440000" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 2: Obter campanha com ID específico
 const campaign_id = '550e8400-e29b-41d4-a716-446655440000';
-const response = await fetch(`https://talkover.app/api/v1/campaigns/${campaign_id}`, {
+const response = await fetch(`https://app.talkover.ai/api/v1/campaigns/${campaign_id}`, {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

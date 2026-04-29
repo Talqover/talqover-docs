@@ -1,12 +1,12 @@
 ---
-title: "Test Campaign SFTP Connection"
-description: "Verify SFTP connectivity for a campaign"
+title: "Testar Conexão SFTP da Campanha"
+description: "Verificar a conectividade SFTP para uma campanha"
 api: "POST /api/v1/campaigns/{campaign_id}/sftp/test-connection"
 ---
 
-# Test Campaign SFTP Connection
+# Testar Conexão SFTP da Campanha
 
-Run a connectivity check against the configured SFTP server. The result is stored on the SFTP config (`last_test_at`, `last_test_success`) and required before the integration can be enabled.
+Executa uma verificação de conectividade contra o servidor SFTP configurado. O resultado é armazenado na configuração SFTP (`last_test_at`, `last_test_success`) e é necessário antes que a integração possa ser habilitada.
 
 ## Endpoint
 
@@ -14,17 +14,17 @@ Run a connectivity check against the configured SFTP server. The result is store
 POST /api/v1/campaigns/{campaign_id}/sftp/test-connection
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -35,9 +35,9 @@ curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/test-conn
 
 </RequestExample>
 
-## Response
+## Resposta
 
-### Success
+### Sucesso
 
 <ResponseExample>
 
@@ -55,7 +55,7 @@ curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/test-conn
 
 </ResponseExample>
 
-### Failure
+### Falha
 
 <ResponseExample>
 

@@ -42,7 +42,7 @@ PUT /api/v1/agents/{agent_id}/knowledge
 
 ```bash
 # Requisição 1: Atualizar base de conhecimento com texto
-curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid-1/knowledge" \
+curl -X PUT "https://app.talkover.ai/api/v1/agents/agent-uuid-1/knowledge" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -52,7 +52,7 @@ curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid-1/knowledge" \
 
 ```javascript
 // Requisição 1: Atualizar base de conhecimento com texto
-const response = await fetch('https://talkover.app/api/v1/agents/agent-uuid-1/knowledge', {
+const response = await fetch('https://app.talkover.ai/api/v1/agents/agent-uuid-1/knowledge', {
   method: 'PUT',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -73,7 +73,7 @@ console.log(result);
 
 ```bash
 # Requisição 2: Atualizar base de conhecimento com URL
-curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid-1/knowledge" \
+curl -X PUT "https://app.talkover.ai/api/v1/agents/agent-uuid-1/knowledge" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -83,7 +83,7 @@ curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid-1/knowledge" \
 
 ```javascript
 // Requisição 2: Atualizar base de conhecimento com URL
-const response = await fetch('https://talkover.app/api/v1/agents/agent-uuid-1/knowledge', {
+const response = await fetch('https://app.talkover.ai/api/v1/agents/agent-uuid-1/knowledge', {
   method: 'PUT',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',

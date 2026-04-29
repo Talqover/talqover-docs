@@ -1,12 +1,12 @@
 ---
-title: "List Campaign Webhooks"
-description: "List webhooks configured for a campaign"
+title: "Listar Webhooks da Campanha"
+description: "Listar webhooks configurados para uma campanha"
 api: "GET /api/v1/campaigns/{campaign_id}/webhooks"
 ---
 
-# List Campaign Webhooks
+# Listar Webhooks da Campanha
 
-List webhooks configured for a specific campaign. Campaign webhooks fire on campaign-level events (`campaign.started`, `campaign_call.completed`, etc.) — distinct from agent webhooks which fire on per-call events.
+Lista os webhooks configurados para uma campanha específica. Webhooks de campanha disparam em eventos de nível de campanha (`campaign.started`, `campaign_call.completed`, etc.) — distintos dos webhooks de agente que disparam em eventos por chamada.
 
 ## Endpoint
 
@@ -14,28 +14,28 @@ List webhooks configured for a specific campaign. Campaign webhooks fire on camp
 GET /api/v1/campaigns/{campaign_id}/webhooks
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks" \
+curl "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/webhooks" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

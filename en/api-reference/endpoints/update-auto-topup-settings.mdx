@@ -60,7 +60,7 @@ PUT /api/v1/auto-topup/settings
 
 ```bash
 # Enable threshold-based topup at $50, recharge $100
-curl -X PUT "https://talkover.app/api/v1/auto-topup/settings" \
+curl -X PUT "https://app.talkover.ai/api/v1/auto-topup/settings" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -73,7 +73,7 @@ curl -X PUT "https://talkover.app/api/v1/auto-topup/settings" \
 
 ```bash
 # Enable monthly scheduled topup of $200 on the 1st
-curl -X PUT "https://talkover.app/api/v1/auto-topup/settings" \
+curl -X PUT "https://app.talkover.ai/api/v1/auto-topup/settings" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{

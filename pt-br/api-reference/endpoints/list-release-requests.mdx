@@ -1,12 +1,12 @@
 ---
-title: "List Release Requests"
-description: "List pending and historical phone number release requests"
+title: "Listar Solicitações de Liberação"
+description: "Listar solicitações pendentes e históricas de liberação de números de telefone"
 api: "GET /api/v1/phone-numbers/release-requests"
 ---
 
-# List Release Requests
+# Listar Solicitações de Liberação
 
-List release requests submitted for phone numbers in your environment. Release requests are used to return a phone number you no longer need.
+Lista as solicitações de liberação enviadas para números de telefone em seu ambiente. Solicitações de liberação são usadas para devolver um número de telefone que você não precisa mais.
 
 ## Endpoint
 
@@ -14,24 +14,24 @@ List release requests submitted for phone numbers in your environment. Release r
 GET /api/v1/phone-numbers/release-requests
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/v1/phone-numbers/release-requests" \
+curl "https://app.talkover.ai/api/v1/phone-numbers/release-requests" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -62,14 +62,14 @@ curl "https://talkover.app/api/v1/phone-numbers/release-requests" \
 
 </ResponseExample>
 
-### Status Values
+### Valores de Status
 
-- `pending` — submitted, awaiting review
-- `approved` — approved and the number has been (or will be) released
-- `rejected` — request denied (reason returned in `rejection_reason` field)
-- `cancelled` — user cancelled before resolution
+- `pending` — enviada, aguardando análise
+- `approved` — aprovada e o número foi (ou será) liberado
+- `rejected` — solicitação negada (motivo retornado no campo `rejection_reason`)
+- `cancelled` — usuário cancelou antes da resolução
 
-## Notes
+## Observações
 
-- To submit a new release request, use [Request Phone Release](/api-reference/endpoints/request-phone-release).
-- Pending requests can be cancelled with [Cancel Release Request](/api-reference/endpoints/cancel-release-request).
+- Para enviar uma nova solicitação de liberação, use [Solicitar Liberação de Telefone](/api-reference/endpoints/request-phone-release).
+- Solicitações pendentes podem ser canceladas com [Cancelar Solicitação de Liberação](/api-reference/endpoints/cancel-release-request).

@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://talkover.app/api/v1",
+      "url": "https://app.talkover.ai/api/v1",
       "description": "Production API"
     }
   ],
@@ -1706,7 +1706,7 @@
                       "status": "ready",
                       "transport": {
                         "provider": "external.websocket",
-                        "websocketCallUrl": "wss://us-agent.talkover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here"
+                        "websocketCallUrl": "wss://us-agent.app.talkover.ai/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here"
                       }
                     }
                   }
@@ -2772,7 +2772,7 @@
           "id": "123e4567-e89b-12d3-a456-426614174000",
           "status": "external",
           "to": "+1234567890",
-          "websocket_url": "wss://us-agent.talkover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here",
+          "websocket_url": "wss://us-agent.app.talkover.ai/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here",
           "created_at": "2024-01-01T00:00:00Z"
         }
       },

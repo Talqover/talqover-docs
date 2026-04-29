@@ -157,7 +157,7 @@ These optional fields override `retry_cooldown_hours` for specific call outcomes
 
 ```bash
 # Basic sales campaign — weekdays 09:00–17:00 New York
-curl -X POST "https://talkover.app/api/v1/campaigns" \
+curl -X POST "https://app.talkover.ai/api/v1/campaigns" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -175,7 +175,7 @@ curl -X POST "https://talkover.app/api/v1/campaigns" \
 ```
 
 ```javascript
-const response = await fetch('https://talkover.app/api/v1/campaigns', {
+const response = await fetch('https://app.talkover.ai/api/v1/campaigns', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -201,7 +201,7 @@ const result = await response.json();
 ```python
 import requests
 
-url = "https://talkover.app/api/v1/campaigns"
+url = "https://app.talkover.ai/api/v1/campaigns"
 headers = {
     "Authorization": "Bearer talq_your_environment_token_here",
     "Content-Type": "application/json"
@@ -229,7 +229,7 @@ result = response.json()
 
 ```bash
 # Campaign with split call windows + custom DNC + per-status cooldowns
-curl -X POST "https://talkover.app/api/v1/campaigns" \
+curl -X POST "https://app.talkover.ai/api/v1/campaigns" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{

@@ -1,15 +1,15 @@
 ---
-title: "Get Current User"
-description: "Retrieve the user associated with the current session token"
+title: "Obter Usuário Atual"
+description: "Recuperar o usuário associado ao token de sessão atual"
 api: "GET /api/user"
 ---
 
-# Get Current User
+# Obter Usuário Atual
 
-Retrieve the authenticated user's profile. This endpoint requires a **user session token** (Account API), not an environment token.
+Recupera o perfil do usuário autenticado. Este endpoint requer um **token de sessão de usuário** (API de Conta), não um token de ambiente.
 
 <Info>
-  This endpoint is part of the **Account API** and is authenticated with a user session token. Other endpoints in this reference use environment tokens (`talq_*`).
+  Este endpoint faz parte da **API de Conta** e é autenticado com um token de sessão de usuário. Outros endpoints desta referência usam tokens de ambiente (`talq_*`).
 </Info>
 
 ## Endpoint
@@ -18,24 +18,24 @@ Retrieve the authenticated user's profile. This endpoint requires a **user sessi
 GET /api/user
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  User session token. Format: `Bearer <user_session_token>`.
+  Token de sessão do usuário. Formato: `Bearer <user_session_token>`.
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl "https://talkover.app/api/user" \
+curl "https://app.talkover.ai/api/user" \
   -H "Authorization: Bearer your_user_session_token"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -51,7 +51,7 @@ curl "https://talkover.app/api/user" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Use this in dashboards or tools that authenticate the human user, not service-to-service integrations.
-- For machine-to-machine access scoped to an environment, use environment tokens (`talq_*`) with the rest of the API.
+- Use este endpoint em dashboards ou ferramentas que autenticam o usuário humano, não integrações servidor-a-servidor.
+- Para acesso máquina-a-máquina com escopo de ambiente, use tokens de ambiente (`talq_*`) com o restante da API.

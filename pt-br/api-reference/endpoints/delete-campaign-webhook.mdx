@@ -1,12 +1,12 @@
 ---
-title: "Delete Campaign Webhook"
-description: "Delete a campaign webhook"
+title: "Excluir Webhook da Campanha"
+description: "Excluir um webhook de campanha"
 api: "DELETE /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}"
 ---
 
-# Delete Campaign Webhook
+# Excluir Webhook da Campanha
 
-Delete a campaign webhook. Past delivery logs are retained for the standard retention period.
+Exclui um webhook de campanha. Logs de entregas anteriores são mantidos pelo período padrão de retenção.
 
 ## Endpoint
 
@@ -14,29 +14,29 @@ Delete a campaign webhook. Past delivery logs are retained for the standard rete
 DELETE /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
-<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+<ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
+<ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-curl -X DELETE "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1" \
+curl -X DELETE "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
