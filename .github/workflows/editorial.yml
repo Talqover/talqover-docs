@@ -1,0 +1,60 @@
+name: Editorial check
+
+on:
+  pull_request:
+    paths:
+      - "en/**/*.mdx"
+      - "pt-br/**/*.mdx"
+      - "editorial/**"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run editorial health check
+        run: |
+          chmod +x editorial/check.sh
+          output=$(bash editorial/check.sh)
+          echo "$output"
+
+          # Extract counts. Ideal: cada métrica deve estar em 0 (ou só legítimas).
+          fail=0
+
+          buzz=$(echo "$output" | awk -F': ' '/files com buzzword/{print $2}')
+          if [ "${buzz:-0}" -gt 0 ]; then
+            echo "::error::$buzz arquivo(s) com buzzword/opener proibido. Veja editorial/STYLE_GUIDE.md"
+            fail=1
+          fi
+
+          tcase=$(echo "$output" | awk -F': ' '/headings em Title Case/{print $2}')
+          if [ "${tcase:-0}" -gt 0 ]; then
+            echo "::error::$tcase heading(s) em Title Case. Use sentence case."
+            fail=1
+          fi
+
+          emoji=$(echo "$output" | awk -F': ' '/files com emoji em tabela/{print $2}')
+          if [ "${emoji:-0}" -gt 0 ]; then
+            echo "::error::$emoji arquivo(s) com emoji ❌/✅ em tabela. Substitua por prose ou Yes/No."
+            fail=1
+          fi
+
+          etc=$(echo "$output" | awk -F': ' '/ocorrências de etc/{print $2}')
+          if [ "${etc:-0}" -gt 0 ]; then
+            echo "::error::$etc enum(s) com 'etc.'. Liste todos os valores."
+            fail=1
+          fi
+
+          ptus=$(echo "$output" | awk -F': ' '/exemplos US em pt-br/{print $2}')
+          if [ "${ptus:-0}" -gt 0 ]; then
+            echo "::warning::$ptus exemplo(s) US em pt-br. Localize para BR (telefone, timezone, nomes)."
+          fi
+
+          if [ "$fail" -eq 1 ]; then
+            echo ""
+            echo "Editorial check FAILED. Veja editorial/STYLE_GUIDE.md."
+            exit 1
+          fi
+
+          echo "Editorial check passed."

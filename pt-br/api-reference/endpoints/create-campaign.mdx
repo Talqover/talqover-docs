@@ -65,7 +65,7 @@ POST /api/v1/campaigns
 </ParamField>
 
 <ParamField body="timezone" type="string" required>
-  Fuso horário IANA para `call_time_ranges` (ex: `America/New_York`, `America/Sao_Paulo`, `Europe/London`). Máximo de 50 caracteres.
+  Fuso horário IANA para `call_time_ranges` (ex: `America/Sao_Paulo`, `America/Sao_Paulo`, `Europe/London`). Máximo de 50 caracteres.
 </ParamField>
 
 ### Retry e Cooldown
@@ -170,7 +170,7 @@ curl -X POST "https://app.talkover.ai/api/v1/campaigns" \
     "call_time_ranges": [
       {"start": "09:00", "end": "17:00"}
     ],
-    "timezone": "America/New_York"
+    "timezone": "America/Sao_Paulo"
   }'
 ```
 
@@ -191,7 +191,7 @@ const response = await fetch('https://app.talkover.ai/api/v1/campaigns', {
     call_time_ranges: [
       { start: '09:00', end: '17:00' }
     ],
-    timezone: 'America/New_York'
+    timezone: 'America/Sao_Paulo'
   })
 });
 
@@ -216,7 +216,7 @@ data = {
     "call_time_ranges": [
         {"start": "09:00", "end": "17:00"}
     ],
-    "timezone": "America/New_York"
+    "timezone": "America/Sao_Paulo"
 }
 
 response = requests.post(url, headers=headers, json=data)
@@ -253,7 +253,7 @@ curl -X POST "https://app.talkover.ai/api/v1/campaigns" \
     "failed_cooldown_hours": 72,
     "do_not_call_enabled": true,
     "do_not_call_list_source": "custom",
-    "do_not_call_custom_list": ["+15551234567", "+15559876543"],
+    "do_not_call_custom_list": ["+5511987654321", "+5511976543210"],
     "auto_add_to_dnc_enabled": true,
     "auto_dnc_trigger_statuses": ["completed"],
     "auto_dnc_trigger_errors": ["invalid_number"]
@@ -284,7 +284,7 @@ curl -X POST "https://app.talkover.ai/api/v1/campaigns" \
     "call_time_ranges": [
       {"start": "09:00", "end": "17:00"}
     ],
-    "timezone": "America/New_York",
+    "timezone": "America/Sao_Paulo",
     "max_retries": 3,
     "retry_cooldown_hours": 24,
     "do_not_call_enabled": false,

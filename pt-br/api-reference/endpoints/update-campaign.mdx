@@ -71,7 +71,7 @@ Todos os campos são opcionais. Envie apenas o que você quer alterar. As regras
 </ParamField>
 
 <ParamField body="timezone" type="string">
-  Fuso horário IANA (ex: `America/New_York`). Máximo de 50 caracteres.
+  Fuso horário IANA (ex: `America/Sao_Paulo`). Máximo de 50 caracteres.
 </ParamField>
 
 ### Retry e Cooldown
@@ -212,7 +212,7 @@ curl -X PUT "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1" \
     "success_cooldown_hours": 168,
     "do_not_call_enabled": true,
     "do_not_call_list_source": "custom",
-    "do_not_call_custom_list": ["+15551234567"],
+    "do_not_call_custom_list": ["+5511987654321"],
     "auto_add_to_dnc_enabled": true,
     "auto_dnc_trigger_statuses": ["completed"]
   }'

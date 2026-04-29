@@ -40,7 +40,7 @@ POST /api/v1/calendars/{calendar_id}/events/{event_id}/attendees
 curl -X POST "https://app.talkover.ai/api/v1/calendars/calendar-uuid-1/events/event-uuid-1/attendees" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
-  -d '{ "name": "Jane Doe", "email": "jane@acme.com" }'
+  -d '{ "name": "Joana Souza", "email": "joana@lojabrasil.com.br" }'
 ```
 
 </RequestExample>
@@ -54,8 +54,8 @@ curl -X POST "https://app.talkover.ai/api/v1/calendars/calendar-uuid-1/events/ev
   "success": true,
   "data": {
     "id": "att-uuid-1",
-    "name": "Jane Doe",
-    "email": "jane@acme.com"
+    "name": "Joana Souza",
+    "email": "joana@lojabrasil.com.br"
   }
 }
 ```

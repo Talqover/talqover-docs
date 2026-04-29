@@ -35,7 +35,7 @@ POST /api/v1/sip-trunks/{trunk_id}/dids
 </ParamField>
 
 <ParamField body="number" type="string" required>
-  Número de telefone no formato E.164 (ex: `+15551234567`).
+  Número de telefone no formato E.164 (ex: `+5511987654321`).
 </ParamField>
 
 ## Exemplos
@@ -48,7 +48,7 @@ curl -X POST "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1/dids" \
   -H "Content-Type: application/json" \
   -d '{
     "country_code": "US",
-    "number": "+15551234567"
+    "number": "+5511987654321"
   }'
 ```
 
@@ -63,7 +63,7 @@ curl -X POST "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1/dids" \
   "success": true,
   "data": {
     "id": "phone-uuid-1",
-    "number": "+15551234567",
+    "number": "+5511987654321",
     "country_code": "US",
     "formatted_number": "(555) 123-4567",
     "trunk_id": "trunk-uuid-1"
