@@ -14,19 +14,19 @@ Retrieve all calls for a specific agent with various filtering options and pagin
 GET /api/v1/agents/{agent_id}/calls
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent" type="string" required>
   The unique identifier of the agent. You can find this in your dashboard under Voice Agents.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Query Parameters
+## Query parameters
 
 <ParamField query="status" type="string" required={false}>
   Filter by call status. Options: `initiated`, `ringing`, `answered`, `completed`, `failed`, `busy`, `no-answer`
@@ -56,7 +56,7 @@ GET /api/v1/agents/{agent_id}/calls
   Page number (default: 1)
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -179,7 +179,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -253,7 +253,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 404 Not Found
 
@@ -318,7 +318,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -327,7 +327,7 @@ console.log(result);
 | `VALIDATION_ERROR` | Query parameter validation failed | 422 |
 | `SERVER_ERROR` | Internal server error occurred | 500 |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Agent-specific filtering.** This endpoint returns only calls associated with the specified agent.
@@ -341,7 +341,7 @@ console.log(result);
   **No agent object.** The response doesn't include the agent object since it's already specified in the URL.
 </Info>
 
-## Best Practices
+## Best practices
 
 1. **Use pagination** - Always use pagination for large datasets
 2. **Filter by date** - Use date filters to limit results to relevant time periods
@@ -349,7 +349,7 @@ console.log(result);
 4. **Search efficiently** - Use the search parameter to find specific calls quickly
 5. **Handle errors** - Implement proper error handling for authentication and validation failures
 
-## Related Endpoints
+## Related endpoints
 
 - **List Calls**: `GET /api/v1/calls`
 - **Get Agent**: `GET /api/v1/agents/{agent_id}`

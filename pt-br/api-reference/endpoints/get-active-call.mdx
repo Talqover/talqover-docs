@@ -14,14 +14,14 @@ Encontra a chamada ativa (se houver) entre um agente e um número de telefone es
 GET /api/v1/agents/{agent_id}/active-call/{phone}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>UUID do agente.</ParamField>
 <ParamField path="phone" type="string" required>
   Número de telefone no formato E.164 (ex: `+15551234567`). Codifique em URL o sinal `+` como `%2B`.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`

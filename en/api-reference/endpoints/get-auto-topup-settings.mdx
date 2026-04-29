@@ -14,7 +14,7 @@ Retrieve the current auto topup configuration for your environment. Auto topup a
 GET /api/v1/auto-topup/settings
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -56,7 +56,7 @@ curl "https://app.talkover.ai/api/v1/auto-topup/settings" \
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="data.is_enabled" type="boolean">Whether auto topup is currently active.</ResponseField>
 <ResponseField name="data.threshold_amount" type="number">Balance threshold (in account currency) below which a recharge is triggered.</ResponseField>

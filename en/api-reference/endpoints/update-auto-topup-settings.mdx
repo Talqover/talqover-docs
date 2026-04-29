@@ -14,7 +14,7 @@ Configure or update auto topup. You can enable threshold-based recharging (auto-
 PUT /api/v1/auto-topup/settings
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -24,7 +24,7 @@ PUT /api/v1/auto-topup/settings
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="is_enabled" type="boolean">
   Master switch for auto topup. When `false`, neither threshold nor scheduled recharges fire.

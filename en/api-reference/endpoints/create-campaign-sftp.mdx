@@ -14,11 +14,11 @@ Configure SFTP integration for a campaign. The configuration is created in `disa
 POST /api/v1/campaigns/{campaign_id}/sftp
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/campaigns/{campaign_id}/sftp
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="host" type="string" required>SFTP server hostname.</ParamField>
 <ParamField body="port" type="integer">SFTP port. Range: `1`–`65535`. Default: `22`.</ParamField>

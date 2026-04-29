@@ -14,13 +14,13 @@ Manually retry a failed webhook delivery. The retry creates a new log entry — 
 POST /api/v1/agents/{agent_id}/webhooks/{webhook_id}/logs/{log_id}/retry
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
 <ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
 <ParamField path="log_id" type="string" required>Log UUID of the failed delivery to retry.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -55,7 +55,7 @@ curl -X POST "https://app.talkover.ai/api/v1/agents/agent-uuid/webhooks/webhook-
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 422 — Cannot Retry
 

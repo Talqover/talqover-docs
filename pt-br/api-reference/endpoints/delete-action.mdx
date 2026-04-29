@@ -14,7 +14,7 @@ Excluir uma ação específica de um agente. Esta operação remove permanenteme
 DELETE /api/v1/agents/{agent_id}/actions/{action_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent" type="string" required>
   O identificador único do agente. Você pode encontrá-lo na lista de agentes.
@@ -24,7 +24,7 @@ DELETE /api/v1/agents/{agent_id}/actions/{action_id}
   O identificador único da ação. Você pode encontrá-lo na lista de ações do agente.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -105,7 +105,7 @@ console.log(result);
   Mensagem de sucesso descrevendo a operação.
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 404 Não Encontrado
 
@@ -157,7 +157,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -192,7 +192,7 @@ console.log(result);
 4. **Teste em ambiente de desenvolvimento** - Teste a exclusão em ambiente de desenvolvimento primeiro
 5. **Monitore comportamento** - Acompanhe como a remoção afeta o comportamento do agente
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - **Listar Ações**: `GET /api/v1/agents/{agent_id}/actions`
 - **Criar/Atualizar Ação**: `POST /api/v1/agents/{agent_id}/actions`

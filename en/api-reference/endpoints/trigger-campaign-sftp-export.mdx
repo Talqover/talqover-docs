@@ -14,11 +14,11 @@ Export selected campaign result files to the configured `export_path` on the SFT
 POST /api/v1/campaigns/{campaign_id}/sftp/trigger-export
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/campaigns/{campaign_id}/sftp/trigger-export
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="file_data_ids" type="array" required>
   Array of file UUIDs to export. Use [Get Campaign](/api-reference/endpoints/get-campaign) to retrieve available `campaign_files`.
@@ -66,7 +66,7 @@ curl -X POST "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/sftp/trigge
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 409 — Already Running
 

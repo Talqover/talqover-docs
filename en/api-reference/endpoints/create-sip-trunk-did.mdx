@@ -14,11 +14,11 @@ Register a new DID (phone number) on a SIP trunk. Once added, the DID can be ass
 POST /api/v1/sip-trunks/{trunk_id}/dids
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/sip-trunks/{trunk_id}/dids
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="country_code" type="string" required>
   ISO 3166-1 alpha-2 country code (e.g., `US`, `BR`, `GB`).
@@ -73,7 +73,7 @@ curl -X POST "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1/dids" \
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 409 — Number Already Exists
 

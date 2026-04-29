@@ -14,11 +14,11 @@ Cria um webhook inscrito em eventos de ciclo de vida da campanha e por chamada d
 POST /api/v1/campaigns/{campaign_id}/webhooks
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/campaigns/{campaign_id}/webhooks
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="name" type="string" required>Nome do webhook. Máximo de 255 caracteres.</ParamField>
 <ParamField body="webhook_url" type="string" required>URL de entrega. Máximo de 500 caracteres.</ParamField>

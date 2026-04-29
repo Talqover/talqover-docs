@@ -14,12 +14,12 @@ Add an attendee to a calendar event.
 POST /api/v1/calendars/{calendar_id}/events/{event_id}/attendees
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
 <ParamField path="event_id" type="string" required>Event UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -27,7 +27,7 @@ POST /api/v1/calendars/{calendar_id}/events/{event_id}/attendees
 
 <ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="name" type="string" required>Attendee display name.</ParamField>
 <ParamField body="email" type="string" required>Attendee email.</ParamField>

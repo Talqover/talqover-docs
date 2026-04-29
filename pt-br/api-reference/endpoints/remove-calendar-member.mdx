@@ -14,12 +14,12 @@ Revogar o acesso de um usuário a um calendário.
 DELETE /api/v1/calendars/{calendar_id}/members/{member_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 <ParamField path="member_id" type="string" required>UUID do membro.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`

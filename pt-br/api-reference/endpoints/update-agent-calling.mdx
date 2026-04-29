@@ -14,13 +14,13 @@ Atualiza a direção da chamada (entrada/saída) e os números de telefone atrib
 PUT /api/v1/agents/{agent_id}/calling
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>
   O identificador único do agente de voz a ser atualizado.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ PUT /api/v1/agents/{agent_id}/calling
   Deve ser definido como `application/json`
 </ParamField>
 
-## Parâmetros do Corpo da Requisição
+## Parâmetros do Corpo da requisição
 
 <ParamField body="direction" type="string" required>
   Direção da chamada. Opções: `inbound`, `outbound`.

@@ -14,13 +14,13 @@ Retrieve a list of all calls for the authenticated environment with various filt
 GET /api/v1/calls
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Query Parameters
+## Query parameters
 
 <ParamField query="status" type="string" required={false}>
   Filter by call status. Options: `initiated`, `ringing`, `answered`, `completed`, `failed`, `busy`, `no-answer`
@@ -54,7 +54,7 @@ GET /api/v1/calls
   Page number (default: 1)
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -187,7 +187,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -276,7 +276,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 401 Unauthorized
 
@@ -328,7 +328,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -336,7 +336,7 @@ console.log(result);
 | `VALIDATION_ERROR` | Query parameter validation failed | 422 |
 | `SERVER_ERROR` | Internal server error occurred | 500 |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Pagination support.** All list endpoints support pagination with `page` and `per_page` parameters.
@@ -350,7 +350,7 @@ console.log(result);
   **Search functionality.** The search parameter searches in phone numbers and call SIDs.
 </Info>
 
-## Best Practices
+## Best practices
 
 1. **Use pagination** - Always use pagination for large datasets
 2. **Filter by date** - Use date filters to limit results to relevant time periods
@@ -358,7 +358,7 @@ console.log(result);
 4. **Monitor status** - Filter by status to track call progress
 5. **Handle errors** - Implement proper error handling for authentication and validation failures
 
-## Related Endpoints
+## Related endpoints
 
 - **Get Agent Calls**: `GET /api/v1/agents/{agent_id}/calls`
 - **List Campaigns**: `GET /api/v1/campaigns`

@@ -14,13 +14,13 @@ Atualiza parcialmente uma campanha existente. Todos os campos são opcionais —
 PUT /api/v1/campaigns/{campaign_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="campaign_id" type="string" required>
   UUID da campanha a ser atualizada.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ PUT /api/v1/campaigns/{campaign_id}
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 Todos os campos são opcionais. Envie apenas o que você quer alterar. As regras de validação e faixas correspondem a [Criar Campanha](/api-reference/endpoints/create-campaign).
 
@@ -253,7 +253,7 @@ curl -X PUT "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1" \
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 422 Erro de Validação
 
@@ -306,7 +306,7 @@ curl -X PUT "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1" \
 - Atualizar `call_time_ranges` ou `timezone` enquanto a campanha está `active` pode atrasar chamadas enfileiradas até que elas voltem a se encaixar nas novas janelas.
 - Enviar `"end_date": null` limpa uma data de término previamente definida.
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - [Obter Campanha](/api-reference/endpoints/get-campaign)
 - [Atualizar Status da Campanha](/api-reference/endpoints/update-campaign-status)

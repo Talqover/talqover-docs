@@ -16,13 +16,13 @@ Para chamadas baseadas em campanha, veja [Realizar Chamada de Campanha](/api-ref
 POST /api/v1/agents/{agent_id}/call
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>
   O identificador único do agente de voz que tratará a chamada. Você pode encontrá-lo em seu painel, na seção Agentes de Voz.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -32,7 +32,7 @@ POST /api/v1/agents/{agent_id}/call
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="to" type="string" required>
   Número de telefone para chamar. Deve estar em formato internacional (ex: `+1234567890`).
@@ -184,7 +184,7 @@ result = response.json()
   Timestamp ISO 8601 quando a chamada foi criada.
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 400 Requisição Inválida
 
@@ -271,7 +271,7 @@ result = response.json()
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -283,7 +283,7 @@ result = response.json()
 | `INSUFFICIENT_CREDITS` | Conta com créditos insuficientes | 402 |
 | `RATE_LIMIT_EXCEEDED` | Muitas requisições em pouco tempo | 429 |
 
-## Limites de Taxa
+## Limites de taxa
 
 Cabeçalhos de limite de taxa são incluídos em todas as respostas:
 - `X-RateLimit-Limit`: Máximo de requisições por janela
@@ -298,7 +298,7 @@ Cabeçalhos de limite de taxa são incluídos em todas as respostas:
 4. **Use `is_testing` durante a integração** — mantém o tráfego de teste fora dos analytics e evita cobrança.
 5. **Valide números de telefone** antes de chamar — garanta o formato E.164 (`+` seguido de código do país e número).
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - [Realizar Chamada de Campanha](/api-reference/endpoints/make-campaign-call) — realiza chamadas agendadas por uma campanha.
 - [Listar Chamadas](/api-reference/endpoints/list-calls) — recupera chamadas históricas.

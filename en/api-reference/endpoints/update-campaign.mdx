@@ -14,13 +14,13 @@ Partially update an existing campaign. All fields are optional — only the fiel
 PUT /api/v1/campaigns/{campaign_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="campaign_id" type="string" required>
   UUID of the campaign to update.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ PUT /api/v1/campaigns/{campaign_id}
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 All fields are optional. Send only what you want to change. Validation rules and ranges match [Create Campaign](/api-reference/endpoints/create-campaign).
 
@@ -253,7 +253,7 @@ curl -X PUT "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1" \
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 422 Validation Error
 
@@ -306,7 +306,7 @@ curl -X PUT "https://app.talkover.ai/api/v1/campaigns/campaign-uuid-1" \
 - Updating `call_time_ranges` or `timezone` while the campaign is `active` may delay queued calls until they fall back into the new windows.
 - Sending `"end_date": null` clears a previously set end date.
 
-## Related Endpoints
+## Related endpoints
 
 - [Get Campaign](/api-reference/endpoints/get-campaign)
 - [Update Campaign Status](/api-reference/endpoints/update-campaign-status)

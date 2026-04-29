@@ -18,7 +18,7 @@ Register a custom SIP trunk for your environment. Once created, you must verify 
 POST /api/v1/sip-trunks
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/sip-trunks
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="name" type="string" required>Human-readable trunk name. Max 255 characters.</ParamField>
 <ParamField body="provider_name" type="string" required>Identifier of your carrier or SIP provider.</ParamField>

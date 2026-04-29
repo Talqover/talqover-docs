@@ -14,7 +14,7 @@ Configure ou atualize a recarga automática. Você pode habilitar a recarga base
 PUT /api/v1/auto-topup/settings
 ```
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -24,7 +24,7 @@ PUT /api/v1/auto-topup/settings
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="is_enabled" type="boolean">
   Chave principal da recarga automática. Quando `false`, nem as recargas por limite mínimo nem as agendadas são disparadas.

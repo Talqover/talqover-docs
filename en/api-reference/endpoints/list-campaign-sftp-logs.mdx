@@ -14,16 +14,16 @@ List recent SFTP import and export jobs for a campaign, including status, file c
 GET /api/v1/campaigns/{campaign_id}/sftp/logs
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
 
-## Query Parameters
+## Query parameters
 
 <ParamField query="per_page" type="integer">Items per page. Range: `1`–`100`. Default: `25`.</ParamField>
 <ParamField query="page" type="integer">Default: `1`.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`

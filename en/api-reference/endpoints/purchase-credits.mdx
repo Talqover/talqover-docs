@@ -18,7 +18,7 @@ Purchase credits to top up your account balance. The transaction is charged to t
 POST /api/v1/credits/purchase
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   User session token. Format: `Bearer <user_session_token>`.
@@ -28,7 +28,7 @@ POST /api/v1/credits/purchase
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="amount" type="number" required>
   Credit amount to purchase, in account currency. Must be greater than `0`.
@@ -72,7 +72,7 @@ curl -X POST "https://app.talkover.ai/api/v1/credits/purchase" \
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 402 — Payment Failed
 

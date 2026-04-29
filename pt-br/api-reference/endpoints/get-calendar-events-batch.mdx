@@ -14,7 +14,7 @@ Recuperar eventos de múltiplos calendários em uma única requisição, opciona
 GET /api/v1/calendars/events
 ```
 
-## Parâmetros de Consulta
+## Parâmetros de consulta
 
 <ParamField query="calendar_ids[]" type="array" required>
   Um ou mais UUIDs de calendário. Repita o parâmetro para múltiplos valores.
@@ -28,7 +28,7 @@ GET /api/v1/calendars/events
   Limite superior do horário de término do evento. ISO 8601.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`

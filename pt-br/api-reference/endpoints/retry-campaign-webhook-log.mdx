@@ -14,13 +14,13 @@ Retentar manualmente uma entrega de webhook de campanha que falhou. Cria uma nov
 POST /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/logs/{log_id}/retry
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 <ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 <ParamField path="log_id" type="string" required>UUID do log da entrega que falhou.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`

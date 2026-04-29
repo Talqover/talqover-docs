@@ -14,13 +14,13 @@ Publish an agent to mark it as active. A published agent can receive inbound cal
 POST /api/v1/agents/{agent_id}/publish
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>
   The unique identifier of the voice agent to publish.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`

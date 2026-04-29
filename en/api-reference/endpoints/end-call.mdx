@@ -14,13 +14,13 @@ Hang up an active call placed by a specific agent. Use this for emergency stops,
 POST /api/v1/agents/{agent_id}/end-call
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>
   Agent UUID owning the call.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ POST /api/v1/agents/{agent_id}/end-call
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="call_sid" type="string" required>
   Identifier of the call to hang up. Use the `id` returned by [Make a Call](/api-reference/endpoints/make-call).
@@ -78,7 +78,7 @@ await fetch('https://app.talkover.ai/api/v1/agents/agent-uuid/end-call', {
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 404 — Call Not Found
 

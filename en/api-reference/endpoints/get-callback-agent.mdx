@@ -14,11 +14,11 @@ Retrieve detailed callback configuration for a single agent, including its sourc
 GET /api/v1/callback-agents/{agent_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>UUID of the callback agent.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -63,7 +63,7 @@ curl "https://app.talkover.ai/api/v1/callback-agents/agent-uuid-1" \
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 404 — Not a Callback Agent
 

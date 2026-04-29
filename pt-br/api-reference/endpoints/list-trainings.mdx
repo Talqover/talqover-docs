@@ -14,19 +14,19 @@ Recuperar uma lista de dados de treinamento para um agente específico com supor
 GET /api/v1/agents/{agent_id}/trainings
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent" type="string" required>
   O identificador único do agente. Você pode encontrá-lo na lista de agentes.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Parâmetros de Consulta
+## Parâmetros de consulta
 
 <ParamField query="per_page" type="integer" required={false}>
   Número de itens por página (padrão: 20, máximo: 100)
@@ -175,7 +175,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 404 Não Encontrado
 
@@ -216,7 +216,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -246,7 +246,7 @@ console.log(result);
 4. **Respostas detalhadas** - Forneça respostas completas e úteis
 5. **Monitore desempenho** - Acompanhe como os dados de treinamento afetam o desempenho do agente
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - **Criar/Atualizar Treinamento**: `POST /api/v1/agents/{agent_id}/trainings`
 - **Excluir Treinamento**: `DELETE /api/v1/agents/{agent_id}/trainings/{training_id}`

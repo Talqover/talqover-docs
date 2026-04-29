@@ -14,11 +14,11 @@ Update a calendar's properties.
 PUT /api/v1/calendars/{calendar_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ PUT /api/v1/calendars/{calendar_id}
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="name" type="string">Calendar name.</ParamField>
 <ParamField body="timezone" type="string">IANA timezone.</ParamField>

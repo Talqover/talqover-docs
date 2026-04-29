@@ -14,17 +14,17 @@ List events in a single calendar, optionally filtered by time range.
 GET /api/v1/calendars/{calendar_id}/events
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
 
-## Query Parameters
+## Query parameters
 
 <ParamField query="from" type="string">ISO 8601 lower bound for `start_at`.</ParamField>
 <ParamField query="to" type="string">ISO 8601 upper bound for `end_at`.</ParamField>
 <ParamField query="status" type="string">Filter by status: `confirmed`, `tentative`, `cancelled`.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`

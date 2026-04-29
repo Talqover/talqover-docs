@@ -14,11 +14,11 @@ Executa a validação em uma configuração de fluxo candidata sem persistir alt
 POST /api/v1/agents/{agent_id}/flow/validate
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>UUID do agente. Usado para delimitar a validação (ex: para verificar se IDs de ações referenciados existem).</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/agents/{agent_id}/flow/validate
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="flow_config" type="object" required>
   Mesmo formato de [Atualizar Fluxo do Agente](/api-reference/endpoints/update-agent-flow).

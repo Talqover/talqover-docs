@@ -12,10 +12,10 @@ Initiate a call as part of a specific campaign. This endpoint allows you to manu
 
 The Make Campaign Call endpoint allows you to initiate individual calls within an existing campaign. This endpoint leverages the campaign's configuration and settings to ensure calls follow the established campaign rules and parameters.
 
-## Campaign Calls vs Individual Agent Calls
+## Campaign calls vs Individual agent calls
 
-### **Campaign Calls** - Strategic, Automated Outreach
-Campaign calls are designed for **systematic, large-scale customer engagement** with advanced automation features:
+### **Campaign calls** - Strategic, Automated Outreach
+Campaign calls are designed for **systematic, large-scale customer engagement** with automation features:
 
 - **Campaign-Specific Settings**: Each call inherits the campaign's configuration (agent, retry logic, cooldown periods, call hours)
 - **Advanced Scheduling**: Calls automatically respect business hours, timezone settings, and day-of-week restrictions
@@ -23,11 +23,11 @@ Campaign calls are designed for **systematic, large-scale customer engagement** 
 - **Call Flow Management**: Consistent call flows and messaging across all campaign calls
 - **Performance Analytics**: Comprehensive tracking and reporting at the campaign level
 - **Compliance Features**: Do-not-call list management and regulatory compliance tools
-- **Batch Processing**: Handle thousands of calls with intelligent queuing and rate limiting
+- **Batch Processing**: Handle thousands of calls with queuing and rate limiting
 
-**Best for**: Customer outreach campaigns, lead nurturing, appointment reminders, market research, and any scenario requiring consistent, automated calling with sophisticated rules.
+**Best for**: Customer outreach campaigns, lead nurturing, appointment reminders, market research, and any scenario requiring consistent, automated calling with rules.
 
-### **Individual Agent Calls** - Immediate, Personalized Interaction
+### **Individual agent calls** - Immediate, Personalized Interaction
 Individual agent calls are perfect for **instant, one-off interactions** that require immediate attention:
 
 - **Instant Execution**: Calls are made immediately without waiting for campaign scheduling
@@ -38,7 +38,7 @@ Individual agent calls are perfect for **instant, one-off interactions** that re
 
 **Best for**: Form follow-ups, immediate customer service, urgent scheduling, high-priority leads, and any situation requiring instant response.
 
-## When to Use Each Approach
+## When to use each approach
 
 | Scenario | Use Campaign Call | Use Individual Agent Call |
 |----------|------------------|---------------------------|
@@ -56,13 +56,13 @@ Individual agent calls are perfect for **instant, one-off interactions** that re
 POST /api/v1/campaigns/{campaign_id}/call
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="campaign" type="string" required>
   The unique identifier of the campaign. You can find this in your dashboard under Campaigns.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
@@ -72,7 +72,7 @@ POST /api/v1/campaigns/{campaign_id}/call
   Application JSON. Format: `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="to" type="string" required>
   Phone number to call in E.164 format (e.g., "+1234567890").
@@ -94,7 +94,7 @@ POST /api/v1/campaigns/{campaign_id}/call
   Whether to allow placing this call even if the same `to` number already has an active or queued call within the campaign. When `false` (default), the request returns `409 Conflict` with the existing call's details so you can avoid duplicate outreach. Default: `false`.
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -237,7 +237,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="campaign_call" type="object" required>
   Details of the queued campaign call.
@@ -270,7 +270,7 @@ console.log(result);
   Summary of the parent campaign at the time the call was queued.
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 409 Conflict — Duplicate Call
 
@@ -395,7 +395,7 @@ To override this behavior intentionally (e.g., a follow-up call), pass `"allow_d
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -418,7 +418,7 @@ To override this behavior intentionally (e.g., a follow-up call), pass `"allow_d
 | `completed` | ❌ No | Campaign has finished |
 | `cancelled` | ❌ No | Campaign was cancelled |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Campaign context.** Calls made through this endpoint are associated with the specific campaign.
@@ -440,7 +440,7 @@ To override this behavior intentionally (e.g., a follow-up call), pass `"allow_d
   **Rate limits.** Be aware of rate limits when making multiple calls.
 </Warning>
 
-## Best Practices
+## Best practices
 
 1. **Check campaign status** - Verify the campaign is active before making calls
 2. **Use test calls** - Test your integration with `is_testing: true` first
@@ -448,7 +448,7 @@ To override this behavior intentionally (e.g., a follow-up call), pass `"allow_d
 4. **Validate phone numbers** - Ensure phone numbers are in E.164 format
 5. **Monitor call status** - Track call status using the returned call_id
 
-## Related Endpoints
+## Related endpoints
 
 - **Get Campaign**: `GET /api/v1/campaigns/{campaign_id}`
 - **Update Campaign Status**: `PATCH /api/v1/campaigns/{campaign_id}/status`

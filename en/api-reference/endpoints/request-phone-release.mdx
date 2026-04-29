@@ -14,13 +14,13 @@ Submit a release request for a phone number you no longer need. The request ente
 POST /api/v1/phone-numbers/{phone_number_id}/request-release
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="phone_number_id" type="string" required>
   UUID of the phone number to release.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ POST /api/v1/phone-numbers/{phone_number_id}/request-release
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="reason" type="string" required>
   Reason for the release. Length: 10–500 characters. Helps support staff review the request faster.
@@ -86,7 +86,7 @@ await fetch('https://app.talkover.ai/api/v1/phone-numbers/phone-uuid-1/request-r
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 409 — Already Pending
 

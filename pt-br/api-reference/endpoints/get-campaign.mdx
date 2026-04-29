@@ -14,13 +14,13 @@ Recuperar detalhes completos de uma campanha específica, incluindo configuraç�
 GET /api/v1/campaigns/{campaign_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="campaign" type="string" required>
   O identificador único da campanha. Você pode encontrá-lo na lista de campanhas.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -328,7 +328,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 404 Não Encontrado
 
@@ -369,7 +369,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -403,7 +403,7 @@ console.log(result);
 4. **Use dados para otimização** - Use os dados retornados para otimizar configurações da campanha
 5. **Verifique configurações** - Confirme se todas as configurações estão corretas
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - **Listar Campanhas**: `GET /api/v1/campaigns`
 - **Criar Campanha**: `POST /api/v1/campaigns`

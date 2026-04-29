@@ -14,13 +14,13 @@ Envia uma solicitação de liberação para um número de telefone que você nã
 POST /api/v1/phone-numbers/{phone_number_id}/request-release
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="phone_number_id" type="string" required>
   UUID do número de telefone a ser liberado.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ POST /api/v1/phone-numbers/{phone_number_id}/request-release
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="reason" type="string" required>
   Motivo da liberação. Tamanho: 10–500 caracteres. Ajuda a equipe de suporte a analisar a solicitação mais rapidamente.
@@ -86,7 +86,7 @@ await fetch('https://app.talkover.ai/api/v1/phone-numbers/phone-uuid-1/request-r
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 409 — Já Pendente
 

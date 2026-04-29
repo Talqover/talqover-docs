@@ -14,13 +14,13 @@ Toggle advanced agent features. Currently the only advanced setting is `enable_i
 PATCH /api/v1/agents/{agent_id}/advanced-settings
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>
   Agent UUID.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ PATCH /api/v1/agents/{agent_id}/advanced-settings
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="enable_initial_message_cache" type="boolean">
   When `true`, enables caching of the agent's initial message audio for repeated outbound calls. Reduces voice synthesis cost per call. Requires the agent to be eligible — see [Check Optimized Costs Eligibility](/api-reference/endpoints/check-optimized-costs-eligibility).
@@ -87,7 +87,7 @@ const result = await response.json();
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 422 Not Eligible
 

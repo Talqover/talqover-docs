@@ -14,11 +14,11 @@ Iniciar uma conexão entre um calendário e um provedor de calendário externo. 
 POST /api/v1/calendars/{calendar_id}/providers
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -26,7 +26,7 @@ POST /api/v1/calendars/{calendar_id}/providers
 
 <ParamField header="Content-Type" type="string" required>Deve ser `application/json`.</ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="provider" type="string" required>Identificador do provedor (retornado pela configuração do seu ambiente).</ParamField>
 <ParamField body="redirect_uri" type="string" required>URL para a qual o provedor redirecionará após o usuário autorizar o acesso.</ParamField>

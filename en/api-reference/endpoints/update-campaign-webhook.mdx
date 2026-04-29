@@ -14,12 +14,12 @@ Partially update a campaign webhook. All fields are optional — only fields you
 PUT /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
 <ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`

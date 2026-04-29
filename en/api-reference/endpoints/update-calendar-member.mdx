@@ -14,12 +14,12 @@ Change a calendar member's role.
 PUT /api/v1/calendars/{calendar_id}/members/{member_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
 <ParamField path="member_id" type="string" required>Member UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -27,7 +27,7 @@ PUT /api/v1/calendars/{calendar_id}/members/{member_id}
 
 <ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="role" type="string" required>New role. Options: `owner`, `editor`, `viewer`.</ParamField>
 

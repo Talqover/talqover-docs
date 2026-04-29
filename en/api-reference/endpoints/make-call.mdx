@@ -1,12 +1,12 @@
 ---
 title: "Make a Call"
-description: "Initiate an AI-powered call using a voice agent"
+description: "Initiate an call using a voice agent"
 api: "POST /api/v1/agents/{agent_id}/call"
 ---
 
 # Make a Call
 
-Initiate an AI-powered call using a specific voice agent. This endpoint creates a new call and returns call details including a unique call ID.
+Initiate an call using a specific voice agent. This endpoint creates a new call and returns call details including a unique call ID.
 
 For campaign-based calls, see [Make a Campaign Call](/api-reference/endpoints/make-campaign-call).
 
@@ -16,13 +16,13 @@ For campaign-based calls, see [Make a Campaign Call](/api-reference/endpoints/ma
 POST /api/v1/agents/{agent_id}/call
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>
   The unique identifier of the voice agent that will handle the call. You can find this in your dashboard under Voice Agents.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
@@ -32,7 +32,7 @@ POST /api/v1/agents/{agent_id}/call
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="to" type="string" required>
   The phone number to call. Must be in international format (e.g., `+1234567890`).
@@ -151,7 +151,7 @@ result = response.json()
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates whether the request was processed successfully.
@@ -184,7 +184,7 @@ result = response.json()
   ISO 8601 timestamp when the call was created.
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 400 Bad Request
 
@@ -271,7 +271,7 @@ result = response.json()
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -283,14 +283,14 @@ result = response.json()
 | `INSUFFICIENT_CREDITS` | Account has insufficient credits | 402 |
 | `RATE_LIMIT_EXCEEDED` | Too many requests in a short time | 429 |
 
-## Rate Limits
+## Rate limits
 
 Rate limit headers are included in all responses:
 - `X-RateLimit-Limit`: Maximum requests per window
 - `X-RateLimit-Remaining`: Remaining requests in current window
 - `X-RateLimit-Reset`: Time when the rate limit resets
 
-## Best Practices
+## Best practices
 
 1. **Always handle errors gracefully** — check for error responses and implement retry logic with exponential backoff.
 2. **Store call IDs** — use the returned `data.id` to track call status and correlate with webhook events.
@@ -298,7 +298,7 @@ Rate limit headers are included in all responses:
 4. **Use `is_testing` during integration** — keeps test traffic out of analytics and avoids billing.
 5. **Validate phone numbers** before calling — ensure E.164 format (`+` followed by country code and number).
 
-## Related Endpoints
+## Related endpoints
 
 - [Make a Campaign Call](/api-reference/endpoints/make-campaign-call) — place calls scheduled by a campaign.
 - [List Calls](/api-reference/endpoints/list-calls) — retrieve historical calls.

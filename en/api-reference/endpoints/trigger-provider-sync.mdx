@@ -14,12 +14,12 @@ Trigger a sync against a specific provider connection. Useful when you want to r
 POST /api/v1/calendars/{calendar_id}/providers/{provider_id}/sync
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
 <ParamField path="provider_id" type="string" required>Provider connection UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`

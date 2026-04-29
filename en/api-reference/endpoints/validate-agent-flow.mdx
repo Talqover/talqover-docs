@@ -14,11 +14,11 @@ Run validation on a candidate flow configuration without persisting changes. Ret
 POST /api/v1/agents/{agent_id}/flow/validate
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>Agent UUID. Used to scope validation (e.g., to check that referenced action IDs exist).</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/agents/{agent_id}/flow/validate
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="flow_config" type="object" required>
   Same shape as in [Update Agent Flow](/api-reference/endpoints/update-agent-flow).

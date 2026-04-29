@@ -14,11 +14,11 @@ Create a new event on a calendar.
 POST /api/v1/calendars/{calendar_id}/events
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -26,7 +26,7 @@ POST /api/v1/calendars/{calendar_id}/events
 
 <ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="title" type="string" required>Event title.</ParamField>
 <ParamField body="description" type="string">Optional description.</ParamField>

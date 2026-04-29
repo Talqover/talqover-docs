@@ -14,16 +14,16 @@ Lista os jobs SFTP recentes de importação e exportação para uma campanha, in
 GET /api/v1/campaigns/{campaign_id}/sftp/logs
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Parâmetros de Consulta
+## Parâmetros de consulta
 
 <ParamField query="per_page" type="integer">Itens por página. Faixa: `1`–`100`. Padrão: `25`.</ParamField>
 <ParamField query="page" type="integer">Padrão: `1`.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`

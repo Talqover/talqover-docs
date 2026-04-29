@@ -14,11 +14,11 @@ Recupera a configuração detalhada de callback para um único agente, incluindo
 GET /api/v1/callback-agents/{agent_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>UUID do agente de callback.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -63,7 +63,7 @@ curl "https://app.talkover.ai/api/v1/callback-agents/agent-uuid-1" \
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 404 — Não é um Agente de Callback
 

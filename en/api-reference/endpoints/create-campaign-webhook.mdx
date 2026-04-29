@@ -14,11 +14,11 @@ Create a webhook subscribed to campaign lifecycle and per-campaign-call events.
 POST /api/v1/campaigns/{campaign_id}/webhooks
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/campaigns/{campaign_id}/webhooks
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="name" type="string" required>Webhook name. Max 255 characters.</ParamField>
 <ParamField body="webhook_url" type="string" required>Delivery URL. Max 500 characters.</ParamField>

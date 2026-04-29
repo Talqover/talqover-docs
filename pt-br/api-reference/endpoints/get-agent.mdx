@@ -14,13 +14,13 @@ Recuperar detalhes completos de um agente específico, incluindo configurações
 GET /api/v1/agents/{agent_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent" type="string" required>
   O identificador único do agente. Você pode encontrá-lo na lista de agentes.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -164,7 +164,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 404 Não Encontrado
 
@@ -205,7 +205,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -235,7 +235,7 @@ console.log(result);
 4. **Monitore atualizações** - Use `updated_at` para acompanhar mudanças
 5. **Trate erros** - Implemente tratamento adequado de erros para agentes não encontrados
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - **Listar Agentes**: `GET /api/v1/agents`
 - **Criar Agente**: `POST /api/v1/agents`

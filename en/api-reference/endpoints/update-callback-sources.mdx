@@ -14,11 +14,11 @@ Replace the list of source agents associated with this callback agent. The provi
 PUT /api/v1/agents/{agent_id}/callback
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>UUID of the callback agent.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ PUT /api/v1/agents/{agent_id}/callback
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="source_agent_ids" type="array" required>
   New full list of outbound agent UUIDs that should route callbacks here. Must contain at least one entry.

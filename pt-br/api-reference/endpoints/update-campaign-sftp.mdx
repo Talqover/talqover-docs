@@ -14,11 +14,11 @@ Atualiza a configuração SFTP de uma campanha. Habilitar (`is_enabled: true`) r
 PUT /api/v1/campaigns/{campaign_id}/sftp
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ PUT /api/v1/campaigns/{campaign_id}/sftp
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 Mesmos campos que [Criar Configuração SFTP da Campanha](/api-reference/endpoints/create-campaign-sftp), todos opcionais, mais:
 
@@ -70,7 +70,7 @@ curl -X PUT "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/sftp" \
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 422 — Não é Possível Habilitar
 

@@ -18,7 +18,7 @@ Registra um SIP Trunk personalizado para o seu ambiente. Após criado, é necess
 POST /api/v1/sip-trunks
 ```
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/sip-trunks
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="name" type="string" required>Nome legível do trunk. Máximo de 255 caracteres.</ParamField>
 <ParamField body="provider_name" type="string" required>Identificador da sua operadora ou provedor SIP.</ParamField>

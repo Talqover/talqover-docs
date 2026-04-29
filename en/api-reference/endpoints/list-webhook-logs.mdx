@@ -14,17 +14,17 @@ Retrieve a paginated list of delivery attempts for a specific webhook, including
 GET /api/v1/agents/{agent_id}/webhooks/{webhook_id}/logs
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
 <ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
 
-## Query Parameters
+## Query parameters
 
 <ParamField query="per_page" type="integer">Items per page. Range: `1`–`100`. Default: `25`.</ParamField>
 <ParamField query="page" type="integer">Page number. Default: `1`.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`

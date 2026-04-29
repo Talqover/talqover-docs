@@ -14,19 +14,19 @@ Permanently delete a voice agent and all its associated data including trainings
 DELETE /api/v1/agents/{agent_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent" type="string" required>
   The unique identifier of the voice agent to delete. You can find this in your dashboard under Voice Agents.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -66,7 +66,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -76,7 +76,7 @@ console.log(result);
   Success message confirming the agent was deleted.
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 404 Not Found
 
@@ -130,7 +130,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -140,7 +140,7 @@ console.log(result);
 | `AGENT_HAS_ACTIVE_CALLS` | Agent cannot be deleted while it has active calls | 409 |
 | `AGENT_IS_PUBLISHED` | Published agents must be unpublished before deletion | 409 |
 
-## Important Notes
+## Important notes
 
 <Warning>
   **This action is irreversible.** Once an agent is deleted, all associated data including:
@@ -157,7 +157,7 @@ console.log(result);
   **Published agents must be unpublished first.** If the agent is currently published, you must unpublish it before deletion.
 </Info>
 
-## Best Practices
+## Best practices
 
 1. **Verify agent status** - Check if the agent is published before attempting deletion
 2. **Backup important data** - Export any training data or configurations you want to keep
@@ -165,7 +165,7 @@ console.log(result);
 4. **Update integrations** - Remove any webhook URLs or integrations that reference this agent
 5. **Notify team members** - Inform other users who might be using this agent
 
-## Related Endpoints
+## Related endpoints
 
 - **List Agents**: `GET /api/v1/agents`
 - **Get Agent**: `GET /api/v1/agents/{agent_id}`

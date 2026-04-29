@@ -14,7 +14,7 @@ Create a new calendar.
 POST /api/v1/calendars
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -24,7 +24,7 @@ POST /api/v1/calendars
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="name" type="string" required>Calendar name. Max 255 characters.</ParamField>
 <ParamField body="timezone" type="string">IANA timezone (e.g., `America/New_York`). Defaults to environment timezone.</ParamField>

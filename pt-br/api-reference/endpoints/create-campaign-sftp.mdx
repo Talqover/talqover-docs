@@ -14,11 +14,11 @@ Configura a integração SFTP para uma campanha. A configuração é criada no e
 POST /api/v1/campaigns/{campaign_id}/sftp
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/campaigns/{campaign_id}/sftp
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="host" type="string" required>Hostname do servidor SFTP.</ParamField>
 <ParamField body="port" type="integer">Porta SFTP. Faixa: `1`–`65535`. Padrão: `22`.</ParamField>

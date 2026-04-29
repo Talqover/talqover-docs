@@ -14,7 +14,7 @@ Delete a specific training data entry for a voice agent. This action is irrevers
 DELETE /api/v1/agents/{agent_id}/trainings/{training_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent" type="string" required>
   The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
@@ -24,13 +24,13 @@ DELETE /api/v1/agents/{agent_id}/trainings/{training_id}
   The unique identifier of the training to delete. You can find this by listing the agent's trainings first.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -102,7 +102,7 @@ try {
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -112,7 +112,7 @@ try {
   Success message confirming the training was deleted.
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 404 Not Found
 
@@ -166,7 +166,7 @@ try {
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -176,7 +176,7 @@ try {
 | `UNAUTHORIZED` | User does not have permission to delete training for this agent | 403 |
 | `SERVER_ERROR` | Internal server error occurred | 500 |
 
-## Important Notes
+## Important notes
 
 <Warning>
   **This action is irreversible.** Once a training is deleted, it cannot be recovered. Make sure you have a backup if needed.
@@ -190,7 +190,7 @@ try {
   **No confirmation required.** The deletion happens immediately without additional confirmation steps.
 </Info>
 
-## Best Practices
+## Best practices
 
 1. **Verify before deleting** - Always list trainings first to get the correct training ID
 2. **Backup important data** - Consider backing up training data before deletion
@@ -199,7 +199,7 @@ try {
 5. **Monitor agent performance** - After deletion, monitor the agent's performance to ensure it still works as expected
 6. **Document changes** - Keep track of what training was deleted and why
 
-## Related Endpoints
+## Related endpoints
 
 - **List Trainings**: `GET /api/v1/agents/{agent_id}/trainings`
 - **Create/Update Training**: `POST /api/v1/agents/{agent_id}/trainings`

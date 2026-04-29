@@ -14,12 +14,12 @@ Remove um DID de um SIP Trunk. O DID também é removido do conjunto de números
 DELETE /api/v1/sip-trunks/{trunk_id}/dids/{phone_number_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="trunk_id" type="string" required>UUID do SIP Trunk.</ParamField>
 <ParamField path="phone_number_id" type="string" required>UUID do DID/número de telefone.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -49,7 +49,7 @@ curl -X DELETE "https://app.talkover.ai/api/v1/sip-trunks/trunk-uuid-1/dids/phon
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 409 — DID Em Uso
 

@@ -14,11 +14,11 @@ Configura um agente inbound para tratar callbacks de um ou mais agentes de orige
 POST /api/v1/agents/{agent_id}/callback
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>UUID do agente inbound. Deve ter `direction: "inbound"`.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/agents/{agent_id}/callback
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="source_agent_ids" type="array" required>
   Array de UUIDs de agentes outbound cujos contatos devem ser roteados para este agente de callback nos retornos inbound. Deve conter pelo menos uma entrada.
@@ -69,7 +69,7 @@ curl -X POST "https://app.talkover.ai/api/v1/agents/agent-uuid-1/callback" \
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 422 — Direção Incorreta
 

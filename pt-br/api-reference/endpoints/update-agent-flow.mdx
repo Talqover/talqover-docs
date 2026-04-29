@@ -14,11 +14,11 @@ Atualiza o modo de conversação de um agente e (quando aplicável) a configura�
 PUT /api/v1/agents/{agent_id}/flow
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>UUID do agente.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ PUT /api/v1/agents/{agent_id}/flow
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="conversation_mode" type="string" required>
   Modo de conversação. Opções:
@@ -106,7 +106,7 @@ curl -X PUT "https://app.talkover.ai/api/v1/agents/agent-uuid/flow" \
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 422 — Fluxo Inválido
 

@@ -14,11 +14,11 @@ Update an agent's conversation mode and (when applicable) the structured flow co
 PUT /api/v1/agents/{agent_id}/flow
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ PUT /api/v1/agents/{agent_id}/flow
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="conversation_mode" type="string" required>
   Conversation mode. Options:
@@ -106,7 +106,7 @@ curl -X PUT "https://app.talkover.ai/api/v1/agents/agent-uuid/flow" \
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 422 — Invalid Flow
 

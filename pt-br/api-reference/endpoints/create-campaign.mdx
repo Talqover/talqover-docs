@@ -14,7 +14,7 @@ Cria uma nova campanha com agendamento, política de retry, cooldowns e regras d
 POST /api/v1/campaigns
 ```
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -24,7 +24,7 @@ POST /api/v1/campaigns
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 ### Identificação
 
@@ -306,7 +306,7 @@ curl -X POST "https://app.talkover.ai/api/v1/campaigns" \
   O objeto da campanha criada. Novas campanhas começam com `status: "draft"`. Use [Atualizar Status da Campanha](/api-reference/endpoints/update-campaign-status) para ativar.
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 422 Erro de Validação
 
@@ -360,7 +360,7 @@ curl -X POST "https://app.talkover.ai/api/v1/campaigns" \
 - Todos os campos `*_cooldown_hours` têm padrão de `24` se não fornecidos. Use-os para ajustar o comportamento de retry por resultado de chamada.
 - As janelas de horário são avaliadas no `timezone` da campanha, não no horário local do chamador.
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - [Listar Campanhas](/api-reference/endpoints/list-campaigns)
 - [Obter Campanha](/api-reference/endpoints/get-campaign)

@@ -14,12 +14,12 @@ Disparar uma sincronização para uma conexão de provedor específica. Útil qu
 POST /api/v1/calendars/{calendar_id}/providers/{provider_id}/sync
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 <ParamField path="provider_id" type="string" required>UUID da conexão com o provedor.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`

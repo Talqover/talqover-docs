@@ -14,11 +14,11 @@ Validate a proposed callback configuration without persisting changes. Useful to
 POST /api/v1/callback-agents/{agent_id}/check-constraints
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>Agent UUID being configured as callback.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/callback-agents/{agent_id}/check-constraints
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="is_callback_agent" type="boolean">Whether this agent should be marked as a callback agent.</ParamField>
 <ParamField body="callback_source_agents" type="array">Array of source agent UUIDs.</ParamField>

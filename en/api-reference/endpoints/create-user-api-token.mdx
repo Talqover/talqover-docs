@@ -18,7 +18,7 @@ Create a new personal access token (PAT) for the current user. The full token va
 POST /api/v1/user/api-tokens
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   User session token. Format: `Bearer <user_session_token>`.
@@ -28,7 +28,7 @@ POST /api/v1/user/api-tokens
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="name" type="string" required>
   Human-readable name to identify the token (e.g., "CI Pipeline", "Local Dev"). Max 255 characters.

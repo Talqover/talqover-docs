@@ -1,11 +1,11 @@
 ---
 title: "Make Your First Call"
-description: "Step-by-step tutorial for making your first AI-powered call with Talkover"
+description: "Step-by-step tutorial for making your first call with Talkover"
 ---
 
 # Make Your First Call
 
-This tutorial will walk you through making your first AI-powered call using the Talkover API. You'll learn how to get your agent ID and make a test call.
+This tutorial will walk you through making your first call using the Talkover API. You'll learn how to get your agent ID and make a test call.
 
 ## Prerequisites
 
@@ -39,7 +39,7 @@ Now you have everything you need to make your first call:
 - **Agent ID**: `agent_123456`
 - **Phone Number**: `+1234567890`
 
-### API Endpoints
+### API endpoints
 
 #### Individual Agent Call
 ```
@@ -51,14 +51,14 @@ POST https://app.talkover.ai/api/v1/agents/{agent_id}/call
 POST https://app.talkover.ai/api/v1/campaigns/{campaign_id}/call
 ```
 
-### Request Headers
+### Request headers
 
 ```bash
 Authorization: Bearer talq_your_token_here
 Content-Type: application/json
 ```
 
-### Request Body
+### Request body
 
 #### For Agent Calls
 ```json
@@ -67,7 +67,7 @@ Content-Type: application/json
 }
 ```
 
-#### For Campaign Calls
+#### For Campaign calls
 ```json
 {
   "to": "+1234567890",
@@ -150,7 +150,7 @@ When you successfully initiate a call, you'll receive a response like this:
 }
 ```
 
-### Response Fields Explained:
+### Response fields Explained:
 
 - **`call_id`**: Unique identifier for this call
 - **`agent_id`**: The agent that will handle the call
@@ -168,7 +168,7 @@ When you successfully initiate a call, you'll receive a response like this:
 3. **Monitor the status** as it progresses:
    - `initiated` → `ringing` → `in-progress` → `completed`
 
-### Call Status Flow
+### Call status flow
 
 ```
 initiated → ringing → in-progress → completed
@@ -228,7 +228,7 @@ curl -X POST "https://app.talkover.ai/api/v1/agents/agent_123456/call" \
 
 ## Next Steps
 
-Congratulations! You've successfully made your first AI-powered call. Here's what you can explore next:
+Congratulations! You've successfully made your first call. Here's what you can explore next:
 
 - **Design better call flows** in our [Call Flow Design Guide](/en/guides/call-flow-design)
 - **Integrate with your application** using our [Integration Examples](/en/guides/integration-examples)

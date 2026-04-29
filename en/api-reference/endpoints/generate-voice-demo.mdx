@@ -14,19 +14,19 @@ Generate a demo audio file for a specific voice template. This endpoint creates 
 GET /api/v1/voice-templates/{voice_template_id}/demo
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="voice_template_id" type="string" required>
   The unique identifier of the voice template. You can find this in the voice templates list.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -97,13 +97,13 @@ try {
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="mp3_url" type="string" required>
   A signed URL to the generated demo audio file in MP3 format. This URL is temporary and will expire.
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 404 Not Found
 
@@ -143,7 +143,7 @@ try {
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -151,7 +151,7 @@ try {
 | `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
 | `DEMO_GENERATION_FAILED` | Failed to generate demo audio | 500 |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Temporary URLs.** The demo audio URL is temporary and will expire after a certain time period.
@@ -165,7 +165,7 @@ try {
   **Generation time.** Demo audio generation may take a few seconds to complete.
 </Warning>
 
-## Best Practices
+## Best practices
 
 1. **Test before using** - Always generate a demo to test voice templates before selecting them
 2. **Handle URL expiration** - Download or use the demo URL quickly as it expires
@@ -173,7 +173,7 @@ try {
 4. **Cache demos** - Consider caching demo URLs for frequently accessed voice templates
 5. **Test different quality tiers** - Generate demos for different quality tiers to compare
 
-## Related Endpoints
+## Related endpoints
 
 - **List Voice Templates**: `GET /api/v1/voice-templates`
 - **List Phone Numbers**: `GET /api/v1/phone-numbers`

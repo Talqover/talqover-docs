@@ -14,17 +14,17 @@ Compute available time slots for a calendar over a given range, applying recurri
 GET /api/v1/calendars/{calendar_id}/availability
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
 
-## Query Parameters
+## Query parameters
 
 <ParamField query="from" type="string" required>Range start. ISO 8601.</ParamField>
 <ParamField query="to" type="string" required>Range end. ISO 8601.</ParamField>
 <ParamField query="duration_minutes" type="integer">Slot length to compute. Default: `30`.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`

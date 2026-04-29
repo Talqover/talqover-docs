@@ -73,7 +73,7 @@ $data = json_decode($response->getBody());
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 <ResponseExample title="401 Unauthorized">
 
@@ -107,14 +107,14 @@ $data = json_decode($response->getBody());
 
 </ResponseExample>
 
-## Important Notes
+## Important notes
 
 - This action permanently deletes the webhook configuration and cannot be undone
 - Webhook operations automatically clear the agent cache for immediate effect
 - Consider disabling the webhook first if you want to temporarily stop notifications
 - Deleted webhooks will no longer receive any events
 
-## Related Endpoints
+## Related endpoints
 
 - [List Agent Webhooks](/api-reference/endpoints/list-agent-webhooks) - Get all webhooks for an agent
 - [Create Webhook](/api-reference/endpoints/create-webhook) - Set up a new webhook

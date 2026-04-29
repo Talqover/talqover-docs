@@ -14,12 +14,12 @@ Exclui um webhook de campanha. Logs de entregas anteriores são mantidos pelo pe
 DELETE /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 <ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`

@@ -14,19 +14,19 @@ Retrieve detailed information about a specific campaign, including its configura
 GET /api/v1/campaigns/{campaign_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="campaign" type="string" required>
   The unique identifier of the campaign. You can find this in your dashboard under Campaigns.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -165,7 +165,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -343,7 +343,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 404 Not Found
 
@@ -384,7 +384,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -392,7 +392,7 @@ console.log(result);
 | `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
 | `SERVER_ERROR` | Internal server error occurred | 500 |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Comprehensive data.** This endpoint returns complete campaign information including calls, files, and statistics.
@@ -410,7 +410,7 @@ console.log(result);
   **Call history.** View all calls associated with the campaign, including retry attempts.
 </Info>
 
-## Best Practices
+## Best practices
 
 1. **Monitor file processing** - Check file status to ensure contacts are properly loaded
 2. **Track call progress** - Use the calls array to monitor individual call status
@@ -418,7 +418,7 @@ console.log(result);
 4. **Handle errors** - Implement proper error handling for missing campaigns
 5. **Cache wisely** - Campaign data can be cached but should be refreshed periodically
 
-## Related Endpoints
+## Related endpoints
 
 - **List Campaigns**: `GET /api/v1/campaigns`
 - **Create Campaign**: `POST /api/v1/campaigns`

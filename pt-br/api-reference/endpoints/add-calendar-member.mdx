@@ -14,11 +14,11 @@ Conceder acesso de um usuário a um calendário com uma função específica.
 POST /api/v1/calendars/{calendar_id}/members
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -26,7 +26,7 @@ POST /api/v1/calendars/{calendar_id}/members
 
 <ParamField header="Content-Type" type="string" required>Deve ser `application/json`.</ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="user_id" type="string" required>UUID do usuário a adicionar.</ParamField>
 <ParamField body="role" type="string" required>Função do membro. Opções: `owner`, `editor`, `viewer`.</ParamField>

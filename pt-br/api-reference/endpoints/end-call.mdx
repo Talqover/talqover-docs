@@ -14,13 +14,13 @@ Desliga uma chamada ativa realizada por um agente específico. Use isto para par
 POST /api/v1/agents/{agent_id}/end-call
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>
   UUID do agente que possui a chamada.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ POST /api/v1/agents/{agent_id}/end-call
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="call_sid" type="string" required>
   Identificador da chamada a desligar. Use o `id` retornado por [Realizar uma Chamada](/api-reference/endpoints/make-call).
@@ -78,7 +78,7 @@ await fetch('https://app.talkover.ai/api/v1/agents/agent-uuid/end-call', {
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 404 — Chamada Não Encontrada
 

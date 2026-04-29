@@ -14,17 +14,17 @@ Lista as tentativas de entrega para um webhook de campanha, incluindo status HTT
 GET /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/logs
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 <ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 
-## Parâmetros de Consulta
+## Parâmetros de consulta
 
 <ParamField query="per_page" type="integer">Itens por página. Faixa: `1`–`100`. Padrão: `25`.</ParamField>
 <ParamField query="page" type="integer">Padrão: `1`.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`

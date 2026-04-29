@@ -105,7 +105,7 @@ When you call the test endpoint, the following payload will be sent to your webh
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 <ResponseExample title="401 Unauthorized">
 
@@ -161,7 +161,7 @@ When you call the test endpoint, the following payload will be sent to your webh
 
 </ResponseExample>
 
-## Important Notes
+## Important notes
 
 - The test payload uses the `webhook.test` event type to distinguish it from real events
 - Your webhook endpoint should return a 2xx HTTP status code for successful tests
@@ -179,7 +179,7 @@ Your webhook endpoint should:
 4. **Handle the test event type** appropriately
 5. **Implement proper signature verification** if using webhook secrets
 
-## Related Endpoints
+## Related endpoints
 
 - [List Agent Webhooks](/api-reference/endpoints/list-agent-webhooks) - Get all webhooks for an agent
 - [Create Webhook](/api-reference/endpoints/create-webhook) - Set up a new webhook

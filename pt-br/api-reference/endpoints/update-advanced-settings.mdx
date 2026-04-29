@@ -14,13 +14,13 @@ Alterna recursos avançados do agente. Atualmente, a única configuração avan�
 PATCH /api/v1/agents/{agent_id}/advanced-settings
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>
   UUID do agente.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ PATCH /api/v1/agents/{agent_id}/advanced-settings
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="enable_initial_message_cache" type="boolean">
   Quando `true`, habilita o cache do áudio da mensagem inicial do agente para chamadas de saída repetidas. Reduz o custo de síntese de voz por chamada. Requer que o agente seja elegível — veja [Verificar Elegibilidade para Custos Otimizados](/api-reference/endpoints/check-optimized-costs-eligibility).
@@ -87,7 +87,7 @@ const result = await response.json();
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 422 Não Elegível
 

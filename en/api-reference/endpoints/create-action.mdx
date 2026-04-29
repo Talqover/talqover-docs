@@ -6,7 +6,7 @@ api: "POST /api/v1/agents/{agent_id}/actions"
 
 # Create/Update Action
 
-Create new actions or update existing actions for a voice agent. This endpoint allows you to configure webhooks, call transfers, holds, and other actions that the agent can perform during conversations.
+Create new actions or update existing actions for a voice agent. Configures webhooks, call transfers, holds, and other actions that the agent can perform during conversations.
 
 ## Endpoint
 
@@ -14,13 +14,13 @@ Create new actions or update existing actions for a voice agent. This endpoint a
 POST /api/v1/agents/{agent_id}/actions
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent" type="string" required>
   The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ POST /api/v1/agents/{agent_id}/actions
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="node_id" type="string" required>
   Action node ID for workflow integration
@@ -98,7 +98,7 @@ POST /api/v1/agents/{agent_id}/actions
   Action status. Options: `active`, `inactive`. Default: `active`.
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -338,7 +338,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -394,7 +394,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### Validation Error (422)
 
@@ -475,7 +475,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -485,7 +485,7 @@ console.log(result);
 | `VALIDATION_ERROR` | Request data validation failed | 422 |
 | `SERVER_ERROR` | Internal server error occurred | 500 |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Agent status will be set to draft.** After creating or updating actions, the agent will be automatically set to "draft" status and will need to be published again to become active.
@@ -499,7 +499,7 @@ console.log(result);
   **URL validation.** For webhook actions, both `url` and `authorization_url` must be valid URLs.
 </Warning>
 
-## Best Practices
+## Best practices
 
 1. **Test webhook URLs** - Always test webhook URLs before creating actions
 2. **Use descriptive names** - Give actions clear, descriptive names
@@ -508,7 +508,7 @@ console.log(result);
 5. **Monitor action performance** - Track how often actions are triggered and their success rates
 6. **Document action behavior** - Provide clear descriptions of what each action does
 
-## Related Endpoints
+## Related endpoints
 
 - **List Actions**: `GET /api/v1/agents/{agent_id}/actions`
 - **Delete Action**: `DELETE /api/v1/agents/{agent_id}/actions/{action_id}`

@@ -14,13 +14,13 @@ Recuperar uma lista de campanhas para o ambiente autenticado com opções de fil
 GET /api/v1/campaigns
 ```
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Parâmetros de Consulta
+## Parâmetros de consulta
 
 <ParamField query="status" type="string" required={false}>
   Filtrar por status da campanha. Opções: `draft`, `active`, `paused`, `completed`, `cancelled`
@@ -274,7 +274,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 422 Erro de Validação
 
@@ -323,7 +323,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -357,7 +357,7 @@ console.log(result);
 4. **Pesquise eficientemente** - Use pesquisa de texto para encontrar campanhas rapidamente
 5. **Verifique status** - Monitore o status das campanhas regularmente
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - **Criar Campanha**: `POST /api/v1/campaigns`
 - **Obter Campanha**: `GET /api/v1/campaigns/{campaign_id}`

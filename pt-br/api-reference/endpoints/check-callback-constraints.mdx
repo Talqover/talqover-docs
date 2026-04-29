@@ -14,11 +14,11 @@ Valida uma configuração de callback proposta sem persistir as alterações. Ú
 POST /api/v1/callback-agents/{agent_id}/check-constraints
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>UUID do agente sendo configurado como callback.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/callback-agents/{agent_id}/check-constraints
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="is_callback_agent" type="boolean">Indica se este agente deve ser marcado como agente de callback.</ParamField>
 <ParamField body="callback_source_agents" type="array">Array de UUIDs de agentes de origem.</ParamField>

@@ -14,13 +14,13 @@ Retentar manualmente uma entrega de webhook que falhou. O retry cria uma nova en
 POST /api/v1/agents/{agent_id}/webhooks/{webhook_id}/logs/{log_id}/retry
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>UUID do agente.</ParamField>
 <ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 <ParamField path="log_id" type="string" required>UUID do log da entrega que falhou a ser retentada.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`
@@ -55,7 +55,7 @@ curl -X POST "https://app.talkover.ai/api/v1/agents/agent-uuid/webhooks/webhook-
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 422 — Não é Possível Retentar
 

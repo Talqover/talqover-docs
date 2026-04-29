@@ -14,19 +14,19 @@ Retrieve all training data associated with a specific voice agent. This endpoint
 GET /api/v1/agents/{agent_id}/trainings
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent" type="string" required>
   The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -123,7 +123,7 @@ try {
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -154,7 +154,7 @@ try {
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 404 Not Found
 
@@ -208,7 +208,7 @@ try {
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -217,7 +217,7 @@ try {
 | `UNAUTHORIZED` | User does not have permission to access this agent | 403 |
 | `SERVER_ERROR` | Internal server error occurred | 500 |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Empty response is normal.** If an agent has no training data, the response will be an empty array `[]` rather than an error.
@@ -227,7 +227,7 @@ try {
   **Status filtering.** The response includes both active and inactive trainings. You can filter by `current_status` on the client side if needed.
 </Info>
 
-## Best Practices
+## Best practices
 
 1. **Cache training data** - Training data doesn't change frequently, so consider caching the response
 2. **Handle empty responses** - Always check if the data array is empty before processing
@@ -235,7 +235,7 @@ try {
 4. **Error handling** - Implement proper error handling for authentication and authorization failures
 5. **Rate limiting** - Be mindful of API rate limits when fetching training data
 
-## Related Endpoints
+## Related endpoints
 
 - **Create/Update Training**: `POST /api/v1/agents/{agent_id}/trainings`
 - **Delete Training**: `DELETE /api/v1/agents/{agent_id}/trainings/{training_id}`

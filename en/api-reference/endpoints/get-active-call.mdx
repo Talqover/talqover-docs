@@ -14,14 +14,14 @@ Find the active call (if any) between an agent and a specific phone number. Usef
 GET /api/v1/agents/{agent_id}/active-call/{phone}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
 <ParamField path="phone" type="string" required>
   Phone number in E.164 format (e.g., `+15551234567`). URL-encode the `+` sign as `%2B`.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`

@@ -6,7 +6,7 @@ api: "PATCH /api/v1/campaigns/{campaign_id}/status"
 
 # Update Campaign Status
 
-Update the status of a campaign to control its lifecycle. This endpoint allows you to activate, pause, complete, or cancel campaigns.
+Update the status of a campaign to control its lifecycle. Activates , pause, complete, or cancel campaigns.
 
 ## Endpoint
 
@@ -14,13 +14,13 @@ Update the status of a campaign to control its lifecycle. This endpoint allows y
 PATCH /api/v1/campaigns/{campaign_id}/status
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="campaign" type="string" required>
   The unique identifier of the campaign. You can find this in your dashboard under Campaigns.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ PATCH /api/v1/campaigns/{campaign_id}/status
   Application JSON. Format: `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="status" type="string" required>
   New status for the campaign. Options: `draft`, `active`, `paused`, `completed`, `cancelled`.
@@ -46,7 +46,7 @@ PATCH /api/v1/campaigns/{campaign_id}/status
 | `completed` | Campaign has finished all scheduled calls |
 | `cancelled` | Campaign was cancelled and will not make more calls |
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -161,7 +161,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -187,7 +187,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 404 Not Found
 
@@ -272,7 +272,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -293,7 +293,7 @@ console.log(result);
 | `completed` | None (final state) |
 | `cancelled` | None (final state) |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Status transitions.** Not all status transitions are allowed. See the transition rules above.
@@ -315,7 +315,7 @@ console.log(result);
   **Cancelled campaigns.** Cancelling a campaign stops all future calls and cannot be undone.
 </Warning>
 
-## Best Practices
+## Best practices
 
 1. **Check current status** - Verify the current status before attempting transitions
 2. **Plan transitions** - Understand the allowed status transitions for your use case
@@ -323,7 +323,7 @@ console.log(result);
 4. **Handle errors** - Implement proper error handling for invalid transitions
 5. **Use appropriate statuses** - Use `paused` for temporary stops and `cancelled` for permanent stops
 
-## Related Endpoints
+## Related endpoints
 
 - **Get Campaign**: `GET /api/v1/campaigns/{campaign_id}`
 - **Update Campaign**: `PUT /api/v1/campaigns/{campaign_id}`

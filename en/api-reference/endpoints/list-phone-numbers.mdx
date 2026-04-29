@@ -14,13 +14,13 @@ Retrieve a list of available phone numbers with various filtering options. This 
 GET /api/v1/phone-numbers
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Query Parameters
+## Query parameters
 
 <ParamField query="type" type="string" required={false}>
   Filter by phone number type. Options: `voice`, `sms`, `whatsapp`, `mms`, `fax`
@@ -38,7 +38,7 @@ GET /api/v1/phone-numbers
   Search by phone number or ID
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -173,7 +173,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -253,7 +253,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 401 Unauthorized
 
@@ -300,7 +300,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -308,7 +308,7 @@ console.log(result);
 | `VALIDATION_ERROR` | Query parameter validation failed | 422 |
 | `SERVER_ERROR` | Internal server error occurred | 500 |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Filtering capabilities.** Use query parameters to filter phone numbers by type, and capabilities.
@@ -322,7 +322,7 @@ console.log(result);
   **Status tracking.** Monitor phone number status and renewal dates to avoid service interruptions.
 </Info>
 
-## Best Practices
+## Best practices
 
 1. **Filter by capabilities** - Use `has_voice`, `has_sms`, etc. to find phone numbers with specific capabilities
 2. **Monitor renewals** - Check `is_due_for_monthly_renewal` to avoid service interruptions
@@ -330,7 +330,7 @@ console.log(result);
 4. **Check status** - Always verify `current_status` before using a phone number
 5. **Consider pricing** - Compare `current_price` and `monthly_renewal_cost` when selecting phone numbers
 
-## Related Endpoints
+## Related endpoints
 
 - **List Voice Templates**: `GET /api/v1/voice-templates`
 - **Generate Voice Template Demo**: `GET /api/v1/voice-templates/{voiceTemplate}/demo`

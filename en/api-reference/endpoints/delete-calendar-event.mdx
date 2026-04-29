@@ -14,12 +14,12 @@ Delete a calendar event. Attendees are notified if the event was previously conf
 DELETE /api/v1/calendars/{calendar_id}/events/{event_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
 <ParamField path="event_id" type="string" required>Event UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`

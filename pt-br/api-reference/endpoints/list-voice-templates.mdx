@@ -14,13 +14,13 @@ Recuperar uma lista de modelos de voz disponíveis agrupados por nome de exibiç
 GET /api/v1/voice-templates
 ```
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Parâmetros de Consulta
+## Parâmetros de consulta
 
 <ParamField query="language" type="string" required={false}>
   Filtrar por idioma (ex: `en-US`, `pt-BR`)
@@ -211,7 +211,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 401 Não Autorizado
 
@@ -263,7 +263,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -293,7 +293,7 @@ console.log(result);
 4. **Monitore custos** - Diferentes níveis de qualidade têm custos diferentes
 5. **Trate erros** - Implemente tratamento adequado de erros para falhas de autenticação e validação
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - **Gerar Demonstração de Voz**: `GET /api/v1/voice-templates/{voice_template_id}/demo`
 - **Listar Números de Telefone**: `GET /api/v1/phone-numbers`

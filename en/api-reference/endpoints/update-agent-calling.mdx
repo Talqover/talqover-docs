@@ -14,13 +14,13 @@ Update the call direction (inbound/outbound) and the phone numbers assigned to t
 PUT /api/v1/agents/{agent_id}/calling
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>
   The unique identifier of the voice agent to update.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ PUT /api/v1/agents/{agent_id}/calling
   Must be set to `application/json`
 </ParamField>
 
-## Request Body Parameters
+## Request body Parameters
 
 <ParamField body="direction" type="string" required>
   Call direction. Options: `inbound`, `outbound`.

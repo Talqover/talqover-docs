@@ -14,7 +14,7 @@ Create a new campaign with scheduling, retry policy, cooldowns, and do-not-call 
 POST /api/v1/campaigns
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
@@ -24,7 +24,7 @@ POST /api/v1/campaigns
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 ### Identification
 
@@ -296,7 +296,7 @@ curl -X POST "https://app.talkover.ai/api/v1/campaigns" \
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the campaign was created successfully.
@@ -306,7 +306,7 @@ curl -X POST "https://app.talkover.ai/api/v1/campaigns" \
   The created campaign object. New campaigns start in `status: "draft"`. Use [Update Campaign Status](/api-reference/endpoints/update-campaign-status) to activate.
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 422 Validation Error
 
@@ -360,7 +360,7 @@ curl -X POST "https://app.talkover.ai/api/v1/campaigns" \
 - All `*_cooldown_hours` fields default to `24` if not provided. Use them to fine-tune retry behavior per call outcome.
 - Time windows are evaluated in the campaign's `timezone`, not the caller's local time.
 
-## Related Endpoints
+## Related endpoints
 
 - [List Campaigns](/api-reference/endpoints/list-campaigns)
 - [Get Campaign](/api-reference/endpoints/get-campaign)

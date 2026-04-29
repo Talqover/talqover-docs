@@ -6,7 +6,7 @@ api: "POST /api/v1/agents/{agent_id}/trainings"
 
 # Create/Update Training
 
-Create new training data or update existing training for a voice agent. This endpoint allows you to provide the agent with specific instructions and knowledge to improve its responses and behavior.
+Create new training data or update existing training for a voice agent. Provides the agent with specific instructions and knowledge to improve its responses and behavior.
 
 ## Endpoint
 
@@ -14,13 +14,13 @@ Create new training data or update existing training for a voice agent. This end
 POST /api/v1/agents/{agent_id}/trainings
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent" type="string" required>
   The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ POST /api/v1/agents/{agent_id}/trainings
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="node_id" type="string" required={false}>
   Training node ID for workflow integration
@@ -48,7 +48,7 @@ POST /api/v1/agents/{agent_id}/trainings
   Training status. Options: `active`, `inactive`. Default: `active`
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -178,7 +178,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -213,7 +213,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### Validation Error (422)
 
@@ -291,7 +291,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -301,7 +301,7 @@ console.log(result);
 | `VALIDATION_ERROR` | Request data validation failed | 422 |
 | `SERVER_ERROR` | Internal server error occurred | 500 |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Agent status will be set to draft.** After creating or updating training, the agent will be automatically set to "draft" status and will need to be published again to become active.
@@ -315,7 +315,7 @@ console.log(result);
   **Character limits.** The subject field has a maximum of 255 characters. Instructions can be much longer but should be clear and concise for best results.
 </Warning>
 
-## Best Practices
+## Best practices
 
 1. **Be specific and clear** - Write training instructions that are specific and easy to understand
 2. **Use active voice** - Write instructions in active voice for better clarity
@@ -324,7 +324,7 @@ console.log(result);
 5. **Organize by topic** - Create separate training entries for different topics or scenarios
 6. **Regular updates** - Update training data regularly based on agent performance and feedback
 
-## Related Endpoints
+## Related endpoints
 
 - **List Trainings**: `GET /api/v1/agents/{agent_id}/trainings`
 - **Delete Training**: `DELETE /api/v1/agents/{agent_id}/trainings/{training_id}`

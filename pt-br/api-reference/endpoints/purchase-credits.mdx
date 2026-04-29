@@ -18,7 +18,7 @@ Compra créditos para recarregar o saldo da sua conta. A transação é cobrada 
 POST /api/v1/credits/purchase
 ```
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token de sessão do usuário. Formato: `Bearer <user_session_token>`.
@@ -28,7 +28,7 @@ POST /api/v1/credits/purchase
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="amount" type="number" required>
   Valor de créditos a comprar, na moeda da conta. Deve ser maior que `0`.
@@ -72,7 +72,7 @@ curl -X POST "https://app.talkover.ai/api/v1/credits/purchase" \
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 402 — Pagamento Recusado
 

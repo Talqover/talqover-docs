@@ -14,12 +14,12 @@ Recuperar um único evento de um calendário, incluindo participantes.
 GET /api/v1/calendars/{calendar_id}/events/{event_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 <ParamField path="event_id" type="string" required>UUID do evento.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`

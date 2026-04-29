@@ -14,13 +14,13 @@ Retrieve a list of available voice templates grouped by display name. This endpo
 GET /api/v1/voice-templates
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Query Parameters
+## Query parameters
 
 <ParamField query="language" type="string" required={false}>
   Filter by language (e.g., `en-US`, `pt-BR`)
@@ -34,7 +34,7 @@ GET /api/v1/voice-templates
   Filter by gender. Options: `male`, `female`
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -171,7 +171,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -211,7 +211,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 401 Unauthorized
 
@@ -263,7 +263,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -271,7 +271,7 @@ console.log(result);
 | `VALIDATION_ERROR` | Query parameter validation failed | 422 |
 | `SERVER_ERROR` | Internal server error occurred | 500 |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Grouped by display name.** Voice templates are grouped by their display name, with each group containing different quality tiers of the same voice.
@@ -285,7 +285,7 @@ console.log(result);
   **Language filtering.** Use the language parameter to get voice templates for specific languages.
 </Info>
 
-## Best Practices
+## Best practices
 
 1. **Filter by language** - Use the language parameter to get relevant voice templates
 2. **Consider quality vs cost** - Balance voice quality with cost requirements
@@ -293,7 +293,7 @@ console.log(result);
 4. **Cache results** - Voice templates don't change frequently, so consider caching
 5. **Handle empty responses** - Some language/gender combinations may return empty results
 
-## Related Endpoints
+## Related endpoints
 
 - **Generate Voice Template Demo**: `GET /api/v1/voice-templates/{voiceTemplate}/demo`
 - **List Phone Numbers**: `GET /api/v1/phone-numbers`

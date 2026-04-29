@@ -14,12 +14,12 @@ Envia um payload de teste para verificar a configuração de um webhook de campa
 POST /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/test
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="campaign_id" type="string" required>UUID da campanha.</ParamField>
 <ParamField path="webhook_id" type="string" required>UUID do webhook.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`

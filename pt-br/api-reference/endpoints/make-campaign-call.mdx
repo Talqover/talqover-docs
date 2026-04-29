@@ -56,13 +56,13 @@ Chamadas individuais de agente são perfeitas para **interações instantâneas 
 POST /api/v1/campaigns/{campaign_id}/call
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="campaign" type="string" required>
   O identificador único da campanha. Você pode encontrá-lo em seu painel, na seção Campanhas.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -72,7 +72,7 @@ POST /api/v1/campaigns/{campaign_id}/call
   Application JSON. Formato: `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="to" type="string" required>
   Número de telefone para chamar no formato E.164 (ex: "+1234567890").
@@ -270,7 +270,7 @@ console.log(result);
   Resumo da campanha pai no momento em que a chamada foi enfileirada.
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 409 Conflict — Chamada Duplicada
 
@@ -395,7 +395,7 @@ Para sobrescrever este comportamento intencionalmente (ex: uma chamada de follow
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -418,7 +418,7 @@ Para sobrescrever este comportamento intencionalmente (ex: uma chamada de follow
 | `completed` | ❌ Não | A campanha foi finalizada |
 | `cancelled` | ❌ Não | A campanha foi cancelada |
 
-## Observações Importantes
+## Observações importantes
 
 <Info>
   **Contexto da campanha.** Chamadas feitas através deste endpoint são associadas à campanha específica.
@@ -448,7 +448,7 @@ Para sobrescrever este comportamento intencionalmente (ex: uma chamada de follow
 4. **Valide números de telefone** - Garanta que os números de telefone estejam no formato E.164
 5. **Monitore o status da chamada** - Acompanhe o status da chamada usando o call_id retornado
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - **Obter Campanha**: `GET /api/v1/campaigns/{campaign_id}`
 - **Atualizar Status da Campanha**: `PATCH /api/v1/campaigns/{campaign_id}/status`

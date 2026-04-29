@@ -14,11 +14,11 @@ Update a SIP trunk's configuration. All fields are optional — only fields you 
 PUT /api/v1/sip-trunks/{trunk_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ PUT /api/v1/sip-trunks/{trunk_id}
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 Same fields as [Create SIP Trunk](/api-reference/endpoints/create-sip-trunk), all optional.
 

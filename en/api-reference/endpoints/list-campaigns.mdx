@@ -14,13 +14,13 @@ Retrieve a list of all campaigns for the authenticated environment with various 
 GET /api/v1/campaigns
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Query Parameters
+## Query parameters
 
 <ParamField query="status" type="string" required={false}>
   Filter by campaign status. Options: `draft`, `active`, `paused`, `completed`, `cancelled`
@@ -54,7 +54,7 @@ GET /api/v1/campaigns
   Page number (default: 1)
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -207,7 +207,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -326,7 +326,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 401 Unauthorized
 
@@ -378,7 +378,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -386,7 +386,7 @@ console.log(result);
 | `VALIDATION_ERROR` | Query parameter validation failed | 422 |
 | `SERVER_ERROR` | Internal server error occurred | 500 |
 
-## Important Notes
+## Important notes
 
 <Info>
   **Pagination support.** All list endpoints support pagination with `page` and `per_page` parameters.
@@ -404,7 +404,7 @@ console.log(result);
   **Statistics included.** Each campaign includes real-time statistics about call performance.
 </Info>
 
-## Best Practices
+## Best practices
 
 1. **Use pagination** - Always use pagination for large datasets
 2. **Filter by status** - Use status filters to find active, paused, or completed campaigns
@@ -412,7 +412,7 @@ console.log(result);
 4. **Search efficiently** - Use the search parameter to find specific campaigns quickly
 5. **Handle errors** - Implement proper error handling for authentication and validation failures
 
-## Related Endpoints
+## Related endpoints
 
 - **Create Campaign**: `POST /api/v1/campaigns`
 - **Get Campaign**: `GET /api/v1/campaigns/{campaign_id}`

@@ -213,7 +213,7 @@ $data = json_decode($response->getBody());
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 <ResponseExample title="401 Unauthorized">
 
@@ -261,7 +261,7 @@ $data = json_decode($response->getBody());
 
 </ResponseExample>
 
-## Validation Rules
+## Validation rules
 
 - **name**: Optional, string, maximum 255 characters
 - **webhook_url**: Optional, valid URL, maximum 500 characters
@@ -271,14 +271,14 @@ $data = json_decode($response->getBody());
 - **max_retries**: Optional, integer between 0-10
 - **enabled**: Optional, boolean
 
-## Important Notes
+## Important notes
 
 - All fields are optional - only provided fields will be updated
 - Webhook operations automatically clear the agent cache for immediate effect
 - Use HTTPS endpoints for webhook URLs in production
 - Implement proper signature verification using the webhook secret for security
 
-## Related Endpoints
+## Related endpoints
 
 - [List Agent Webhooks](/api-reference/endpoints/list-agent-webhooks) - Get all webhooks for an agent
 - [Create Webhook](/api-reference/endpoints/create-webhook) - Set up a new webhook

@@ -14,7 +14,7 @@ List the payment methods saved on your environment that can be used for auto top
 GET /api/v1/auto-topup/payment-methods
 ```
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -69,7 +69,7 @@ curl "https://app.talkover.ai/api/v1/auto-topup/payment-methods" \
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="data[].id" type="string" required>Payment method ID. Use this in `payment_method_id` when configuring auto topup.</ResponseField>
 <ResponseField name="data[].type" type="string" required>Always `card` currently.</ResponseField>

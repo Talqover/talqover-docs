@@ -14,13 +14,13 @@ Recuperar uma lista de todas as chamadas para o ambiente autenticado com opçõe
 GET /api/v1/calls
 ```
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Parâmetros de Consulta
+## Parâmetros de consulta
 
 <ParamField query="status" type="string" required={false}>
   Filtrar por status da chamada. Opções: `initiated`, `ringing`, `answered`, `completed`, `failed`, `busy`, `no-answer`
@@ -276,7 +276,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 401 Não Autorizado
 
@@ -331,7 +331,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -365,7 +365,7 @@ console.log(result);
 4. **Identifique testes** - Use `is_testing` para separar chamadas de teste das de produção
 5. **Filtre por agente** - Use `agent_id` para analisar desempenho de agentes específicos
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - **Obter Chamadas do Agente**: `GET /api/v1/agents/{agent_id}/calls`
 - **Fazer Chamada**: `POST /api/v1/calls`

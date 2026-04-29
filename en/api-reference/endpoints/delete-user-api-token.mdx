@@ -18,13 +18,13 @@ Revoke a personal access token. The token is invalidated immediately and any fur
 DELETE /api/v1/user/api-tokens/{token_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="token_id" type="string" required>
   ID of the token to revoke. Use [List User API Tokens](/api-reference/endpoints/list-user-api-tokens) to find the ID.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   User session token. Format: `Bearer <user_session_token>`.

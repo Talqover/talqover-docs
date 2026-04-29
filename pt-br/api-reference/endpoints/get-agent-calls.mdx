@@ -14,19 +14,19 @@ Recuperar uma lista de chamadas para um agente específico com opções de filtr
 GET /api/v1/agents/{agent_id}/calls
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent" type="string" required>
   O identificador único do agente. Você pode encontrá-lo na lista de agentes.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Parâmetros de Consulta
+## Parâmetros de consulta
 
 <ParamField query="status" type="string" required={false}>
   Filtrar por status da chamada. Opções: `initiated`, `ringing`, `answered`, `completed`, `failed`, `busy`, `no-answer`
@@ -253,7 +253,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 404 Não Encontrado
 
@@ -321,7 +321,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -356,7 +356,7 @@ console.log(result);
 4. **Analise desempenho** - Use este endpoint para avaliar o desempenho de agentes específicos
 5. **Identifique testes** - Use `is_testing` para separar chamadas de teste das de produção
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - **Listar Chamadas**: `GET /api/v1/calls`
 - **Obter Agente**: `GET /api/v1/agents/{agent_id}`

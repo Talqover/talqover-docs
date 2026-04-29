@@ -14,13 +14,13 @@ Check whether an agent qualifies for optimized cost pricing. Optimized costs app
 GET /api/v1/agents/{agent_id}/optimized-costs-eligibility
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>
   Agent UUID.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
@@ -84,7 +84,7 @@ const result = await response.json();
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="data.eligible" type="boolean" required>
   Whether the agent currently meets the volume threshold for optimized costs.

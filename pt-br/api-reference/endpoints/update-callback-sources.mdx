@@ -14,11 +14,11 @@ Substitui a lista de agentes de origem associados a este agente de callback. A l
 PUT /api/v1/agents/{agent_id}/callback
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent_id" type="string" required>UUID do agente de callback.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ PUT /api/v1/agents/{agent_id}/callback
   Deve ser definido como `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="source_agent_ids" type="array" required>
   Nova lista completa de UUIDs de agentes outbound que devem rotear callbacks para este agente. Deve conter pelo menos uma entrada.

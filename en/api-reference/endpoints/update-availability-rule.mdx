@@ -14,12 +14,12 @@ Update an existing availability rule. All fields are optional.
 PUT /api/v1/calendars/{calendar_id}/availability-rules/{rule_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
 <ParamField path="rule_id" type="string" required>Availability rule UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -27,7 +27,7 @@ PUT /api/v1/calendars/{calendar_id}/availability-rules/{rule_id}
 
 <ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
 
-## Request Body
+## Request body
 
 Same fields as [Create Availability Rule](/api-reference/endpoints/create-availability-rule), all optional.
 

@@ -14,13 +14,13 @@ Remover um participante de um evento de calendário.
 DELETE /api/v1/calendars/{calendar_id}/events/{event_id}/attendees/{attendee_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 <ParamField path="event_id" type="string" required>UUID do evento.</ParamField>
 <ParamField path="attendee_id" type="string" required>UUID do participante.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`

@@ -14,12 +14,12 @@ Alterar a função de um membro do calendário.
 PUT /api/v1/calendars/{calendar_id}/members/{member_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 <ParamField path="member_id" type="string" required>UUID do membro.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -27,7 +27,7 @@ PUT /api/v1/calendars/{calendar_id}/members/{member_id}
 
 <ParamField header="Content-Type" type="string" required>Deve ser `application/json`.</ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="role" type="string" required>Nova função. Opções: `owner`, `editor`, `viewer`.</ParamField>
 

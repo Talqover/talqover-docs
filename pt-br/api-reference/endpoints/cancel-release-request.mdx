@@ -14,13 +14,13 @@ Cancela uma solicitação pendente de liberação de número de telefone antes q
 DELETE /api/v1/phone-numbers/release-requests/{release_request_id}
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="release_request_id" type="string" required>
   UUID da solicitação de liberação a cancelar.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer. Formato: `Bearer talq_your_environment_token_here`
@@ -50,7 +50,7 @@ curl -X DELETE "https://app.talkover.ai/api/v1/phone-numbers/release-requests/re
 
 </ResponseExample>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 404 — Não Encontrada
 

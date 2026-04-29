@@ -14,7 +14,7 @@ Retrieve events from multiple calendars in a single request, optionally filtered
 GET /api/v1/calendars/events
 ```
 
-## Query Parameters
+## Query parameters
 
 <ParamField query="calendar_ids[]" type="array" required>
   One or more calendar UUIDs. Repeat the parameter for multiple values.
@@ -28,7 +28,7 @@ GET /api/v1/calendars/events
   Upper bound of event end time. ISO 8601.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`

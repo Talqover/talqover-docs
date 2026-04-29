@@ -164,7 +164,7 @@ $data = json_decode($response->getBody());
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 <ResponseExample title="401 Unauthorized">
 
@@ -198,14 +198,14 @@ $data = json_decode($response->getBody());
 
 </ResponseExample>
 
-## Important Notes
+## Important notes
 
 - This endpoint toggles the current enabled/disabled status of the webhook
 - Disabled webhooks will not receive any events until re-enabled
 - Webhook operations automatically clear the agent cache for immediate effect
 - Use this endpoint for temporary webhook management without losing configuration
 
-## Related Endpoints
+## Related endpoints
 
 - [List Agent Webhooks](/api-reference/endpoints/list-agent-webhooks) - Get all webhooks for an agent
 - [Create Webhook](/api-reference/endpoints/create-webhook) - Set up a new webhook

@@ -14,13 +14,13 @@ Cancel a pending phone number release request before it is approved or rejected.
 DELETE /api/v1/phone-numbers/release-requests/{release_request_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="release_request_id" type="string" required>
   UUID of the release request to cancel.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -50,7 +50,7 @@ curl -X DELETE "https://app.talkover.ai/api/v1/phone-numbers/release-requests/re
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 404 — Not Found
 

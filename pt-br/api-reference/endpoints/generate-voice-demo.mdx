@@ -14,13 +14,13 @@ Gerar um arquivo de áudio de demonstração para um modelo de voz específico. 
 GET /api/v1/voice-templates/{voice_template_id}/demo
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="voice_template_id" type="string" required>
   O identificador único do modelo de voz. Você pode encontrá-lo na lista de modelos de voz.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -95,7 +95,7 @@ console.log(result);
   URL assinada para download do arquivo de áudio de demonstração em formato MP3.
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 404 Não Encontrado
 
@@ -136,7 +136,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -170,7 +170,7 @@ console.log(result);
 4. **Trate erros** - Implemente tratamento adequado de erros para falhas de geração
 5. **Monitore qualidade** - Verifique se a qualidade da voz atende às suas necessidades
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - **Listar Modelos de Voz**: `GET /api/v1/voice-templates`
 - **Listar Números de Telefone**: `GET /api/v1/phone-numbers`

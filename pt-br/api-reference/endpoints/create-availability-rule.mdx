@@ -14,11 +14,11 @@ Adicionar uma regra de disponibilidade (janela recorrente ou data de exceção) 
 POST /api/v1/calendars/{calendar_id}/availability-rules
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -26,7 +26,7 @@ POST /api/v1/calendars/{calendar_id}/availability-rules
 
 <ParamField header="Content-Type" type="string" required>Deve ser `application/json`.</ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="type" type="string" required>Tipo da regra. Opções: `recurring`, `exception`.</ParamField>
 

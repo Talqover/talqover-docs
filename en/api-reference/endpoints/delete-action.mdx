@@ -14,7 +14,7 @@ Delete a specific action for a voice agent. This action is irreversible and will
 DELETE /api/v1/agents/{agent_id}/actions/{action_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent" type="string" required>
   The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
@@ -24,13 +24,13 @@ DELETE /api/v1/agents/{agent_id}/actions/{action_id}
   The unique identifier of the action to delete. You can find this by listing the agent's actions first.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -102,7 +102,7 @@ try {
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="success" type="boolean" required>
   Indicates if the operation was successful.
@@ -112,7 +112,7 @@ try {
   Success message confirming the action was deleted.
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 404 Not Found
 
@@ -166,7 +166,7 @@ try {
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -176,7 +176,7 @@ try {
 | `UNAUTHORIZED` | User does not have permission to delete actions for this agent | 403 |
 | `SERVER_ERROR` | Internal server error occurred | 500 |
 
-## Important Notes
+## Important notes
 
 <Warning>
   **This action is irreversible.** Once an action is deleted, it cannot be recovered. Make sure you have a backup if needed.
@@ -194,7 +194,7 @@ try {
   **Active calls may be affected.** If the deleted action is currently being used in active calls, those calls may be affected.
 </Info>
 
-## Best Practices
+## Best practices
 
 1. **Verify before deleting** - Always list actions first to get the correct action ID
 2. **Backup important configurations** - Consider backing up action configurations before deletion
@@ -204,7 +204,7 @@ try {
 6. **Document changes** - Keep track of what actions were deleted and why
 7. **Test agent behavior** - Test the agent after deletion to ensure it handles scenarios that previously used the deleted action
 
-## Related Endpoints
+## Related endpoints
 
 - **List Actions**: `GET /api/v1/agents/{agent_id}/actions`
 - **Create/Update Action**: `POST /api/v1/agents/{agent_id}/actions`

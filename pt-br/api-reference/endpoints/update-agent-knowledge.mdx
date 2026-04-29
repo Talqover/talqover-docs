@@ -14,13 +14,13 @@ Atualizar a base de conhecimento de um agente específico. Esta operação subst
 PUT /api/v1/agents/{agent_id}/knowledge
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="agent" type="string" required>
   O identificador único do agente. Você pode encontrá-lo na lista de agentes.
 </ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
@@ -30,7 +30,7 @@ PUT /api/v1/agents/{agent_id}/knowledge
   Application JSON. Formato: `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Corpo da requisição
 
 <ParamField body="knowledge_base" type="string" required>
   Nova base de conhecimento do agente (texto ou URL).
@@ -146,7 +146,7 @@ console.log(result);
   </Expandable>
 </ResponseField>
 
-## Respostas de Erro
+## Respostas de erro
 
 ### 404 Não Encontrado
 
@@ -205,7 +205,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Códigos de Erro
+## Códigos de erro
 
 | Código | Descrição | Status HTTP |
 |--------|-----------|-------------|
@@ -240,7 +240,7 @@ console.log(result);
 4. **URLs confiáveis** - Use URLs confiáveis e acessíveis quando fornecer base de conhecimento via URL
 5. **Validação de conteúdo** - Verifique se o conteúdo da base de conhecimento está correto antes de atualizar
 
-## Endpoints Relacionados
+## Endpoints relacionados
 
 - **Obter Agente**: `GET /api/v1/agents/{agent_id}`
 - **Atualizar Voz do Agente**: `PUT /api/v1/agents/{agent_id}/voice`

@@ -14,11 +14,11 @@ Configure an inbound agent to handle callbacks from one or more outbound source 
 POST /api/v1/agents/{agent_id}/callback
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent_id" type="string" required>UUID of the inbound agent. Must have `direction: "inbound"`.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -28,7 +28,7 @@ POST /api/v1/agents/{agent_id}/callback
   Must be set to `application/json`
 </ParamField>
 
-## Request Body
+## Request body
 
 <ParamField body="source_agent_ids" type="array" required>
   Array of outbound agent UUIDs whose contacts should route to this callback agent on inbound returns. Must contain at least one entry.
@@ -69,7 +69,7 @@ curl -X POST "https://app.talkover.ai/api/v1/agents/agent-uuid-1/callback" \
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 422 — Wrong Direction
 

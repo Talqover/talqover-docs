@@ -14,17 +14,17 @@ Calcular horários disponíveis de um calendário em um intervalo determinado, a
 GET /api/v1/calendars/{calendar_id}/availability
 ```
 
-## Parâmetros de Caminho
+## Parâmetros de caminho
 
 <ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Parâmetros de Consulta
+## Parâmetros de consulta
 
 <ParamField query="from" type="string" required>Início do intervalo. ISO 8601.</ParamField>
 <ParamField query="to" type="string" required>Fim do intervalo. ISO 8601.</ParamField>
 <ParamField query="duration_minutes" type="integer">Duração do horário a calcular. Padrão: `30`.</ParamField>
 
-## Cabeçalhos da Requisição
+## Cabeçalhos da requisição
 
 <ParamField header="Authorization" type="string" required>
   Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`

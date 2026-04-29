@@ -14,19 +14,19 @@ Retrieve detailed information about a specific voice agent, including its config
 GET /api/v1/agents/{agent_id}
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="agent" type="string" required>
   The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
 </ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Example Requests
+## Example requests
 
 <RequestExample>
 
@@ -140,7 +140,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Response fields
 
 <ResponseField name="id" type="string" required>
   Unique identifier for the agent.
@@ -250,7 +250,7 @@ console.log(result);
   Array of phone numbers associated with the agent.
 </ResponseField>
 
-## Error Responses
+## Error responses
 
 ### 404 Not Found
 
@@ -291,7 +291,7 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Error codes
 
 | Code | Description | HTTP Status |
 |------|-------------|-------------|
@@ -299,7 +299,7 @@ console.log(result);
 | `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
 | `UNAUTHORIZED` | User does not have permission to access this agent | 403 |
 
-## Related Endpoints
+## Related endpoints
 
 - **List Agents**: `GET /api/v1/agents`
 - **Create Agent**: `POST /api/v1/agents`

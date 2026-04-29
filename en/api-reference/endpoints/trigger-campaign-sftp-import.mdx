@@ -14,11 +14,11 @@ Manually trigger an SFTP import of new contact list files for a campaign. The pl
 POST /api/v1/campaigns/{campaign_id}/sftp/trigger-import
 ```
 
-## Path Parameters
+## Path parameters
 
 <ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
 
-## Request Headers
+## Request headers
 
 <ParamField header="Authorization" type="string" required>
   Bearer token. Format: `Bearer talq_your_environment_token_here`
@@ -52,7 +52,7 @@ curl -X POST "https://app.talkover.ai/api/v1/campaigns/campaign-uuid/sftp/trigge
 
 </ResponseExample>
 
-## Error Responses
+## Error responses
 
 ### 409 — Already Running
 
