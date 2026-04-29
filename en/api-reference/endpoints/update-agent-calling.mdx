@@ -1,0 +1,133 @@
+---
+title: "Update Agent Calling Settings"
+description: "Update an agent's call direction and assigned phone numbers"
+api: "PUT /api/v1/agents/{agent_id}/calling"
+---
+
+# Update Agent Calling Settings
+
+Update the call direction (inbound/outbound) and the phone numbers assigned to the agent.
+
+## Endpoint
+
+```
+PUT /api/v1/agents/{agent_id}/calling
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>
+  The unique identifier of the voice agent to update.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body Parameters
+
+<ParamField body="direction" type="string" required>
+  Call direction. Options: `inbound`, `outbound`.
+</ParamField>
+
+<ParamField body="phone_number_ids" type="array">
+  Array of phone number UUIDs to assign to the agent.
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+# Outbound with multiple phone numbers
+curl -X PUT "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/calling" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "direction": "outbound",
+    "phone_number_ids": ["phone-uuid-1", "phone-uuid-2"]
+  }'
+```
+
+```javascript
+const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/calling', {
+  method: 'PUT',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    direction: "outbound",
+    phone_number_ids: ["phone-uuid-1", "phone-uuid-2"]
+  })
+});
+
+const result = await response.json();
+```
+
+```python
+import requests
+
+url = "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/calling"
+headers = {
+    "Authorization": "Bearer talq_your_environment_token_here",
+    "Content-Type": "application/json"
+}
+data = {
+    "direction": "outbound",
+    "phone_number_ids": ["phone-uuid-1", "phone-uuid-2"]
+}
+
+response = requests.put(url, headers=headers, json=data)
+result = response.json()
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Agent calling settings updated successfully",
+  "data": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "SupportBot",
+    "direction": "outbound",
+    "current_status": "draft",
+    "phone_numbers": [
+      {
+        "id": "phone-uuid-1",
+        "number": "+1234567890",
+        "country_code": "US",
+        "formatted_number": "(123) 456-7890",
+        "current_status": "active"
+      },
+      {
+        "id": "phone-uuid-2",
+        "number": "+1987654321",
+        "country_code": "US",
+        "formatted_number": "(987) 654-3210",
+        "current_status": "active"
+      }
+    ],
+    "updated_at": "2024-01-15T10:45:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Setting `direction: "inbound"` configures the agent to receive calls on the assigned numbers.
+- Setting `direction: "outbound"` configures the agent to place calls from the assigned numbers.
+- Phone numbers must already exist in your environment. Use the [List Phone Numbers](/api-reference/endpoints/list-phone-numbers) endpoint to retrieve available IDs.

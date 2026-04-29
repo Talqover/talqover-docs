@@ -1,0 +1,64 @@
+---
+title: "Query Availability"
+description: "Compute available time slots for a calendar"
+api: "GET /api/v1/calendars/{calendar_id}/availability"
+---
+
+# Query Availability
+
+Compute available time slots for a calendar over a given range, applying recurring rules, exceptions, and existing events as busy time.
+
+## Endpoint
+
+```
+GET /api/v1/calendars/{calendar_id}/availability
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+
+## Query Parameters
+
+<ParamField query="from" type="string" required>Range start. ISO 8601.</ParamField>
+<ParamField query="to" type="string" required>Range end. ISO 8601.</ParamField>
+<ParamField query="duration_minutes" type="integer">Slot length to compute. Default: `30`.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/calendars/calendar-uuid-1/availability?from=2024-01-15T00:00:00Z&to=2024-01-22T00:00:00Z&duration_minutes=30" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    { "start_at": "2024-01-15T09:00:00Z", "end_at": "2024-01-15T09:30:00Z" },
+    { "start_at": "2024-01-15T09:30:00Z", "end_at": "2024-01-15T10:00:00Z" },
+    { "start_at": "2024-01-15T10:00:00Z", "end_at": "2024-01-15T10:30:00Z" }
+  ]
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Slots fall within recurring rules and exclude busy events and exception dates.
+- Use this endpoint to power scheduling agents — let the agent offer caller these slots.

@@ -1,0 +1,55 @@
+---
+title: "Retry Campaign Webhook Delivery"
+description: "Manually retry a failed campaign webhook delivery"
+api: "POST /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/logs/{log_id}/retry"
+---
+
+# Retry Campaign Webhook Delivery
+
+Manually retry a failed campaign webhook delivery. Creates a new log entry for the retry — original log is preserved.
+
+## Endpoint
+
+```
+POST /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/logs/{log_id}/retry
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+<ParamField path="log_id" type="string" required>Log UUID of the failed delivery.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/logs/log-uuid-1/retry" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Webhook retry queued",
+  "data": {
+    "log_id": "new-log-uuid",
+    "original_log_id": "log-uuid-1"
+  }
+}
+```
+
+</ResponseExample>

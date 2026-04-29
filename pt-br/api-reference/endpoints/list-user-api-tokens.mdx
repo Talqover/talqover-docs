@@ -1,0 +1,67 @@
+---
+title: "List User API Tokens"
+description: "List the personal access tokens (PATs) for the current user"
+api: "GET /api/v1/user/api-tokens"
+---
+
+# List User API Tokens
+
+List the personal access tokens (PATs) associated with the current user. PATs are user-scoped, distinct from environment tokens which are scoped to a specific environment.
+
+<Info>
+  This endpoint is part of the **Account API** and is authenticated with a user session token, not an environment token.
+</Info>
+
+## Endpoint
+
+```
+GET /api/v1/user/api-tokens
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  User session token. Format: `Bearer <user_session_token>`.
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/user/api-tokens" \
+  -H "Authorization: Bearer your_user_session_token"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "data": [
+    {
+      "id": "token-uuid-1",
+      "name": "CI Pipeline",
+      "abilities": ["*"],
+      "last_used_at": "2024-01-15T18:00:00Z",
+      "created_at": "2024-01-01T10:00:00Z"
+    },
+    {
+      "id": "token-uuid-2",
+      "name": "Local Development",
+      "abilities": ["read"],
+      "last_used_at": null,
+      "created_at": "2024-01-10T09:00:00Z"
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Token values are never returned by this endpoint — only metadata. The full token string is shown only once, when the token is created.

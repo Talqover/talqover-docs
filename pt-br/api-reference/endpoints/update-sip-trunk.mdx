@@ -1,0 +1,72 @@
+---
+title: "Update SIP Trunk"
+description: "Update a SIP trunk's configuration"
+api: "PUT /api/v1/sip-trunks/{trunk_id}"
+---
+
+# Update SIP Trunk
+
+Update a SIP trunk's configuration. All fields are optional — only fields you send are updated. Changes that affect connectivity (domain, transport, credentials) automatically reset `is_verified` to `false`.
+
+## Endpoint
+
+```
+PUT /api/v1/sip-trunks/{trunk_id}
+```
+
+## Path Parameters
+
+<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+Same fields as [Create SIP Trunk](/api-reference/endpoints/create-sip-trunk), all optional.
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X PUT "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Primary Carrier — US (renamed)",
+    "is_active": false
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "trunk-uuid-1",
+    "name": "Primary Carrier — US (renamed)",
+    "is_active": false,
+    "is_verified": true,
+    "updated_at": "2024-01-15T15:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- After updating credentials/domain/transport, re-run [Verify SIP Trunk](/api-reference/endpoints/verify-sip-trunk) before reactivating.

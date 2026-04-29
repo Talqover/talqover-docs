@@ -1,0 +1,85 @@
+---
+title: "Publish Agent"
+description: "Publish an agent to make it active and available to receive or place calls"
+api: "POST /api/v1/agents/{agent_id}/publish"
+---
+
+# Publish Agent
+
+Publish an agent to mark it as active. A published agent can receive inbound calls or be used to place outbound calls.
+
+## Endpoint
+
+```
+POST /api/v1/agents/{agent_id}/publish
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>
+  The unique identifier of the voice agent to publish.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/publish" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/publish', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+```
+
+```python
+import requests
+
+url = "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/publish"
+headers = {"Authorization": "Bearer talq_your_environment_token_here"}
+
+response = requests.post(url, headers=headers)
+result = response.json()
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Agent published successfully",
+  "data": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "SupportBot",
+    "current_status": "published",
+    "is_ready_to_publish": true,
+    "updated_at": "2024-01-15T10:50:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- The agent must be properly configured (knowledge, voice, calling settings) before it can be published. If `is_ready_to_publish` is `false`, the publish call will fail with a `422` validation error explaining what's missing.
+- Publishing an outbound agent does not start any calls — use [Make a Call](/api-reference/endpoints/make-call) to dispatch outbound calls.
+- To temporarily disable a published agent, use [Unpublish Agent](/api-reference/endpoints/unpublish-agent).

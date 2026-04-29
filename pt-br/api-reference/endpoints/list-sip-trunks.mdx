@@ -1,0 +1,61 @@
+---
+title: "List SIP Trunks"
+description: "List custom SIP trunks configured for your environment"
+api: "GET /api/v1/sip-trunks"
+---
+
+# List SIP Trunks
+
+List the custom SIP trunks configured in your environment. Custom SIP trunks let Enterprise customers route calls through their own carrier instead of the default platform-managed transport.
+
+<Info>
+  This feature is available only on plans where `allow_custom_sip_trunks` is enabled. Contact your account manager to enable it.
+</Info>
+
+## Endpoint
+
+```
+GET /api/v1/sip-trunks
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/sip-trunks" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "trunk-uuid-1",
+      "name": "Primary Carrier — US",
+      "provider_name": "carrier-x",
+      "domain": "sip.carrier-x.com",
+      "transport": "tls",
+      "is_active": true,
+      "is_verified": true,
+      "health_status": "healthy",
+      "created_at": "2024-01-01T10:00:00Z"
+    }
+  ]
+}
+```
+
+</ResponseExample>

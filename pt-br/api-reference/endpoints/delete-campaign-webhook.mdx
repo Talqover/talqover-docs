@@ -1,0 +1,50 @@
+---
+title: "Delete Campaign Webhook"
+description: "Delete a campaign webhook"
+api: "DELETE /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}"
+---
+
+# Delete Campaign Webhook
+
+Delete a campaign webhook. Past delivery logs are retained for the standard retention period.
+
+## Endpoint
+
+```
+DELETE /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X DELETE "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Campaign webhook deleted"
+}
+```
+
+</ResponseExample>

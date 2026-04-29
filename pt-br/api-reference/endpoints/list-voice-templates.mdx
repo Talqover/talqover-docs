@@ -40,13 +40,13 @@ GET /api/v1/voice-templates
 
 ```bash
 # Requisição 1: Obter todos os modelos de voz
-curl -X GET "https://talqover.app/api/v1/voice-templates" \
+curl -X GET "https://talkover.app/api/v1/voice-templates" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 1: Obter todos os modelos de voz
-const response = await fetch('https://talqover.app/api/v1/voice-templates', {
+const response = await fetch('https://talkover.app/api/v1/voice-templates', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -63,13 +63,13 @@ console.log(result);
 
 ```bash
 # Requisição 2: Filtrar por idioma português
-curl -X GET "https://talqover.app/api/v1/voice-templates?language=pt-BR" \
+curl -X GET "https://talkover.app/api/v1/voice-templates?language=pt-BR" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 2: Filtrar por idioma português
-const response = await fetch('https://talqover.app/api/v1/voice-templates?language=pt-BR', {
+const response = await fetch('https://talkover.app/api/v1/voice-templates?language=pt-BR', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -86,13 +86,13 @@ console.log(result);
 
 ```bash
 # Requisição 3: Filtrar por qualidade profissional e gênero feminino
-curl -X GET "https://talqover.app/api/v1/voice-templates?quality_tier=pro&gender=female" \
+curl -X GET "https://talkover.app/api/v1/voice-templates?quality_tier=pro&gender=female" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 3: Filtrar por qualidade profissional e gênero feminino
-const response = await fetch('https://talqover.app/api/v1/voice-templates?quality_tier=pro&gender=female', {
+const response = await fetch('https://talkover.app/api/v1/voice-templates?quality_tier=pro&gender=female', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

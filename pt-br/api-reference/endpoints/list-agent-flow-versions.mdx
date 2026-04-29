@@ -1,0 +1,75 @@
+---
+title: "List Agent Flow Versions"
+description: "List historical versions of an agent's flow configuration"
+api: "GET /api/v1/agents/{agent_id}/flow/versions"
+---
+
+# List Agent Flow Versions
+
+List historical versions of an agent's flow configuration. Each save produces a version entry that can be inspected.
+
+## Endpoint
+
+```
+GET /api/v1/agents/{agent_id}/flow/versions
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/agents/agent-uuid/flow/versions" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "versions": [
+      {
+        "id": "version-uuid-3",
+        "version": "1.2.0",
+        "created_at": "2024-01-15T10:00:00Z",
+        "is_current": true
+      },
+      {
+        "id": "version-uuid-2",
+        "version": "1.1.0",
+        "created_at": "2024-01-10T14:00:00Z",
+        "is_current": false
+      },
+      {
+        "id": "version-uuid-1",
+        "version": "1.0.0",
+        "created_at": "2024-01-05T09:00:00Z",
+        "is_current": false
+      }
+    ]
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Versioning is automatic on every flow update.
+- Restoring an older version requires fetching its `flow_config` and submitting via [Update Agent Flow](/api-reference/endpoints/update-agent-flow).

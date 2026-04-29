@@ -1,0 +1,50 @@
+---
+title: "Disconnect Provider"
+description: "Remove a calendar's connection to an external provider"
+api: "DELETE /api/v1/calendars/{calendar_id}/providers/{provider_id}"
+---
+
+# Disconnect Provider
+
+Remove a calendar's connection to an external provider. Existing events that were synced from the provider are preserved but stop receiving updates.
+
+## Endpoint
+
+```
+DELETE /api/v1/calendars/{calendar_id}/providers/{provider_id}
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="provider_id" type="string" required>Provider connection UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X DELETE "https://talkover.app/api/v1/calendars/calendar-uuid-1/providers/conn-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Provider connection removed"
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,85 @@
+---
+title: "Cancel Release Request"
+description: "Cancel a pending phone number release request"
+api: "DELETE /api/v1/phone-numbers/release-requests/{release_request_id}"
+---
+
+# Cancel Release Request
+
+Cancel a pending phone number release request before it is approved or rejected. Once cancelled, the phone number remains in your environment.
+
+## Endpoint
+
+```
+DELETE /api/v1/phone-numbers/release-requests/{release_request_id}
+```
+
+## Path Parameters
+
+<ParamField path="release_request_id" type="string" required>
+  UUID of the release request to cancel.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X DELETE "https://talkover.app/api/v1/phone-numbers/release-requests/request-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Release request cancelled"
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 404 — Not Found
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Release request not found"
+}
+```
+
+</ResponseExample>
+
+### 409 — Already Resolved
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Release request already resolved and cannot be cancelled",
+  "code": "RELEASE_ALREADY_RESOLVED"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Only requests in `pending` status can be cancelled.
+- Cancelling a request does not delete it — its status is updated to `cancelled` and remains in [List Release Requests](/api-reference/endpoints/list-release-requests).

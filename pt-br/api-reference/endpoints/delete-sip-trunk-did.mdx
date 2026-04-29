@@ -1,0 +1,66 @@
+---
+title: "Delete SIP Trunk DID"
+description: "Remove a DID from a SIP trunk"
+api: "DELETE /api/v1/sip-trunks/{trunk_id}/dids/{phone_number_id}"
+---
+
+# Delete SIP Trunk DID
+
+Remove a DID from a SIP trunk. The DID is also removed from your environment's phone number pool. Detach it from any agents first.
+
+## Endpoint
+
+```
+DELETE /api/v1/sip-trunks/{trunk_id}/dids/{phone_number_id}
+```
+
+## Path Parameters
+
+<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+<ParamField path="phone_number_id" type="string" required>UUID of the DID/phone number.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X DELETE "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/dids/phone-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "DID removed"
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 409 — DID In Use
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "DID is still assigned to active agents",
+  "code": "DID_IN_USE"
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,83 @@
+---
+title: "Create Campaign Webhook"
+description: "Create a webhook for campaign-level events"
+api: "POST /api/v1/campaigns/{campaign_id}/webhooks"
+---
+
+# Create Campaign Webhook
+
+Create a webhook subscribed to campaign lifecycle and per-campaign-call events.
+
+## Endpoint
+
+```
+POST /api/v1/campaigns/{campaign_id}/webhooks
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="name" type="string" required>Webhook name. Max 255 characters.</ParamField>
+<ParamField body="webhook_url" type="string" required>Delivery URL. Max 500 characters.</ParamField>
+<ParamField body="events" type="array" required>Array of subscribed events. Min 1.</ParamField>
+<ParamField body="webhook_secret" type="string">Optional HMAC-SHA256 signing secret. Max 255 characters.</ParamField>
+<ParamField body="timeout" type="integer">Request timeout in seconds. Range: `5`–`120`. Default: `30`.</ParamField>
+<ParamField body="max_retries" type="integer">Retry attempts on failure. Range: `0`–`10`. Default: `3`.</ParamField>
+<ParamField body="enabled" type="boolean">Default: `true`.</ParamField>
+<ParamField body="http_method" type="string">Options: `POST`, `PUT`, `PATCH`. Default: `POST`.</ParamField>
+<ParamField body="authorization_scheme" type="string">Options: `none`, `bearer`, `basic`, `api_key`, `custom`. Default: `none`.</ParamField>
+<ParamField body="custom_headers" type="array">Array of `{key, value}` objects.</ParamField>
+<ParamField body="payload_templates" type="object">Per-event template overrides.</ParamField>
+<ParamField body="include_call_events" type="boolean">When `true`, also delivers per-call events for calls in this campaign (in addition to campaign-level events).</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Lifecycle Webhook",
+    "webhook_url": "https://example.com/campaign-events",
+    "events": ["campaign.started", "campaign.completed", "campaign_call.completed"],
+    "include_call_events": false
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "webhook-uuid-1",
+    "campaign_id": "campaign-uuid",
+    "name": "Lifecycle Webhook",
+    "events": ["campaign.started", "campaign.completed", "campaign_call.completed"],
+    "enabled": true,
+    "include_call_events": false,
+    "created_at": "2024-01-15T15:00:00Z"
+  }
+}
+```
+
+</ResponseExample>

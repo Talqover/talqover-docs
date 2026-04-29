@@ -1,0 +1,54 @@
+---
+title: "Remove Calendar Member"
+description: "Revoke a member's access to a calendar"
+api: "DELETE /api/v1/calendars/{calendar_id}/members/{member_id}"
+---
+
+# Remove Calendar Member
+
+Revoke a user's access to a calendar.
+
+## Endpoint
+
+```
+DELETE /api/v1/calendars/{calendar_id}/members/{member_id}
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="member_id" type="string" required>Member UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X DELETE "https://talkover.app/api/v1/calendars/calendar-uuid-1/members/member-uuid-2" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Member removed"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- The calendar's `owner` cannot be removed — transfer ownership first via [Update Calendar Member](/api-reference/endpoints/update-calendar-member).

@@ -1,0 +1,91 @@
+---
+title: "Create SIP Trunk"
+description: "Register a custom SIP trunk for your environment"
+api: "POST /api/v1/sip-trunks"
+---
+
+# Create SIP Trunk
+
+Register a custom SIP trunk for your environment. Once created, you must verify the trunk via [Verify SIP Trunk](/api-reference/endpoints/verify-sip-trunk) before it can be used.
+
+<Info>
+  This feature is available only on plans where `allow_custom_sip_trunks` is enabled.
+</Info>
+
+## Endpoint
+
+```
+POST /api/v1/sip-trunks
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="name" type="string" required>Human-readable trunk name. Max 255 characters.</ParamField>
+<ParamField body="provider_name" type="string" required>Identifier of your carrier or SIP provider.</ParamField>
+<ParamField body="domain" type="string" required>SIP domain or proxy host (e.g., `sip.carrier-x.com`).</ParamField>
+<ParamField body="username" type="string" required>SIP authentication username.</ParamField>
+<ParamField body="password" type="string" required>SIP authentication password. Stored encrypted.</ParamField>
+<ParamField body="port" type="integer">SIP port. Range: `1`–`65535`. Default depends on transport (`5060` UDP/TCP, `5061` TLS).</ParamField>
+<ParamField body="transport" type="string">Transport protocol. Options: `udp`, `tcp`, `tls`. Default: `tls`.</ParamField>
+<ParamField body="outbound_proxy" type="string">Optional outbound proxy host.</ParamField>
+<ParamField body="auth_realm" type="string">Optional SIP auth realm if your carrier requires one.</ParamField>
+<ParamField body="is_active" type="boolean">Whether the trunk is active. Default: `false` (you must verify before activating).</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/sip-trunks" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Primary Carrier — US",
+    "provider_name": "carrier-x",
+    "domain": "sip.carrier-x.com",
+    "username": "user_42",
+    "password": "secret-password",
+    "port": 5061,
+    "transport": "tls"
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "trunk-uuid-1",
+    "name": "Primary Carrier — US",
+    "provider_name": "carrier-x",
+    "domain": "sip.carrier-x.com",
+    "transport": "tls",
+    "port": 5061,
+    "is_active": false,
+    "is_verified": false,
+    "created_at": "2024-01-15T14:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- `password` is never returned in responses after creation.
+- Run [Verify SIP Trunk](/api-reference/endpoints/verify-sip-trunk) to test connectivity before activating.

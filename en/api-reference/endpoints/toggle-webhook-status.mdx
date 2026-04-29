@@ -24,12 +24,12 @@ Toggles the enabled/disabled status of a webhook. This is useful for temporarily
 
 ```bash
 curl -X PATCH \
-  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/toggle' \
+  'https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/toggle' \
   -H 'Authorization: Bearer YOUR_TOKEN'
 ```
 
 ```javascript
-const response = await fetch('https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/toggle', {
+const response = await fetch('https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/toggle', {
   method: 'PATCH',
   headers: {
     'Authorization': 'Bearer YOUR_TOKEN'
@@ -42,7 +42,7 @@ const data = await response.json();
 <?php
 
 $client = new \GuzzleHttp\Client();
-$response = $client->patch('https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/toggle', [
+$response = $client->patch('https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks/9fcafbf2-7593-44d6-8cd7-1b221beba62a/toggle', [
     'headers' => [
         'Authorization' => 'Bearer YOUR_TOKEN',
     ],

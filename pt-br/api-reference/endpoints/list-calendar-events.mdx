@@ -1,0 +1,65 @@
+---
+title: "List Calendar Events"
+description: "List events in a calendar"
+api: "GET /api/v1/calendars/{calendar_id}/events"
+---
+
+# List Calendar Events
+
+List events in a single calendar, optionally filtered by time range.
+
+## Endpoint
+
+```
+GET /api/v1/calendars/{calendar_id}/events
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+
+## Query Parameters
+
+<ParamField query="from" type="string">ISO 8601 lower bound for `start_at`.</ParamField>
+<ParamField query="to" type="string">ISO 8601 upper bound for `end_at`.</ParamField>
+<ParamField query="status" type="string">Filter by status: `confirmed`, `tentative`, `cancelled`.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/calendars/calendar-uuid-1/events?from=2024-01-15T00:00:00Z&to=2024-01-22T00:00:00Z" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "event-uuid-1",
+      "calendar_id": "calendar-uuid-1",
+      "title": "Demo with Acme",
+      "start_at": "2024-01-15T15:00:00Z",
+      "end_at": "2024-01-15T15:30:00Z",
+      "status": "confirmed",
+      "type": "meeting"
+    }
+  ]
+}
+```
+
+</ResponseExample>

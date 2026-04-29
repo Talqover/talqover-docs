@@ -1,0 +1,84 @@
+---
+title: "Get Active Call by Phone"
+description: "Find the active call between an agent and a phone number"
+api: "GET /api/v1/agents/{agent_id}/active-call/{phone}"
+---
+
+# Get Active Call by Phone
+
+Find the active call (if any) between an agent and a specific phone number. Useful for de-duplication checks before placing a new call, or to look up the call ID associated with an inbound caller.
+
+## Endpoint
+
+```
+GET /api/v1/agents/{agent_id}/active-call/{phone}
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
+<ParamField path="phone" type="string" required>
+  Phone number in E.164 format (e.g., `+15551234567`). URL-encode the `+` sign as `%2B`.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/agents/agent-uuid/active-call/%2B15551234567" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+### Active Call Found
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "call-uuid-1",
+      "agent_id": "agent-uuid",
+      "to": "+15551234567",
+      "status": "answered",
+      "started_at": "2024-01-15T11:00:00Z",
+      "duration_seconds": 42
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+### No Active Call
+
+Returns `404 Not Found`.
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "No active call found for this phone number"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Only calls with status `initiated`, `ringing`, or `answered` are considered active.
+- If multiple active calls exist (rare — typically only one), all are returned in the array.
+- For historical lookups, use [List Calls](/api-reference/endpoints/list-calls) with `to` filter.

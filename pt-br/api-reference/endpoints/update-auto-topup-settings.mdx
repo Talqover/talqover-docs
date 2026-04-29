@@ -1,0 +1,115 @@
+---
+title: "Update Auto Topup Settings"
+description: "Configure threshold-based or scheduled auto topup"
+api: "PUT /api/v1/auto-topup/settings"
+---
+
+# Update Auto Topup Settings
+
+Configure or update auto topup. You can enable threshold-based recharging (auto-charge when balance drops below `threshold_amount`), monthly scheduled recharging (auto-charge on a specific day), or both.
+
+## Endpoint
+
+```
+PUT /api/v1/auto-topup/settings
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="is_enabled" type="boolean">
+  Master switch for auto topup. When `false`, neither threshold nor scheduled recharges fire.
+</ParamField>
+
+<ParamField body="threshold_amount" type="number">
+  Trigger threshold in account currency. Range: `1`–`1000`. When the balance drops below this, a recharge is queued.
+</ParamField>
+
+<ParamField body="recharge_amount" type="number">
+  Amount charged each time the threshold is hit. Range: `1`–`1000`.
+</ParamField>
+
+<ParamField body="scheduled_payment_enabled" type="boolean">
+  Enables monthly scheduled recharges in addition to (or instead of) threshold-based.
+</ParamField>
+
+<ParamField body="scheduled_amount" type="number">
+  Amount charged on the scheduled day. Range: `1`–`1000`. Required when `scheduled_payment_enabled` is `true`.
+</ParamField>
+
+<ParamField body="day_of_month" type="integer">
+  Day of month for scheduled recharges. Range: `1`–`28` (avoids month-end edge cases).
+</ParamField>
+
+<ParamField body="payment_method_id" type="string">
+  ID of the payment method to charge. Must be a method already saved on the account — see [List Payment Methods](/api-reference/endpoints/list-auto-topup-payment-methods).
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+# Enable threshold-based topup at $50, recharge $100
+curl -X PUT "https://talkover.app/api/v1/auto-topup/settings" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "is_enabled": true,
+    "threshold_amount": 50,
+    "recharge_amount": 100,
+    "payment_method_id": "pm_uuid_1"
+  }'
+```
+
+```bash
+# Enable monthly scheduled topup of $200 on the 1st
+curl -X PUT "https://talkover.app/api/v1/auto-topup/settings" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "is_enabled": true,
+    "scheduled_payment_enabled": true,
+    "scheduled_amount": 200,
+    "day_of_month": 1,
+    "payment_method_id": "pm_uuid_1"
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "is_enabled": true,
+    "threshold_amount": 50.00,
+    "recharge_amount": 100.00,
+    "scheduled_payment_enabled": false,
+    "payment_method_id": "pm_uuid_1",
+    "daily_limit": 500.00,
+    "updated_at": "2024-01-15T13:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- The `daily_limit` is set by your plan and cannot be modified via API. Contact support to request an increase.
+- To turn off auto topup entirely, send `{"is_enabled": false}` or use [Disable Auto Topup](/api-reference/endpoints/disable-auto-topup).
+- After updating, run [Test Auto Topup](/api-reference/endpoints/test-auto-topup) to verify the payment method works.

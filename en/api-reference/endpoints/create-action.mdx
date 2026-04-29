@@ -57,23 +57,45 @@ POST /api/v1/agents/{agent_id}/actions
 </ParamField>
 
 <ParamField body="url" type="string" required={false}>
-  Webhook URL (must be valid URL for webhook actions)
+  Webhook URL (must be a valid URL — used by `webhook` actions).
 </ParamField>
 
 <ParamField body="authorization_url" type="string" required={false}>
-  Authorization URL (must be valid URL for webhook actions)
+  Authorization URL (must be a valid URL — used by `webhook` actions when the target requires a separate authorization endpoint).
+</ParamField>
+
+<ParamField body="authorization_scheme" type="string" required={false}>
+  Authorization scheme used when calling `url`. Options: `none`, `bearer`, `basic`, `api_key`, `custom`. Default: `none`.
+</ParamField>
+
+<ParamField body="custom_headers" type="array" required={false}>
+  Array of custom HTTP headers to send with the webhook request. Each item is `{ "key": "Header-Name", "value": "header-value" }`.
+</ParamField>
+
+<ParamField body="speak_on_send" type="string" required={false}>
+  Phrase the agent will say when the webhook is triggered (before the call to `url`). Useful to keep the conversation natural while the integration runs.
+</ParamField>
+
+<ParamField body="speak_on_receive" type="string" required={false}>
+  Phrase the agent will say after the webhook responds successfully. The webhook response can be referenced via template variables.
+</ParamField>
+
+<ParamField body="execution_mode" type="string" required={false}>
+  Defines when the action runs. Options:
+  - `during_call` (default) — webhook runs during the conversation, response is consumed by the agent
+  - `post_call` — webhook runs after the call ends (only valid for `external` action type)
 </ParamField>
 
 <ParamField body="hold_duration" type="integer" required={false}>
-  Hold duration in seconds (for hold actions)
+  Hold duration in seconds (for `hold` actions).
 </ParamField>
 
 <ParamField body="transfer_to" type="string" required={false}>
-  Transfer destination phone number (for transfer actions)
+  Transfer destination phone number in E.164 format (for `transfer` actions).
 </ParamField>
 
 <ParamField body="current_status" type="string" required={false}>
-  Action status. Options: `active`, `inactive`. Default: `active`
+  Action status. Options: `active`, `inactive`. Default: `active`.
 </ParamField>
 
 ## Example Requests
@@ -82,7 +104,7 @@ POST /api/v1/agents/{agent_id}/actions
 
 ```bash
 # Request 1: Create webhook action
-curl -X POST "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions" \
+curl -X POST "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -115,7 +137,7 @@ curl -X POST "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-4466554
 
 ```javascript
 // Request 1: Create webhook action
-const response = await fetch('https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions', {
+const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -159,7 +181,7 @@ console.log(result);
 
 ```bash
 # Request 2: Create transfer action
-curl -X POST "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions" \
+curl -X POST "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -183,7 +205,7 @@ curl -X POST "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-4466554
 
 ```javascript
 // Request 2: Create transfer action
-const response = await fetch('https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions', {
+const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -218,7 +240,7 @@ console.log(result);
 
 ```bash
 # Request 3: Create hold action
-curl -X POST "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions" \
+curl -X POST "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -242,7 +264,7 @@ curl -X POST "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-4466554
 
 ```javascript
 // Request 3: Create hold action
-const response = await fetch('https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions', {
+const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',

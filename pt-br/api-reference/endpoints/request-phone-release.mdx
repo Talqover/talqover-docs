@@ -1,0 +1,123 @@
+---
+title: "Request Phone Number Release"
+description: "Submit a request to release a phone number from your environment"
+api: "POST /api/v1/phone-numbers/{phone_number_id}/request-release"
+---
+
+# Request Phone Number Release
+
+Submit a release request for a phone number you no longer need. The request enters `pending` status and is reviewed before the number is actually released.
+
+## Endpoint
+
+```
+POST /api/v1/phone-numbers/{phone_number_id}/request-release
+```
+
+## Path Parameters
+
+<ParamField path="phone_number_id" type="string" required>
+  UUID of the phone number to release.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="reason" type="string" required>
+  Reason for the release. Length: 10–500 characters. Helps support staff review the request faster.
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-release" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "reason": "We migrated outbound calling to a new toll-free number and no longer need this DID."
+  }'
+```
+
+```javascript
+await fetch('https://talkover.app/api/v1/phone-numbers/phone-uuid-1/request-release', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    reason: 'We migrated outbound calling to a new toll-free number and no longer need this DID.'
+  })
+});
+```
+
+</RequestExample>
+
+## Response
+
+### Success Response (201 Created)
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "request-uuid-1",
+    "phone_number_id": "phone-uuid-1",
+    "phone_number": "+15551234567",
+    "reason": "We migrated outbound calling to a new toll-free number and no longer need this DID.",
+    "status": "pending",
+    "requested_at": "2024-01-15T12:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 409 — Already Pending
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "A release request for this phone number is already pending",
+  "code": "RELEASE_ALREADY_PENDING"
+}
+```
+
+</ResponseExample>
+
+### 422 — Number In Use
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Phone number is currently assigned to active agents and cannot be released",
+  "code": "PHONE_NUMBER_IN_USE"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Detach the number from any agents (via [Update Agent Calling](/api-reference/endpoints/update-agent-calling)) before requesting release.
+- A pending request can be cancelled with [Cancel Release Request](/api-reference/endpoints/cancel-release-request).
+- Once approved, the number is released and **cannot be recovered**.

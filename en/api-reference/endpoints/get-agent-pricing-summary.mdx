@@ -1,0 +1,70 @@
+---
+title: "Get Agent Pricing Summary"
+description: "Retrieve a high-level pricing summary for an agent"
+api: "GET /api/v1/agents/{agent_id}/pricing/summary"
+---
+
+# Get Agent Pricing Summary
+
+Retrieve an aggregated, single-line cost estimate for an agent. Lighter than the full breakdown — useful for showing pricing in lists or summaries.
+
+## Endpoint
+
+```
+GET /api/v1/agents/{agent_id}/pricing/summary
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>
+  Agent UUID.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/pricing/summary" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/pricing/summary', {
+  headers: { 'Authorization': 'Bearer talq_your_environment_token_here' }
+});
+
+const result = await response.json();
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "agent_id": "550e8400-e29b-41d4-a716-446655440000",
+    "currency": "USD",
+    "estimated_cost_per_minute": 0.0855,
+    "voice_quality_tier": "high_fidelity",
+    "optimized_costs_enabled": false
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- For a full breakdown by component, use [Get Agent Pricing](/api-reference/endpoints/get-agent-pricing).
+- `optimized_costs_enabled` reflects whether the agent currently uses cached/optimized pricing. See [Check Optimized Costs Eligibility](/api-reference/endpoints/check-optimized-costs-eligibility).

@@ -1,0 +1,79 @@
+---
+title: "Retry Webhook Delivery"
+description: "Manually retry a failed webhook delivery"
+api: "POST /api/v1/agents/{agent_id}/webhooks/{webhook_id}/logs/{log_id}/retry"
+---
+
+# Retry Webhook Delivery
+
+Manually retry a failed webhook delivery. The retry creates a new log entry — the original log is preserved.
+
+## Endpoint
+
+```
+POST /api/v1/agents/{agent_id}/webhooks/{webhook_id}/logs/{log_id}/retry
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
+<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+<ParamField path="log_id" type="string" required>Log UUID of the failed delivery to retry.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/agents/agent-uuid/webhooks/webhook-uuid/logs/log-uuid/retry" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Webhook retry queued successfully",
+  "data": {
+    "log_id": "new-log-uuid",
+    "original_log_id": "log-uuid",
+    "queued_at": "2024-01-15T11:30:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 422 — Cannot Retry
+
+Returned when the log is not in a retriable state (e.g., already succeeded, too old, or webhook is disabled).
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Log cannot be retried",
+  "code": "LOG_NOT_RETRIABLE"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Retries respect the webhook's current configuration (URL, headers, timeout) — not the configuration at the time of the original attempt.
+- Use [List Webhook Delivery Logs](/api-reference/endpoints/list-webhook-logs) to track the new attempt.

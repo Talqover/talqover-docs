@@ -1,0 +1,83 @@
+---
+title: "Create Campaign SFTP Config"
+description: "Configure SFTP integration for a campaign"
+api: "POST /api/v1/campaigns/{campaign_id}/sftp"
+---
+
+# Create Campaign SFTP Config
+
+Configure SFTP integration for a campaign. The configuration is created in `disabled` state — test the connection successfully before enabling.
+
+## Endpoint
+
+```
+POST /api/v1/campaigns/{campaign_id}/sftp
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="host" type="string" required>SFTP server hostname.</ParamField>
+<ParamField body="port" type="integer">SFTP port. Range: `1`–`65535`. Default: `22`.</ParamField>
+<ParamField body="username" type="string" required>SFTP username.</ParamField>
+<ParamField body="auth_type" type="string" required>Auth method. Options: `password`, `private_key`.</ParamField>
+<ParamField body="password" type="string">Required when `auth_type` is `password`.</ParamField>
+<ParamField body="private_key" type="string">Required when `auth_type` is `private_key`. PEM-encoded private key.</ParamField>
+<ParamField body="private_key_passphrase" type="string">Optional passphrase for the private key.</ParamField>
+<ParamField body="import_path" type="string">Remote directory to scan for contact list imports (e.g., `/inbox`).</ParamField>
+<ParamField body="export_path" type="string">Remote directory where call result files are uploaded (e.g., `/outbox`).</ParamField>
+<ParamField body="import_schedule" type="string">Auto-import schedule. Options: `manual`, `hourly`, `daily`. Default: `manual`.</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "host": "sftp.example.com",
+    "port": 22,
+    "username": "campaigns_user",
+    "auth_type": "password",
+    "password": "secret",
+    "import_path": "/inbox",
+    "export_path": "/outbox",
+    "import_schedule": "daily"
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "sftp-config-uuid-1",
+    "campaign_id": "campaign-uuid",
+    "host": "sftp.example.com",
+    "is_enabled": false,
+    "created_at": "2024-01-15T16:00:00Z"
+  }
+}
+```
+
+</ResponseExample>

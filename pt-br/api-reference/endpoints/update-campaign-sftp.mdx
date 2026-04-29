@@ -1,0 +1,87 @@
+---
+title: "Update Campaign SFTP Config"
+description: "Update a campaign's SFTP configuration"
+api: "PUT /api/v1/campaigns/{campaign_id}/sftp"
+---
+
+# Update Campaign SFTP Config
+
+Update a campaign's SFTP configuration. Enabling (`is_enabled: true`) requires a successful test connection on file — otherwise the request fails with 422.
+
+## Endpoint
+
+```
+PUT /api/v1/campaigns/{campaign_id}/sftp
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+Same fields as [Create Campaign SFTP Config](/api-reference/endpoints/create-campaign-sftp), all optional, plus:
+
+<ParamField body="is_enabled" type="boolean">
+  Toggle integration. Setting to `true` requires a successful test result.
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "import_schedule": "hourly",
+    "is_enabled": true
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "sftp-config-uuid-1",
+    "import_schedule": "hourly",
+    "is_enabled": true,
+    "updated_at": "2024-01-15T16:30:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 422 — Cannot Enable
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Run a successful test connection before enabling SFTP",
+  "code": "SFTP_TEST_REQUIRED"
+}
+```
+
+</ResponseExample>

@@ -42,13 +42,13 @@ GET /api/v1/agents/{agent_id}/trainings
 
 ```bash
 # Requisição 1: Obter todos os treinamentos de um agente
-curl -X GET "https://talqover.app/api/v1/agents/agent-uuid-1/trainings" \
+curl -X GET "https://talkover.app/api/v1/agents/agent-uuid-1/trainings" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 1: Obter todos os treinamentos de um agente
-const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/trainings', {
+const response = await fetch('https://talkover.app/api/v1/agents/agent-uuid-1/trainings', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -65,13 +65,13 @@ console.log(result);
 
 ```bash
 # Requisição 2: Obter treinamentos com paginação
-curl -X GET "https://talqover.app/api/v1/agents/agent-uuid-1/trainings?per_page=50&page=1" \
+curl -X GET "https://talkover.app/api/v1/agents/agent-uuid-1/trainings?per_page=50&page=1" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 2: Obter treinamentos com paginação
-const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/trainings?per_page=50&page=1', {
+const response = await fetch('https://talkover.app/api/v1/agents/agent-uuid-1/trainings?per_page=50&page=1', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

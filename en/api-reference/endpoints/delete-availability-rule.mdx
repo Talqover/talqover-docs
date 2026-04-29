@@ -1,0 +1,50 @@
+---
+title: "Delete Availability Rule"
+description: "Delete an availability rule"
+api: "DELETE /api/v1/calendars/{calendar_id}/availability-rules/{rule_id}"
+---
+
+# Delete Availability Rule
+
+Delete an availability rule.
+
+## Endpoint
+
+```
+DELETE /api/v1/calendars/{calendar_id}/availability-rules/{rule_id}
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="rule_id" type="string" required>Availability rule UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X DELETE "https://talkover.app/api/v1/calendars/calendar-uuid-1/availability-rules/rule-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Availability rule deleted"
+}
+```
+
+</ResponseExample>

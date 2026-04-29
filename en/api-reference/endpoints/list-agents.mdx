@@ -52,13 +52,13 @@ None
 
 ```bash
 # Request 1: List all agents
-curl -X GET "https://talqover.app/api/v1/agents" \
+curl -X GET "https://talkover.app/api/v1/agents" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 1: List all agents
-const response = await fetch('https://talqover.app/api/v1/agents', {
+const response = await fetch('https://talkover.app/api/v1/agents', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -75,13 +75,13 @@ console.log(result);
 
 ```bash
 # Request 2: List published inbound agents
-curl -X GET "https://talqover.app/api/v1/agents?status=published&direction=inbound" \
+curl -X GET "https://talkover.app/api/v1/agents?status=published&direction=inbound" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 2: List published inbound agents
-const response = await fetch('https://talqover.app/api/v1/agents?status=published&direction=inbound', {
+const response = await fetch('https://talkover.app/api/v1/agents?status=published&direction=inbound', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -98,13 +98,13 @@ console.log(result);
 
 ```bash
 # Request 3: Search agents with pagination
-curl -X GET "https://talqover.app/api/v1/agents?search=support&per_page=5&page=1" \
+curl -X GET "https://talkover.app/api/v1/agents?search=support&per_page=5&page=1" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 3: Search agents with pagination
-const response = await fetch('https://talqover.app/api/v1/agents?search=support&per_page=5&page=1', {
+const response = await fetch('https://talkover.app/api/v1/agents?search=support&per_page=5&page=1', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

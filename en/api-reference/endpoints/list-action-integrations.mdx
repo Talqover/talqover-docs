@@ -1,0 +1,94 @@
+---
+title: "List Action Integrations"
+description: "Retrieve the catalog of available action integrations"
+api: "GET /api/v1/action-integrations"
+---
+
+# List Action Integrations
+
+Retrieve the catalog of pre-built integrations that can be attached to agent actions. Each integration includes the metadata you need to configure it (display name, category, configuration schema).
+
+## Endpoint
+
+```
+GET /api/v1/action-integrations
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/action-integrations" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "identifier": "calendar",
+      "display_name": "Calendar",
+      "description": "Create events on a connected calendar during a call.",
+      "category": "scheduling",
+      "icon_url": "https://talkover.app/integrations/icons/calendar.svg"
+    },
+    {
+      "identifier": "email-calendar",
+      "display_name": "Email + Calendar Invite",
+      "description": "Send a calendar invite via email after the call.",
+      "category": "scheduling",
+      "icon_url": "https://talkover.app/integrations/icons/email-calendar.svg"
+    },
+    {
+      "identifier": "crm",
+      "display_name": "CRM Sync",
+      "description": "Push call summary and outcome to your CRM.",
+      "category": "data",
+      "icon_url": "https://talkover.app/integrations/icons/crm.svg"
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+### Response Fields
+
+<ResponseField name="data[].identifier" type="string" required>
+  Unique identifier used when creating an action with `integration: { id: "<identifier>" }`.
+</ResponseField>
+
+<ResponseField name="data[].display_name" type="string" required>
+  Human-readable name shown in the dashboard.
+</ResponseField>
+
+<ResponseField name="data[].description" type="string">
+  Short description of what the integration does.
+</ResponseField>
+
+<ResponseField name="data[].category" type="string">
+  Group the integration belongs to (e.g., `scheduling`, `data`, `communication`).
+</ResponseField>
+
+<ResponseField name="data[].icon_url" type="string">
+  Public URL of an icon for the integration.
+</ResponseField>
+
+## Notes
+
+- Use the `identifier` value when creating an action via [Create Action](/api-reference/endpoints/create-action) — pass it as `integration.id`.
+- Categories are stable; the integration list may grow over time.

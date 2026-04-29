@@ -1,0 +1,84 @@
+---
+title: "List Campaign SFTP Logs"
+description: "List SFTP import and export job logs for a campaign"
+api: "GET /api/v1/campaigns/{campaign_id}/sftp/logs"
+---
+
+# List Campaign SFTP Logs
+
+List recent SFTP import and export jobs for a campaign, including status, file counts, and any errors.
+
+## Endpoint
+
+```
+GET /api/v1/campaigns/{campaign_id}/sftp/logs
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+
+## Query Parameters
+
+<ParamField query="per_page" type="integer">Items per page. Range: `1`–`100`. Default: `25`.</ParamField>
+<ParamField query="page" type="integer">Default: `1`.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/logs" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "log-uuid-1",
+      "type": "import",
+      "status": "succeeded",
+      "files_processed": 3,
+      "rows_processed": 1840,
+      "started_at": "2024-01-15T17:00:01Z",
+      "completed_at": "2024-01-15T17:00:42Z"
+    },
+    {
+      "id": "log-uuid-2",
+      "type": "export",
+      "status": "failed",
+      "files_processed": 0,
+      "error": "Permission denied on /outbox",
+      "started_at": "2024-01-15T16:00:00Z"
+    }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "per_page": 25,
+    "total": 18
+  }
+}
+```
+
+</ResponseExample>
+
+### Status Values
+
+- `running` — job in progress
+- `succeeded` — completed successfully
+- `failed` — completed with errors
+- `cancelled` — manually cancelled

@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Talqover",
+  "name": "Talkover",
   "colors": {
     "primary": "#155DFC",
     "light": "#669BFF",
@@ -14,7 +14,7 @@
         "language": "en",
         "default": true,
         "header": {
-          "image": "/images/talqover-header-en.png"
+          "image": "/images/talkover-header-en.png"
         },
         "groups": [
           {
@@ -43,7 +43,10 @@
                 "pages": [
                   "en/api-reference/endpoints/list-voice-templates",
                   "en/api-reference/endpoints/generate-voice-demo",
-                  "en/api-reference/endpoints/list-phone-numbers"
+                  "en/api-reference/endpoints/list-phone-numbers",
+                  "en/api-reference/endpoints/list-release-requests",
+                  "en/api-reference/endpoints/request-phone-release",
+                  "en/api-reference/endpoints/cancel-release-request"
                 ]
               },
               {
@@ -57,7 +60,14 @@
                       "en/api-reference/endpoints/get-agent",
                       "en/api-reference/endpoints/update-agent-knowledge",
                       "en/api-reference/endpoints/update-agent-voice",
-                      "en/api-reference/endpoints/delete-agent"
+                      "en/api-reference/endpoints/update-agent-calling",
+                      "en/api-reference/endpoints/publish-agent",
+                      "en/api-reference/endpoints/unpublish-agent",
+                      "en/api-reference/endpoints/delete-agent",
+                      "en/api-reference/endpoints/update-advanced-settings",
+                      "en/api-reference/endpoints/check-optimized-costs-eligibility",
+                      "en/api-reference/endpoints/get-agent-pricing",
+                      "en/api-reference/endpoints/get-agent-pricing-summary"
                     ]
                   },
                   {
@@ -73,16 +83,28 @@
                     "pages": [
                       "en/api-reference/endpoints/list-actions",
                       "en/api-reference/endpoints/create-action",
-                      "en/api-reference/endpoints/delete-action"
+                      "en/api-reference/endpoints/delete-action",
+                      "en/api-reference/endpoints/list-action-integrations"
                     ]
                   }
+                ]
+              },
+              {
+                "group": "Conversation Flow",
+                "pages": [
+                  "en/api-reference/endpoints/get-agent-flow",
+                  "en/api-reference/endpoints/update-agent-flow",
+                  "en/api-reference/endpoints/validate-agent-flow",
+                  "en/api-reference/endpoints/list-agent-flow-versions"
                 ]
               },
               {
                 "group": "Make a Call",
                 "pages": [
                   "en/api-reference/endpoints/make-call",
-                  "en/api-reference/endpoints/make-campaign-call"
+                  "en/api-reference/endpoints/make-campaign-call",
+                  "en/api-reference/endpoints/end-call",
+                  "en/api-reference/endpoints/get-active-call"
                 ]
               },
               {
@@ -99,23 +121,158 @@
                 ]
               },
               {
-                "group": "Custom Telephony",
+                "group": "Campaign Integrations",
                 "pages": [
-                  "en/api-reference/endpoints/make-external-call",
-                  "en/api-reference/endpoints/websocket-connection"
+                  {
+                    "group": "Campaign Webhooks",
+                    "pages": [
+                      "en/api-reference/endpoints/list-campaign-webhooks",
+                      "en/api-reference/endpoints/create-campaign-webhook",
+                      "en/api-reference/endpoints/get-campaign-webhook",
+                      "en/api-reference/endpoints/update-campaign-webhook",
+                      "en/api-reference/endpoints/delete-campaign-webhook",
+                      "en/api-reference/endpoints/toggle-campaign-webhook",
+                      "en/api-reference/endpoints/test-campaign-webhook",
+                      "en/api-reference/endpoints/list-campaign-webhook-logs",
+                      "en/api-reference/endpoints/retry-campaign-webhook-log"
+                    ]
+                  },
+                  {
+                    "group": "Campaign SFTP",
+                    "pages": [
+                      "en/api-reference/endpoints/get-campaign-sftp",
+                      "en/api-reference/endpoints/create-campaign-sftp",
+                      "en/api-reference/endpoints/update-campaign-sftp",
+                      "en/api-reference/endpoints/test-campaign-sftp-connection",
+                      "en/api-reference/endpoints/trigger-campaign-sftp-import",
+                      "en/api-reference/endpoints/trigger-campaign-sftp-export",
+                      "en/api-reference/endpoints/list-campaign-sftp-logs"
+                    ]
+                  }
                 ]
               },
               {
-                "group": "Webhooks",
+                "group": "Callback Agents",
                 "pages": [
-                  "en/api-reference/endpoints/webhook-management",
+                  "en/api-reference/endpoints/list-callback-agents",
+                  "en/api-reference/endpoints/list-callback-source-agents",
+                  "en/api-reference/endpoints/get-callback-stats",
+                  "en/api-reference/endpoints/get-callback-agent",
+                  "en/api-reference/endpoints/check-callback-constraints",
+                  "en/api-reference/endpoints/set-agent-as-callback",
+                  "en/api-reference/endpoints/update-callback-sources",
+                  "en/api-reference/endpoints/remove-callback-role"
+                ]
+              },
+              {
+                "group": "Calendars",
+                "pages": [
+                  {
+                    "group": "Calendars",
+                    "pages": [
+                      "en/api-reference/endpoints/list-calendars",
+                      "en/api-reference/endpoints/create-calendar",
+                      "en/api-reference/endpoints/get-calendar",
+                      "en/api-reference/endpoints/update-calendar",
+                      "en/api-reference/endpoints/delete-calendar",
+                      "en/api-reference/endpoints/get-calendar-events-batch",
+                      "en/api-reference/endpoints/trigger-calendars-sync",
+                      "en/api-reference/endpoints/get-calendars-sync-status"
+                    ]
+                  },
+                  {
+                    "group": "Members",
+                    "pages": [
+                      "en/api-reference/endpoints/list-calendar-members",
+                      "en/api-reference/endpoints/add-calendar-member",
+                      "en/api-reference/endpoints/update-calendar-member",
+                      "en/api-reference/endpoints/remove-calendar-member"
+                    ]
+                  },
+                  {
+                    "group": "Events",
+                    "pages": [
+                      "en/api-reference/endpoints/list-calendar-events",
+                      "en/api-reference/endpoints/create-calendar-event",
+                      "en/api-reference/endpoints/get-calendar-event",
+                      "en/api-reference/endpoints/update-calendar-event",
+                      "en/api-reference/endpoints/delete-calendar-event",
+                      "en/api-reference/endpoints/create-event-meeting",
+                      "en/api-reference/endpoints/add-event-attendee",
+                      "en/api-reference/endpoints/remove-event-attendee"
+                    ]
+                  },
+                  {
+                    "group": "Availability",
+                    "pages": [
+                      "en/api-reference/endpoints/list-availability-rules",
+                      "en/api-reference/endpoints/create-availability-rule",
+                      "en/api-reference/endpoints/update-availability-rule",
+                      "en/api-reference/endpoints/delete-availability-rule",
+                      "en/api-reference/endpoints/query-availability"
+                    ]
+                  },
+                  {
+                    "group": "Provider Connections",
+                    "pages": [
+                      "en/api-reference/endpoints/list-provider-connections",
+                      "en/api-reference/endpoints/create-provider-connection",
+                      "en/api-reference/endpoints/disconnect-provider",
+                      "en/api-reference/endpoints/trigger-provider-sync"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Custom SIP Trunks",
+                "pages": [
+                  "en/api-reference/endpoints/list-sip-trunks",
+                  "en/api-reference/endpoints/create-sip-trunk",
+                  "en/api-reference/endpoints/get-sip-trunk",
+                  "en/api-reference/endpoints/update-sip-trunk",
+                  "en/api-reference/endpoints/delete-sip-trunk",
+                  "en/api-reference/endpoints/verify-sip-trunk",
+                  "en/api-reference/endpoints/get-sip-trunk-health",
+                  "en/api-reference/endpoints/list-sip-trunk-dids",
+                  "en/api-reference/endpoints/create-sip-trunk-did",
+                  "en/api-reference/endpoints/delete-sip-trunk-did"
+                ]
+              },
+              {
+                "group": "Agent Webhooks",
+                "pages": [
                   "en/api-reference/endpoints/list-agent-webhooks",
                   "en/api-reference/endpoints/create-webhook",
                   "en/api-reference/endpoints/get-webhook-details",
                   "en/api-reference/endpoints/update-webhook",
                   "en/api-reference/endpoints/delete-webhook",
                   "en/api-reference/endpoints/toggle-webhook-status",
-                  "en/api-reference/endpoints/test-webhook"
+                  "en/api-reference/endpoints/test-webhook",
+                  "en/api-reference/endpoints/list-webhook-logs",
+                  "en/api-reference/endpoints/retry-webhook-log"
+                ]
+              },
+              {
+                "group": "Billing & Auto Topup",
+                "pages": [
+                  "en/api-reference/endpoints/get-auto-topup-settings",
+                  "en/api-reference/endpoints/update-auto-topup-settings",
+                  "en/api-reference/endpoints/test-auto-topup",
+                  "en/api-reference/endpoints/disable-auto-topup",
+                  "en/api-reference/endpoints/get-auto-topup-history",
+                  "en/api-reference/endpoints/list-auto-topup-payment-methods"
+                ]
+              },
+              {
+                "group": "Account API",
+                "pages": [
+                  "en/api-reference/endpoints/get-current-user",
+                  "en/api-reference/endpoints/list-user-api-tokens",
+                  "en/api-reference/endpoints/create-user-api-token",
+                  "en/api-reference/endpoints/delete-user-api-token",
+                  "en/api-reference/endpoints/purchase-credits",
+                  "en/api-reference/endpoints/get-credits-balance",
+                  "en/api-reference/endpoints/health"
                 ]
               }
             ]
@@ -134,7 +291,7 @@
       {
         "language": "pt-BR",
         "header": {
-          "image": "/images/talqover-header-br.png"
+          "image": "/images/talkover-header-br.png"
         },
         "groups": [
           {
@@ -163,7 +320,10 @@
                 "pages": [
                   "pt-br/api-reference/endpoints/list-voice-templates",
                   "pt-br/api-reference/endpoints/generate-voice-demo",
-                  "pt-br/api-reference/endpoints/list-phone-numbers"
+                  "pt-br/api-reference/endpoints/list-phone-numbers",
+                  "pt-br/api-reference/endpoints/list-release-requests",
+                  "pt-br/api-reference/endpoints/request-phone-release",
+                  "pt-br/api-reference/endpoints/cancel-release-request"
                 ]
               },
               {
@@ -177,7 +337,14 @@
                       "pt-br/api-reference/endpoints/get-agent",
                       "pt-br/api-reference/endpoints/update-agent-knowledge",
                       "pt-br/api-reference/endpoints/update-agent-voice",
-                      "pt-br/api-reference/endpoints/delete-agent"
+                      "pt-br/api-reference/endpoints/update-agent-calling",
+                      "pt-br/api-reference/endpoints/publish-agent",
+                      "pt-br/api-reference/endpoints/unpublish-agent",
+                      "pt-br/api-reference/endpoints/delete-agent",
+                      "pt-br/api-reference/endpoints/update-advanced-settings",
+                      "pt-br/api-reference/endpoints/check-optimized-costs-eligibility",
+                      "pt-br/api-reference/endpoints/get-agent-pricing",
+                      "pt-br/api-reference/endpoints/get-agent-pricing-summary"
                     ]
                   },
                   {
@@ -193,16 +360,28 @@
                     "pages": [
                       "pt-br/api-reference/endpoints/list-actions",
                       "pt-br/api-reference/endpoints/create-action",
-                      "pt-br/api-reference/endpoints/delete-action"
+                      "pt-br/api-reference/endpoints/delete-action",
+                      "pt-br/api-reference/endpoints/list-action-integrations"
                     ]
                   }
+                ]
+              },
+              {
+                "group": "Fluxo de Conversação",
+                "pages": [
+                  "pt-br/api-reference/endpoints/get-agent-flow",
+                  "pt-br/api-reference/endpoints/update-agent-flow",
+                  "pt-br/api-reference/endpoints/validate-agent-flow",
+                  "pt-br/api-reference/endpoints/list-agent-flow-versions"
                 ]
               },
               {
                 "group": "Fazer Chamada",
                 "pages": [
                   "pt-br/api-reference/endpoints/make-call",
-                  "pt-br/api-reference/endpoints/make-campaign-call"
+                  "pt-br/api-reference/endpoints/make-campaign-call",
+                  "pt-br/api-reference/endpoints/end-call",
+                  "pt-br/api-reference/endpoints/get-active-call"
                 ]
               },
               {
@@ -214,27 +393,163 @@
                   "pt-br/api-reference/endpoints/create-campaign",
                   "pt-br/api-reference/endpoints/get-campaign",
                   "pt-br/api-reference/endpoints/update-campaign",
+                  "pt-br/api-reference/endpoints/update-campaign-status",
                   "pt-br/api-reference/endpoints/delete-campaign"
                 ]
               },
               {
-                "group": "Telefonia Personalizada",
+                "group": "Integrações de Campanha",
                 "pages": [
-                  "pt-br/api-reference/endpoints/make-external-call",
-                  "pt-br/api-reference/endpoints/websocket-connection"
+                  {
+                    "group": "Webhooks de Campanha",
+                    "pages": [
+                      "pt-br/api-reference/endpoints/list-campaign-webhooks",
+                      "pt-br/api-reference/endpoints/create-campaign-webhook",
+                      "pt-br/api-reference/endpoints/get-campaign-webhook",
+                      "pt-br/api-reference/endpoints/update-campaign-webhook",
+                      "pt-br/api-reference/endpoints/delete-campaign-webhook",
+                      "pt-br/api-reference/endpoints/toggle-campaign-webhook",
+                      "pt-br/api-reference/endpoints/test-campaign-webhook",
+                      "pt-br/api-reference/endpoints/list-campaign-webhook-logs",
+                      "pt-br/api-reference/endpoints/retry-campaign-webhook-log"
+                    ]
+                  },
+                  {
+                    "group": "SFTP de Campanha",
+                    "pages": [
+                      "pt-br/api-reference/endpoints/get-campaign-sftp",
+                      "pt-br/api-reference/endpoints/create-campaign-sftp",
+                      "pt-br/api-reference/endpoints/update-campaign-sftp",
+                      "pt-br/api-reference/endpoints/test-campaign-sftp-connection",
+                      "pt-br/api-reference/endpoints/trigger-campaign-sftp-import",
+                      "pt-br/api-reference/endpoints/trigger-campaign-sftp-export",
+                      "pt-br/api-reference/endpoints/list-campaign-sftp-logs"
+                    ]
+                  }
                 ]
               },
               {
-                "group": "Webhooks",
+                "group": "Agentes de Callback",
                 "pages": [
-                  "pt-br/api-reference/endpoints/webhook-management",
+                  "pt-br/api-reference/endpoints/list-callback-agents",
+                  "pt-br/api-reference/endpoints/list-callback-source-agents",
+                  "pt-br/api-reference/endpoints/get-callback-stats",
+                  "pt-br/api-reference/endpoints/get-callback-agent",
+                  "pt-br/api-reference/endpoints/check-callback-constraints",
+                  "pt-br/api-reference/endpoints/set-agent-as-callback",
+                  "pt-br/api-reference/endpoints/update-callback-sources",
+                  "pt-br/api-reference/endpoints/remove-callback-role"
+                ]
+              },
+              {
+                "group": "Calendários",
+                "pages": [
+                  {
+                    "group": "Calendários",
+                    "pages": [
+                      "pt-br/api-reference/endpoints/list-calendars",
+                      "pt-br/api-reference/endpoints/create-calendar",
+                      "pt-br/api-reference/endpoints/get-calendar",
+                      "pt-br/api-reference/endpoints/update-calendar",
+                      "pt-br/api-reference/endpoints/delete-calendar",
+                      "pt-br/api-reference/endpoints/get-calendar-events-batch",
+                      "pt-br/api-reference/endpoints/trigger-calendars-sync",
+                      "pt-br/api-reference/endpoints/get-calendars-sync-status"
+                    ]
+                  },
+                  {
+                    "group": "Membros",
+                    "pages": [
+                      "pt-br/api-reference/endpoints/list-calendar-members",
+                      "pt-br/api-reference/endpoints/add-calendar-member",
+                      "pt-br/api-reference/endpoints/update-calendar-member",
+                      "pt-br/api-reference/endpoints/remove-calendar-member"
+                    ]
+                  },
+                  {
+                    "group": "Eventos",
+                    "pages": [
+                      "pt-br/api-reference/endpoints/list-calendar-events",
+                      "pt-br/api-reference/endpoints/create-calendar-event",
+                      "pt-br/api-reference/endpoints/get-calendar-event",
+                      "pt-br/api-reference/endpoints/update-calendar-event",
+                      "pt-br/api-reference/endpoints/delete-calendar-event",
+                      "pt-br/api-reference/endpoints/create-event-meeting",
+                      "pt-br/api-reference/endpoints/add-event-attendee",
+                      "pt-br/api-reference/endpoints/remove-event-attendee"
+                    ]
+                  },
+                  {
+                    "group": "Disponibilidade",
+                    "pages": [
+                      "pt-br/api-reference/endpoints/list-availability-rules",
+                      "pt-br/api-reference/endpoints/create-availability-rule",
+                      "pt-br/api-reference/endpoints/update-availability-rule",
+                      "pt-br/api-reference/endpoints/delete-availability-rule",
+                      "pt-br/api-reference/endpoints/query-availability"
+                    ]
+                  },
+                  {
+                    "group": "Conexões com Provedores",
+                    "pages": [
+                      "pt-br/api-reference/endpoints/list-provider-connections",
+                      "pt-br/api-reference/endpoints/create-provider-connection",
+                      "pt-br/api-reference/endpoints/disconnect-provider",
+                      "pt-br/api-reference/endpoints/trigger-provider-sync"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "SIP Trunks Personalizados",
+                "pages": [
+                  "pt-br/api-reference/endpoints/list-sip-trunks",
+                  "pt-br/api-reference/endpoints/create-sip-trunk",
+                  "pt-br/api-reference/endpoints/get-sip-trunk",
+                  "pt-br/api-reference/endpoints/update-sip-trunk",
+                  "pt-br/api-reference/endpoints/delete-sip-trunk",
+                  "pt-br/api-reference/endpoints/verify-sip-trunk",
+                  "pt-br/api-reference/endpoints/get-sip-trunk-health",
+                  "pt-br/api-reference/endpoints/list-sip-trunk-dids",
+                  "pt-br/api-reference/endpoints/create-sip-trunk-did",
+                  "pt-br/api-reference/endpoints/delete-sip-trunk-did"
+                ]
+              },
+              {
+                "group": "Webhooks de Agente",
+                "pages": [
                   "pt-br/api-reference/endpoints/list-agent-webhooks",
                   "pt-br/api-reference/endpoints/create-webhook",
                   "pt-br/api-reference/endpoints/get-webhook-details",
                   "pt-br/api-reference/endpoints/update-webhook",
                   "pt-br/api-reference/endpoints/delete-webhook",
                   "pt-br/api-reference/endpoints/toggle-webhook-status",
-                  "pt-br/api-reference/endpoints/test-webhook"
+                  "pt-br/api-reference/endpoints/test-webhook",
+                  "pt-br/api-reference/endpoints/list-webhook-logs",
+                  "pt-br/api-reference/endpoints/retry-webhook-log"
+                ]
+              },
+              {
+                "group": "Cobrança e Recarga Automática",
+                "pages": [
+                  "pt-br/api-reference/endpoints/get-auto-topup-settings",
+                  "pt-br/api-reference/endpoints/update-auto-topup-settings",
+                  "pt-br/api-reference/endpoints/test-auto-topup",
+                  "pt-br/api-reference/endpoints/disable-auto-topup",
+                  "pt-br/api-reference/endpoints/get-auto-topup-history",
+                  "pt-br/api-reference/endpoints/list-auto-topup-payment-methods"
+                ]
+              },
+              {
+                "group": "API de Conta",
+                "pages": [
+                  "pt-br/api-reference/endpoints/get-current-user",
+                  "pt-br/api-reference/endpoints/list-user-api-tokens",
+                  "pt-br/api-reference/endpoints/create-user-api-token",
+                  "pt-br/api-reference/endpoints/delete-user-api-token",
+                  "pt-br/api-reference/endpoints/purchase-credits",
+                  "pt-br/api-reference/endpoints/get-credits-balance",
+                  "pt-br/api-reference/endpoints/health"
                 ]
               }
             ]
@@ -263,22 +578,22 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:contact@talqover.com"
+        "href": "mailto:contact@talkover.com"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://talqover.app"
+      "href": "https://talkover.app"
     }
   },
   "footer": {
     "socials": {
-      "linkedin": "https://linkedin.com/company/talqover"
+      "linkedin": "https://linkedin.com/company/talkover"
     }
   },
   "api": {
-    "baseUrl": "https://talqover.app/api/v1",
+    "baseUrl": "https://talkover.app/api/v1",
     "auth": {
       "method": "bearer"
     }

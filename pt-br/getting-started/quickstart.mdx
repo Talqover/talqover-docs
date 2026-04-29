@@ -1,25 +1,25 @@
 ---
 title: "Guia de Início Rápido"
-description: "Comece a usar o Talqover em 5 minutos - aprenda como obter seu ID de agente e token de ambiente"
+description: "Comece a usar o Talkover em 5 minutos - aprenda como obter seu ID de agente e token de ambiente"
 ---
 
 # Guia de Início Rápido
 
-Comece a usar a plataforma Talqover AI Voice Agent em apenas 5 minutos. Este guia irá orientá-lo através da configuração do seu primeiro agente de voz e da realização da sua primeira chamada.
+Comece a usar a plataforma Talkover AI Voice Agent em apenas 5 minutos. Este guia irá orientá-lo através da configuração do seu primeiro agente de voz e da realização da sua primeira chamada.
 
 ## Pré-requisitos
 
-- Uma conta Talqover (cadastre-se em [talqover.app](https://talqover.app))
+- Uma conta Talkover (cadastre-se em [talkover.app](https://talkover.app))
 - Um número de telefone para teste
 - Conhecimento básico de requisições HTTP
 
 ## Passo 1: Obter Seu Token de Ambiente
 
-Seu token de ambiente é sua chave de API para autenticar requisições para a API Talqover.
+Seu token de ambiente é sua chave de API para autenticar requisições para a API Talkover.
 
 ### Como Obter Seu Token:
 
-1. **Faça login no seu painel Talqover** em [talqover.app](https://talqover.app)
+1. **Faça login no seu painel Talkover** em [talkover.app](https://talkover.app)
 2. **Navegue para Conta** → **Ambientes**
 3. **Copie seu Token de Ambiente** da lista (começa com `talq_`)
 
@@ -49,7 +49,7 @@ Agentes de voz são as personalidades de IA que gerenciam suas chamadas. Você p
 
 ## Passo 3: Fazer Sua Primeira Chamada
 
-Agora você está pronto para fazer sua primeira chamada usando a API Talqover!
+Agora você está pronto para fazer sua primeira chamada usando a API Talkover!
 
 ### Endpoint da API
 
@@ -60,7 +60,7 @@ POST /api/v1/agents/{agent_id}/call
 ### Exemplo de Requisição
 
 ```bash
-curl -X POST "https://talqover.app/api/v1/agents/agent_123456/call" \
+curl -X POST "https://talkover.app/api/v1/agents/agent_123456/call" \
   -H "Authorization: Bearer talq_seu_token_de_ambiente_aqui" \
   -H "Content-Type: application/json" \
   -d '{
@@ -98,5 +98,5 @@ Após iniciar uma chamada, você pode:
 
 
 <Check>
-  Parabéns! Você configurou com sucesso o Talqover e fez sua primeira chamada com IA.
+  Parabéns! Você configurou com sucesso o Talkover e fez sua primeira chamada com IA.
 </Check>

@@ -1,0 +1,73 @@
+---
+title: "Test Campaign SFTP Connection"
+description: "Verify SFTP connectivity for a campaign"
+api: "POST /api/v1/campaigns/{campaign_id}/sftp/test-connection"
+---
+
+# Test Campaign SFTP Connection
+
+Run a connectivity check against the configured SFTP server. The result is stored on the SFTP config (`last_test_at`, `last_test_success`) and required before the integration can be enabled.
+
+## Endpoint
+
+```
+POST /api/v1/campaigns/{campaign_id}/sftp/test-connection
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/test-connection" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+### Success
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "SFTP connection successful",
+  "data": {
+    "tested_at": "2024-01-15T16:45:00Z",
+    "import_path_accessible": true,
+    "export_path_accessible": true
+  }
+}
+```
+
+</ResponseExample>
+
+### Failure
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "SFTP connection failed",
+  "data": {
+    "tested_at": "2024-01-15T16:45:00Z",
+    "error": "Authentication failed"
+  }
+}
+```
+
+</ResponseExample>

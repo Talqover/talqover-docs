@@ -1,0 +1,114 @@
+---
+title: "Update Advanced Settings"
+description: "Toggle advanced agent features such as optimized cost caching"
+api: "PATCH /api/v1/agents/{agent_id}/advanced-settings"
+---
+
+# Update Advanced Settings
+
+Toggle advanced agent features. Currently the only advanced setting is `enable_initial_message_cache`, which activates optimized cost pricing once the agent meets the eligibility threshold.
+
+## Endpoint
+
+```
+PATCH /api/v1/agents/{agent_id}/advanced-settings
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>
+  Agent UUID.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="enable_initial_message_cache" type="boolean">
+  When `true`, enables caching of the agent's initial message audio for repeated outbound calls. Reduces voice synthesis cost per call. Requires the agent to be eligible — see [Check Optimized Costs Eligibility](/api-reference/endpoints/check-optimized-costs-eligibility).
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X PATCH "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/advanced-settings" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "enable_initial_message_cache": true
+  }'
+```
+
+```javascript
+const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/advanced-settings', {
+  method: 'PATCH',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    enable_initial_message_cache: true
+  })
+});
+
+const result = await response.json();
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Advanced settings updated successfully",
+  "data": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "SupportBot",
+    "advanced_settings": {
+      "enable_initial_message_cache": true
+    },
+    "updated_at": "2024-01-15T11:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 422 Not Eligible
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Agent does not meet the call volume threshold for optimized costs",
+  "code": "OPTIMIZED_COSTS_NOT_ELIGIBLE",
+  "details": {
+    "current_calls": 312,
+    "required_calls": 700,
+    "threshold_days": 7
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Eligibility is enforced server-side. Toggling `enable_initial_message_cache: true` on an ineligible agent fails with `422`.
+- Disabling the cache (`false`) is always allowed.

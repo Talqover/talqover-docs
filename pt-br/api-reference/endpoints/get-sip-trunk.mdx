@@ -1,0 +1,70 @@
+---
+title: "Get SIP Trunk"
+description: "Retrieve a SIP trunk by ID"
+api: "GET /api/v1/sip-trunks/{trunk_id}"
+---
+
+# Get SIP Trunk
+
+Retrieve full configuration and status for a SIP trunk.
+
+## Endpoint
+
+```
+GET /api/v1/sip-trunks/{trunk_id}
+```
+
+## Path Parameters
+
+<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "trunk-uuid-1",
+    "name": "Primary Carrier — US",
+    "provider_name": "carrier-x",
+    "domain": "sip.carrier-x.com",
+    "username": "user_42",
+    "transport": "tls",
+    "port": 5061,
+    "outbound_proxy": null,
+    "auth_realm": null,
+    "is_active": true,
+    "is_verified": true,
+    "health_status": "healthy",
+    "last_health_check_at": "2024-01-15T14:30:00Z",
+    "created_at": "2024-01-01T10:00:00Z",
+    "updated_at": "2024-01-15T14:30:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- The `password` field is write-only and never returned.
+- Use [Get SIP Trunk Health](/api-reference/endpoints/get-sip-trunk-health) for the latest live health check.

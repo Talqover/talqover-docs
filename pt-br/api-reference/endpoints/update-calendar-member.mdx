@@ -1,0 +1,61 @@
+---
+title: "Update Calendar Member"
+description: "Change a calendar member's role"
+api: "PUT /api/v1/calendars/{calendar_id}/members/{member_id}"
+---
+
+# Update Calendar Member
+
+Change a calendar member's role.
+
+## Endpoint
+
+```
+PUT /api/v1/calendars/{calendar_id}/members/{member_id}
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="member_id" type="string" required>Member UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
+
+## Request Body
+
+<ParamField body="role" type="string" required>New role. Options: `owner`, `editor`, `viewer`.</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X PUT "https://talkover.app/api/v1/calendars/calendar-uuid-1/members/member-uuid-2" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{ "role": "viewer" }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "member-uuid-2",
+    "role": "viewer"
+  }
+}
+```
+
+</ResponseExample>

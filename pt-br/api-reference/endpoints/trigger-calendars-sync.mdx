@@ -1,0 +1,48 @@
+---
+title: "Trigger Calendars Sync"
+description: "Trigger a sync against connected calendar providers"
+api: "POST /api/v1/calendars/sync"
+---
+
+# Trigger Calendars Sync
+
+Trigger a sync of events from connected calendar provider integrations. Runs asynchronously — poll [Get Sync Status](/api-reference/endpoints/get-calendars-sync-status) for progress.
+
+## Endpoint
+
+```
+POST /api/v1/calendars/sync
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/calendars/sync" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "syncing": ["calendar-uuid-1", "calendar-uuid-2"],
+    "up_to_date": ["calendar-uuid-3"]
+  }
+}
+```
+
+</ResponseExample>

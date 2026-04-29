@@ -1,0 +1,66 @@
+---
+title: "List SIP Trunk DIDs"
+description: "List the DIDs (numbers) attached to a SIP trunk"
+api: "GET /api/v1/sip-trunks/{trunk_id}/dids"
+---
+
+# List SIP Trunk DIDs
+
+List the DIDs (Direct Inward Dialing numbers) attached to a SIP trunk. DIDs are the phone numbers that route through this trunk for inbound and/or outbound calls.
+
+## Endpoint
+
+```
+GET /api/v1/sip-trunks/{trunk_id}/dids
+```
+
+## Path Parameters
+
+<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/dids" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "phone-uuid-1",
+      "number": "+15551234567",
+      "country_code": "US",
+      "formatted_number": "(555) 123-4567"
+    },
+    {
+      "id": "phone-uuid-2",
+      "number": "+15559876543",
+      "country_code": "US",
+      "formatted_number": "(555) 987-6543"
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- DIDs created through this trunk also appear in the global [List Phone Numbers](/api-reference/endpoints/list-phone-numbers) endpoint.

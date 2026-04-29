@@ -1,0 +1,68 @@
+---
+title: "Get Campaign SFTP Config"
+description: "Retrieve a campaign's SFTP integration configuration"
+api: "GET /api/v1/campaigns/{campaign_id}/sftp"
+---
+
+# Get Campaign SFTP Config
+
+Retrieve the SFTP integration configuration for a campaign. Campaign SFTP lets you import contact lists from a remote SFTP server and export call results back.
+
+## Endpoint
+
+```
+GET /api/v1/campaigns/{campaign_id}/sftp
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "sftp-config-uuid-1",
+    "campaign_id": "campaign-uuid",
+    "host": "sftp.example.com",
+    "port": 22,
+    "username": "campaigns_user",
+    "auth_type": "password",
+    "import_path": "/inbox",
+    "export_path": "/outbox",
+    "import_schedule": "daily",
+    "is_enabled": false,
+    "last_test_at": "2024-01-10T14:30:00Z",
+    "last_test_success": true,
+    "created_at": "2024-01-01T10:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- The configured `password` or `private_key` is never returned.
+- A new SFTP config starts disabled — run [Test SFTP Connection](/api-reference/endpoints/test-campaign-sftp-connection) successfully before enabling it.

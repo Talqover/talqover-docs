@@ -1,0 +1,84 @@
+---
+title: "Check Callback Constraints"
+description: "Validate a proposed callback configuration before saving"
+api: "POST /api/v1/callback-agents/{agent_id}/check-constraints"
+---
+
+# Check Callback Constraints
+
+Validate a proposed callback configuration without persisting changes. Useful to surface errors in the UI before submitting [Set Agent as Callback](/api-reference/endpoints/set-agent-as-callback) or [Update Callback Sources](/api-reference/endpoints/update-callback-sources).
+
+## Endpoint
+
+```
+POST /api/v1/callback-agents/{agent_id}/check-constraints
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>Agent UUID being configured as callback.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="is_callback_agent" type="boolean">Whether this agent should be marked as a callback agent.</ParamField>
+<ParamField body="callback_source_agents" type="array">Array of source agent UUIDs.</ParamField>
+<ParamField body="callback_trigger_statuses" type="array">Statuses of source-agent calls that make a contact eligible for callback (e.g., `["no_answer", "voicemail"]`).</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/callback-agents/agent-uuid-1/check-constraints" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "is_callback_agent": true,
+    "callback_source_agents": ["agent-uuid-2", "agent-uuid-3"],
+    "callback_trigger_statuses": ["no_answer", "voicemail", "busy"]
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+### Valid
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Configuration is valid"
+}
+```
+
+</ResponseExample>
+
+### Invalid
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Configuration has errors",
+  "errors": [
+    "Agent must be inbound to serve as a callback agent",
+    "Source agent agent-uuid-3 is not published"
+  ]
+}
+```
+
+</ResponseExample>

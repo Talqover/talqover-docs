@@ -1,0 +1,100 @@
+---
+title: "List Webhook Delivery Logs"
+description: "Retrieve delivery attempts and responses for an agent webhook"
+api: "GET /api/v1/agents/{agent_id}/webhooks/{webhook_id}/logs"
+---
+
+# List Webhook Delivery Logs
+
+Retrieve a paginated list of delivery attempts for a specific webhook, including HTTP status, response body, attempt number, and timing. Use these logs to debug webhook delivery issues.
+
+## Endpoint
+
+```
+GET /api/v1/agents/{agent_id}/webhooks/{webhook_id}/logs
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
+<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+
+## Query Parameters
+
+<ParamField query="per_page" type="integer">Items per page. Range: `1`–`100`. Default: `25`.</ParamField>
+<ParamField query="page" type="integer">Page number. Default: `1`.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/agents/agent-uuid/webhooks/webhook-uuid/logs?per_page=50" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "log-uuid-1",
+      "webhook_id": "webhook-uuid",
+      "event": "event_phone_call_ended",
+      "attempt": 1,
+      "status": "success",
+      "http_status": 200,
+      "request_payload": {"call_id": "call-uuid", "duration": 45},
+      "response_body": "{\"received\":true}",
+      "response_headers": {"content-type": "application/json"},
+      "duration_ms": 142,
+      "delivered_at": "2024-01-15T11:00:01Z",
+      "created_at": "2024-01-15T11:00:00Z"
+    },
+    {
+      "id": "log-uuid-2",
+      "webhook_id": "webhook-uuid",
+      "event": "event_phone_call_started",
+      "attempt": 3,
+      "status": "failed",
+      "http_status": 500,
+      "error": "Internal Server Error",
+      "duration_ms": 8021,
+      "created_at": "2024-01-15T10:55:00Z"
+    }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "per_page": 50,
+    "total": 247,
+    "last_page": 5
+  }
+}
+```
+
+</ResponseExample>
+
+### Log Status Values
+
+- `pending` — queued for delivery
+- `success` — delivered, target responded with 2xx
+- `failed` — delivered but target responded with non-2xx, or connection failed
+- `retrying` — failed, will retry according to `max_retries`
+
+## Notes
+
+- Logs are retained for 30 days.
+- Failed deliveries can be retried manually via [Retry Webhook Log](/api-reference/endpoints/retry-webhook-log).
+- Each retry attempt creates a new log entry with incremented `attempt`.

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Talqover documentation now supports both English (EN) and Brazilian Portuguese (PT-BR) languages. This guide explains how to maintain and update the documentation in both languages.
+The Talkover documentation now supports both English (EN) and Brazilian Portuguese (PT-BR) languages. This guide explains how to maintain and update the documentation in both languages.
 
 ## Quick Start
 
@@ -24,7 +24,7 @@ Users can switch between languages using the language selector in the navigation
 ## File Structure
 
 ```
-talqover-docs/
+talkover-docs/
 ├── en/                    # English content
 │   ├── introduction.mdx
 │   ├── essentials/

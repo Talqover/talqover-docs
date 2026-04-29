@@ -62,13 +62,13 @@ GET /api/v1/agents/{agent_id}/calls
 
 ```bash
 # Request 1: Get all calls for a specific agent
-curl -X GET "https://talqover.app/api/v1/agents/agent-uuid-1/calls" \
+curl -X GET "https://talkover.app/api/v1/agents/agent-uuid-1/calls" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 1: Get all calls for a specific agent
-const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/calls', {
+const response = await fetch('https://talkover.app/api/v1/agents/agent-uuid-1/calls', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -85,13 +85,13 @@ console.log(result);
 
 ```bash
 # Request 2: Get completed calls for agent from specific date
-curl -X GET "https://talqover.app/api/v1/agents/agent-uuid-1/calls?status=completed&date_from=2024-01-01&per_page=50" \
+curl -X GET "https://talkover.app/api/v1/agents/agent-uuid-1/calls?status=completed&date_from=2024-01-01&per_page=50" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 2: Get completed calls for agent from specific date
-const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/calls?status=completed&date_from=2024-01-01&per_page=50', {
+const response = await fetch('https://talkover.app/api/v1/agents/agent-uuid-1/calls?status=completed&date_from=2024-01-01&per_page=50', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -108,13 +108,13 @@ console.log(result);
 
 ```bash
 # Request 3: Get outbound calls for agent with search
-curl -X GET "https://talqover.app/api/v1/agents/agent-uuid-1/calls?direction=outbound&search=+1234567890" \
+curl -X GET "https://talkover.app/api/v1/agents/agent-uuid-1/calls?direction=outbound&search=+1234567890" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 3: Get outbound calls for agent with search
-const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/calls?direction=outbound&search=+1234567890', {
+const response = await fetch('https://talkover.app/api/v1/agents/agent-uuid-1/calls?direction=outbound&search=+1234567890', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

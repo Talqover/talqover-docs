@@ -1,0 +1,70 @@
+---
+title: "Create Event Meeting Link"
+description: "Generate a video meeting link for an event"
+api: "POST /api/v1/calendars/{calendar_id}/events/{event_id}/meeting"
+---
+
+# Create Event Meeting Link
+
+Generate a video meeting link for an event. The link is created via the calendar's connected provider integration and attached to the event as `meeting_url`.
+
+## Endpoint
+
+```
+POST /api/v1/calendars/{calendar_id}/events/{event_id}/meeting
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="event_id" type="string" required>Event UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/events/event-uuid-1/meeting" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "event_id": "event-uuid-1",
+    "meeting_url": "https://meet.example.com/abc-123",
+    "meeting_id": "meeting-id-abc"
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 422 — No Provider Connection
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Calendar has no connected provider that supports meeting links",
+  "code": "MEETING_PROVIDER_REQUIRED"
+}
+```
+
+</ResponseExample>

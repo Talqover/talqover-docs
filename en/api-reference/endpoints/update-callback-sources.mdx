@@ -1,0 +1,73 @@
+---
+title: "Update Callback Sources"
+description: "Update the list of source agents for a callback agent"
+api: "PUT /api/v1/agents/{agent_id}/callback"
+---
+
+# Update Callback Sources
+
+Replace the list of source agents associated with this callback agent. The provided list completely replaces the existing one.
+
+## Endpoint
+
+```
+PUT /api/v1/agents/{agent_id}/callback
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>UUID of the callback agent.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="source_agent_ids" type="array" required>
+  New full list of outbound agent UUIDs that should route callbacks here. Must contain at least one entry.
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid-1/callback" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "source_agent_ids": ["agent-uuid-2"]
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "agent-uuid-1",
+    "callback_config": {
+      "source_agent_ids": ["agent-uuid-2"]
+    }
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- This is a **replace** operation, not append. To remove all sources but keep the callback role, send an empty array — but note that an empty array fails validation; use [Remove Callback Role](/api-reference/endpoints/remove-callback-role) instead.
+- To add or remove individual sources, fetch the current list with [Get Callback Agent](/api-reference/endpoints/get-callback-agent), modify it, then send the full updated list here.

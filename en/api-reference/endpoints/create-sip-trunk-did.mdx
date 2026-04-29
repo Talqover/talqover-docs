@@ -1,0 +1,90 @@
+---
+title: "Create SIP Trunk DID"
+description: "Add a DID (phone number) to a SIP trunk"
+api: "POST /api/v1/sip-trunks/{trunk_id}/dids"
+---
+
+# Create SIP Trunk DID
+
+Register a new DID (phone number) on a SIP trunk. Once added, the DID can be assigned to agents for inbound or outbound calling.
+
+## Endpoint
+
+```
+POST /api/v1/sip-trunks/{trunk_id}/dids
+```
+
+## Path Parameters
+
+<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="country_code" type="string" required>
+  ISO 3166-1 alpha-2 country code (e.g., `US`, `BR`, `GB`).
+</ParamField>
+
+<ParamField body="number" type="string" required>
+  Phone number in E.164 format (e.g., `+15551234567`).
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/dids" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "country_code": "US",
+    "number": "+15551234567"
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "phone-uuid-1",
+    "number": "+15551234567",
+    "country_code": "US",
+    "formatted_number": "(555) 123-4567",
+    "trunk_id": "trunk-uuid-1"
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 409 — Number Already Exists
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "This number is already registered in your environment",
+  "code": "DID_ALREADY_EXISTS"
+}
+```
+
+</ResponseExample>

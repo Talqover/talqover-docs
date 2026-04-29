@@ -1,0 +1,56 @@
+---
+title: "Disable Auto Topup"
+description: "Turn off auto topup for the environment"
+api: "POST /api/v1/auto-topup/disable"
+---
+
+# Disable Auto Topup
+
+Disable auto topup. Both threshold-based and scheduled recharges stop firing. Configuration (threshold, recharge amount, payment method) is preserved — re-enable later via [Update Auto Topup Settings](/api-reference/endpoints/update-auto-topup-settings).
+
+## Endpoint
+
+```
+POST /api/v1/auto-topup/disable
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/auto-topup/disable" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "is_enabled": false,
+    "threshold_amount": 50.00,
+    "recharge_amount": 100.00,
+    "payment_method_id": "pm_uuid_1",
+    "updated_at": "2024-01-15T13:30:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Equivalent to calling `PUT /v1/auto-topup/settings` with `{"is_enabled": false}`.
+- In-flight recharges (already queued) may still complete — disable does not roll back pending charges.

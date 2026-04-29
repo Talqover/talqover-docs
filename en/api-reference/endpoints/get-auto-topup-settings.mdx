@@ -1,0 +1,70 @@
+---
+title: "Get Auto Topup Settings"
+description: "Retrieve the current auto topup configuration"
+api: "GET /api/v1/auto-topup/settings"
+---
+
+# Get Auto Topup Settings
+
+Retrieve the current auto topup configuration for your environment. Auto topup automatically recharges your account balance when it falls below a threshold, or on a scheduled day each month.
+
+## Endpoint
+
+```
+GET /api/v1/auto-topup/settings
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/auto-topup/settings" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "is_enabled": true,
+    "threshold_amount": 50.00,
+    "recharge_amount": 100.00,
+    "scheduled_payment_enabled": false,
+    "scheduled_amount": null,
+    "day_of_month": null,
+    "payment_method_id": "pm_uuid_1",
+    "daily_limit": 500.00,
+    "recharge_count_today": 0,
+    "last_recharge_at": "2024-01-10T14:30:00Z",
+    "currency": "USD"
+  }
+}
+```
+
+</ResponseExample>
+
+### Response Fields
+
+<ResponseField name="data.is_enabled" type="boolean">Whether auto topup is currently active.</ResponseField>
+<ResponseField name="data.threshold_amount" type="number">Balance threshold (in account currency) below which a recharge is triggered.</ResponseField>
+<ResponseField name="data.recharge_amount" type="number">Amount charged each time the threshold is hit.</ResponseField>
+<ResponseField name="data.scheduled_payment_enabled" type="boolean">Whether monthly scheduled recharges are active (independent of the threshold).</ResponseField>
+<ResponseField name="data.scheduled_amount" type="number">Amount charged on the scheduled day. Required when `scheduled_payment_enabled` is true.</ResponseField>
+<ResponseField name="data.day_of_month" type="integer">Day of month (1–28) for scheduled recharges.</ResponseField>
+<ResponseField name="data.payment_method_id" type="string">ID of the saved payment method used for charges.</ResponseField>
+<ResponseField name="data.daily_limit" type="number">Maximum total amount that can be charged in a single day across all auto-topup events.</ResponseField>
+<ResponseField name="data.recharge_count_today" type="integer">Number of recharges already executed today.</ResponseField>
+<ResponseField name="data.last_recharge_at" type="string">ISO 8601 timestamp of the most recent recharge.</ResponseField>

@@ -1,0 +1,114 @@
+---
+title: "End Call"
+description: "Hang up an active call placed by an agent"
+api: "POST /api/v1/agents/{agent_id}/end-call"
+---
+
+# End Call
+
+Hang up an active call placed by a specific agent. Use this for emergency stops, user-requested cancellations, or to enforce custom timeout logic from your application.
+
+## Endpoint
+
+```
+POST /api/v1/agents/{agent_id}/end-call
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>
+  Agent UUID owning the call.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="call_sid" type="string" required>
+  Identifier of the call to hang up. Use the `id` returned by [Make a Call](/api-reference/endpoints/make-call).
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/agents/agent-uuid/end-call" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{ "call_sid": "call-uuid-123" }'
+```
+
+```javascript
+await fetch('https://talkover.app/api/v1/agents/agent-uuid/end-call', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ call_sid: 'call-uuid-123' })
+});
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "call-uuid-123",
+    "status": "completed",
+    "ended_at": "2024-01-15T11:35:42Z",
+    "ended_reason": "ended_by_api"
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 404 — Call Not Found
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Call not found for this agent"
+}
+```
+
+</ResponseExample>
+
+### 409 — Call Already Ended
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Call is not active",
+  "code": "CALL_NOT_ACTIVE"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Hangup propagation is asynchronous. The call status moves to `completed` shortly after this endpoint returns.
+- The `ended_reason` will be `ended_by_api` to differentiate from natural hangups.
+- Webhook events `event_phone_call_ended` will fire normally.

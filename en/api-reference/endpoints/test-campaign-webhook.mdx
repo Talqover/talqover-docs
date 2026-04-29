@@ -1,0 +1,50 @@
+---
+title: "Test Campaign Webhook"
+description: "Send a test payload to a campaign webhook"
+api: "POST /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/test"
+---
+
+# Test Campaign Webhook
+
+Send a test payload to verify a campaign webhook's configuration. The test fires one synthetic event matching the webhook's subscribed events.
+
+## Endpoint
+
+```
+POST /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/test
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/test" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Test payload dispatched"
+}
+```
+
+</ResponseExample>

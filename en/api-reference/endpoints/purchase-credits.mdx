@@ -1,0 +1,93 @@
+---
+title: "Purchase Credits"
+description: "Purchase credits to top up your account balance"
+api: "POST /api/v1/credits/purchase"
+---
+
+# Purchase Credits
+
+Purchase credits to top up your account balance. The transaction is charged to the saved payment method.
+
+<Info>
+  This endpoint is part of the **Account API** and is authenticated with a user session token.
+</Info>
+
+## Endpoint
+
+```
+POST /api/v1/credits/purchase
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  User session token. Format: `Bearer <user_session_token>`.
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="amount" type="number" required>
+  Credit amount to purchase, in account currency. Must be greater than `0`.
+</ParamField>
+
+<ParamField body="payment_method_id" type="string">
+  Optional payment method ID. If omitted, the default payment method is charged.
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/credits/purchase" \
+  -H "Authorization: Bearer your_user_session_token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "amount": 100.00,
+    "payment_method_id": "pm_uuid_1"
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "amount_charged": 100.00,
+    "currency": "USD",
+    "new_balance": 250.00,
+    "transaction_id": "txn_uuid_1"
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 402 — Payment Failed
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Payment method declined",
+  "code": "PAYMENT_FAILED"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- For automated, recurring top-ups, use [Auto Topup](/api-reference/endpoints/get-auto-topup-settings) with an environment token instead.

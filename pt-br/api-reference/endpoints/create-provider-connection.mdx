@@ -1,0 +1,70 @@
+---
+title: "Create Provider Connection"
+description: "Connect a calendar to an external provider"
+api: "POST /api/v1/calendars/{calendar_id}/providers"
+---
+
+# Create Provider Connection
+
+Initiate a connection between a calendar and an external calendar provider. The OAuth flow is completed via a redirect URL returned in the response.
+
+## Endpoint
+
+```
+POST /api/v1/calendars/{calendar_id}/providers
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
+
+## Request Body
+
+<ParamField body="provider" type="string" required>Provider identifier (returned by your environment configuration).</ParamField>
+<ParamField body="redirect_uri" type="string" required>URL the provider will redirect to after the user authorizes access.</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/providers" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "provider": "calendar_provider_a",
+    "redirect_uri": "https://example.com/oauth/calendar/callback"
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "conn-uuid-1",
+    "provider": "calendar_provider_a",
+    "authorization_url": "https://provider.example.com/oauth/authorize?...",
+    "is_active": false
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- After the user completes the OAuth flow at `authorization_url`, the connection becomes active and the first sync runs automatically.

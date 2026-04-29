@@ -1,0 +1,73 @@
+---
+title: "Trigger SFTP Import"
+description: "Manually trigger an SFTP contact list import"
+api: "POST /api/v1/campaigns/{campaign_id}/sftp/trigger-import"
+---
+
+# Trigger SFTP Import
+
+Manually trigger an SFTP import of new contact list files for a campaign. The platform scans `import_path`, downloads new files, and queues contacts.
+
+## Endpoint
+
+```
+POST /api/v1/campaigns/{campaign_id}/sftp/trigger-import
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/trigger-import" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "SFTP import queued",
+  "data": {
+    "job_id": "job-uuid-1",
+    "queued_at": "2024-01-15T17:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 409 — Already Running
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "An SFTP import is already in progress",
+  "code": "SFTP_IMPORT_IN_PROGRESS"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Import progress and results appear in [List SFTP Logs](/api-reference/endpoints/list-campaign-sftp-logs).

@@ -1,0 +1,68 @@
+---
+title: "Get Events (Batch)"
+description: "Retrieve events from multiple calendars in a single call"
+api: "GET /api/v1/calendars/events"
+---
+
+# Get Events (Batch)
+
+Retrieve events from multiple calendars in a single request, optionally filtered by time range. Useful for rendering a unified calendar view across teams.
+
+## Endpoint
+
+```
+GET /api/v1/calendars/events
+```
+
+## Query Parameters
+
+<ParamField query="calendar_ids[]" type="array" required>
+  One or more calendar UUIDs. Repeat the parameter for multiple values.
+</ParamField>
+
+<ParamField query="from" type="string">
+  Lower bound of event start time. ISO 8601.
+</ParamField>
+
+<ParamField query="to" type="string">
+  Upper bound of event end time. ISO 8601.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/calendars/events?calendar_ids[]=cal-1&calendar_ids[]=cal-2&from=2024-01-15T00:00:00Z&to=2024-01-22T00:00:00Z" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "event-uuid-1",
+      "calendar_id": "cal-1",
+      "title": "Demo with Acme Corp",
+      "start_at": "2024-01-15T15:00:00Z",
+      "end_at": "2024-01-15T15:30:00Z",
+      "status": "confirmed"
+    }
+  ]
+}
+```
+
+</ResponseExample>

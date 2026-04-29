@@ -1,0 +1,85 @@
+---
+title: "List Payment Methods"
+description: "List saved payment methods available for auto topup"
+api: "GET /api/v1/auto-topup/payment-methods"
+---
+
+# List Payment Methods
+
+List the payment methods saved on your environment that can be used for auto topup recharges. Currently only card-based methods are supported.
+
+## Endpoint
+
+```
+GET /api/v1/auto-topup/payment-methods
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/auto-topup/payment-methods" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "pm_uuid_1",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2027
+      },
+      "is_default": true,
+      "created_at": "2024-01-01T10:00:00Z"
+    },
+    {
+      "id": "pm_uuid_2",
+      "type": "card",
+      "card": {
+        "brand": "mastercard",
+        "last4": "5555",
+        "exp_month": 8,
+        "exp_year": 2026
+      },
+      "is_default": false,
+      "created_at": "2024-01-05T14:00:00Z"
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+### Response Fields
+
+<ResponseField name="data[].id" type="string" required>Payment method ID. Use this in `payment_method_id` when configuring auto topup.</ResponseField>
+<ResponseField name="data[].type" type="string" required>Always `card` currently.</ResponseField>
+<ResponseField name="data[].card.brand" type="string">Card brand (e.g., `visa`, `mastercard`, `amex`).</ResponseField>
+<ResponseField name="data[].card.last4" type="string">Last 4 digits of the card.</ResponseField>
+<ResponseField name="data[].card.exp_month" type="integer">Expiration month (1–12).</ResponseField>
+<ResponseField name="data[].card.exp_year" type="integer">Expiration year (YYYY).</ResponseField>
+<ResponseField name="data[].is_default" type="boolean">Whether this is the default payment method.</ResponseField>
+
+## Notes
+
+- New payment methods can be added through the dashboard checkout flow — there is no API endpoint to add cards.
+- Cards are tokenized — the full card number is never returned by the API.

@@ -1,0 +1,65 @@
+---
+title: "Delete SIP Trunk"
+description: "Permanently delete a SIP trunk"
+api: "DELETE /api/v1/sip-trunks/{trunk_id}"
+---
+
+# Delete SIP Trunk
+
+Permanently delete a SIP trunk. The trunk must have no active calls and no DIDs attached — delete its DIDs first via [Delete SIP Trunk DID](/api-reference/endpoints/delete-sip-trunk-did).
+
+## Endpoint
+
+```
+DELETE /api/v1/sip-trunks/{trunk_id}
+```
+
+## Path Parameters
+
+<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X DELETE "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "SIP trunk deleted"
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 409 — Trunk Has DIDs
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Trunk still has DIDs attached. Delete DIDs before deleting the trunk.",
+  "code": "TRUNK_HAS_DIDS"
+}
+```
+
+</ResponseExample>

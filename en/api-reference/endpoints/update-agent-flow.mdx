@@ -1,0 +1,131 @@
+---
+title: "Update Agent Flow"
+description: "Update an agent's conversation mode and flow configuration"
+api: "PUT /api/v1/agents/{agent_id}/flow"
+---
+
+# Update Agent Flow
+
+Update an agent's conversation mode and (when applicable) the structured flow configuration. Submitting an invalid flow returns a 422 with details — use [Validate Agent Flow](/api-reference/endpoints/validate-agent-flow) to dry-run validation before saving.
+
+## Endpoint
+
+```
+PUT /api/v1/agents/{agent_id}/flow
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="conversation_mode" type="string" required>
+  Conversation mode. Options:
+  - `llm_driven` — LLM-guided conversation (knowledge + actions). Send `flow_config: null` or omit.
+  - `flow_driven` — node-graph driven. `flow_config` is required.
+</ParamField>
+
+<ParamField body="flow_config" type="object">
+  Flow definition. Required when `conversation_mode` is `flow_driven`.
+
+  <Expandable title="flow_config object">
+    <ParamField body="initial_node_id" type="string" required>
+      ID of the entry node. Must reference an existing node in `nodes`.
+    </ParamField>
+    <ParamField body="meta" type="object">
+      Optional metadata: `{ "name": "string", "version": "string" }`.
+    </ParamField>
+    <ParamField body="nodes" type="array" required>
+      Array of node objects. Each node has at minimum: `id` (string, unique), `type` (`say`, `ask`, `decision`, `action`, `transfer`, `end`), and type-specific fields (`content`, `next`, `branches`, etc.).
+    </ParamField>
+    <ParamField body="global_functions" type="array">
+      Functions invocable from any node. Common entries: `end_conversation`, `transfer_call`, `repeat_question`.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+# Switch to llm_driven mode
+curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid/flow" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{ "conversation_mode": "llm_driven" }'
+```
+
+```bash
+# Set a flow-driven configuration
+curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid/flow" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversation_mode": "flow_driven",
+    "flow_config": {
+      "initial_node_id": "node-greet",
+      "meta": { "name": "Intake v1", "version": "1.0.0" },
+      "nodes": [
+        { "id": "node-greet", "type": "say", "content": "Hi!", "next": "node-end" },
+        { "id": "node-end", "type": "end" }
+      ],
+      "global_functions": [
+        { "name": "end_conversation", "description": "Ends the call" }
+      ]
+    }
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "conversation_mode": "flow_driven",
+    "flow_config": { ... }
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 422 — Invalid Flow
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Flow validation failed",
+  "errors": [
+    "initial_node_id 'node-greet' not found in nodes",
+    "Node 'node-qualify' references unknown next node 'node-bookx'"
+  ]
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Updating the flow does not change the agent's status — but published agents need to be re-published if the flow change is breaking.
+- See [List Flow Versions](/api-reference/endpoints/list-agent-flow-versions) to track historical configurations.

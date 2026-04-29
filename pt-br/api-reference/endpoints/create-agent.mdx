@@ -1,12 +1,12 @@
 ---
-title: "Criar Agente"
-description: "Criar um novo agente de voz com configurações personalizadas"
+title: "Create Agent"
+description: "Create a new voice agent with specified configuration and settings"
 api: "POST /api/v1/agents"
 ---
 
-# Criar Agente
+# Create Agent
 
-Criar um novo agente de voz com configurações personalizadas incluindo modelo de voz, base de conhecimento e configurações de comportamento.
+Create a new voice agent with specified configuration, voice settings, and behavior parameters. The agent will be created in draft status and can be published later.
 
 ## Endpoint
 
@@ -14,86 +14,168 @@ Criar um novo agente de voz com configurações personalizadas incluindo modelo 
 POST /api/v1/agents
 ```
 
-## Cabeçalhos da Requisição
+## Path Parameters
+
+None
+
+## Request Headers
 
 <ParamField header="Authorization" type="string" required>
-  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Application JSON. Formato: `application/json`
+  Must be set to `application/json`
 </ParamField>
 
-## Corpo da Requisição
+## Request Body
 
-<ParamField body="name" type="string" required>
-  Nome do agente (máximo 255 caracteres).
+<ParamField body="label" type="string" required>
+  Agent label (max 255 characters)
 </ParamField>
 
 <ParamField body="description" type="string" required={false}>
-  Descrição do agente.
+  Agent description
+</ParamField>
+
+<ParamField body="name" type="string" required>
+  Agent name (max 255 characters)
 </ParamField>
 
 <ParamField body="language" type="string" required>
-  Idioma do agente. Opções: `en-US`, `pt-BR`, `es-ES`, `fr-FR`, `de-DE`, `it-IT`.
-</ParamField>
-
-<ParamField body="voice_template_id" type="string" required>
-  ID do modelo de voz a ser usado pelo agente.
-</ParamField>
-
-<ParamField body="knowledge_base" type="string" required>
-  Base de conhecimento do agente (texto ou URL).
-</ParamField>
-
-<ParamField body="interrupt_sensitivity" type="string" required={false}>
-  Sensibilidade à interrupção. Opções: `low`, `medium`, `high` (padrão: "medium").
-</ParamField>
-
-<ParamField body="who_speaks_first" type="string" required={false}>
-  Quem fala primeiro. Opções: `agent`, `human` (padrão: "agent").
+  Agent language code. Supported values: `pt-BR`, `pt-PT`, `en-US`, `en-CA`, `es-ES`, `fr-FR`, `de-DE`, `it-IT`, `nl-NL`, `ja-JP`, `ko-KR`, `zh-TW`.
 </ParamField>
 
 <ParamField body="initial_message" type="string" required={false}>
-  Mensagem inicial do agente.
+  Initial message the agent will say. Optional.
 </ParamField>
 
-<ParamField body="conversation_starters" type="array" required={false}>
-  Array de iniciadores de conversa para o agente.
+<ParamField body="interrupt_sensitivity" type="string" required>
+  How easily the agent allows the caller to interrupt. Options: `low`, `medium`, `high`.
 </ParamField>
 
-## Exemplos de Requisição
+<ParamField body="endpointing_sensitivity" type="string" required>
+  How aggressively the agent detects end-of-utterance. Max 255 characters.
+</ParamField>
+
+<ParamField body="ivr_navigation_mode" type="string" required>
+  IVR navigation behavior for outbound calls that hit interactive menus. Max 255 characters.
+</ParamField>
+
+<ParamField body="conversation_speed" type="number" required>
+  Conversation playback speed multiplier. Range: `0.1`–`3.0`.
+</ParamField>
+
+<ParamField body="initial_message_delay" type="integer" required>
+  Delay in seconds before the agent says the initial message. Range: `0`–`60`.
+</ParamField>
+
+<ParamField body="ask_if_human_present_on_idle" type="boolean" required>
+  When `true`, the agent asks "Are you still there?" after the idle timeout instead of ending the call.
+</ParamField>
+
+<ParamField body="idle_time_seconds" type="integer" required>
+  Seconds of caller silence before triggering the idle behavior. Range: `1`–`60`.
+</ParamField>
+
+<ParamField body="max_idle_check_count" type="integer" required={false}>
+  Maximum number of idle re-prompts before ending the call. Range: `1`–`10`. Optional.
+</ParamField>
+
+<ParamField body="max_call_duration_seconds" type="integer" required={false}>
+  Hard limit on call duration in seconds. Range: `1`–`3600`. Optional.
+</ParamField>
+
+<ParamField body="say_goodbye_on_max_duration" type="boolean" required={false}>
+  When `true`, the agent says a closing message before terminating a call that hits `max_call_duration_seconds`. Optional.
+</ParamField>
+
+<ParamField body="user_inactivity_timeout_seconds" type="integer" required={false}>
+  Seconds of total inactivity before the agent gives up entirely. Range: `5`–`120`. Optional.
+</ParamField>
+
+<ParamField body="initial_idle_time_seconds" type="integer" required={false}>
+  Idle threshold to use **before** the agent has said its initial message (handles cases where the line opens but the caller doesn't speak). Range: `1`–`60`. Optional.
+</ParamField>
+
+<ParamField body="initial_max_idle_check_count" type="integer" required={false}>
+  Maximum number of initial idle prompts before terminating. Range: `0`–`10`. Optional.
+</ParamField>
+
+<ParamField body="llm_temperature" type="number" required>
+  Sampling temperature for the language model. Range: `0`–`2`. Lower values make responses more deterministic.
+</ParamField>
+
+<ParamField body="enable_recording" type="boolean" required>
+  Whether to record calls handled by this agent.
+</ParamField>
+
+<ParamField body="direction" type="string" required>
+  Call direction. Options: `inbound`, `outbound`.
+</ParamField>
+
+<ParamField body="who_speaks_first" type="string" required>
+  Who speaks first. Options: `agent`, `user`.
+</ParamField>
+
+<ParamField body="phone_number_ids" type="array" required={false}>
+  Array of phone number UUIDs to assign to this agent at creation. Use [List Phone Numbers](/api-reference/endpoints/list-phone-numbers) to retrieve available IDs. Can also be set later via [Update Agent Calling](/api-reference/endpoints/update-agent-calling).
+</ParamField>
+
+## Example Requests
 
 <RequestExample>
 
 ```bash
-# Requisição 1: Criar um agente básico de atendimento
-curl -X POST "https://talqover.app/api/v1/agents" \
+# Request 1: Create a basic inbound support agent
+curl -X POST "https://talkover.app/api/v1/agents" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "Agente de Atendimento",
-    "description": "Agente especializado em atendimento ao cliente",
-    "language": "pt-BR",
-    "voice_template_id": "voice-template-uuid-1",
-    "knowledge_base": "Este é um agente de atendimento ao cliente especializado em resolver dúvidas e problemas dos clientes."
+    "label": "Customer Support Agent",
+    "description": "Handles customer inquiries and support requests",
+    "name": "SupportBot",
+    "language": "en-US",
+    "initial_message": "Hello, how can I help you today?",
+    "interrupt_sensitivity": "medium",
+    "endpointing_sensitivity": "auto",
+    "ivr_navigation_mode": "off",
+    "conversation_speed": 1.0,
+    "initial_message_delay": 0,
+    "ask_if_human_present_on_idle": false,
+    "idle_time_seconds": 5,
+    "llm_temperature": 0.7,
+    "enable_recording": true,
+    "direction": "inbound",
+    "who_speaks_first": "agent"
   }'
 ```
 
 ```javascript
-// Requisição 1: Criar um agente básico de atendimento
-const response = await fetch('https://talqover.app/api/v1/agents', {
+// Request 1: Create a basic inbound support agent
+const response = await fetch('https://talkover.app/api/v1/agents', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    name: 'Agente de Atendimento',
-    description: 'Agente especializado em atendimento ao cliente',
-    language: 'pt-BR',
-    voice_template_id: 'voice-template-uuid-1',
-    knowledge_base: 'Este é um agente de atendimento ao cliente especializado em resolver dúvidas e problemas dos clientes.'
+    label: "Customer Support Agent",
+    description: "Handles customer inquiries and support requests",
+    name: "SupportBot",
+    language: "en-US",
+    initial_message: "Hello, how can I help you today?",
+    interrupt_sensitivity: "medium",
+    endpointing_sensitivity: "auto",
+    ivr_navigation_mode: "off",
+    conversation_speed: 1.0,
+    initial_message_delay: 0,
+    ask_if_human_present_on_idle: false,
+    idle_time_seconds: 5,
+    llm_temperature: 0.7,
+    enable_recording: true,
+    direction: "inbound",
+    who_speaks_first: "agent"
   })
 });
 
@@ -106,49 +188,55 @@ console.log(result);
 <RequestExample>
 
 ```bash
-# Requisição 2: Criar agente com configurações avançadas
-curl -X POST "https://talqover.app/api/v1/agents" \
+# Request 2: Create an outbound sales agent
+curl -X POST "https://talkover.app/api/v1/agents" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "Agente de Vendas",
-    "description": "Agente especializado em vendas e prospecção",
-    "language": "pt-BR",
-    "voice_template_id": "voice-template-uuid-2",
-    "knowledge_base": "Este agente é especializado em vendas e prospecção de clientes.",
+    "label": "Sales Agent",
+    "description": "Outbound sales calls for product demos",
+    "name": "SalesBot",
+    "language": "en-US",
+    "initial_message": "Hi, this is SalesBot calling about our new product. Do you have a moment?",
     "interrupt_sensitivity": "high",
-    "who_speaks_first": "agent",
-    "initial_message": "Olá! Sou o agente de vendas. Como posso ajudá-lo hoje?",
-    "conversation_starters": [
-      "Gostaria de conhecer nossos produtos?",
-      "Posso ajudá-lo com alguma dúvida?",
-      "Tem interesse em nossas ofertas especiais?"
-    ]
+    "endpointing_sensitivity": "auto",
+    "ivr_navigation_mode": "off",
+    "conversation_speed": 1.2,
+    "initial_message_delay": 2,
+    "ask_if_human_present_on_idle": true,
+    "idle_time_seconds": 10,
+    "llm_temperature": 0.8,
+    "enable_recording": true,
+    "direction": "outbound",
+    "who_speaks_first": "agent"
   }'
 ```
 
 ```javascript
-// Requisição 2: Criar agente com configurações avançadas
-const response = await fetch('https://talqover.app/api/v1/agents', {
+// Request 2: Create an outbound sales agent
+const response = await fetch('https://talkover.app/api/v1/agents', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    name: 'Agente de Vendas',
-    description: 'Agente especializado em vendas e prospecção',
-    language: 'pt-BR',
-    voice_template_id: 'voice-template-uuid-2',
-    knowledge_base: 'Este agente é especializado em vendas e prospecção de clientes.',
-    interrupt_sensitivity: 'high',
-    who_speaks_first: 'agent',
-    initial_message: 'Olá! Sou o agente de vendas. Como posso ajudá-lo hoje?',
-    conversation_starters: [
-      'Gostaria de conhecer nossos produtos?',
-      'Posso ajudá-lo com alguma dúvida?',
-      'Tem interesse em nossas ofertas especiais?'
-    ]
+    label: "Sales Agent",
+    description: "Outbound sales calls for product demos",
+    name: "SalesBot",
+    language: "en-US",
+    initial_message: "Hi, this is SalesBot calling about our new product. Do you have a moment?",
+    interrupt_sensitivity: "high",
+    endpointing_sensitivity: "auto",
+    ivr_navigation_mode: "off",
+    conversation_speed: 1.2,
+    initial_message_delay: 2,
+    ask_if_human_present_on_idle: true,
+    idle_time_seconds: 10,
+    llm_temperature: 0.8,
+    enable_recording: true,
+    direction: "outbound",
+    who_speaks_first: "agent"
   })
 });
 
@@ -158,67 +246,47 @@ console.log(result);
 
 </RequestExample>
 
-## Resposta
+## Response
 
-### Resposta de Sucesso (201 Created)
+### Success Response (201 Created)
 
 <ResponseExample>
 
 ```json
 {
   "success": true,
-  "message": "Agente criado com sucesso",
+  "message": "Agent created successfully",
   "data": {
-    "id": "agent-uuid-1",
-    "name": "Agente de Atendimento",
-    "status": "draft",
-    "language": "pt-BR",
-    "voice_template_id": "voice-template-uuid-1",
-    "created_at": "2024-01-01T00:00:00Z"
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "SupportBot",
+    "label": "Customer Support Agent",
+    "description": "Handles customer inquiries and support requests",
+    "language": "en-US",
+    "voice": null,
+    "initial_message": "Hello, how can I help you today?",
+    "interrupt_sensitivity": "medium",
+    "conversation_speed": 1.0,
+    "initial_message_delay": 0,
+    "ask_if_human_present_on_idle": false,
+    "direction": "inbound",
+    "who_speaks_first": "agent",
+    "current_status": "draft",
+    "is_sandbox": false,
+    "is_ready_to_publish": false,
+    "created_at": "2024-01-15T10:30:00Z",
+    "updated_at": "2024-01-15T10:30:00Z",
+    "trainings": [],
+    "actions": [],
+    "phone_numbers": []
   }
 }
 ```
 
 </ResponseExample>
 
-### Campos da Resposta
+## Error Responses
 
-<ResponseField name="success" type="boolean" required>
-  Indica se a operação foi bem-sucedida.
-</ResponseField>
-
-<ResponseField name="message" type="string" required>
-  Mensagem de sucesso descrevendo a operação.
-</ResponseField>
-
-<ResponseField name="data" type="object" required>
-  Dados do agente criado.
-
-  <Expandable title="Dados do Agente">
-    <ResponseField name="id" type="string" required>
-      Identificador único do agente criado.
-    </ResponseField>
-    <ResponseField name="name" type="string" required>
-      Nome do agente.
-    </ResponseField>
-    <ResponseField name="status" type="string" required>
-      Status inicial do agente (sempre "draft").
-    </ResponseField>
-    <ResponseField name="language" type="string" required>
-      Idioma do agente.
-    </ResponseField>
-    <ResponseField name="voice_template_id" type="string" required>
-      ID do modelo de voz associado.
-    </ResponseField>
-    <ResponseField name="created_at" type="string" required>
-      Timestamp ISO 8601 quando o agente foi criado.
-    </ResponseField>
-  </Expandable>
-</ResponseField>
-
-## Respostas de Erro
-
-### 422 Erro de Validação
+### Validation Error (422)
 
 <ResponseExample>
 
@@ -230,14 +298,29 @@ console.log(result);
     "name": [
       "The name field is required."
     ],
+    "label": [
+      "The label field is required."
+    ],
     "language": [
       "The selected language is invalid."
     ],
-    "voice_template_id": [
-      "The selected voice template id is invalid."
+    "interrupt_sensitivity": [
+      "The selected interrupt sensitivity is invalid."
     ],
-    "knowledge_base": [
-      "The knowledge base field is required."
+    "direction": [
+      "The selected direction is invalid."
+    ],
+    "conversation_speed": [
+      "The conversation speed must be between 0.1 and 3.0."
+    ],
+    "initial_message_delay": [
+      "The initial message delay must be between 0 and 60."
+    ],
+    "llm_temperature": [
+      "The llm temperature must be between 0 and 2."
+    ],
+    "idle_time_seconds": [
+      "The idle time seconds must be between 1 and 300."
     ]
   }
 }
@@ -245,83 +328,28 @@ console.log(result);
 
 </ResponseExample>
 
-### 401 Não Autorizado
+### Unauthorized Error (401)
 
 <ResponseExample>
 
 ```json
 {
   "success": false,
-  "message": "Unauthorized"
+  "message": "Unauthenticated."
 }
 ```
 
 </ResponseExample>
 
-### 404 Não Encontrado
+### Too Many Requests (429)
 
 <ResponseExample>
 
 ```json
 {
   "success": false,
-  "message": "Voice template not found"
+  "message": "Too many requests. Please try again later."
 }
 ```
 
 </ResponseExample>
-
-### 500 Erro do Servidor
-
-<ResponseExample>
-
-```json
-{
-  "success": false,
-  "message": "Internal server error."
-}
-```
-
-</ResponseExample>
-
-## Códigos de Erro
-
-| Código | Descrição | Status HTTP |
-|--------|-----------|-------------|
-| `VALIDATION_ERROR` | Validação da requisição falhou | 422 |
-| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
-| `VOICE_TEMPLATE_NOT_FOUND` | Modelo de voz especificado não existe | 404 |
-| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
-
-## Notas Importantes
-
-<Info>
-  **Status inicial.** Novos agentes são criados com status "draft" e devem ser publicados manualmente.
-</Info>
-
-<Info>
-  **Modelo de voz.** O modelo de voz especificado deve existir e estar ativo.
-</Info>
-
-<Info>
-  **Base de conhecimento.** Forneça uma base de conhecimento detalhada para melhor desempenho do agente.
-</Info>
-
-<Warning>
-  **Limites de caracteres.** A base de conhecimento tem limites de caracteres que devem ser respeitados.
-</Warning>
-
-## Melhores Práticas
-
-1. **Base de conhecimento detalhada** - Forneça informações abrangentes para melhor desempenho
-2. **Teste antes de publicar** - Sempre teste agentes em modo rascunho antes de publicar
-3. **Escolha o modelo de voz adequado** - Selecione um modelo de voz apropriado para o idioma
-4. **Configure comportamento** - Ajuste sensibilidade à interrupção e quem fala primeiro conforme necessário
-5. **Mensagem inicial clara** - Forneça uma mensagem inicial clara e profissional
-
-## Endpoints Relacionados
-
-- **Listar Agentes**: `GET /api/v1/agents`
-- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
-- **Atualizar Conhecimento do Agente**: `PUT /api/v1/agents/{agent_id}/knowledge`
-- **Publicar Agente**: `POST /api/v1/agents/{agent_id}/publish`

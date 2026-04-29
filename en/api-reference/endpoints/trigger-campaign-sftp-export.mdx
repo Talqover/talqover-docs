@@ -1,0 +1,83 @@
+---
+title: "Trigger SFTP Export"
+description: "Manually trigger an SFTP export of call results"
+api: "POST /api/v1/campaigns/{campaign_id}/sftp/trigger-export"
+---
+
+# Trigger SFTP Export
+
+Export selected campaign result files to the configured `export_path` on the SFTP server.
+
+## Endpoint
+
+```
+POST /api/v1/campaigns/{campaign_id}/sftp/trigger-export
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="file_data_ids" type="array" required>
+  Array of file UUIDs to export. Use [Get Campaign](/api-reference/endpoints/get-campaign) to retrieve available `campaign_files`.
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/campaigns/campaign-uuid/sftp/trigger-export" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "file_data_ids": ["file-uuid-1", "file-uuid-2"]
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "SFTP export queued",
+  "data": {
+    "job_id": "job-uuid-2",
+    "files_count": 2
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 409 — Already Running
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "An SFTP export is already in progress",
+  "code": "SFTP_EXPORT_IN_PROGRESS"
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,54 @@
+---
+title: "Toggle Campaign Webhook"
+description: "Enable or disable a campaign webhook"
+api: "PATCH /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/toggle"
+---
+
+# Toggle Campaign Webhook
+
+Toggle a campaign webhook between enabled and disabled. Disabling stops all deliveries without deleting the configuration.
+
+## Endpoint
+
+```
+PATCH /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/toggle
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X PATCH "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/toggle" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Webhook disabled",
+  "data": {
+    "id": "webhook-uuid-1",
+    "enabled": false
+  }
+}
+```
+
+</ResponseExample>

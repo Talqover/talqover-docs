@@ -1,0 +1,80 @@
+---
+title: "Create Calendar Event"
+description: "Create an event on a calendar"
+api: "POST /api/v1/calendars/{calendar_id}/events"
+---
+
+# Create Calendar Event
+
+Create a new event on a calendar.
+
+## Endpoint
+
+```
+POST /api/v1/calendars/{calendar_id}/events
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
+
+## Request Body
+
+<ParamField body="title" type="string" required>Event title.</ParamField>
+<ParamField body="description" type="string">Optional description.</ParamField>
+<ParamField body="start_at" type="string" required>Start time. ISO 8601.</ParamField>
+<ParamField body="end_at" type="string" required>End time. ISO 8601. Must be after `start_at`.</ParamField>
+<ParamField body="status" type="string">Options: `confirmed`, `tentative`, `cancelled`. Default: `confirmed`.</ParamField>
+<ParamField body="type" type="string">Free-form event type tag (e.g., `meeting`, `block`, `appointment`).</ParamField>
+<ParamField body="created_by" type="string">UUID of the creating user.</ParamField>
+<ParamField body="owner_id" type="string">UUID of the owner (user or agent).</ParamField>
+<ParamField body="owner_type" type="string">Owner type. Options: `user`, `agent`.</ParamField>
+<ParamField body="attendees" type="array">Array of `{ name, email }` objects.</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/events" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Demo with Acme",
+    "start_at": "2024-01-20T15:00:00Z",
+    "end_at": "2024-01-20T15:30:00Z",
+    "type": "meeting",
+    "attendees": [{"name":"Jane Doe","email":"jane@acme.com"}]
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "event-uuid-1",
+    "calendar_id": "calendar-uuid-1",
+    "title": "Demo with Acme",
+    "start_at": "2024-01-20T15:00:00Z",
+    "end_at": "2024-01-20T15:30:00Z",
+    "status": "confirmed",
+    "type": "meeting"
+  }
+}
+```
+
+</ResponseExample>

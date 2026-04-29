@@ -1,0 +1,64 @@
+---
+title: "Update Campaign Webhook"
+description: "Partially update a campaign webhook"
+api: "PUT /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}"
+---
+
+# Update Campaign Webhook
+
+Partially update a campaign webhook. All fields are optional — only fields you send are updated. Field semantics match [Create Campaign Webhook](/api-reference/endpoints/create-campaign-webhook).
+
+## Endpoint
+
+```
+PUT /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X PUT "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "events": ["campaign.completed", "campaign_call.failed"],
+    "include_call_events": true
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "webhook-uuid-1",
+    "events": ["campaign.completed", "campaign_call.failed"],
+    "include_call_events": true,
+    "updated_at": "2024-01-15T15:30:00Z"
+  }
+}
+```
+
+</ResponseExample>

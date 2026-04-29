@@ -1,0 +1,71 @@
+---
+title: "List Campaign Webhook Logs"
+description: "List delivery attempts for a campaign webhook"
+api: "GET /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/logs"
+---
+
+# List Campaign Webhook Logs
+
+List delivery attempts for a campaign webhook, including HTTP status, response, attempt number, and timing. Same shape as [List Webhook Delivery Logs](/api-reference/endpoints/list-webhook-logs).
+
+## Endpoint
+
+```
+GET /api/v1/campaigns/{campaign_id}/webhooks/{webhook_id}/logs
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+<ParamField path="webhook_id" type="string" required>Webhook UUID.</ParamField>
+
+## Query Parameters
+
+<ParamField query="per_page" type="integer">Items per page. Range: `1`–`100`. Default: `25`.</ParamField>
+<ParamField query="page" type="integer">Default: `1`.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks/webhook-uuid-1/logs" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "log-uuid-1",
+      "event": "campaign.started",
+      "attempt": 1,
+      "status": "success",
+      "http_status": 200,
+      "duration_ms": 142,
+      "delivered_at": "2024-01-15T11:00:01Z",
+      "created_at": "2024-01-15T11:00:00Z"
+    }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "per_page": 25,
+    "total": 47
+  }
+}
+```
+
+</ResponseExample>

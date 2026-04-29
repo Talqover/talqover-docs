@@ -32,13 +32,13 @@ GET /api/v1/voice-templates/{voice_template_id}/demo
 
 ```bash
 # Requisição 1: Gerar demonstração para um modelo de voz
-curl -X GET "https://talqover.app/api/v1/voice-templates/voice-template-uuid-1/demo" \
+curl -X GET "https://talkover.app/api/v1/voice-templates/voice-template-uuid-1/demo" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 1: Gerar demonstração para um modelo de voz
-const response = await fetch('https://talqover.app/api/v1/voice-templates/voice-template-uuid-1/demo', {
+const response = await fetch('https://talkover.app/api/v1/voice-templates/voice-template-uuid-1/demo', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -55,14 +55,14 @@ console.log(result);
 
 ```bash
 # Requisição 2: Gerar demonstração com ID específico
-curl -X GET "https://talqover.app/api/v1/voice-templates/550e8400-e29b-41d4-a716-446655440000/demo" \
+curl -X GET "https://talkover.app/api/v1/voice-templates/550e8400-e29b-41d4-a716-446655440000/demo" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 2: Gerar demonstração com ID específico
 const voice_template_id = '550e8400-e29b-41d4-a716-446655440000';
-const response = await fetch(`https://talqover.app/api/v1/voice-templates/${voice_template_id}/demo`, {
+const response = await fetch(`https://talkover.app/api/v1/voice-templates/${voice_template_id}/demo`, {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

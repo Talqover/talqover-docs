@@ -1,0 +1,85 @@
+---
+title: "Unpublish Agent"
+description: "Unpublish an agent to take it offline without deleting it"
+api: "POST /api/v1/agents/{agent_id}/unpublish"
+---
+
+# Unpublish Agent
+
+Unpublish an agent to revert it to draft state. The agent stops receiving inbound calls and cannot be used for outbound calls until published again.
+
+## Endpoint
+
+```
+POST /api/v1/agents/{agent_id}/unpublish
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>
+  The unique identifier of the voice agent to unpublish.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/unpublish" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/unpublish', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer talq_your_environment_token_here'
+  }
+});
+
+const result = await response.json();
+```
+
+```python
+import requests
+
+url = "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/unpublish"
+headers = {"Authorization": "Bearer talq_your_environment_token_here"}
+
+response = requests.post(url, headers=headers)
+result = response.json()
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Agent unpublished successfully",
+  "data": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "SupportBot",
+    "current_status": "draft",
+    "is_ready_to_publish": false,
+    "updated_at": "2024-01-15T10:55:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Unpublishing does not delete any data — the agent's knowledge, voice, trainings, actions, and phone numbers are preserved.
+- Active calls that started before the unpublish are not interrupted. Only new calls are blocked.
+- To permanently delete an agent, use [Delete Agent](/api-reference/endpoints/delete-agent).

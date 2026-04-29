@@ -1,0 +1,92 @@
+---
+title: "Validate Agent Flow"
+description: "Dry-run validation of a flow configuration"
+api: "POST /api/v1/agents/{agent_id}/flow/validate"
+---
+
+# Validate Agent Flow
+
+Run validation on a candidate flow configuration without persisting changes. Returns the same errors that [Update Agent Flow](/api-reference/endpoints/update-agent-flow) would return.
+
+## Endpoint
+
+```
+POST /api/v1/agents/{agent_id}/flow/validate
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>Agent UUID. Used to scope validation (e.g., to check that referenced action IDs exist).</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="flow_config" type="object" required>
+  Same shape as in [Update Agent Flow](/api-reference/endpoints/update-agent-flow).
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/agents/agent-uuid/flow/validate" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "flow_config": {
+      "initial_node_id": "node-greet",
+      "nodes": [
+        { "id": "node-greet", "type": "say", "content": "Hi!", "next": "node-end" },
+        { "id": "node-end", "type": "end" }
+      ]
+    }
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+### Valid
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Flow is valid"
+}
+```
+
+</ResponseExample>
+
+### Invalid
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "errors": [
+    "Duplicate node id: 'node-greet'",
+    "Node 'node-end' is unreachable"
+  ]
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Use this from your editor before submitting an update — surfaces issues early without modifying agent state.
+- Validation rules cover: unique node IDs, reachability, valid `next`/`branches` targets, required fields per node `type`.

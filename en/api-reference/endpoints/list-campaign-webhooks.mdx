@@ -1,0 +1,66 @@
+---
+title: "List Campaign Webhooks"
+description: "List webhooks configured for a campaign"
+api: "GET /api/v1/campaigns/{campaign_id}/webhooks"
+---
+
+# List Campaign Webhooks
+
+List webhooks configured for a specific campaign. Campaign webhooks fire on campaign-level events (`campaign.started`, `campaign_call.completed`, etc.) — distinct from agent webhooks which fire on per-call events.
+
+## Endpoint
+
+```
+GET /api/v1/campaigns/{campaign_id}/webhooks
+```
+
+## Path Parameters
+
+<ParamField path="campaign_id" type="string" required>Campaign UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/campaigns/campaign-uuid/webhooks" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "webhooks": [
+      {
+        "id": "webhook-uuid-1",
+        "campaign_id": "campaign-uuid",
+        "name": "Lifecycle Webhook",
+        "webhook_url": "https://example.com/campaign-events",
+        "events": ["campaign.started", "campaign.completed", "campaign_call.completed"],
+        "enabled": true,
+        "include_call_events": false
+      }
+    ],
+    "available_events": [
+      "campaign.created", "campaign.started", "campaign.paused", "campaign.completed", "campaign.updated",
+      "campaign_call.queued", "campaign_call.started", "campaign_call.completed", "campaign_call.retry_scheduled", "campaign_call.failed",
+      "event_recording", "event_call_transcript", "event_call_report"
+    ]
+  }
+}
+```
+
+</ResponseExample>

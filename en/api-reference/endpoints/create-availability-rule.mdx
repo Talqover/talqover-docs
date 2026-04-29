@@ -1,0 +1,89 @@
+---
+title: "Create Availability Rule"
+description: "Add a recurring or exception availability rule"
+api: "POST /api/v1/calendars/{calendar_id}/availability-rules"
+---
+
+# Create Availability Rule
+
+Add an availability rule (recurring window or exception date) to a calendar.
+
+## Endpoint
+
+```
+POST /api/v1/calendars/{calendar_id}/availability-rules
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
+
+## Request Body
+
+<ParamField body="type" type="string" required>Rule type. Options: `recurring`, `exception`.</ParamField>
+
+### When `type: "recurring"`
+
+<ParamField body="days_of_week" type="array" required>Array of weekday numbers (`1`=Mon ... `7`=Sun).</ParamField>
+<ParamField body="start_time" type="string" required>Window start. Format: `HH:MM`.</ParamField>
+<ParamField body="end_time" type="string" required>Window end. Format: `HH:MM`.</ParamField>
+<ParamField body="timezone" type="string">IANA timezone. Defaults to calendar's timezone.</ParamField>
+
+### When `type: "exception"`
+
+<ParamField body="date" type="string" required>Date of exception. Format: `YYYY-MM-DD`.</ParamField>
+<ParamField body="available" type="boolean" required>Whether this date is available (overrides recurring rules) or blocked.</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+# Recurring weekday window
+curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/availability-rules" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "recurring",
+    "days_of_week": [1, 2, 3, 4, 5],
+    "start_time": "09:00",
+    "end_time": "17:00"
+  }'
+```
+
+```bash
+# Holiday exception (block Dec 25)
+curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/availability-rules" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{ "type": "exception", "date": "2024-12-25", "available": false }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "rule-uuid-1",
+    "type": "recurring",
+    "days_of_week": [1, 2, 3, 4, 5],
+    "start_time": "09:00",
+    "end_time": "17:00"
+  }
+}
+```
+
+</ResponseExample>

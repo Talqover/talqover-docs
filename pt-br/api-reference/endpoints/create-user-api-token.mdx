@@ -1,0 +1,82 @@
+---
+title: "Create User API Token"
+description: "Create a new personal access token (PAT) for the current user"
+api: "POST /api/v1/user/api-tokens"
+---
+
+# Create User API Token
+
+Create a new personal access token (PAT) for the current user. The full token value is returned **only once** in the response — store it securely.
+
+<Info>
+  This endpoint is part of the **Account API** and is authenticated with a user session token.
+</Info>
+
+## Endpoint
+
+```
+POST /api/v1/user/api-tokens
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  User session token. Format: `Bearer <user_session_token>`.
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="name" type="string" required>
+  Human-readable name to identify the token (e.g., "CI Pipeline", "Local Dev"). Max 255 characters.
+</ParamField>
+
+<ParamField body="abilities" type="array">
+  Optional list of abilities to grant. Use `["*"]` for full access. If omitted, full access is granted.
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/user/api-tokens" \
+  -H "Authorization: Bearer your_user_session_token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "CI Pipeline",
+    "abilities": ["*"]
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "data": {
+    "id": "token-uuid-1",
+    "name": "CI Pipeline",
+    "abilities": ["*"],
+    "token": "1|abc123def456...",
+    "created_at": "2024-01-15T19:00:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+<Warning>
+  The `token` field is returned **only once**. Store it immediately — it cannot be retrieved later. If lost, revoke the token and create a new one.
+</Warning>
+
+## Notes
+
+- Use the token as `Authorization: Bearer <token>` in subsequent requests.
+- For environment-scoped automation (agents, calls, campaigns), use environment tokens (`talq_*`) instead.

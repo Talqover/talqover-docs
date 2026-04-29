@@ -1,0 +1,53 @@
+---
+title: "List Availability Rules"
+description: "List availability rules for a calendar"
+api: "GET /api/v1/calendars/{calendar_id}/availability-rules"
+---
+
+# List Availability Rules
+
+List availability rules configured for a calendar. Availability rules define booking windows (e.g., weekday 9–17) and exceptions (e.g., holidays).
+
+## Endpoint
+
+```
+GET /api/v1/calendars/{calendar_id}/availability-rules
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "rule-uuid-1",
+      "type": "recurring",
+      "days_of_week": [1, 2, 3, 4, 5],
+      "start_time": "09:00",
+      "end_time": "17:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "id": "rule-uuid-2",
+      "type": "exception",
+      "date": "2024-12-25",
+      "available": false
+    }
+  ]
+}
+```
+
+</ResponseExample>

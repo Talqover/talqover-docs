@@ -1,0 +1,61 @@
+---
+title: "Update Availability Rule"
+description: "Update an availability rule"
+api: "PUT /api/v1/calendars/{calendar_id}/availability-rules/{rule_id}"
+---
+
+# Update Availability Rule
+
+Update an existing availability rule. All fields are optional.
+
+## Endpoint
+
+```
+PUT /api/v1/calendars/{calendar_id}/availability-rules/{rule_id}
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="rule_id" type="string" required>Availability rule UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
+
+## Request Body
+
+Same fields as [Create Availability Rule](/api-reference/endpoints/create-availability-rule), all optional.
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X PUT "https://talkover.app/api/v1/calendars/calendar-uuid-1/availability-rules/rule-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{ "end_time": "18:00" }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "rule-uuid-1",
+    "end_time": "18:00"
+  }
+}
+```
+
+</ResponseExample>

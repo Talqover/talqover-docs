@@ -1,21 +1,21 @@
 ---
 title: "Autenticação"
-description: "Aprenda como autenticar com a API Talqover usando tokens de ambiente"
+description: "Aprenda como autenticar com a API Talkover usando tokens de ambiente"
 ---
 
 # Autenticação
 
-A API Talqover usa autenticação Bearer token com tokens de ambiente. Todas as requisições da API devem incluir um token de ambiente válido no cabeçalho Authorization.
+A API Talkover usa autenticação Bearer token com tokens de ambiente. Todas as requisições da API devem incluir um token de ambiente válido no cabeçalho Authorization.
 
 ## Visão Geral
 
-A autenticação é gerenciada através de **Tokens de Ambiente** que você pode gerar no seu painel Talqover. Esses tokens fornecem acesso seguro aos recursos da sua conta e são usados para autenticar todas as requisições da API.
+A autenticação é gerenciada através de **Tokens de Ambiente** que você pode gerar no seu painel Talkover. Esses tokens fornecem acesso seguro aos recursos da sua conta e são usados para autenticar todas as requisições da API.
 
 ## Obtendo Seu Token de Ambiente
 
 ### Passo 1: Acessar Seu Painel
 
-1. **Faça login** na sua conta Talqover em [talqover.app](https://talqover.app)
+1. **Faça login** na sua conta Talkover em [talkover.app](https://talkover.app)
 2. **Navegue para Conta** na barra lateral esquerda
 3. **Clique em "Ambientes"**
 
@@ -41,7 +41,7 @@ Authorization: Bearer talq_seu_token_de_ambiente_aqui
 
 ```bash
 curl -H "Authorization: Bearer talq_seu_token_de_ambiente_aqui" \
-  https://talqover.app/api/v1/health
+  https://talkover.app/api/v1/health
 ```
 
 ## Melhores Práticas de Segurança
@@ -63,7 +63,7 @@ curl -H "Authorization: Bearer talq_seu_token_de_ambiente_aqui" \
 ### 3. Segurança de Requisições
 
 - **Sempre use HTTPS** para requisições da API
-- **Valide respostas** para garantir que vêm da Talqover
+- **Valide respostas** para garantir que vêm da Talkover
 - **Trate erros graciosamente** sem expor informações sensíveis
 - **Registre requisições de forma segura** sem incluir tokens
 
@@ -74,26 +74,26 @@ Armazene seu token de ambiente de forma segura usando variáveis de ambiente:
 ### Bash/Shell
 
 ```bash
-export TALQOVER_TOKEN="talq_seu_token_de_ambiente_aqui"
+export TALKOVER_TOKEN="talq_seu_token_de_ambiente_aqui"
 ```
 
 ### JavaScript/Node.js
 
 ```javascript
-const token = process.env.TALQOVER_TOKEN;
+const token = process.env.TALKOVER_TOKEN;
 ```
 
 ### Python
 
 ```python
 import os
-token = os.environ.get('TALQOVER_TOKEN')
+token = os.environ.get('TALKOVER_TOKEN')
 ```
 
 ### PHP
 
 ```php
-$token = getenv('TALQOVER_TOKEN');
+$token = getenv('TALKOVER_TOKEN');
 ```
 
 ## Exemplos de Código
@@ -101,8 +101,8 @@ $token = getenv('TALQOVER_TOKEN');
 ### cURL
 
 ```bash
-curl -X POST "https://talqover.app/api/v1/agents/agent_123456/call" \
-  -H "Authorization: Bearer $TALQOVER_TOKEN" \
+curl -X POST "https://talkover.app/api/v1/agents/agent_123456/call" \
+  -H "Authorization: Bearer $TALKOVER_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "to": "+1234567890"
@@ -112,10 +112,10 @@ curl -X POST "https://talqover.app/api/v1/agents/agent_123456/call" \
 ### JavaScript
 
 ```javascript
-const response = await fetch('https://talqover.app/api/v1/agents/agent_123456/call', {
+const response = await fetch('https://talkover.app/api/v1/agents/agent_123456/call', {
   method: 'POST',
   headers: {
-    'Authorization': `Bearer ${process.env.TALQOVER_TOKEN}`,
+    'Authorization': `Bearer ${process.env.TALKOVER_TOKEN}`,
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
@@ -131,7 +131,7 @@ import requests
 import os
 
 headers = {
-    'Authorization': f'Bearer {os.environ.get("TALQOVER_TOKEN")}',
+    'Authorization': f'Bearer {os.environ.get("TALKOVER_TOKEN")}',
     'Content-Type': 'application/json'
 }
 
@@ -140,7 +140,7 @@ data = {
 }
 
 response = requests.post(
-    'https://talqover.app/api/v1/agents/agent_123456/call',
+    'https://talkover.app/api/v1/agents/agent_123456/call',
     headers=headers,
     json=data
 )
@@ -149,7 +149,7 @@ response = requests.post(
 ### PHP
 
 ```php
-$token = getenv('TALQOVER_TOKEN');
+$token = getenv('TALKOVER_TOKEN');
 $headers = [
     'Authorization: Bearer ' . $token,
     'Content-Type: application/json'
@@ -160,7 +160,7 @@ $data = [
 ];
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://talqover.app/api/v1/agents/agent_123456/call');
+curl_setopt($ch, CURLOPT_URL, 'https://talkover.app/api/v1/agents/agent_123456/call');
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));

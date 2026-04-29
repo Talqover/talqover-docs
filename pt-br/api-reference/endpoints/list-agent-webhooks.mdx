@@ -20,12 +20,12 @@ Lista todos os webhooks configurados para um agente específico, incluindo seu s
 
 ```bash
 curl -X GET \
-  'https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks' \
+  'https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks' \
   -H 'Authorization: Bearer YOUR_TOKEN'
 ```
 
 ```javascript
-const response = await fetch('https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks', {
+const response = await fetch('https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer YOUR_TOKEN'
@@ -38,7 +38,7 @@ const data = await response.json();
 <?php
 
 $client = new \GuzzleHttp\Client();
-$response = $client->get('https://talqover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks', [
+$response = $client->get('https://talkover.app/api/v1/agents/9fbef0b7-8d4e-4a08-9207-66c22155721d/webhooks', [
     'headers' => [
         'Authorization' => 'Bearer YOUR_TOKEN',
     ],

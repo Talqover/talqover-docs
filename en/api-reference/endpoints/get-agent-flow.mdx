@@ -1,0 +1,87 @@
+---
+title: "Get Agent Flow"
+description: "Retrieve an agent's conversation flow configuration"
+api: "GET /api/v1/agents/{agent_id}/flow"
+---
+
+# Get Agent Flow
+
+Retrieve the agent's current conversation mode and flow configuration. Agents can run in two modes: `llm_driven` (default — the LLM steers the conversation freely with knowledge/actions) or `flow_driven` (a node-based graph dictates the conversation flow).
+
+## Endpoint
+
+```
+GET /api/v1/agents/{agent_id}/flow
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/agents/agent-uuid/flow" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "conversation_mode": "flow_driven",
+    "flow_config": {
+      "initial_node_id": "node-greet",
+      "meta": {
+        "name": "Sales Qualification Flow",
+        "version": "1.2.0"
+      },
+      "nodes": [
+        {
+          "id": "node-greet",
+          "type": "say",
+          "content": "Hi! Are you the right person to talk about scheduling?",
+          "next": "node-qualify"
+        },
+        {
+          "id": "node-qualify",
+          "type": "decision",
+          "branches": [
+            { "match": "yes", "next": "node-book" },
+            { "match": "no", "next": "node-transfer" }
+          ]
+        }
+      ],
+      "global_functions": [
+        { "name": "end_conversation", "description": "Ends the call gracefully" }
+      ]
+    }
+  }
+}
+```
+
+</ResponseExample>
+
+### Conversation Modes
+
+- `llm_driven` — agent behavior is governed by knowledge, voice, and actions. `flow_config` is `null`.
+- `flow_driven` — a node graph dictates each turn. Use this for highly structured conversations (qualification, intake, scripted outreach).
+
+## Notes
+
+- The flow schema is detailed — see [Update Agent Flow](/api-reference/endpoints/update-agent-flow) for the full field reference.
+- Validation can be run independently with [Validate Agent Flow](/api-reference/endpoints/validate-agent-flow) before saving.

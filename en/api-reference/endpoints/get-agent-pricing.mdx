@@ -1,0 +1,98 @@
+---
+title: "Get Agent Pricing"
+description: "Retrieve a detailed pricing breakdown for an agent"
+api: "GET /api/v1/agents/{agent_id}/pricing"
+---
+
+# Get Agent Pricing
+
+Retrieve a detailed cost breakdown for an agent — voice synthesis, transcription, language model, and transport components — based on the agent's current configuration and your environment's plan.
+
+## Endpoint
+
+```
+GET /api/v1/agents/{agent_id}/pricing
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>
+  Agent UUID.
+</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/pricing" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+```javascript
+const response = await fetch('https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/pricing', {
+  headers: { 'Authorization': 'Bearer talq_your_environment_token_here' }
+});
+
+const result = await response.json();
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "agent_id": "550e8400-e29b-41d4-a716-446655440000",
+    "currency": "USD",
+    "components": {
+      "voice_synthesis": {
+        "unit": "per_minute",
+        "price": 0.045,
+        "tier": "high_fidelity"
+      },
+      "transcription": {
+        "unit": "per_minute",
+        "price": 0.012
+      },
+      "language_model": {
+        "unit": "per_1k_tokens",
+        "input_price": 0.0015,
+        "output_price": 0.006
+      }
+    },
+    "transport": {
+      "outbound": {
+        "country_code": "US",
+        "unit": "per_minute",
+        "price": 0.018
+      },
+      "inbound": {
+        "country_code": "US",
+        "unit": "per_minute",
+        "price": 0.0085
+      }
+    },
+    "estimated_cost_per_minute": 0.0855,
+    "calculated_at": "2024-01-15T10:30:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Pricing reflects the **current** plan and the agent's voice/transport configuration. It will change if you upgrade your plan or change the agent's voice template.
+- For a higher-level summary, use [Get Agent Pricing Summary](/api-reference/endpoints/get-agent-pricing-summary).
+- Use [Check Optimized Costs Eligibility](/api-reference/endpoints/check-optimized-costs-eligibility) to see if your agent qualifies for cached pricing.

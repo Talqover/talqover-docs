@@ -1,0 +1,75 @@
+---
+title: "List Release Requests"
+description: "List pending and historical phone number release requests"
+api: "GET /api/v1/phone-numbers/release-requests"
+---
+
+# List Release Requests
+
+List release requests submitted for phone numbers in your environment. Release requests are used to return a phone number you no longer need.
+
+## Endpoint
+
+```
+GET /api/v1/phone-numbers/release-requests
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/phone-numbers/release-requests" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "request-uuid-1",
+      "phone_number_id": "phone-uuid-1",
+      "phone_number": "+15551234567",
+      "reason": "Number is no longer in use after migration",
+      "status": "pending",
+      "requested_at": "2024-01-10T14:30:00Z"
+    },
+    {
+      "id": "request-uuid-2",
+      "phone_number_id": "phone-uuid-2",
+      "phone_number": "+15559876543",
+      "reason": "Replaced by new toll-free number",
+      "status": "approved",
+      "requested_at": "2024-01-05T10:00:00Z",
+      "resolved_at": "2024-01-08T16:20:00Z"
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+### Status Values
+
+- `pending` — submitted, awaiting review
+- `approved` — approved and the number has been (or will be) released
+- `rejected` — request denied (reason returned in `rejection_reason` field)
+- `cancelled` — user cancelled before resolution
+
+## Notes
+
+- To submit a new release request, use [Request Phone Release](/api-reference/endpoints/request-phone-release).
+- Pending requests can be cancelled with [Cancel Release Request](/api-reference/endpoints/cancel-release-request).

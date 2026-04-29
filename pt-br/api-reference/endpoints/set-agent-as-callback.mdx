@@ -1,0 +1,86 @@
+---
+title: "Set Agent as Callback"
+description: "Configure an inbound agent to handle callbacks from outbound source agents"
+api: "POST /api/v1/agents/{agent_id}/callback"
+---
+
+# Set Agent as Callback
+
+Configure an inbound agent to handle callbacks from one or more outbound source agents. When a contact previously called by a source agent dials back, the call is routed to this agent (assuming the agent owns the dialed number).
+
+## Endpoint
+
+```
+POST /api/v1/agents/{agent_id}/callback
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>UUID of the inbound agent. Must have `direction: "inbound"`.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be set to `application/json`
+</ParamField>
+
+## Request Body
+
+<ParamField body="source_agent_ids" type="array" required>
+  Array of outbound agent UUIDs whose contacts should route to this callback agent on inbound returns. Must contain at least one entry.
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/agents/agent-uuid-1/callback" \
+  -H "Authorization: Bearer talq_your_environment_token_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "source_agent_ids": ["agent-uuid-2", "agent-uuid-3"]
+  }'
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "agent-uuid-1",
+    "name": "Callback Handler",
+    "direction": "inbound",
+    "callback_config": {
+      "source_agent_ids": ["agent-uuid-2", "agent-uuid-3"]
+    }
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 422 — Wrong Direction
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Agent must have direction=inbound to serve as a callback",
+  "code": "INVALID_AGENT_DIRECTION"
+}
+```
+
+</ResponseExample>

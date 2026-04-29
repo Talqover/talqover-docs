@@ -1,0 +1,61 @@
+---
+title: "List Callback Agents"
+description: "List inbound agents configured to handle callback calls"
+api: "GET /api/v1/callback-agents"
+---
+
+# List Callback Agents
+
+List all inbound agents in your environment that have been configured as callback agents. A callback agent receives return calls from contacts that were previously called by an outbound (source) agent.
+
+## Endpoint
+
+```
+GET /api/v1/callback-agents
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/callback-agents" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "agent-uuid-1",
+      "name": "Callback Handler",
+      "label": "Inbound Callback Agent",
+      "direction": "inbound",
+      "current_status": "published",
+      "callback_config": {
+        "source_agent_ids": ["agent-uuid-2", "agent-uuid-3"]
+      }
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Only `inbound` agents can serve as callback agents.
+- Use [List Callback Source Agents](/api-reference/endpoints/list-callback-source-agents) to find eligible outbound agents to route from.

@@ -1,0 +1,63 @@
+---
+title: "List Callback Source Agents"
+description: "List outbound agents eligible to be sources for a callback agent"
+api: "GET /api/v1/callback-agents/source-agents"
+---
+
+# List Callback Source Agents
+
+List outbound agents that can be configured as **source agents** for a callback agent. A source agent's outbound calls become candidates for callback when the contact returns the call.
+
+## Endpoint
+
+```
+GET /api/v1/callback-agents/source-agents
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/callback-agents/source-agents" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "agent-uuid-2",
+      "name": "Sales Outbound",
+      "direction": "outbound",
+      "current_status": "published"
+    },
+    {
+      "id": "agent-uuid-3",
+      "name": "Survey Outbound",
+      "direction": "outbound",
+      "current_status": "published"
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Only published `outbound` agents are returned.
+- Use the IDs in this list when calling [Set Agent as Callback](/api-reference/endpoints/set-agent-as-callback) or [Update Callback Sources](/api-reference/endpoints/update-callback-sources).

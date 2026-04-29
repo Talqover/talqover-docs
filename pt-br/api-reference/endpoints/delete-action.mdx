@@ -36,13 +36,13 @@ DELETE /api/v1/agents/{agent_id}/actions/{action_id}
 
 ```bash
 # Requisição 1: Excluir uma ação específica
-curl -X DELETE "https://talqover.app/api/v1/agents/agent-uuid-1/actions/action-uuid-1" \
+curl -X DELETE "https://talkover.app/api/v1/agents/agent-uuid-1/actions/action-uuid-1" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Requisição 1: Excluir uma ação específica
-const response = await fetch('https://talqover.app/api/v1/agents/agent-uuid-1/actions/action-uuid-1', {
+const response = await fetch('https://talkover.app/api/v1/agents/agent-uuid-1/actions/action-uuid-1', {
   method: 'DELETE',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -59,7 +59,7 @@ console.log(result);
 
 ```bash
 # Requisição 2: Excluir ação com IDs específicos
-curl -X DELETE "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions/660e8400-e29b-41d4-a716-446655440000" \
+curl -X DELETE "https://talkover.app/api/v1/agents/550e8400-e29b-41d4-a716-446655440000/actions/660e8400-e29b-41d4-a716-446655440000" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
@@ -67,7 +67,7 @@ curl -X DELETE "https://talqover.app/api/v1/agents/550e8400-e29b-41d4-a716-44665
 // Requisição 2: Excluir ação com IDs específicos
 const agent_id = '550e8400-e29b-41d4-a716-446655440000';
 const action_id = '660e8400-e29b-41d4-a716-446655440000';
-const response = await fetch(`https://talqover.app/api/v1/agents/${agent_id}/actions/${action_id}`, {
+const response = await fetch(`https://talkover.app/api/v1/agents/${agent_id}/actions/${action_id}`, {
   method: 'DELETE',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

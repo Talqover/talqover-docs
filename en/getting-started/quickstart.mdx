@@ -1,25 +1,25 @@
 ---
 title: "Quick start Guide"
-description: "Get up and running with Talqover in 5 minutes - learn how to get your agent ID and environment token"
+description: "Get up and running with Talkover in 5 minutes - learn how to get your agent ID and environment token"
 ---
 
 # Quick start Guide
 
-Get started with Talqover AI Voice Agent platform in just 5 minutes. This guide will walk you through setting up your first voice agent and making your first call.
+Get started with Talkover AI Voice Agent platform in just 5 minutes. This guide will walk you through setting up your first voice agent and making your first call.
 
 ## Prerequisites
 
-- A Talqover account (sign up at [talqover.app](https://talqover.app))
+- A Talkover account (sign up at [talkover.app](https://talkover.app))
 - A phone number for testing
 - Basic knowledge of HTTP requests
 
 ## Step 1: Get Your Environment Token
 
-Your environment token is your API key for authenticating requests to the Talqover API.
+Your environment token is your API key for authenticating requests to the Talkover API.
 
 ### How to Get Your Token:
 
-1. **Log in to your Talqover dashboard** at [talqover.app](https://talqover.app)
+1. **Log in to your Talkover dashboard** at [talkover.app](https://talkover.app)
 2. **Navigate to Account** → **Environments**
 3. **Copy your Environment Token** from the list (it starts with `talq_`)
 
@@ -49,7 +49,7 @@ Voice agents are the AI personalities that handle your calls. You need to create
 
 ## Step 3: Make Your First Call
 
-Now you're ready to make your first call using the Talqover API!
+Now you're ready to make your first call using the Talkover API!
 
 ### API Endpoints
 
@@ -67,7 +67,7 @@ POST /api/v1/campaigns/{campaign_id}/call
 
 #### Agent Call
 ```bash
-curl -X POST "https://talqover.app/api/v1/agents/agent_123456/call" \
+curl -X POST "https://talkover.app/api/v1/agents/agent_123456/call" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -77,7 +77,7 @@ curl -X POST "https://talqover.app/api/v1/agents/agent_123456/call" \
 
 #### Campaign Call
 ```bash
-curl -X POST "https://talqover.app/api/v1/campaigns/campaign_789012/call" \
+curl -X POST "https://talkover.app/api/v1/campaigns/campaign_789012/call" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -119,5 +119,5 @@ After initiating a call, you can:
 
 
 <Check>
-  Congratulations! You've successfully set up Talqover and made your first AI-powered call.
+  Congratulations! You've successfully set up Talkover and made your first AI-powered call.
 </Check>

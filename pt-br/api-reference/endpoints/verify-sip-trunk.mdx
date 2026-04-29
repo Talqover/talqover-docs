@@ -1,0 +1,72 @@
+---
+title: "Verify SIP Trunk"
+description: "Run a connectivity check against a SIP trunk"
+api: "POST /api/v1/sip-trunks/{trunk_id}/verify"
+---
+
+# Verify SIP Trunk
+
+Run a connectivity check against a SIP trunk. The platform attempts to register/connect using the configured credentials and reports success or failure. Trunks must be verified before they can be activated.
+
+## Endpoint
+
+```
+POST /api/v1/sip-trunks/{trunk_id}/verify
+```
+
+## Path Parameters
+
+<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/verify" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+### Verification Successful
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "is_verified": true,
+    "health_status": "healthy",
+    "last_health_check_at": "2024-01-15T14:30:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+### Verification Failed
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "data": {
+    "is_verified": false,
+    "health_status": "unhealthy",
+    "error": "Authentication failed (401)"
+  }
+}
+```
+
+</ResponseExample>

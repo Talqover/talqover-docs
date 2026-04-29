@@ -1,0 +1,46 @@
+---
+title: "List Provider Connections"
+description: "List external calendar provider connections for a calendar"
+api: "GET /api/v1/calendars/{calendar_id}/providers"
+---
+
+# List Provider Connections
+
+List external calendar provider connections attached to a calendar. Provider connections sync events with third-party calendar systems.
+
+## Endpoint
+
+```
+GET /api/v1/calendars/{calendar_id}/providers
+```
+
+## Path Parameters
+
+<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "conn-uuid-1",
+      "provider": "calendar_provider_a",
+      "external_calendar_id": "primary",
+      "is_active": true,
+      "last_sync_at": "2024-01-15T17:30:00Z"
+    }
+  ]
+}
+```
+
+</ResponseExample>

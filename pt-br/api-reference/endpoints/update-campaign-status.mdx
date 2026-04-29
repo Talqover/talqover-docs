@@ -50,7 +50,7 @@ PATCH /api/v1/campaigns/{campaign_id}/status
 
 ```bash
 # Requisição 1: Ativar uma campanha
-curl -X PATCH "https://talqover.app/api/v1/campaigns/campaign-uuid-1/status" \
+curl -X PATCH "https://talkover.app/api/v1/campaigns/campaign-uuid-1/status" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -60,7 +60,7 @@ curl -X PATCH "https://talqover.app/api/v1/campaigns/campaign-uuid-1/status" \
 
 ```javascript
 // Requisição 1: Ativar uma campanha
-const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1/status', {
+const response = await fetch('https://talkover.app/api/v1/campaigns/campaign-uuid-1/status', {
   method: 'PATCH',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',
@@ -81,7 +81,7 @@ console.log(result);
 
 ```bash
 # Requisição 2: Pausar uma campanha
-curl -X PATCH "https://talqover.app/api/v1/campaigns/campaign-uuid-1/status" \
+curl -X PATCH "https://talkover.app/api/v1/campaigns/campaign-uuid-1/status" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -91,7 +91,7 @@ curl -X PATCH "https://talqover.app/api/v1/campaigns/campaign-uuid-1/status" \
 
 ```javascript
 // Requisição 2: Pausar uma campanha
-const response = await fetch('https://talqover.app/api/v1/campaigns/campaign-uuid-1/status', {
+const response = await fetch('https://talkover.app/api/v1/campaigns/campaign-uuid-1/status', {
   method: 'PATCH',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here',

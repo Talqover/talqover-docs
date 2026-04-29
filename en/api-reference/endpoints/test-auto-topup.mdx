@@ -1,0 +1,93 @@
+---
+title: "Test Auto Topup"
+description: "Trigger a one-off recharge to verify auto topup configuration"
+api: "POST /api/v1/auto-topup/test"
+---
+
+# Test Auto Topup
+
+Trigger a real one-off recharge using the configured payment method to verify auto topup is set up correctly. This bypasses the threshold check and immediately charges `recharge_amount`.
+
+<Warning>
+  This is a **real charge**, not a simulation. The amount will be billed to the saved payment method and credited to your account balance.
+</Warning>
+
+## Endpoint
+
+```
+POST /api/v1/auto-topup/test
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl -X POST "https://talkover.app/api/v1/auto-topup/test" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "message": "Test recharge completed successfully",
+  "data": {
+    "amount_charged": 100.00,
+    "currency": "USD",
+    "new_balance": 250.00,
+    "transaction_id": "txn_uuid_1"
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 422 — Not Configured
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Auto topup is not configured",
+  "code": "AUTO_TOPUP_NOT_CONFIGURED"
+}
+```
+
+</ResponseExample>
+
+### 402 — Payment Failed
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Payment method declined",
+  "code": "PAYMENT_FAILED",
+  "details": {
+    "decline_reason": "insufficient_funds"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Use this endpoint sparingly — repeated test charges may be flagged by your payment provider.
+- The test charge counts toward `daily_limit` and `recharge_count_today`.

@@ -1,0 +1,83 @@
+---
+title: "Get Callback Agent"
+description: "Retrieve callback configuration and stats for a specific agent"
+api: "GET /api/v1/callback-agents/{agent_id}"
+---
+
+# Get Callback Agent
+
+Retrieve detailed callback configuration for a single agent, including its source agents and recent callback activity.
+
+## Endpoint
+
+```
+GET /api/v1/callback-agents/{agent_id}
+```
+
+## Path Parameters
+
+<ParamField path="agent_id" type="string" required>UUID of the callback agent.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/callback-agents/agent-uuid-1" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "agent": {
+      "id": "agent-uuid-1",
+      "name": "Callback Handler",
+      "direction": "inbound",
+      "current_status": "published"
+    },
+    "source_agents": [
+      { "id": "agent-uuid-2", "name": "Sales Outbound" },
+      { "id": "agent-uuid-3", "name": "Survey Outbound" }
+    ],
+    "stats": {
+      "total_callbacks_received": 184,
+      "callbacks_answered": 142
+    }
+  }
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+### 404 — Not a Callback Agent
+
+<ResponseExample>
+
+```json
+{
+  "success": false,
+  "message": "Agent is not configured as a callback agent"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- To configure an agent as a callback, use [Set Agent as Callback](/api-reference/endpoints/set-agent-as-callback).

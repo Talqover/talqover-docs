@@ -1,0 +1,46 @@
+---
+title: "Health Check"
+description: "Service liveness probe"
+api: "GET /api/v1/health"
+---
+
+# Health Check
+
+Lightweight liveness probe. Returns `200 OK` when the API is reachable. Use it for uptime monitors or load-balancer health checks.
+
+## Endpoint
+
+```
+GET /api/v1/health
+```
+
+## Authentication
+
+**None.** This endpoint is unauthenticated.
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/health"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "status": "ok"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- This is a liveness check only — it does not exercise downstream dependencies.
+- Safe to poll frequently; the endpoint is rate-limit exempt.

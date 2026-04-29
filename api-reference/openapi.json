@@ -1,15 +1,35 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Talqover API Documentation",
-    "version": "1.0.0",
-    "description": "API documentation for Talqover - AI-powered voice conversation platform"
+    "title": "Talkover API Documentation",
+    "version": "1.1.0",
+    "description": "API documentation for Talkover - AI-powered voice conversation platform.\n\nThis OpenAPI document covers a curated subset of the API. The full reference (including Calendars, SIP Trunks, Auto Topup, Callback Agents, Conversation Flow, Campaign Webhooks, Campaign SFTP, Phone Number release flow, Action Integrations, Account API and more) is available as guided pages under **API Reference**."
   },
   "servers": [
     {
-      "url": "https://talqover.app/api/v1",
+      "url": "https://talkover.app/api/v1",
       "description": "Production API"
     }
+  ],
+  "tags": [
+    { "name": "Agents", "description": "Voice agent CRUD, partial updates, publishing, pricing and advanced settings." },
+    { "name": "Training", "description": "Knowledge entries attached to an agent." },
+    { "name": "Actions", "description": "Webhook, transfer, hold and integration actions executed by the agent during a call." },
+    { "name": "Action Integrations", "description": "Catalog of pre-built integrations available to attach to actions." },
+    { "name": "Conversation Flow", "description": "Node-graph conversation flow configuration for flow-driven agents." },
+    { "name": "Calls", "description": "Make calls, list calls, end calls, find active calls." },
+    { "name": "Campaigns", "description": "Campaign CRUD, scheduling, retry and DNC rules." },
+    { "name": "Campaign Webhooks", "description": "Webhooks scoped to a campaign (lifecycle events)." },
+    { "name": "Campaign SFTP", "description": "SFTP-based contact list import and result export." },
+    { "name": "Callback Agents", "description": "Inbound agents that handle return calls from outbound source agents." },
+    { "name": "Calendars", "description": "Calendars, members, events, attendees, availability rules, provider connections." },
+    { "name": "Voice Templates", "description": "Catalog of available voices." },
+    { "name": "Phone Numbers", "description": "List numbers and submit release requests." },
+    { "name": "Webhooks", "description": "Agent webhook configuration, delivery logs, retry." },
+    { "name": "Custom SIP Trunks", "description": "Enterprise: register custom SIP trunks and DIDs." },
+    { "name": "Auto Topup", "description": "Threshold and scheduled balance recharges." },
+    { "name": "Account API", "description": "User session endpoints: profile, personal access tokens, credits." },
+    { "name": "Utility", "description": "Health checks and other utility endpoints." }
   ],
   "paths": {
     "/agents": {
@@ -1686,7 +1706,7 @@
                       "status": "ready",
                       "transport": {
                         "provider": "external.websocket",
-                        "websocketCallUrl": "wss://us-agent.talqover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here"
+                        "websocketCallUrl": "wss://us-agent.talkover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here"
                       }
                     }
                   }
@@ -1713,69 +1733,6 @@
           "nodejs": {
             "lang": "javascript",
             "source": "const axios = require('axios');\n\nconst response = await axios.post('{{baseUrl}}/agents/123e4567-e89b-12d3-a456-426614174000/call', {\n  to: '+1234567890',\n  payload: {\n    customer_name: 'John Doe'\n  },\n  context: {\n    user_id: 'user_123',\n    source: 'web_app'\n  }\n}, {\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN'\n  }\n});\nconst data = response.data;"
-          }
-        }
-      }
-    },
-    "/{call_id}/transport": {
-      "get": {
-        "tags": ["Custom Telephony"],
-        "summary": "WebSocket transport endpoint for external calls",
-        "description": "WebSocket endpoint for external telephony providers to connect and handle call audio streams. Available in three regional locations for optimal performance: US (us-agent.talqover.app), Brazil (br-agent.talqover.app), and Europe (eu-agent.talqover.app).",
-        "parameters": [
-          {
-            "name": "call_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "description": "Call ID from the external call creation"
-          },
-          {
-            "name": "x-talq",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Authentication token for the websocket connection"
-          }
-        ],
-        "responses": {
-          "101": {
-            "description": "Switching to WebSocket protocol",
-            "headers": {
-              "Upgrade": {
-                "schema": {
-                  "type": "string",
-                  "example": "websocket"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string",
-                  "example": "Upgrade"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized - Invalid token"
-          },
-          "404": {
-            "description": "Call not found"
-          }
-        },
-        "x-code-samples": {
-          "websocket": {
-            "lang": "javascript",
-            "source": "const WebSocket = require('ws');\n\nconst call_id = '123e4567-e89b-12d3-a456-426614174000';\nconst token = 'your_websocket_token_here';\n\n// Choose the appropriate regional endpoint\nconst usEndpoint = `wss://us-agent.talqover.app/${call_id}/transport?x-talq=${token}`;\nconst brEndpoint = `wss://br-agent.talqover.app/${call_id}/transport?x-talq=${token}`;\nconst euEndpoint = `wss://eu-agent.talqover.app/${call_id}/transport?x-talq=${token}`;\n\n// Use the endpoint closest to your location\nconst wsUrl = usEndpoint; // or brEndpoint, euEndpoint\n\nconst ws = new WebSocket(wsUrl);\n\nws.on('open', () => {\n  console.log('WebSocket connected');\n  // Send initial clear event\n  ws.send(JSON.stringify({ event: 'clear' }));\n});\n\nws.on('message', (data) => {\n  try {\n    const message = JSON.parse(data);\n    console.log('Received:', message);\n    \n    switch (message.event) {\n      case 'media':\n        if (message.media && message.media.payload) {\n          // Handle incoming audio from agent\n          handleAgentAudio(message.media.payload);\n        }\n        break;\n      case 'dtmf':\n        if (message.dtmf && message.dtmf.digit) {\n          // Handle DTMF keypress\n          handleDTMF(message.dtmf.digit);\n        }\n        break;\n    }\n  } catch (error) {\n    console.error('Error parsing message:', error);\n  }\n});\n\nws.on('close', () => {\n  console.log('WebSocket disconnected');\n});\n\nfunction handleAgentAudio(audioData) {\n  // Process base64 encoded audio data\n  console.log('Processing agent audio:', audioData.length, 'characters (base64)');\n}\n\nfunction handleDTMF(digit) {\n  console.log('DTMF keypress received:', digit);\n}"
-          },
-          "curl": {
-            "lang": "curl",
-            "source": "curl -i -N -H \"Connection: Upgrade\" \\\n  -H \"Upgrade: websocket\" \\\n  -H \"Sec-WebSocket-Version: 13\" \\\n  -H \"Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==\" \\\n  'https://us-agent.talqover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here'"
           }
         }
       }
@@ -2815,7 +2772,7 @@
           "id": "123e4567-e89b-12d3-a456-426614174000",
           "status": "external",
           "to": "+1234567890",
-          "websocket_url": "wss://us-agent.talqover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here",
+          "websocket_url": "wss://us-agent.talkover.app/123e4567-e89b-12d3-a456-426614174000/transport?x-talq=your_token_here",
           "created_at": "2024-01-01T00:00:00Z"
         }
       },

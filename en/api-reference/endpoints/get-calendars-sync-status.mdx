@@ -1,0 +1,53 @@
+---
+title: "Get Calendars Sync Status"
+description: "Get current sync status for connected calendars"
+api: "GET /api/v1/calendars/sync-status"
+---
+
+# Get Calendars Sync Status
+
+Get the current sync status for all calendars in the environment that have provider connections.
+
+## Endpoint
+
+```
+GET /api/v1/calendars/sync-status
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/calendars/sync-status" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "calendar_id": "calendar-uuid-1",
+      "provider": "calendar_provider_a",
+      "last_sync_at": "2024-01-15T17:30:00Z",
+      "is_syncing": false,
+      "events_synced": 142
+    }
+  ]
+}
+```
+
+</ResponseExample>

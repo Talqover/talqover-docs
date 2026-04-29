@@ -1,0 +1,59 @@
+---
+title: "Get Credits Balance"
+description: "Retrieve the current account credit balance"
+api: "GET /api/v1/credits/balance"
+---
+
+# Get Credits Balance
+
+Retrieve the current credit balance for the account.
+
+<Info>
+  This endpoint is part of the **Account API** and is authenticated with a user session token.
+</Info>
+
+## Endpoint
+
+```
+GET /api/v1/credits/balance
+```
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  User session token. Format: `Bearer <user_session_token>`.
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/credits/balance" \
+  -H "Authorization: Bearer your_user_session_token"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "balance": 250.00,
+    "currency": "USD",
+    "auto_topup_enabled": true,
+    "as_of": "2024-01-15T19:30:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Balance updates in near real-time as calls complete and recharges process.
+- For per-agent or per-call cost detail, use [Get Agent Pricing](/api-reference/endpoints/get-agent-pricing).

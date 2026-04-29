@@ -60,13 +60,13 @@ GET /api/v1/calls
 
 ```bash
 # Request 1: Get all calls
-curl -X GET "https://talqover.app/api/v1/calls" \
+curl -X GET "https://talkover.app/api/v1/calls" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 1: Get all calls
-const response = await fetch('https://talqover.app/api/v1/calls', {
+const response = await fetch('https://talkover.app/api/v1/calls', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -83,13 +83,13 @@ console.log(result);
 
 ```bash
 # Request 2: Get completed calls from specific date
-curl -X GET "https://talqover.app/api/v1/calls?status=completed&date_from=2024-01-01&per_page=50" \
+curl -X GET "https://talkover.app/api/v1/calls?status=completed&date_from=2024-01-01&per_page=50" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 2: Get completed calls from specific date
-const response = await fetch('https://talqover.app/api/v1/calls?status=completed&date_from=2024-01-01&per_page=50', {
+const response = await fetch('https://talkover.app/api/v1/calls?status=completed&date_from=2024-01-01&per_page=50', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'
@@ -106,13 +106,13 @@ console.log(result);
 
 ```bash
 # Request 3: Search for specific phone number
-curl -X GET "https://talqover.app/api/v1/calls?search=+1234567890&direction=outbound" \
+curl -X GET "https://talkover.app/api/v1/calls?search=+1234567890&direction=outbound" \
   -H "Authorization: Bearer talq_your_environment_token_here"
 ```
 
 ```javascript
 // Request 3: Search for specific phone number
-const response = await fetch('https://talqover.app/api/v1/calls?search=+1234567890&direction=outbound', {
+const response = await fetch('https://talkover.app/api/v1/calls?search=+1234567890&direction=outbound', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer talq_your_environment_token_here'

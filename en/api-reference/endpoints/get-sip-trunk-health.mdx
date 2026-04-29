@@ -1,0 +1,76 @@
+---
+title: "Get SIP Trunk Health"
+description: "Run a live health check on a SIP trunk"
+api: "GET /api/v1/sip-trunks/{trunk_id}/health"
+---
+
+# Get SIP Trunk Health
+
+Run a live health check on a SIP trunk and return the current status. Lightweight version of [Verify SIP Trunk](/api-reference/endpoints/verify-sip-trunk) — does not change the trunk's `is_verified` flag.
+
+## Endpoint
+
+```
+GET /api/v1/sip-trunks/{trunk_id}/health
+```
+
+## Path Parameters
+
+<ParamField path="trunk_id" type="string" required>SIP trunk UUID.</ParamField>
+
+## Request Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer talq_your_environment_token_here`
+</ParamField>
+
+## Examples
+
+<RequestExample>
+
+```bash
+curl "https://talkover.app/api/v1/sip-trunks/trunk-uuid-1/health" \
+  -H "Authorization: Bearer talq_your_environment_token_here"
+```
+
+</RequestExample>
+
+## Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "is_healthy": true,
+    "response_time_ms": 142,
+    "checked_at": "2024-01-15T14:35:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+### Unhealthy Response
+
+<ResponseExample>
+
+```json
+{
+  "success": true,
+  "data": {
+    "is_healthy": false,
+    "response_time_ms": 5000,
+    "error": "Connection timeout",
+    "checked_at": "2024-01-15T14:35:00Z"
+  }
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- Use this endpoint for monitoring/alerting integrations.
+- Frequent polling is fine — checks are cached for short windows.
