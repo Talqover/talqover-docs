@@ -4,51 +4,11 @@ description: "Initiate a call as part of a specific campaign"
 api: "POST /api/v1/campaigns/{campaign_id}/call"
 ---
 
-# Make Campaign Call
+# Make a campaign call
 
-Initiate a call as part of a specific campaign. This endpoint allows you to manually trigger calls within a campaign context.
+Queues a call under a specific campaign. The call inherits the campaign's agent, schedule, retry policy, and DNC rules.
 
-## Overview
-
-The Make Campaign Call endpoint allows you to initiate individual calls within an existing campaign. This endpoint leverages the campaign's configuration and settings to ensure calls follow the established campaign rules and parameters.
-
-## Campaign calls vs Individual agent calls
-
-### **Campaign calls** - Strategic, Automated Outreach
-Campaign calls are designed for **systematic, large-scale customer engagement** with automation features:
-
-- **Campaign-Specific Settings**: Each call inherits the campaign's configuration (agent, retry logic, cooldown periods, call hours)
-- **Advanced Scheduling**: Calls automatically respect business hours, timezone settings, and day-of-week restrictions
-- **Retry Logic**: Built-in retry mechanisms with configurable cooldown periods between attempts
-- **Call Flow Management**: Consistent call flows and messaging across all campaign calls
-- **Performance Analytics**: Comprehensive tracking and reporting at the campaign level
-- **Compliance Features**: Do-not-call list management and regulatory compliance tools
-- **Batch Processing**: Handle thousands of calls with queuing and rate limiting
-
-**Best for**: Customer outreach campaigns, lead nurturing, appointment reminders, market research, and any scenario requiring consistent, automated calling with rules.
-
-### **Individual agent calls** - Immediate, Personalized Interaction
-Individual agent calls are perfect for **instant, one-off interactions** that require immediate attention:
-
-- **Instant Execution**: Calls are made immediately without waiting for campaign scheduling
-- **Real-Time Context**: Perfect for immediate follow-ups after form submissions or customer actions
-- **Flexible Parameters**: Customize call parameters on-the-fly for specific situations
-- **Direct Control**: Immediate control over call timing and execution
-- **Personal Touch**: Ideal for high-value interactions requiring immediate human attention
-
-**Best for**: Form follow-ups, immediate customer service, urgent scheduling, high-priority leads, and any situation requiring instant response.
-
-## When to use each approach
-
-| Scenario | Use Campaign Call | Use Individual Agent Call |
-|----------|------------------|---------------------------|
-| **Customer fills out contact form** | ❌ | ✅ **Immediate follow-up** |
-| **Lead nurturing over time** | ✅ **Automated sequence** | ❌ |
-| **Appointment reminders** | ✅ **Scheduled outreach** | ❌ |
-| **Urgent customer issue** | ❌ | ✅ **Instant response** |
-| **Market research survey** | ✅ **Large-scale calling** | ❌ |
-| **Sales follow-up after demo** | ❌ | ✅ **Quick conversion** |
-| **Customer satisfaction calls** | ✅ **Systematic outreach** | ❌ |
+For one-off calls (not subject to campaign scheduling), use [Make a call](/en/api-reference/endpoints/make-call) instead.
 
 ## Endpoint
 
@@ -59,7 +19,7 @@ POST /api/v1/campaigns/{campaign_id}/call
 ## Path parameters
 
 <ParamField path="campaign" type="string" required>
-  The unique identifier of the campaign. You can find this in your dashboard under Campaigns.
+  The unique identifier of the campaign.
 </ParamField>
 
 ## Request headers
@@ -412,11 +372,11 @@ To override this behavior intentionally (e.g., a follow-up call), pass `"allow_d
 
 | Campaign Status | Can Make Calls | Notes |
 |----------------|----------------|-------|
-| `draft` | ❌ No | Campaign must be active |
-| `active` | ✅ Yes | Calls can be made |
-| `paused` | ❌ No | Campaign is paused |
-| `completed` | ❌ No | Campaign has finished |
-| `cancelled` | ❌ No | Campaign was cancelled |
+| `draft` | No | Campaign must be active |
+| `active` | Yes | Calls can be made |
+| `paused` | No | Campaign is paused |
+| `completed` | No | Campaign has finished |
+| `cancelled` | No | Campaign was cancelled |
 
 ## Important notes
 
@@ -440,13 +400,6 @@ To override this behavior intentionally (e.g., a follow-up call), pass `"allow_d
   **Rate limits.** Be aware of rate limits when making multiple calls.
 </Warning>
 
-## Best practices
-
-1. **Check campaign status** - Verify the campaign is active before making calls
-2. **Use test calls** - Test your integration with `is_testing: true` first
-3. **Handle rate limits** - Implement proper rate limiting in your application
-4. **Validate phone numbers** - Ensure phone numbers are in E.164 format
-5. **Monitor call status** - Track call status using the returned call_id
 
 ## Related endpoints
 

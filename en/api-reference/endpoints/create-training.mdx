@@ -17,7 +17,7 @@ POST /api/v1/agents/{agent_id}/trainings
 ## Path parameters
 
 <ParamField path="agent" type="string" required>
-  The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
+  The unique identifier of the voice agent.
 </ParamField>
 
 ## Request headers
@@ -315,14 +315,6 @@ console.log(result);
   **Character limits.** The subject field has a maximum of 255 characters. Instructions can be much longer but should be clear and concise for best results.
 </Warning>
 
-## Best practices
-
-1. **Be specific and clear** - Write training instructions that are specific and easy to understand
-2. **Use active voice** - Write instructions in active voice for better clarity
-3. **Include examples** - Provide examples of good responses when possible
-4. **Test training** - Always test new training data before publishing the agent
-5. **Organize by topic** - Create separate training entries for different topics or scenarios
-6. **Regular updates** - Update training data regularly based on agent performance and feedback
 
 ## Related endpoints
 

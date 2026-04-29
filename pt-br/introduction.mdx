@@ -1,81 +1,28 @@
 ---
-title: "Talkover API – Conversas Inteligentes por Voz em Escala"
-description: "Construa conversas por telefone com IA usando nossa API abrangente. Automatize a comunicação com clientes através de interações de voz inteligentes."
+title: "Talkover API"
+description: "Construa conversas por telefone via API. Automatize vendas, atendimento, agendamento e contatos por voz."
 ---
 
-Bem-vindo à **API Talkover** – uma plataforma poderosa que permite conversas por telefone com IA, ajudando empresas a automatizar e escalar a comunicação com clientes através da voz.
+A Talkover API permite originar e receber chamadas atendidas por agentes de voz — assistentes autônomos guiados por LLM que seguem suas instruções, executam integrações durante a conversa e devolvem resultados estruturados pro seu sistema.
 
-Com o Talkover, você pode:
+## O que você constrói com ela
 
-- Construir fluxos de chamada naturais e em tempo real alimentados por LLMs (Modelos de Linguagem Grande)
-- Automatizar suporte, vendas e agendamentos (sujeito a disponibilidade do sistema)
-- Operar 24/7 sem intervenção humana
-- Manter controle total e transparência sobre cada chamada
+- Agentes inbound que atendem seus números e cuidam de suporte, agendamento ou qualificação.
+- Agentes outbound que retornam contato após preenchimento de formulário, confirmam compromissos ou aplicam pesquisas.
+- Campanhas que disparam contato em escala com regras de retry, janelas de horário e DNC.
+- Webhooks que entregam eventos pro seu sistema, permitindo correlacionar chamadas com seus registros internos.
 
-## Duas Formas Poderosas de Fazer Chamadas
+## Duas formas de fazer chamadas
 
-O Talkover oferece duas abordagens distintas para engajamento com clientes, cada uma otimizada para diferentes necessidades de negócio:
+Existem dois endpoints para chamadas outbound. Escolha pela intenção:
 
-### **Chamadas Individuais do Agente** - Engajamento Imediato e de Alto Impacto
-Perfeitas para **interações instantâneas e personalizadas com clientes** que impulsionam resultados imediatos:
+- **[Make a call](/pt-br/api-reference/endpoints/make-call)** — uma chamada, disparada na hora. Use para hot leads, callbacks após formulário ou qualquer fluxo onde a chamada é gatilho de um evento único.
+- **[Make a campaign call](/pt-br/api-reference/endpoints/make-campaign-call)** — entra na fila de uma campanha. A campanha aplica horário, retry e DNC. Use para contato em lote.
 
-- **Execução Instantânea**: Chamadas feitas imediatamente sem esperar pelo agendamento
-- **Contexto em Tempo Real**: Acompanhamentos imediatos após envios de formulários ou ações do cliente
-- **Conversões de Alto Valor**: Ideal para leads de alta prioridade e necessidades urgentes do cliente
-- **Parâmetros Flexíveis**: Personalize os parâmetros da chamada em tempo real para situações específicas
+Os dois retornam um `call_id` que você acompanha via [List calls](/pt-br/api-reference/endpoints/list-calls) ou eventos de webhook.
 
-**Melhor para**: Acompanhamentos de formulários, atendimento imediato ao cliente, agendamento urgente, leads de alta prioridade e qualquer situação que exija resposta imediata.
+## Por onde começar
 
-### **Chamadas de Campanha** - Alcance Estratégico e Automatizado
-Projetadas para **engajamento sistemático e em larga escala com clientes** com automação avançada:
-
-- **Configurações Específicas da Campanha**: Herda a configuração da campanha (lógica de nova tentativa, períodos de cooldown, horários de chamada)
-- **Agendamento Avançado**: Respeita horários comerciais, configurações de fuso horário e restrições de dia
-- **Lógica de Nova Tentativa**: Mecanismos de nova tentativa integrados com períodos de cooldown configuráveis
-- **Análise de Performance**: Rastreamento e relatórios abrangentes no nível da campanha
-- **Recursos de Conformidade**: Gerenciamento de lista de não ligar e ferramentas de conformidade regulatória
-
-**Melhor para**: Campanhas de alcance ao cliente, nutrição de leads, lembretes de compromissos, pesquisa de mercado e qualquer cenário que exija chamadas consistentes e automatizadas com regras sofisticadas.
-
-> Performance pode variar dependendo da infraestrutura. Monitoramento contínuo é recomendado.
-
----
-
-### 🔧 O Que Você Pode Fazer com Esta API
-
-- **Criar e gerenciar fluxos de chamadas com IA** - Projetar caminhos de conversa inteligentes
-- **Integrar perfeitamente** com suas plataformas e fluxos de trabalho existentes
-- **Controlar chamadas em tempo real** através do painel da plataforma Talkover
-- **Monitorar uso e desempenho** com análises abrangentes
-
----
-
-### 🚀 Começando
-
-Para começar a usar a API Talkover:
-
-1. **Autentique** usando sua chave de API
-2. **Explore** os endpoints disponíveis abaixo
-3. **Comece a construir** interações de voz personalizadas e inteligentes
-
-<Tip>
-  Confira nossa [Referência da API](/pt-br/api-reference/introduction) para documentação detalhada de endpoints e exemplos.
-</Tip>
-
-> Deixe o Talkover ser a voz da sua automação.
-
----
-
-<img
-  className="block dark:hidden"
-  src="/images/talkover-header-br.png"
-  alt="Visão Geral da Plataforma Talkover"
-  title={true}
-/>
-
-<img
-  className="hidden dark:block"
-  src="/images/talkover-header-br.png"
-  alt="Visão Geral da Plataforma Talkover"
-  title={true}
-/>
+1. [Quickstart](/pt-br/getting-started/quickstart) — primeira chamada em poucos requests.
+2. [Autenticação](/pt-br/api-reference/authentication) — tokens de ambiente vs tokens de conta.
+3. [Referência da API](/pt-br/api-reference/introduction) — catálogo completo de endpoints.

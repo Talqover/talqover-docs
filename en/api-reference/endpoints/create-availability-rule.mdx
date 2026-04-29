@@ -32,7 +32,7 @@ POST /api/v1/calendars/{calendar_id}/availability-rules
 
 ### When `type: "recurring"`
 
-<ParamField body="days_of_week" type="array" required>Array of weekday numbers (`1`=Mon ... `7`=Sun).</ParamField>
+<ParamField body="days_of_week" type="array" required>Array of weekday numbers (`1`=Mon . `7`=Sun).</ParamField>
 <ParamField body="start_time" type="string" required>Window start. Format: `HH:MM`.</ParamField>
 <ParamField body="end_time" type="string" required>Window end. Format: `HH:MM`.</ParamField>
 <ParamField body="timezone" type="string">IANA timezone. Defaults to calendar's timezone.</ParamField>

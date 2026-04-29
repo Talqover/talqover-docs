@@ -20,7 +20,7 @@ All requests to the Talkover API require authentication using environment tokens
 Your environment tokens will be displayed in the Environments section. Each environment has its own token that starts with `talq_` followed by a long string of characters.
 
 <Info>
-  Example token format: `talq_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`
+  Example token format: `talq_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.`
 </Info>
 
 <Warning>
@@ -126,14 +126,14 @@ $token = $_ENV['TALKOVER_TOKEN'];
 
 ## Token Security Best practices
 
-### ✅ Do's
+### Do
 
 - Store tokens in environment variables
 - Use secure secret management services
 - Rotate tokens regularly
 - Use different tokens for different environments (dev, staging, prod)
 
-### ❌ Don'ts
+### Don't
 
 - Never commit tokens to version control
 - Don't share tokens in public repositories

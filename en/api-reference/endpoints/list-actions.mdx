@@ -17,7 +17,7 @@ GET /api/v1/agents/{agent_id}/actions
 ## Path parameters
 
 <ParamField path="agent" type="string" required>
-  The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
+  The unique identifier of the voice agent.
 </ParamField>
 
 ## Request headers
@@ -193,10 +193,10 @@ try {
       Display label for the action.
     </ResponseField>
     <ResponseField name="description" type="string" required>
-      Detailed description of what the action does.
+      What the action does.
     </ResponseField>
     <ResponseField name="type" type="string" required>
-      Type of action. Options: `webhook`, `transfer`, `hold`, etc.
+      Type of action. Options: `webhook`, `transfer`, `hold`, `external`.
     </ResponseField>
     <ResponseField name="input_schema" type="array" required>
       Array of input parameters required for the action.
@@ -302,14 +302,6 @@ try {
   **Action types vary.** Different action types (webhook, transfer, hold) have different properties and configurations.
 </Info>
 
-## Best practices
-
-1. **Cache action data** - Action data doesn't change frequently, so consider caching the response
-2. **Handle empty responses** - Always check if the data array is empty before processing
-3. **Monitor action status** - Check the `current_status` to ensure actions are active
-4. **Understand action types** - Different action types require different handling in your application
-5. **Error handling** - Implement proper error handling for authentication and authorization failures
-6. **Rate limiting** - Be mindful of API rate limits when fetching action data
 
 ## Related endpoints
 

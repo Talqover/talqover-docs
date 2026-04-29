@@ -17,7 +17,7 @@ DELETE /api/v1/agents/{agent_id}
 ## Path parameters
 
 <ParamField path="agent" type="string" required>
-  The unique identifier of the voice agent to delete. You can find this in your dashboard under Voice Agents.
+  The unique identifier of the voice agent to delete.
 </ParamField>
 
 ## Request headers
@@ -157,13 +157,6 @@ console.log(result);
   **Published agents must be unpublished first.** If the agent is currently published, you must unpublish it before deletion.
 </Info>
 
-## Best practices
-
-1. **Verify agent status** - Check if the agent is published before attempting deletion
-2. **Backup important data** - Export any training data or configurations you want to keep
-3. **Check for active calls** - Ensure no calls are currently in progress
-4. **Update integrations** - Remove any webhook URLs or integrations that reference this agent
-5. **Notify team members** - Inform other users who might be using this agent
 
 ## Related endpoints
 

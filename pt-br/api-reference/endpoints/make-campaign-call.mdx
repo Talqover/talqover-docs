@@ -4,51 +4,11 @@ description: "Iniciar uma chamada como parte de uma campanha específica"
 api: "POST /api/v1/campaigns/{campaign_id}/call"
 ---
 
-# Realizar Chamada de Campanha
+# Realizar chamada de campanha
 
-Inicia uma chamada como parte de uma campanha específica. Este endpoint permite que você acione manualmente chamadas dentro de um contexto de campanha.
+Coloca uma chamada na fila de uma campanha. A chamada herda o agente, o agendamento, a política de retry e as regras de DNC da campanha.
 
-## Visão Geral
-
-O endpoint Realizar Chamada de Campanha permite que você inicie chamadas individuais dentro de uma campanha existente. Este endpoint utiliza a configuração e os ajustes da campanha para garantir que as chamadas sigam as regras e parâmetros estabelecidos pela campanha.
-
-## Chamadas de Campanha vs Chamadas Individuais de Agente
-
-### **Chamadas de Campanha** - Alcance Estratégico e Automatizado
-Chamadas de campanha são projetadas para **engajamento sistemático e em larga escala** com recursos avançados de automação:
-
-- **Configurações Específicas da Campanha**: Cada chamada herda a configuração da campanha (agente, lógica de retry, períodos de cooldown, horários de chamada)
-- **Agendamento Avançado**: Chamadas respeitam automaticamente o horário comercial, configurações de fuso horário e restrições de dia da semana
-- **Lógica de Retry**: Mecanismos de retry integrados com períodos de cooldown configuráveis entre tentativas
-- **Gerenciamento de Fluxo de Chamada**: Fluxos de chamada e mensagens consistentes em todas as chamadas da campanha
-- **Analytics de Desempenho**: Rastreamento e relatórios abrangentes no nível da campanha
-- **Recursos de Compliance**: Gerenciamento de listas do-not-call e ferramentas de conformidade regulatória
-- **Processamento em Lote**: Lida com milhares de chamadas com enfileiramento inteligente e rate limiting
-
-**Melhor para**: Campanhas de outreach, nutrição de leads, lembretes de compromissos, pesquisas de mercado, e qualquer cenário que exija chamadas consistentes e automatizadas com regras sofisticadas.
-
-### **Chamadas Individuais de Agente** - Interação Imediata e Personalizada
-Chamadas individuais de agente são perfeitas para **interações instantâneas e pontuais** que requerem atenção imediata:
-
-- **Execução Instantânea**: Chamadas são feitas imediatamente sem esperar o agendamento da campanha
-- **Contexto em Tempo Real**: Perfeito para follow-ups imediatos após submissões de formulários ou ações do cliente
-- **Parâmetros Flexíveis**: Customize parâmetros de chamada na hora para situações específicas
-- **Controle Direto**: Controle imediato sobre o timing e a execução da chamada
-- **Toque Pessoal**: Ideal para interações de alto valor que exigem atenção humana imediata
-
-**Melhor para**: Follow-ups de formulários, atendimento imediato ao cliente, agendamentos urgentes, leads de alta prioridade, e qualquer situação que exija resposta instantânea.
-
-## Quando Usar Cada Abordagem
-
-| Cenário | Use Chamada de Campanha | Use Chamada Individual de Agente |
-|---------|-------------------------|----------------------------------|
-| **Cliente preenche formulário de contato** | ❌ | ✅ **Follow-up imediato** |
-| **Nutrição de lead ao longo do tempo** | ✅ **Sequência automatizada** | ❌ |
-| **Lembretes de compromissos** | ✅ **Outreach agendado** | ❌ |
-| **Problema urgente do cliente** | ❌ | ✅ **Resposta instantânea** |
-| **Pesquisa de mercado** | ✅ **Chamadas em larga escala** | ❌ |
-| **Follow-up de venda após demo** | ❌ | ✅ **Conversão rápida** |
-| **Chamadas de satisfação do cliente** | ✅ **Outreach sistemático** | ❌ |
+Para chamadas avulsas (sem agendamento da campanha), use [Make a call](/pt-br/api-reference/endpoints/make-call).
 
 ## Endpoint
 
@@ -59,7 +19,7 @@ POST /api/v1/campaigns/{campaign_id}/call
 ## Parâmetros de caminho
 
 <ParamField path="campaign" type="string" required>
-  O identificador único da campanha. Você pode encontrá-lo em seu painel, na seção Campanhas.
+  O identificador único da campanha.
 </ParamField>
 
 ## Cabeçalhos da requisição
@@ -412,11 +372,11 @@ Para sobrescrever este comportamento intencionalmente (ex: uma chamada de follow
 
 | Status da Campanha | Pode Realizar Chamadas | Observações |
 |--------------------|------------------------|-------------|
-| `draft` | ❌ Não | A campanha precisa estar ativa |
-| `active` | ✅ Sim | Chamadas podem ser feitas |
-| `paused` | ❌ Não | A campanha está pausada |
-| `completed` | ❌ Não | A campanha foi finalizada |
-| `cancelled` | ❌ Não | A campanha foi cancelada |
+| `draft` | Não | A campanha precisa estar ativa |
+| `active` | Sim | Chamadas podem ser feitas |
+| `paused` | Não | A campanha está pausada |
+| `completed` | Não | A campanha foi finalizada |
+| `cancelled` | Não | A campanha foi cancelada |
 
 ## Observações importantes
 

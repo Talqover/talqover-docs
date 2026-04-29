@@ -17,7 +17,7 @@ DELETE /api/v1/agents/{agent_id}/actions/{action_id}
 ## Path parameters
 
 <ParamField path="agent" type="string" required>
-  The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
+  The unique identifier of the voice agent.
 </ParamField>
 
 <ParamField path="action" type="string" required>
@@ -194,15 +194,6 @@ try {
   **Active calls may be affected.** If the deleted action is currently being used in active calls, those calls may be affected.
 </Info>
 
-## Best practices
-
-1. **Verify before deleting** - Always list actions first to get the correct action ID
-2. **Backup important configurations** - Consider backing up action configurations before deletion
-3. **Check for dependencies** - Ensure no active calls or workflows depend on the action
-4. **Use inactive status** - Consider setting action to "inactive" instead of deleting if you might need it later
-5. **Monitor agent performance** - After deletion, monitor the agent's performance to ensure it still works as expected
-6. **Document changes** - Keep track of what actions were deleted and why
-7. **Test agent behavior** - Test the agent after deletion to ensure it handles scenarios that previously used the deleted action
 
 ## Related endpoints
 

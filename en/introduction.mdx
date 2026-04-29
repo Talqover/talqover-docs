@@ -1,63 +1,28 @@
 ---
-title: "Talkover API – Smart Voice Conversations at Scale"
-description: "Build phone conversations with our API. Automate customer communication through voice interactions."
+title: "Talkover API"
+description: "Build phone conversations programmatically. Automate sales, support, scheduling, and outreach through voice."
 ---
 
-Welcome to the **Talkover API** – a platform that enables phone conversations, helping businesses automate and scale customer communication through voice.
+The Talkover API lets you place and receive phone calls handled by voice agents — autonomous LLM-driven assistants that follow your instructions, run integrations during the call, and deliver structured results back to your system.
 
-With Talkover, you can:
+## What you build with it
 
-- Build natural, real-time call flows powered by LLMs (Large Language Models)
-- Automate support, sales, scheduling, and more
-- Operate 24/7 with no human intervention
-- Maintain full control and transparency over every call
+- Inbound agents that answer your phone numbers and handle support, scheduling, or qualification.
+- Outbound agents that follow up on form submissions, confirm appointments, or run surveys.
+- Campaigns that dispatch outreach at scale with retry rules, time windows, and DNC lists.
+- Webhooks that push events to your system so you can correlate calls with internal records.
 
-## Two Powerful Ways to Make Calls
+## Two ways to place calls
 
-Talkover offers two distinct approaches to customer engagement, each optimized for different business needs:
+There are two endpoints for outbound calls. Pick based on intent:
 
-### **Individual agent calls** - Immediate, High-Impact Engagement
-Perfect for **instant, personalized customer interactions** that drive immediate results:
+- **[Make a call](/en/api-reference/endpoints/make-call)** — one-off, dispatched immediately. Use for hot leads, callbacks after a form submission, or any flow where the call is triggered by a single user event.
+- **[Make a campaign call](/en/api-reference/endpoints/make-campaign-call)** — queued under a campaign. The campaign enforces working hours, retry policy, and DNC. Use for batch outreach.
 
-- **Instant Execution**: Calls made immediately without waiting for scheduling
-- **Real-Time Context**: Immediate follow-ups after form submissions or customer actions
-- **High-Value Conversions**: Ideal for high-priority leads and urgent customer needs
-- **Flexible Parameters**: Customize call parameters on-the-fly for specific situations
+Both return a `call_id` you can track via [List calls](/en/api-reference/endpoints/list-calls) or webhook events.
 
-**Best for**: Form follow-ups, immediate customer service, urgent scheduling, high-priority leads, and any situation requiring instant response.
+## Where to start
 
-### **Campaign calls** - Strategic, Automated Outreach
-Designed for **systematic, large-scale customer engagement** with automation:
-
-- **Campaign-Specific Settings**: Inherits campaign configuration (retry logic, cooldown periods, call hours)
-- **Advanced Scheduling**: Respects business hours, timezone settings, and day restrictions
-- **Retry Logic**: Built-in retry mechanisms with configurable cooldown periods
-- **Performance Analytics**: Comprehensive tracking and reporting at the campaign level
-- **Compliance Features**: Do-not-call list management and regulatory compliance tools
-
-**Best for**: Customer outreach campaigns, lead nurturing, appointment reminders, market research, and any scenario requiring consistent, automated calling with rules.
-
----
-
-### 🔧 What You Can Do with This API
-
-- **Create and manage call flows** - Design conversation paths
-- **Integrate seamlessly** with your existing platforms and workflows
-- **Control calls in real time** through the Talkover platform dashboard
-- **Monitor usage and performance** with analytics
-
----
-
-### 🚀 Getting Started
-
-To start using the Talkover API:
-
-1. **Authenticate** using your API key
-2. **Explore** the available endpoints below
-3. **Start building** custom, voice interactions
-
-<Tip>
-  Check out our [API Reference](/en/api-reference/introduction) for detailed endpoint documentation and examples.
-</Tip>
-
-> Let Talkover be the voice of your automation.
+1. [Quickstart](/en/getting-started/quickstart) — first call in a few requests.
+2. [Authentication](/en/api-reference/authentication) — environment tokens vs account tokens.
+3. [API reference](/en/api-reference/introduction) — full endpoint catalog.

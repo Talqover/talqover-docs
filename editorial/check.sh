@@ -4,8 +4,10 @@
 
 cd "$(dirname "$0")/.."
 
-echo "=== Buzzwords / openers ==="
-grep -rE "advanced|powerful|comprehensive|seamless|intelligent|cutting-edge|leverage|synergy|robust|AI-powered|AI-driven|world-class|enterprise-grade|sophisticated|in just [0-9]+ minute|This endpoint allows|Este endpoint permite" en/ pt-br/ --include="*.mdx" -l 2>/dev/null | wc -l | xargs echo "files com buzzword/opener filler:"
+echo "=== Buzzwords / openers (excluindo path /advanced-settings legítimo) ==="
+grep -rE "advanced|powerful|comprehensive|seamless|intelligent|cutting-edge|leverage|synergy|robust|AI-powered|AI-driven|world-class|enterprise-grade|sophisticated|in just [0-9]+ minute|This endpoint allows|Este endpoint permite" en/ pt-br/ --include="*.mdx" 2>/dev/null \
+  | grep -vE "advanced-settings|Advanced Settings|Configurações Avançadas|update-advanced-settings" \
+  | cut -d: -f1 | sort -u | wc -l | xargs echo "files com buzzword/opener filler:"
 
 echo ""
 echo "=== Headings em Title Case ==="

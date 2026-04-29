@@ -17,7 +17,7 @@ POST /api/v1/agents/{agent_id}/actions
 ## Parâmetros de caminho
 
 <ParamField path="agent" type="string" required>
-  O identificador único do agente de voz. Você pode encontrá-lo em seu painel, na seção Agentes de Voz.
+  O identificador único do agente de voz.
 </ParamField>
 
 ## Cabeçalhos da requisição
@@ -41,7 +41,7 @@ POST /api/v1/agents/{agent_id}/actions
 </ParamField>
 
 <ParamField body="description" type="string" required>
-  Descrição detalhada do que a ação faz
+  O que a ação faz
 </ParamField>
 
 <ParamField body="type" type="string" required>
@@ -362,7 +362,7 @@ console.log(result);
       Rótulo de exibição da ação.
     </ResponseField>
     <ResponseField name="description" type="string" required>
-      Descrição detalhada do que a ação faz.
+      O que a ação faz.
     </ResponseField>
     <ResponseField name="type" type="string" required>
       Tipo da ação. Opções: `webhook`, `transfer`, `hold`, etc.

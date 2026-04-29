@@ -32,7 +32,7 @@ POST /api/v1/calendars/{calendar_id}/availability-rules
 
 ### Quando `type: "recurring"`
 
-<ParamField body="days_of_week" type="array" required>Array de números de dias da semana (`1`=Seg ... `7`=Dom).</ParamField>
+<ParamField body="days_of_week" type="array" required>Array de números de dias da semana (`1`=Seg . `7`=Dom).</ParamField>
 <ParamField body="start_time" type="string" required>Início da janela. Formato: `HH:MM`.</ParamField>
 <ParamField body="end_time" type="string" required>Fim da janela. Formato: `HH:MM`.</ParamField>
 <ParamField body="timezone" type="string">IANA timezone. Padrão é o fuso horário do calendário.</ParamField>

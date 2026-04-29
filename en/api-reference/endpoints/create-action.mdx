@@ -17,7 +17,7 @@ POST /api/v1/agents/{agent_id}/actions
 ## Path parameters
 
 <ParamField path="agent" type="string" required>
-  The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
+  The unique identifier of the voice agent.
 </ParamField>
 
 ## Request headers
@@ -41,11 +41,11 @@ POST /api/v1/agents/{agent_id}/actions
 </ParamField>
 
 <ParamField body="description" type="string" required>
-  Detailed description of what the action does
+  What the action does
 </ParamField>
 
 <ParamField body="type" type="string" required>
-  Action type. Options: `webhook`, `transfer`, `hold`, etc.
+  Action type. Options: `webhook`, `transfer`, `hold`, `external`.
 </ParamField>
 
 <ParamField body="inputs" type="array" required={false}>
@@ -362,10 +362,10 @@ console.log(result);
       Display label for the action.
     </ResponseField>
     <ResponseField name="description" type="string" required>
-      Detailed description of what the action does.
+      What the action does.
     </ResponseField>
     <ResponseField name="type" type="string" required>
-      Type of action. Options: `webhook`, `transfer`, `hold`, etc.
+      Type of action. Options: `webhook`, `transfer`, `hold`, `external`.
     </ResponseField>
     <ResponseField name="input_schema" type="array" required>
       Array of input parameters required for the action.
@@ -499,14 +499,6 @@ console.log(result);
   **URL validation.** For webhook actions, both `url` and `authorization_url` must be valid URLs.
 </Warning>
 
-## Best practices
-
-1. **Test webhook URLs** - Always test webhook URLs before creating actions
-2. **Use descriptive names** - Give actions clear, descriptive names
-3. **Validate inputs** - Ensure all required input parameters are properly defined
-4. **Handle errors gracefully** - Implement proper error handling for action execution
-5. **Monitor action performance** - Track how often actions are triggered and their success rates
-6. **Document action behavior** - Provide clear descriptions of what each action does
 
 ## Related endpoints
 

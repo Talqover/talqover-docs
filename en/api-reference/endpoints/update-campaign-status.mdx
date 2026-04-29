@@ -17,7 +17,7 @@ PATCH /api/v1/campaigns/{campaign_id}/status
 ## Path parameters
 
 <ParamField path="campaign" type="string" required>
-  The unique identifier of the campaign. You can find this in your dashboard under Campaigns.
+  The unique identifier of the campaign.
 </ParamField>
 
 ## Request headers
@@ -315,13 +315,6 @@ console.log(result);
   **Cancelled campaigns.** Cancelling a campaign stops all future calls and cannot be undone.
 </Warning>
 
-## Best practices
-
-1. **Check current status** - Verify the current status before attempting transitions
-2. **Plan transitions** - Understand the allowed status transitions for your use case
-3. **Monitor effects** - Track how status changes affect campaign performance
-4. **Handle errors** - Implement proper error handling for invalid transitions
-5. **Use appropriate statuses** - Use `paused` for temporary stops and `cancelled` for permanent stops
 
 ## Related endpoints
 

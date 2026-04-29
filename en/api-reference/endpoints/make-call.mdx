@@ -19,7 +19,7 @@ POST /api/v1/agents/{agent_id}/call
 ## Path parameters
 
 <ParamField path="agent_id" type="string" required>
-  The unique identifier of the voice agent that will handle the call. You can find this in your dashboard under Voice Agents.
+  The unique identifier of the voice agent that will handle the call.
 </ParamField>
 
 ## Request headers
@@ -290,13 +290,6 @@ Rate limit headers are included in all responses:
 - `X-RateLimit-Remaining`: Remaining requests in current window
 - `X-RateLimit-Reset`: Time when the rate limit resets
 
-## Best practices
-
-1. **Always handle errors gracefully** — check for error responses and implement retry logic with exponential backoff.
-2. **Store call IDs** — use the returned `data.id` to track call status and correlate with webhook events.
-3. **Use `context` for tracking** — pass internal IDs in `context` so webhook events can be linked back to your system records.
-4. **Use `is_testing` during integration** — keeps test traffic out of analytics and avoids billing.
-5. **Validate phone numbers** before calling — ensure E.164 format (`+` followed by country code and number).
 
 ## Related endpoints
 

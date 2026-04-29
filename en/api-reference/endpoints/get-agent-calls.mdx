@@ -17,7 +17,7 @@ GET /api/v1/agents/{agent_id}/calls
 ## Path parameters
 
 <ParamField path="agent" type="string" required>
-  The unique identifier of the agent. You can find this in your dashboard under Voice Agents.
+  The unique identifier of the agent.
 </ParamField>
 
 ## Request headers
@@ -341,13 +341,6 @@ console.log(result);
   **No agent object.** The response doesn't include the agent object since it's already specified in the URL.
 </Info>
 
-## Best practices
-
-1. **Use pagination** - Always use pagination for large datasets
-2. **Filter by date** - Use date filters to limit results to relevant time periods
-3. **Monitor performance** - Track call status and duration for agent performance analysis
-4. **Search efficiently** - Use the search parameter to find specific calls quickly
-5. **Handle errors** - Implement proper error handling for authentication and validation failures
 
 ## Related endpoints
 

@@ -17,7 +17,7 @@ PUT /api/v1/agents/{agent_id}/voice
 ## Path parameters
 
 <ParamField path="agent" type="string" required>
-  The unique identifier of the voice agent to update. You can find this in your dashboard under Voice Agents.
+  The unique identifier of the voice agent to update.
 </ParamField>
 
 ## Request headers
@@ -186,9 +186,9 @@ console.log(result);
     "is_ready_to_publish": false,
     "created_at": "2024-01-15T10:30:00Z",
     "updated_at": "2024-01-15T10:40:00Z",
-    "trainings": [...],
-    "actions": [...],
-    "phone_numbers": [...]
+    "trainings": [.],
+    "actions": [.],
+    "phone_numbers": [.]
   }
 }
 ```
@@ -327,13 +327,6 @@ console.log(result);
   **Voice settings affect call quality.** Higher stability values (closer to 1.0) provide more consistent voice output, while higher similarity values (closer to 1.0) enhance voice characteristics.
 </Info>
 
-## Best practices
-
-1. **Test voice changes** - Always test voice updates before publishing
-2. **Balance stability and similarity** - Higher stability for professional calls, higher similarity for personal touch
-3. **Consider conversation speed** - Faster speeds for quick interactions, slower for complex topics
-4. **Match language to voice** - Ensure the voice template supports the specified language
-5. **Set appropriate ambient background** - Use "office" for business calls, "quiet" for personal calls
 
 ## Related endpoints
 

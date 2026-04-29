@@ -17,7 +17,7 @@ PUT /api/v1/agents/{agent_id}/knowledge
 ## Path parameters
 
 <ParamField path="agent" type="string" required>
-  The unique identifier of the voice agent to update. You can find this in your dashboard under Voice Agents.
+  The unique identifier of the voice agent to update.
 </ParamField>
 
 ## Request headers
@@ -156,7 +156,7 @@ console.log(result);
     "label": "Customer Support Agent",
     "description": "Updated agent description with more details",
     "language": "en-US",
-    "voice": {...},
+    "voice": {.},
     "initial_message": "Hello! Welcome to our support line. How may I assist you today?",
     "interrupt_sensitivity": "high",
     "conversation_speed": 1.0,
@@ -169,9 +169,9 @@ console.log(result);
     "is_ready_to_publish": false,
     "created_at": "2024-01-15T10:30:00Z",
     "updated_at": "2024-01-15T10:35:00Z",
-    "trainings": [...],
-    "actions": [...],
-    "phone_numbers": [...]
+    "trainings": [.],
+    "actions": [.],
+    "phone_numbers": [.]
   }
 }
 ```
@@ -315,13 +315,6 @@ console.log(result);
   **LLM Temperature affects creativity.** Higher values (closer to 2) make responses more creative and varied, while lower values (closer to 0) make responses more focused and consistent.
 </Info>
 
-## Best practices
-
-1. **Test changes in draft mode** - Always test knowledge updates before publishing
-2. **Use clear descriptions** - Provide detailed descriptions to help the agent understand its role
-3. **Optimize interrupt sensitivity** - Use "high" for support agents, "medium" for sales, "low" for informational
-4. **Set appropriate delays** - Use longer delays for outbound calls, shorter for inbound
-5. **Monitor LLM temperature** - Adjust based on whether you need consistent or creative responses
 
 ## Related endpoints
 
