@@ -7,6 +7,8 @@
   "domain": "talk.directmkt.com.br",
   "api_base_url": "https://talk.directmkt.com.br/api/v1",
   "support_email": "suporte@directmkt.com.br",
+  "support_email_pt": "suporte@directmkt.com.br",
   "token_prefix": "dc_",
+  "token_env_name": "DIRECT_CALL_TOKEN",
   "websocket_host": "rt.directmkt.com.br"
 }

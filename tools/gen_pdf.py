@@ -56,8 +56,10 @@ DEFAULT_BRAND = {
     "accent_color": "#3730a3",
     "domain": "app.talkover.ai",
     "api_base_url": "https://app.talkover.ai/api/v1",
-    "support_email": "contact@talkover.com",
+    "support_email": "contact@talkover.ai",
+    "support_email_pt": "contato@talkover.ai",
     "token_prefix": "talq_",
+    "token_env_name": "TALKOVER_TOKEN",
     "websocket_host": "rt.talkover.ai",
 }
 
@@ -198,22 +200,41 @@ def apply_brand(text: str, brand: dict) -> str:
     """
     # API base URL
     text = text.replace("https://app.talkover.ai/api/v1", brand["api_base_url"])
-    text = text.replace("app.talkover.ai/api/v1", brand["api_base_url"].replace("https://", "").replace("http://", ""))
-    # Bare domain (cover broader use)
+    text = text.replace(
+        "app.talkover.ai/api/v1",
+        brand["api_base_url"].replace("https://", "").replace("http://", ""),
+    )
+    # Bare domain
     if brand["domain"] != DEFAULT_BRAND["domain"]:
         text = text.replace("app.talkover.ai", brand["domain"])
-    # Email
-    text = text.replace("contact@talkover.com", brand["support_email"])
+    # Emails (en + pt)
+    if brand["support_email"] != DEFAULT_BRAND["support_email"]:
+        text = text.replace("contact@talkover.ai", brand["support_email"])
+        text = text.replace("contact@talkover.com", brand["support_email"])
+    pt_email = brand.get("support_email_pt") or brand["support_email"]
+    if pt_email != DEFAULT_BRAND["support_email_pt"]:
+        text = text.replace("contato@talkover.ai", pt_email)
+        text = text.replace("contato@talkover.com", pt_email)
     # Token prefix (talq_xxx -> client_xxx)
     if brand["token_prefix"] != DEFAULT_BRAND["token_prefix"]:
         text = re.sub(r"\btalq_", brand["token_prefix"], text)
-    # WebSocket host (kept here for completeness even if rare in current docs)
+    # ENV variable name (TALKOVER_TOKEN -> CLIENT_TOKEN)
+    if brand["token_env_name"] != DEFAULT_BRAND["token_env_name"]:
+        text = text.replace("TALKOVER_TOKEN", brand["token_env_name"])
+    # WebSocket host
     if brand["websocket_host"] != DEFAULT_BRAND["websocket_host"]:
         text = text.replace("rt.talkover.ai", brand["websocket_host"])
-    # Brand name — only "Talkover API" (more specific) then bare "Talkover"
+    # Bare residual reference to talkover domain (without app.)
+    if brand["domain"] != DEFAULT_BRAND["domain"] and "talkover" not in brand["domain"]:
+        text = re.sub(r"\btalkover\.ai\b", brand["domain"], text)
+    # Brand name — most specific first
     if brand["name"] != DEFAULT_BRAND["name"]:
+        bare_name = brand.get("company_name") or (
+            brand["name"].replace(" API", "").replace(" Voice API", "")
+        )
         text = text.replace("Talkover API", brand["name"])
-        text = text.replace("Talkover", brand["name"].replace(" API", "").replace(" Voice API", ""))
+        text = text.replace("Talkover", bare_name)
+        text = text.replace("talkover", bare_name.lower())
     return text
 
 
