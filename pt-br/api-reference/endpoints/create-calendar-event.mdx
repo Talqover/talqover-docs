@@ -1,12 +1,12 @@
 ---
-title: "Create Calendar Event"
-description: "Create an event on a calendar"
+title: "Criar Evento de Calendário"
+description: "Criar um evento em um calendário"
 api: "POST /api/v1/calendars/{calendar_id}/events"
 ---
 
-# Create Calendar Event
+# Criar Evento de Calendário
 
-Create a new event on a calendar.
+Criar um novo evento em um calendário.
 
 ## Endpoint
 
@@ -14,32 +14,32 @@ Create a new event on a calendar.
 POST /api/v1/calendars/{calendar_id}/events
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-<ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
+<ParamField header="Content-Type" type="string" required>Deve ser `application/json`.</ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-<ParamField body="title" type="string" required>Event title.</ParamField>
-<ParamField body="description" type="string">Optional description.</ParamField>
-<ParamField body="start_at" type="string" required>Start time. ISO 8601.</ParamField>
-<ParamField body="end_at" type="string" required>End time. ISO 8601. Must be after `start_at`.</ParamField>
-<ParamField body="status" type="string">Options: `confirmed`, `tentative`, `cancelled`. Default: `confirmed`.</ParamField>
-<ParamField body="type" type="string">Free-form event type tag (e.g., `meeting`, `block`, `appointment`).</ParamField>
-<ParamField body="created_by" type="string">UUID of the creating user.</ParamField>
-<ParamField body="owner_id" type="string">UUID of the owner (user or agent).</ParamField>
-<ParamField body="owner_type" type="string">Owner type. Options: `user`, `agent`.</ParamField>
-<ParamField body="attendees" type="array">Array of `{ name, email }` objects.</ParamField>
+<ParamField body="title" type="string" required>Título do evento.</ParamField>
+<ParamField body="description" type="string">Descrição opcional.</ParamField>
+<ParamField body="start_at" type="string" required>Horário de início. ISO 8601.</ParamField>
+<ParamField body="end_at" type="string" required>Horário de término. ISO 8601. Deve ser posterior a `start_at`.</ParamField>
+<ParamField body="status" type="string">Opções: `confirmed`, `tentative`, `cancelled`. Padrão: `confirmed`.</ParamField>
+<ParamField body="type" type="string">Tag livre de tipo de evento (ex: `meeting`, `block`, `appointment`).</ParamField>
+<ParamField body="created_by" type="string">UUID do usuário criador.</ParamField>
+<ParamField body="owner_id" type="string">UUID do proprietário (usuário ou agente).</ParamField>
+<ParamField body="owner_type" type="string">Tipo do proprietário. Opções: `user`, `agent`.</ParamField>
+<ParamField body="attendees" type="array">Array de objetos `{ name, email }`.</ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -58,7 +58,7 @@ curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/events" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

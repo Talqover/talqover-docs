@@ -1,12 +1,12 @@
 ---
-title: "List Calendar Members"
-description: "List members of a calendar"
+title: "Listar Membros do Calendário"
+description: "Listar membros de um calendário"
 api: "GET /api/v1/calendars/{calendar_id}/members"
 ---
 
-# List Calendar Members
+# Listar Membros do Calendário
 
-List users who have access to a calendar.
+Listar usuários que têm acesso a um calendário.
 
 ## Endpoint
 
@@ -14,17 +14,17 @@ List users who have access to a calendar.
 GET /api/v1/calendars/{calendar_id}/members
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

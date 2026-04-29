@@ -1,12 +1,12 @@
 ---
-title: "Add Calendar Member"
-description: "Grant a user access to a calendar"
+title: "Adicionar Membro ao Calendário"
+description: "Conceder acesso de um usuário a um calendário"
 api: "POST /api/v1/calendars/{calendar_id}/members"
 ---
 
-# Add Calendar Member
+# Adicionar Membro ao Calendário
 
-Grant a user access to a calendar with a specific role.
+Conceder acesso de um usuário a um calendário com uma função específica.
 
 ## Endpoint
 
@@ -14,24 +14,24 @@ Grant a user access to a calendar with a specific role.
 POST /api/v1/calendars/{calendar_id}/members
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-<ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
+<ParamField header="Content-Type" type="string" required>Deve ser `application/json`.</ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-<ParamField body="user_id" type="string" required>UUID of the user to add.</ParamField>
-<ParamField body="role" type="string" required>Member role. Options: `owner`, `editor`, `viewer`.</ParamField>
+<ParamField body="user_id" type="string" required>UUID do usuário a adicionar.</ParamField>
+<ParamField body="role" type="string" required>Função do membro. Opções: `owner`, `editor`, `viewer`.</ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -44,7 +44,7 @@ curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/members" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

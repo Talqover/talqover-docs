@@ -1,12 +1,12 @@
 ---
-title: "Get Agent Pricing"
-description: "Retrieve a detailed pricing breakdown for an agent"
+title: "Obter Preços do Agente"
+description: "Recuperar um detalhamento de preços para um agente"
 api: "GET /api/v1/agents/{agent_id}/pricing"
 ---
 
-# Get Agent Pricing
+# Obter Preços do Agente
 
-Retrieve a detailed cost breakdown for an agent — voice synthesis, transcription, language model, and transport components — based on the agent's current configuration and your environment's plan.
+Recuperar um detalhamento de custos para um agente — síntese de voz, transcrição, modelo de linguagem e componentes de transporte — com base na configuração atual do agente e no plano do seu ambiente.
 
 ## Endpoint
 
@@ -14,19 +14,19 @@ Retrieve a detailed cost breakdown for an agent — voice synthesis, transcripti
 GET /api/v1/agents/{agent_id}/pricing
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="agent_id" type="string" required>
-  Agent UUID.
+  UUID do agente.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -45,7 +45,7 @@ const result = await response.json();
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -91,8 +91,8 @@ const result = await response.json();
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Pricing reflects the **current** plan and the agent's voice/transport configuration. It will change if you upgrade your plan or change the agent's voice template.
-- For a higher-level summary, use [Get Agent Pricing Summary](/api-reference/endpoints/get-agent-pricing-summary).
-- Use [Check Optimized Costs Eligibility](/api-reference/endpoints/check-optimized-costs-eligibility) to see if your agent qualifies for cached pricing.
+- Os preços refletem o plano **atual** e a configuração de voz/transporte do agente. Eles serão alterados se você atualizar o seu plano ou alterar o modelo de voz do agente.
+- Para um resumo de nível superior, use [Obter Resumo de Preços do Agente](/api-reference/endpoints/get-agent-pricing-summary).
+- Use [Verificar Elegibilidade para Custos Otimizados](/api-reference/endpoints/check-optimized-costs-eligibility) para ver se o seu agente se qualifica para preços com cache.

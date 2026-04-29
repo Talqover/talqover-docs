@@ -1,12 +1,12 @@
 ---
-title: "Get Agent Pricing Summary"
-description: "Retrieve a high-level pricing summary for an agent"
+title: "Obter Resumo de Preços do Agente"
+description: "Recuperar um resumo de preços de alto nível para um agente"
 api: "GET /api/v1/agents/{agent_id}/pricing/summary"
 ---
 
-# Get Agent Pricing Summary
+# Obter Resumo de Preços do Agente
 
-Retrieve an aggregated, single-line cost estimate for an agent. Lighter than the full breakdown — useful for showing pricing in lists or summaries.
+Recupera uma estimativa de custo agregada e em uma única linha para um agente. Mais leve do que o detalhamento completo — útil para exibir preços em listas ou resumos.
 
 ## Endpoint
 
@@ -14,19 +14,19 @@ Retrieve an aggregated, single-line cost estimate for an agent. Lighter than the
 GET /api/v1/agents/{agent_id}/pricing/summary
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="agent_id" type="string" required>
-  Agent UUID.
+  UUID do agente.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -45,7 +45,7 @@ const result = await response.json();
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -64,7 +64,7 @@ const result = await response.json();
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- For a full breakdown by component, use [Get Agent Pricing](/api-reference/endpoints/get-agent-pricing).
-- `optimized_costs_enabled` reflects whether the agent currently uses cached/optimized pricing. See [Check Optimized Costs Eligibility](/api-reference/endpoints/check-optimized-costs-eligibility).
+- Para um detalhamento completo por componente, use [Obter Preços do Agente](/api-reference/endpoints/get-agent-pricing).
+- `optimized_costs_enabled` reflete se o agente usa atualmente preços otimizados/com cache. Veja [Verificar Elegibilidade para Custos Otimizados](/api-reference/endpoints/check-optimized-costs-eligibility).

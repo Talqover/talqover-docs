@@ -1,12 +1,12 @@
 ---
-title: "Get Auto Topup History"
-description: "List recent auto topup recharge events"
+title: "Obter Histórico de Recarga Automática"
+description: "Listar eventos recentes de recarga automática"
 api: "GET /api/v1/auto-topup/history"
 ---
 
-# Get Auto Topup History
+# Obter Histórico de Recarga Automática
 
-List recent auto topup recharge events for your environment, including amount, status, and the trigger (threshold or scheduled).
+Lista os eventos recentes de recarga automática do seu ambiente, incluindo valor, status e o disparador (limite mínimo ou agendado).
 
 ## Endpoint
 
@@ -14,18 +14,18 @@ List recent auto topup recharge events for your environment, including amount, s
 GET /api/v1/auto-topup/history
 ```
 
-## Query Parameters
+## Parâmetros de Consulta
 
-<ParamField query="per_page" type="integer">Items per page. Range: `1`–`100`. Default: `25`.</ParamField>
-<ParamField query="page" type="integer">Page number. Default: `1`.</ParamField>
+<ParamField query="per_page" type="integer">Itens por página. Faixa: `1`–`100`. Padrão: `25`.</ParamField>
+<ParamField query="page" type="integer">Número da página. Padrão: `1`.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -36,7 +36,7 @@ curl "https://talkover.app/api/v1/auto-topup/history?per_page=10" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -78,14 +78,14 @@ curl "https://talkover.app/api/v1/auto-topup/history?per_page=10" \
 
 </ResponseExample>
 
-### Trigger Values
+### Valores de Disparador
 
-- `threshold` — fired because balance dropped below `threshold_amount`
-- `scheduled` — fired on a configured day of month
-- `test` — manual test recharge via [Test Auto Topup](/api-reference/endpoints/test-auto-topup)
+- `threshold` — disparado porque o saldo caiu abaixo de `threshold_amount`
+- `scheduled` — disparado em um dia configurado do mês
+- `test` — recarga de teste manual via [Testar Recarga Automática](/api-reference/endpoints/test-auto-topup)
 
-### Status Values
+### Valores de Status
 
-- `pending` — payment in flight
-- `succeeded` — payment captured, balance credited
-- `failed` — payment declined or errored
+- `pending` — pagamento em processamento
+- `succeeded` — pagamento capturado, saldo creditado
+- `failed` — pagamento recusado ou com erro

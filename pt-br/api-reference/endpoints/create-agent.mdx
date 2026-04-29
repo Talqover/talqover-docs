@@ -1,12 +1,12 @@
 ---
-title: "Create Agent"
-description: "Create a new voice agent with specified configuration and settings"
+title: "Criar Agente"
+description: "Criar um novo agente de voz com configuração e ajustes especificados"
 api: "POST /api/v1/agents"
 ---
 
-# Create Agent
+# Criar Agente
 
-Create a new voice agent with specified configuration, voice settings, and behavior parameters. The agent will be created in draft status and can be published later.
+Criar um novo agente de voz com configuração, ajustes de voz e parâmetros de comportamento especificados. O agente será criado com status de rascunho e pode ser publicado posteriormente.
 
 ## Endpoint
 
@@ -14,115 +14,115 @@ Create a new voice agent with specified configuration, voice settings, and behav
 POST /api/v1/agents
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-None
+Nenhum
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="label" type="string" required>
-  Agent label (max 255 characters)
+  Rótulo do agente (máximo de 255 caracteres)
 </ParamField>
 
 <ParamField body="description" type="string" required={false}>
-  Agent description
+  Descrição do agente
 </ParamField>
 
 <ParamField body="name" type="string" required>
-  Agent name (max 255 characters)
+  Nome do agente (máximo de 255 caracteres)
 </ParamField>
 
 <ParamField body="language" type="string" required>
-  Agent language code. Supported values: `pt-BR`, `pt-PT`, `en-US`, `en-CA`, `es-ES`, `fr-FR`, `de-DE`, `it-IT`, `nl-NL`, `ja-JP`, `ko-KR`, `zh-TW`.
+  Código de idioma do agente. Valores suportados: `pt-BR`, `pt-PT`, `en-US`, `en-CA`, `es-ES`, `fr-FR`, `de-DE`, `it-IT`, `nl-NL`, `ja-JP`, `ko-KR`, `zh-TW`.
 </ParamField>
 
 <ParamField body="initial_message" type="string" required={false}>
-  Initial message the agent will say. Optional.
+  Mensagem inicial que o agente irá dizer. Opcional.
 </ParamField>
 
 <ParamField body="interrupt_sensitivity" type="string" required>
-  How easily the agent allows the caller to interrupt. Options: `low`, `medium`, `high`.
+  Quão facilmente o agente permite que o chamador o interrompa. Opções: `low`, `medium`, `high`.
 </ParamField>
 
 <ParamField body="endpointing_sensitivity" type="string" required>
-  How aggressively the agent detects end-of-utterance. Max 255 characters.
+  Quão agressivamente o agente detecta o fim da fala. Máximo de 255 caracteres.
 </ParamField>
 
 <ParamField body="ivr_navigation_mode" type="string" required>
-  IVR navigation behavior for outbound calls that hit interactive menus. Max 255 characters.
+  Comportamento de navegação em URA para chamadas de saída que encontram menus interativos. Máximo de 255 caracteres.
 </ParamField>
 
 <ParamField body="conversation_speed" type="number" required>
-  Conversation playback speed multiplier. Range: `0.1`–`3.0`.
+  Multiplicador de velocidade de reprodução da conversa. Faixa: `0.1`–`3.0`.
 </ParamField>
 
 <ParamField body="initial_message_delay" type="integer" required>
-  Delay in seconds before the agent says the initial message. Range: `0`–`60`.
+  Atraso em segundos antes do agente dizer a mensagem inicial. Faixa: `0`–`60`.
 </ParamField>
 
 <ParamField body="ask_if_human_present_on_idle" type="boolean" required>
-  When `true`, the agent asks "Are you still there?" after the idle timeout instead of ending the call.
+  Quando `true`, o agente pergunta "Você ainda está aí?" após o tempo limite de inatividade em vez de encerrar a chamada.
 </ParamField>
 
 <ParamField body="idle_time_seconds" type="integer" required>
-  Seconds of caller silence before triggering the idle behavior. Range: `1`–`60`.
+  Segundos de silêncio do chamador antes de acionar o comportamento de inatividade. Faixa: `1`–`60`.
 </ParamField>
 
 <ParamField body="max_idle_check_count" type="integer" required={false}>
-  Maximum number of idle re-prompts before ending the call. Range: `1`–`10`. Optional.
+  Número máximo de re-prompts de inatividade antes de encerrar a chamada. Faixa: `1`–`10`. Opcional.
 </ParamField>
 
 <ParamField body="max_call_duration_seconds" type="integer" required={false}>
-  Hard limit on call duration in seconds. Range: `1`–`3600`. Optional.
+  Limite máximo de duração da chamada em segundos. Faixa: `1`–`3600`. Opcional.
 </ParamField>
 
 <ParamField body="say_goodbye_on_max_duration" type="boolean" required={false}>
-  When `true`, the agent says a closing message before terminating a call that hits `max_call_duration_seconds`. Optional.
+  Quando `true`, o agente diz uma mensagem de encerramento antes de terminar uma chamada que atinge `max_call_duration_seconds`. Opcional.
 </ParamField>
 
 <ParamField body="user_inactivity_timeout_seconds" type="integer" required={false}>
-  Seconds of total inactivity before the agent gives up entirely. Range: `5`–`120`. Optional.
+  Segundos de inatividade total antes do agente desistir completamente. Faixa: `5`–`120`. Opcional.
 </ParamField>
 
 <ParamField body="initial_idle_time_seconds" type="integer" required={false}>
-  Idle threshold to use **before** the agent has said its initial message (handles cases where the line opens but the caller doesn't speak). Range: `1`–`60`. Optional.
+  Limite de inatividade a usar **antes** do agente ter dito sua mensagem inicial (lida com casos em que a linha abre, mas o chamador não fala). Faixa: `1`–`60`. Opcional.
 </ParamField>
 
 <ParamField body="initial_max_idle_check_count" type="integer" required={false}>
-  Maximum number of initial idle prompts before terminating. Range: `0`–`10`. Optional.
+  Número máximo de prompts iniciais de inatividade antes de terminar. Faixa: `0`–`10`. Opcional.
 </ParamField>
 
 <ParamField body="llm_temperature" type="number" required>
-  Sampling temperature for the language model. Range: `0`–`2`. Lower values make responses more deterministic.
+  Temperatura de amostragem para o modelo de linguagem. Faixa: `0`–`2`. Valores menores tornam as respostas mais determinísticas.
 </ParamField>
 
 <ParamField body="enable_recording" type="boolean" required>
-  Whether to record calls handled by this agent.
+  Se as chamadas tratadas por este agente devem ser gravadas.
 </ParamField>
 
 <ParamField body="direction" type="string" required>
-  Call direction. Options: `inbound`, `outbound`.
+  Direção da chamada. Opções: `inbound`, `outbound`.
 </ParamField>
 
 <ParamField body="who_speaks_first" type="string" required>
-  Who speaks first. Options: `agent`, `user`.
+  Quem fala primeiro. Opções: `agent`, `user`.
 </ParamField>
 
 <ParamField body="phone_number_ids" type="array" required={false}>
-  Array of phone number UUIDs to assign to this agent at creation. Use [List Phone Numbers](/api-reference/endpoints/list-phone-numbers) to retrieve available IDs. Can also be set later via [Update Agent Calling](/api-reference/endpoints/update-agent-calling).
+  Array de UUIDs de números de telefone a atribuir a este agente na criação. Use [Listar Números de Telefone](/api-reference/endpoints/list-phone-numbers) para recuperar os IDs disponíveis. Também pode ser definido posteriormente via [Atualizar Chamadas do Agente](/api-reference/endpoints/update-agent-calling).
 </ParamField>
 
-## Example Requests
+## Exemplos de Requisição
 
 <RequestExample>
 
@@ -246,9 +246,9 @@ console.log(result);
 
 </RequestExample>
 
-## Response
+## Resposta
 
-### Success Response (201 Created)
+### Resposta de Sucesso (201 Created)
 
 <ResponseExample>
 
@@ -284,9 +284,9 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### Validation Error (422)
+### Erro de Validação (422)
 
 <ResponseExample>
 
@@ -328,7 +328,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Unauthorized Error (401)
+### Erro Não Autorizado (401)
 
 <ResponseExample>
 
@@ -341,7 +341,7 @@ console.log(result);
 
 </ResponseExample>
 
-### Too Many Requests (429)
+### Muitas Requisições (429)
 
 <ResponseExample>
 

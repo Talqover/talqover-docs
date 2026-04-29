@@ -1,12 +1,12 @@
 ---
-title: "Update Calendar"
-description: "Update a calendar"
+title: "Atualizar Calendário"
+description: "Atualizar um calendário"
 api: "PUT /api/v1/calendars/{calendar_id}"
 ---
 
-# Update Calendar
+# Atualizar Calendário
 
-Update a calendar's properties.
+Atualizar as propriedades de um calendário.
 
 ## Endpoint
 
@@ -14,27 +14,27 @@ Update a calendar's properties.
 PUT /api/v1/calendars/{calendar_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-<ParamField body="name" type="string">Calendar name.</ParamField>
+<ParamField body="name" type="string">Nome do calendário.</ParamField>
 <ParamField body="timezone" type="string">IANA timezone.</ParamField>
-<ParamField body="metadata" type="object">Free-form metadata.</ParamField>
+<ParamField body="metadata" type="object">Metadados livres.</ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -47,7 +47,7 @@ curl -X PUT "https://talkover.app/api/v1/calendars/calendar-uuid-1" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

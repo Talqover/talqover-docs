@@ -1,12 +1,12 @@
 ---
-title: "Get Callback Agent"
-description: "Retrieve callback configuration and stats for a specific agent"
+title: "Obter Agente de Callback"
+description: "Recuperar configuração de callback e estatísticas de um agente específico"
 api: "GET /api/v1/callback-agents/{agent_id}"
 ---
 
-# Get Callback Agent
+# Obter Agente de Callback
 
-Retrieve detailed callback configuration for a single agent, including its source agents and recent callback activity.
+Recupera a configuração detalhada de callback para um único agente, incluindo seus agentes de origem e a atividade recente de callback.
 
 ## Endpoint
 
@@ -14,17 +14,17 @@ Retrieve detailed callback configuration for a single agent, including its sourc
 GET /api/v1/callback-agents/{agent_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>UUID of the callback agent.</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente de callback.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -35,7 +35,7 @@ curl "https://talkover.app/api/v1/callback-agents/agent-uuid-1" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -63,9 +63,9 @@ curl "https://talkover.app/api/v1/callback-agents/agent-uuid-1" \
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 404 — Not a Callback Agent
+### 404 — Não é um Agente de Callback
 
 <ResponseExample>
 
@@ -78,6 +78,6 @@ curl "https://talkover.app/api/v1/callback-agents/agent-uuid-1" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- To configure an agent as a callback, use [Set Agent as Callback](/api-reference/endpoints/set-agent-as-callback).
+- Para configurar um agente como callback, use [Definir Agente como Callback](/api-reference/endpoints/set-agent-as-callback).

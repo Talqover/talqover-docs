@@ -1,12 +1,12 @@
 ---
-title: "Update Calendar Event"
-description: "Update a calendar event"
+title: "Atualizar Evento do Calendário"
+description: "Atualizar um evento de calendário"
 api: "PUT /api/v1/calendars/{calendar_id}/events/{event_id}"
 ---
 
-# Update Calendar Event
+# Atualizar Evento do Calendário
 
-Update fields on an existing calendar event. All fields are optional.
+Atualizar campos de um evento de calendário existente. Todos os campos são opcionais.
 
 ## Endpoint
 
@@ -14,24 +14,24 @@ Update fields on an existing calendar event. All fields are optional.
 PUT /api/v1/calendars/{calendar_id}/events/{event_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
-<ParamField path="event_id" type="string" required>Event UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
+<ParamField path="event_id" type="string" required>UUID do evento.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-<ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
+<ParamField header="Content-Type" type="string" required>Deve ser `application/json`.</ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-Same fields as [Create Calendar Event](/api-reference/endpoints/create-calendar-event), all optional.
+Mesmos campos de [Criar Evento de Calendário](/api-reference/endpoints/create-calendar-event), todos opcionais.
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -44,7 +44,7 @@ curl -X PUT "https://talkover.app/api/v1/calendars/calendar-uuid-1/events/event-
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

@@ -1,12 +1,12 @@
 ---
-title: "Check Optimized Costs Eligibility"
-description: "Check whether an agent qualifies for optimized cost pricing"
+title: "Verificar Elegibilidade para Custos Otimizados"
+description: "Verificar se um agente se qualifica para precificação com custos otimizados"
 api: "GET /api/v1/agents/{agent_id}/optimized-costs-eligibility"
 ---
 
-# Check Optimized Costs Eligibility
+# Verificar Elegibilidade para Custos Otimizados
 
-Check whether an agent qualifies for optimized cost pricing. Optimized costs apply caching to repeated agent prompts and reduce per-call cost — eligibility is based on call volume over a recent window.
+Verifica se um agente se qualifica para precificação com custos otimizados. Os custos otimizados aplicam cache em prompts repetidos do agente e reduzem o custo por chamada — a elegibilidade é baseada no volume de chamadas em uma janela recente.
 
 ## Endpoint
 
@@ -14,19 +14,19 @@ Check whether an agent qualifies for optimized cost pricing. Optimized costs app
 GET /api/v1/agents/{agent_id}/optimized-costs-eligibility
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="agent_id" type="string" required>
-  Agent UUID.
+  UUID do agente.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -45,9 +45,9 @@ const result = await response.json();
 
 </RequestExample>
 
-## Response
+## Resposta
 
-### Eligible
+### Elegível
 
 <ResponseExample>
 
@@ -65,7 +65,7 @@ const result = await response.json();
 
 </ResponseExample>
 
-### Not Eligible
+### Não Elegível
 
 <ResponseExample>
 
@@ -84,26 +84,26 @@ const result = await response.json();
 
 </ResponseExample>
 
-### Response Fields
+### Campos da Resposta
 
 <ResponseField name="data.eligible" type="boolean" required>
-  Whether the agent currently meets the volume threshold for optimized costs.
+  Se o agente atende atualmente ao limite de volume para custos otimizados.
 </ResponseField>
 
 <ResponseField name="data.current_calls" type="integer" required>
-  Number of calls placed by this agent in the last `threshold_days` days.
+  Número de chamadas realizadas por este agente nos últimos `threshold_days` dias.
 </ResponseField>
 
 <ResponseField name="data.required_calls" type="integer" required>
-  Volume threshold required for eligibility.
+  Limite de volume necessário para elegibilidade.
 </ResponseField>
 
 <ResponseField name="data.threshold_days" type="integer" required>
-  Window size in days used to count calls.
+  Tamanho da janela em dias usada para contar chamadas.
 </ResponseField>
 
-## Notes
+## Observações
 
-- Once eligible, enable optimized costs via [Update Advanced Settings](/api-reference/endpoints/update-advanced-settings) by setting `enable_initial_message_cache: true`.
-- Eligibility is checked in real time — keep polling this endpoint or check periodically.
-- Agents that drop below the threshold may be reverted to standard pricing automatically.
+- Uma vez elegível, ative os custos otimizados via [Atualizar Configurações Avançadas](/api-reference/endpoints/update-advanced-settings) definindo `enable_initial_message_cache: true`.
+- A elegibilidade é verificada em tempo real — continue consultando este endpoint ou verifique periodicamente.
+- Agentes que ficam abaixo do limite podem ser revertidos automaticamente para a precificação padrão.

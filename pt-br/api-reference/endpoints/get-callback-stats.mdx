@@ -1,12 +1,12 @@
 ---
-title: "Get Callback Stats"
-description: "Retrieve aggregated statistics for callback agents"
+title: "Obter Estatísticas de Callback"
+description: "Recuperar estatísticas agregadas dos agentes de callback"
 api: "GET /api/v1/callback-agents/stats"
 ---
 
-# Get Callback Stats
+# Obter Estatísticas de Callback
 
-Retrieve aggregated callback statistics across all callback agents in your environment, optionally filtered by date range.
+Recupera estatísticas agregadas de callback em todos os agentes de callback do seu ambiente, opcionalmente filtradas por intervalo de datas.
 
 ## Endpoint
 
@@ -14,18 +14,18 @@ Retrieve aggregated callback statistics across all callback agents in your envir
 GET /api/v1/callback-agents/stats
 ```
 
-## Query Parameters
+## Parâmetros de Consulta
 
-<ParamField query="start_date" type="string">Start of the range (inclusive). Format: `YYYY-MM-DD`. Default: 30 days ago.</ParamField>
-<ParamField query="end_date" type="string">End of the range (inclusive). Format: `YYYY-MM-DD`. Default: today.</ParamField>
+<ParamField query="start_date" type="string">Início do intervalo (inclusivo). Formato: `YYYY-MM-DD`. Padrão: 30 dias atrás.</ParamField>
+<ParamField query="end_date" type="string">Fim do intervalo (inclusivo). Formato: `YYYY-MM-DD`. Padrão: hoje.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -36,7 +36,7 @@ curl "https://talkover.app/api/v1/callback-agents/stats?start_date=2024-01-01&en
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -69,8 +69,8 @@ curl "https://talkover.app/api/v1/callback-agents/stats?start_date=2024-01-01&en
 
 </ResponseExample>
 
-### Field Definitions
+### Definições de Campos
 
-- `total_callbacks_received` — total inbound calls routed to callback agents.
-- `callbacks_answered` — callbacks that successfully connected with the agent.
-- `callbacks_unmatched` — inbound calls that hit a callback agent but had no recent matching outbound call (the contact wasn't on a source list).
+- `total_callbacks_received` — total de chamadas inbound roteadas para agentes de callback.
+- `callbacks_answered` — callbacks que se conectaram com sucesso ao agente.
+- `callbacks_unmatched` — chamadas inbound que chegaram a um agente de callback mas não tiveram chamada outbound recente correspondente (o contato não estava em uma lista de origem).

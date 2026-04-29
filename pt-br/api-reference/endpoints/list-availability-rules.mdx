@@ -1,12 +1,12 @@
 ---
-title: "List Availability Rules"
-description: "List availability rules for a calendar"
+title: "Listar Regras de Disponibilidade"
+description: "Listar regras de disponibilidade de um calendário"
 api: "GET /api/v1/calendars/{calendar_id}/availability-rules"
 ---
 
-# List Availability Rules
+# Listar Regras de Disponibilidade
 
-List availability rules configured for a calendar. Availability rules define booking windows (e.g., weekday 9–17) and exceptions (e.g., holidays).
+Listar regras de disponibilidade configuradas para um calendário. Regras de disponibilidade definem janelas de agendamento (ex: dias úteis das 9–17h) e exceções (ex: feriados).
 
 ## Endpoint
 
@@ -14,17 +14,17 @@ List availability rules configured for a calendar. Availability rules define boo
 GET /api/v1/calendars/{calendar_id}/availability-rules
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

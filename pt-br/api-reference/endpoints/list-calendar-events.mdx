@@ -1,12 +1,12 @@
 ---
-title: "List Calendar Events"
-description: "List events in a calendar"
+title: "Listar Eventos do Calendário"
+description: "Listar eventos em um calendário"
 api: "GET /api/v1/calendars/{calendar_id}/events"
 ---
 
-# List Calendar Events
+# Listar Eventos do Calendário
 
-List events in a single calendar, optionally filtered by time range.
+Listar eventos em um único calendário, opcionalmente filtrados por intervalo de tempo.
 
 ## Endpoint
 
@@ -14,23 +14,23 @@ List events in a single calendar, optionally filtered by time range.
 GET /api/v1/calendars/{calendar_id}/events
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Query Parameters
+## Parâmetros de Consulta
 
-<ParamField query="from" type="string">ISO 8601 lower bound for `start_at`.</ParamField>
-<ParamField query="to" type="string">ISO 8601 upper bound for `end_at`.</ParamField>
-<ParamField query="status" type="string">Filter by status: `confirmed`, `tentative`, `cancelled`.</ParamField>
+<ParamField query="from" type="string">Limite inferior ISO 8601 para `start_at`.</ParamField>
+<ParamField query="to" type="string">Limite superior ISO 8601 para `end_at`.</ParamField>
+<ParamField query="status" type="string">Filtrar por status: `confirmed`, `tentative`, `cancelled`.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -41,7 +41,7 @@ curl "https://talkover.app/api/v1/calendars/calendar-uuid-1/events?from=2024-01-
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

@@ -1,15 +1,15 @@
 ---
-title: "Test Auto Topup"
-description: "Trigger a one-off recharge to verify auto topup configuration"
+title: "Testar Recarga Automática"
+description: "Disparar uma recarga única para verificar a configuração de recarga automática"
 api: "POST /api/v1/auto-topup/test"
 ---
 
-# Test Auto Topup
+# Testar Recarga Automática
 
-Trigger a real one-off recharge using the configured payment method to verify auto topup is set up correctly. This bypasses the threshold check and immediately charges `recharge_amount`.
+Dispara uma recarga única real usando o método de pagamento configurado para verificar se a recarga automática está configurada corretamente. Esta operação ignora a verificação de limite mínimo e cobra imediatamente o `recharge_amount`.
 
 <Warning>
-  This is a **real charge**, not a simulation. The amount will be billed to the saved payment method and credited to your account balance.
+  Esta é uma **cobrança real**, não uma simulação. O valor será debitado do método de pagamento salvo e creditado no saldo da sua conta.
 </Warning>
 
 ## Endpoint
@@ -18,13 +18,13 @@ Trigger a real one-off recharge using the configured payment method to verify au
 POST /api/v1/auto-topup/test
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -35,7 +35,7 @@ curl -X POST "https://talkover.app/api/v1/auto-topup/test" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -54,9 +54,9 @@ curl -X POST "https://talkover.app/api/v1/auto-topup/test" \
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 422 — Not Configured
+### 422 — Não Configurado
 
 <ResponseExample>
 
@@ -70,7 +70,7 @@ curl -X POST "https://talkover.app/api/v1/auto-topup/test" \
 
 </ResponseExample>
 
-### 402 — Payment Failed
+### 402 — Pagamento Recusado
 
 <ResponseExample>
 
@@ -87,7 +87,7 @@ curl -X POST "https://talkover.app/api/v1/auto-topup/test" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Use this endpoint sparingly — repeated test charges may be flagged by your payment provider.
-- The test charge counts toward `daily_limit` and `recharge_count_today`.
+- Use este endpoint com moderação — cobranças de teste repetidas podem ser sinalizadas pelo seu provedor de pagamento.
+- A cobrança de teste conta para o `daily_limit` e o `recharge_count_today`.

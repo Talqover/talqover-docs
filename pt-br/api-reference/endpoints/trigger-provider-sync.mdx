@@ -1,12 +1,12 @@
 ---
-title: "Trigger Provider Sync"
-description: "Trigger a one-off sync against a single provider connection"
+title: "Disparar Sincronização do Provedor"
+description: "Disparar uma sincronização pontual em uma única conexão com provedor"
 api: "POST /api/v1/calendars/{calendar_id}/providers/{provider_id}/sync"
 ---
 
-# Trigger Provider Sync
+# Disparar Sincronização do Provedor
 
-Trigger a sync against a specific provider connection. Useful when you want to refresh a single provider without syncing all calendars (which is what [Trigger Calendars Sync](/api-reference/endpoints/trigger-calendars-sync) does).
+Disparar uma sincronização para uma conexão de provedor específica. Útil quando você deseja atualizar um único provedor sem sincronizar todos os calendários (que é o que [Disparar Sincronização de Calendários](/api-reference/endpoints/trigger-calendars-sync) faz).
 
 ## Endpoint
 
@@ -14,18 +14,18 @@ Trigger a sync against a specific provider connection. Useful when you want to r
 POST /api/v1/calendars/{calendar_id}/providers/{provider_id}/sync
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
-<ParamField path="provider_id" type="string" required>Provider connection UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
+<ParamField path="provider_id" type="string" required>UUID da conexão com o provedor.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -36,7 +36,7 @@ curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/providers/co
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

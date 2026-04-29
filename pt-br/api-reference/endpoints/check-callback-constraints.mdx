@@ -1,12 +1,12 @@
 ---
-title: "Check Callback Constraints"
-description: "Validate a proposed callback configuration before saving"
+title: "Verificar Restrições de Callback"
+description: "Validar uma configuração de callback proposta antes de salvar"
 api: "POST /api/v1/callback-agents/{agent_id}/check-constraints"
 ---
 
-# Check Callback Constraints
+# Verificar Restrições de Callback
 
-Validate a proposed callback configuration without persisting changes. Useful to surface errors in the UI before submitting [Set Agent as Callback](/api-reference/endpoints/set-agent-as-callback) or [Update Callback Sources](/api-reference/endpoints/update-callback-sources).
+Valida uma configuração de callback proposta sem persistir as alterações. Útil para exibir erros na interface antes de submeter [Definir Agente como Callback](/api-reference/endpoints/set-agent-as-callback) ou [Atualizar Origens de Callback](/api-reference/endpoints/update-callback-sources).
 
 ## Endpoint
 
@@ -14,27 +14,27 @@ Validate a proposed callback configuration without persisting changes. Useful to
 POST /api/v1/callback-agents/{agent_id}/check-constraints
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>Agent UUID being configured as callback.</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente sendo configurado como callback.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-<ParamField body="is_callback_agent" type="boolean">Whether this agent should be marked as a callback agent.</ParamField>
-<ParamField body="callback_source_agents" type="array">Array of source agent UUIDs.</ParamField>
-<ParamField body="callback_trigger_statuses" type="array">Statuses of source-agent calls that make a contact eligible for callback (e.g., `["no_answer", "voicemail"]`).</ParamField>
+<ParamField body="is_callback_agent" type="boolean">Indica se este agente deve ser marcado como agente de callback.</ParamField>
+<ParamField body="callback_source_agents" type="array">Array de UUIDs de agentes de origem.</ParamField>
+<ParamField body="callback_trigger_statuses" type="array">Status das chamadas dos agentes de origem que tornam um contato elegível para callback (ex: `["no_answer", "voicemail"]`).</ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -51,9 +51,9 @@ curl -X POST "https://talkover.app/api/v1/callback-agents/agent-uuid-1/check-con
 
 </RequestExample>
 
-## Response
+## Resposta
 
-### Valid
+### Válido
 
 <ResponseExample>
 
@@ -66,7 +66,7 @@ curl -X POST "https://talkover.app/api/v1/callback-agents/agent-uuid-1/check-con
 
 </ResponseExample>
 
-### Invalid
+### Inválido
 
 <ResponseExample>
 

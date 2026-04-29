@@ -290,9 +290,6 @@
       },
       {
         "language": "pt-BR",
-        "header": {
-          "image": "/images/talkover-header-br.png"
-        },
         "groups": [
           {
             "group": "Primeiros Passos",

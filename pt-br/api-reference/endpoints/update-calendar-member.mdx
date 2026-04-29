@@ -1,12 +1,12 @@
 ---
-title: "Update Calendar Member"
-description: "Change a calendar member's role"
+title: "Atualizar Membro do Calendário"
+description: "Alterar a função de um membro do calendário"
 api: "PUT /api/v1/calendars/{calendar_id}/members/{member_id}"
 ---
 
-# Update Calendar Member
+# Atualizar Membro do Calendário
 
-Change a calendar member's role.
+Alterar a função de um membro do calendário.
 
 ## Endpoint
 
@@ -14,24 +14,24 @@ Change a calendar member's role.
 PUT /api/v1/calendars/{calendar_id}/members/{member_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
-<ParamField path="member_id" type="string" required>Member UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
+<ParamField path="member_id" type="string" required>UUID do membro.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-<ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
+<ParamField header="Content-Type" type="string" required>Deve ser `application/json`.</ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-<ParamField body="role" type="string" required>New role. Options: `owner`, `editor`, `viewer`.</ParamField>
+<ParamField body="role" type="string" required>Nova função. Opções: `owner`, `editor`, `viewer`.</ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -44,7 +44,7 @@ curl -X PUT "https://talkover.app/api/v1/calendars/calendar-uuid-1/members/membe
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

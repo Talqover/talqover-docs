@@ -1,12 +1,12 @@
 ---
-title: "Create Calendar"
-description: "Create a calendar"
+title: "Criar Calendário"
+description: "Criar um calendário"
 api: "POST /api/v1/calendars"
 ---
 
-# Create Calendar
+# Criar Calendário
 
-Create a new calendar.
+Criar um novo calendário.
 
 ## Endpoint
 
@@ -14,24 +14,24 @@ Create a new calendar.
 POST /api/v1/calendars
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-<ParamField body="name" type="string" required>Calendar name. Max 255 characters.</ParamField>
-<ParamField body="timezone" type="string">IANA timezone (e.g., `America/New_York`). Defaults to environment timezone.</ParamField>
-<ParamField body="owner_id" type="string" required>UUID of the user who owns the calendar.</ParamField>
-<ParamField body="metadata" type="object">Optional free-form metadata.</ParamField>
+<ParamField body="name" type="string" required>Nome do calendário. Máximo de 255 caracteres.</ParamField>
+<ParamField body="timezone" type="string">IANA timezone (ex: `America/New_York`). Padrão é o fuso horário do ambiente.</ParamField>
+<ParamField body="owner_id" type="string" required>UUID do usuário proprietário do calendário.</ParamField>
+<ParamField body="metadata" type="object">Metadados livres opcionais.</ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -48,7 +48,7 @@ curl -X POST "https://talkover.app/api/v1/calendars" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

@@ -1,12 +1,12 @@
 ---
-title: "Remove Calendar Member"
-description: "Revoke a member's access to a calendar"
+title: "Remover Membro do Calendário"
+description: "Revogar o acesso de um membro a um calendário"
 api: "DELETE /api/v1/calendars/{calendar_id}/members/{member_id}"
 ---
 
-# Remove Calendar Member
+# Remover Membro do Calendário
 
-Revoke a user's access to a calendar.
+Revogar o acesso de um usuário a um calendário.
 
 ## Endpoint
 
@@ -14,18 +14,18 @@ Revoke a user's access to a calendar.
 DELETE /api/v1/calendars/{calendar_id}/members/{member_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
-<ParamField path="member_id" type="string" required>Member UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
+<ParamField path="member_id" type="string" required>UUID do membro.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -36,7 +36,7 @@ curl -X DELETE "https://talkover.app/api/v1/calendars/calendar-uuid-1/members/me
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -49,6 +49,6 @@ curl -X DELETE "https://talkover.app/api/v1/calendars/calendar-uuid-1/members/me
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- The calendar's `owner` cannot be removed — transfer ownership first via [Update Calendar Member](/api-reference/endpoints/update-calendar-member).
+- O `owner` do calendário não pode ser removido — transfira a propriedade primeiro via [Atualizar Membro do Calendário](/api-reference/endpoints/update-calendar-member).

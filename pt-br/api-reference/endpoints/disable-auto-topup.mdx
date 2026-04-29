@@ -1,12 +1,12 @@
 ---
-title: "Disable Auto Topup"
-description: "Turn off auto topup for the environment"
+title: "Desativar Recarga Automática"
+description: "Desligar a recarga automática para o ambiente"
 api: "POST /api/v1/auto-topup/disable"
 ---
 
-# Disable Auto Topup
+# Desativar Recarga Automática
 
-Disable auto topup. Both threshold-based and scheduled recharges stop firing. Configuration (threshold, recharge amount, payment method) is preserved — re-enable later via [Update Auto Topup Settings](/api-reference/endpoints/update-auto-topup-settings).
+Desativa a recarga automática. Tanto as recargas baseadas em limite mínimo quanto as agendadas deixam de ser disparadas. A configuração (limite mínimo, valor de recarga, método de pagamento) é preservada — reabilite-a posteriormente via [Atualizar Configurações de Recarga Automática](/api-reference/endpoints/update-auto-topup-settings).
 
 ## Endpoint
 
@@ -14,13 +14,13 @@ Disable auto topup. Both threshold-based and scheduled recharges stop firing. Co
 POST /api/v1/auto-topup/disable
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -31,7 +31,7 @@ curl -X POST "https://talkover.app/api/v1/auto-topup/disable" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -50,7 +50,7 @@ curl -X POST "https://talkover.app/api/v1/auto-topup/disable" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Equivalent to calling `PUT /v1/auto-topup/settings` with `{"is_enabled": false}`.
-- In-flight recharges (already queued) may still complete — disable does not roll back pending charges.
+- Equivalente a chamar `PUT /v1/auto-topup/settings` com `{"is_enabled": false}`.
+- Recargas em andamento (já enfileiradas) ainda podem ser concluídas — desativar não reverte cobranças pendentes.

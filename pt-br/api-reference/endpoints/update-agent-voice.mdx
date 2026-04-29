@@ -1,12 +1,12 @@
 ---
-title: "Update Agent Voice"
-description: "Update an agent's voice settings and configuration"
+title: "Atualizar Voz do Agente"
+description: "Atualizar as configurações e ajustes de voz de um agente"
 api: "PUT /api/v1/agents/{agent_id}/voice"
 ---
 
-# Update Agent Voice
+# Atualizar Voz do Agente
 
-Update an agent's voice configuration including voice template, language, conversation speed, and other voice-related settings.
+Atualiza a configuração de voz de um agente, incluindo modelo de voz, idioma, velocidade da conversa e outras configurações relacionadas à voz.
 
 ## Endpoint
 
@@ -14,57 +14,57 @@ Update an agent's voice configuration including voice template, language, conver
 PUT /api/v1/agents/{agent_id}/voice
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="agent" type="string" required>
-  The unique identifier of the voice agent to update. You can find this in your dashboard under Voice Agents.
+  O identificador único do agente de voz a ser atualizado. Você pode encontrá-lo em seu painel, na seção Agentes de Voz.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="voice_id" type="string" required>
-  Voice template ID. Use [List Voice Templates](/api-reference/endpoints/list-voice-templates) to retrieve available IDs.
+  ID do modelo de voz. Use [Listar Modelos de Voz](/api-reference/endpoints/list-voice-templates) para recuperar os IDs disponíveis.
 </ParamField>
 
 <ParamField body="conversation_speed" type="number" required>
-  Conversation playback speed multiplier. Range: greater than `1`, less than `2`.
+  Multiplicador de velocidade de reprodução da conversa. Faixa: maior que `1`, menor que `2`.
 </ParamField>
 
 <ParamField body="who_speaks_first" type="string" required>
-  Who speaks first. Options: `agent`, `user`.
+  Quem fala primeiro. Opções: `agent`, `user`.
 </ParamField>
 
 <ParamField body="ambient_background" type="string">
-  Ambient background sound for the conversation (e.g., `office`, `cafe`, `quiet`). Optional.
+  Som de fundo ambiente para a conversa (ex: `office`, `cafe`, `quiet`). Opcional.
 </ParamField>
 
 <ParamField body="ambient_volume" type="number">
-  Volume of the ambient background sound. Range: `0` (muted) to `2` (loud). Default: `1`.
+  Volume do som de fundo ambiente. Faixa: `0` (mudo) a `2` (alto). Padrão: `1`.
 </ParamField>
 
 <ParamField body="language" type="string">
-  Agent language code (e.g., `en-US`, `pt-BR`). Optional — only sent when changing the agent's spoken language. The voice template must support the chosen language.
+  Código de idioma do agente (ex: `en-US`, `pt-BR`). Opcional — enviado apenas ao alterar o idioma falado pelo agente. O modelo de voz deve suportar o idioma escolhido.
 </ParamField>
 
 <ParamField body="similarity" type="number">
-  Voice similarity boost. Range: `0.5` to `1.0`. **Required only for high-fidelity voice templates** (the `quality_tier` of the voice template determines whether this field is accepted). Higher values reinforce voice characteristics.
+  Reforço de similaridade da voz. Faixa: `0.5` a `1.0`. **Obrigatório apenas para modelos de voz de alta fidelidade** (o `quality_tier` do modelo de voz determina se este campo é aceito). Valores mais altos reforçam as características da voz.
 </ParamField>
 
 <ParamField body="stability" type="number">
-  Voice stability. Range: `0.5` to `1.0`. **Required only for high-fidelity voice templates**. Higher values produce more consistent output; lower values produce more expressive output.
+  Estabilidade da voz. Faixa: `0.5` a `1.0`. **Obrigatório apenas para modelos de voz de alta fidelidade**. Valores mais altos produzem saída mais consistente; valores mais baixos produzem saída mais expressiva.
 </ParamField>
 
-## Example Requests
+## Exemplos de Requisição
 
 <RequestExample>
 
@@ -146,9 +146,9 @@ console.log(result);
 
 </RequestExample>
 
-## Response
+## Resposta
 
-### Success Response (200 OK)
+### Resposta de Sucesso (200 OK)
 
 <ResponseExample>
 
@@ -195,47 +195,47 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Campos da Resposta
 
 <ResponseField name="success" type="boolean" required>
-  Indicates if the operation was successful.
+  Indica se a operação foi bem-sucedida.
 </ResponseField>
 
 <ResponseField name="message" type="string" required>
-  Success message confirming the agent voice was updated.
+  Mensagem de sucesso confirmando que a voz do agente foi atualizada.
 </ResponseField>
 
 <ResponseField name="data" type="object" required>
-  The updated agent object with new voice settings.
+  O objeto do agente atualizado com as novas configurações de voz.
 
-  <Expandable title="Voice Object">
+  <Expandable title="Objeto de Voz">
     <ResponseField name="id" type="string" required>
-      Unique identifier for the voice.
+      Identificador único da voz.
     </ResponseField>
     <ResponseField name="name" type="string" required>
-      Name of the voice.
+      Nome da voz.
     </ResponseField>
     <ResponseField name="label" type="string" required>
-      Display label for the voice.
+      Rótulo de exibição da voz.
     </ResponseField>
     <ResponseField name="stability" type="number">
-      Voice stability setting (0.0 to 1.0).
+      Configuração de estabilidade da voz (0.0 a 1.0).
     </ResponseField>
     <ResponseField name="similarity_boost" type="number">
-      Voice similarity setting (0.0 to 1.0).
+      Configuração de similaridade da voz (0.0 a 1.0).
     </ResponseField>
     <ResponseField name="ambient_background" type="string">
-      Ambient background setting.
+      Configuração de fundo ambiente.
     </ResponseField>
     <ResponseField name="template" type="object">
-      Voice template information.
+      Informações do modelo de voz.
     </ResponseField>
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Respostas de Erro
 
-### Validation Error (422)
+### Erro de Validação (422)
 
 <ResponseExample>
 
@@ -268,7 +268,7 @@ console.log(result);
 
 </ResponseExample>
 
-### 404 Not Found
+### 404 Não Encontrado
 
 <ResponseExample>
 
@@ -281,7 +281,7 @@ console.log(result);
 
 </ResponseExample>
 
-### 401 Unauthorized
+### 401 Não Autorizado
 
 <ResponseExample>
 
@@ -294,7 +294,7 @@ console.log(result);
 
 </ResponseExample>
 
-### 403 Forbidden
+### 403 Proibido
 
 <ResponseExample>
 
@@ -307,38 +307,38 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Códigos de Erro
 
-| Code | Description | HTTP Status |
-|------|-------------|-------------|
-| `AGENT_NOT_FOUND` | Specified agent does not exist | 404 |
-| `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
-| `UNAUTHORIZED` | User does not have permission to update this agent | 403 |
-| `VOICE_NOT_FOUND` | Specified voice template does not exist | 404 |
-| `VALIDATION_ERROR` | Request data validation failed | 422 |
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `AGENT_NOT_FOUND` | O agente especificado não existe | 404 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `UNAUTHORIZED` | O usuário não tem permissão para atualizar este agente | 403 |
+| `VOICE_NOT_FOUND` | O modelo de voz especificado não existe | 404 |
+| `VALIDATION_ERROR` | A validação dos dados da requisição falhou | 422 |
 
-## Important Notes
+## Observações Importantes
 
 <Info>
-  **Agent status will be set to draft.** After updating the agent's voice, the agent will be automatically set to "draft" status and will need to be published again to become active.
+  **O status do agente será definido como rascunho.** Após atualizar a voz do agente, ele será automaticamente definido como status "draft" e precisará ser publicado novamente para se tornar ativo.
 </Info>
 
 <Info>
-  **Voice settings affect call quality.** Higher stability values (closer to 1.0) provide more consistent voice output, while higher similarity values (closer to 1.0) enhance voice characteristics.
+  **As configurações de voz afetam a qualidade da chamada.** Valores mais altos de estabilidade (próximos de 1.0) fornecem saída de voz mais consistente, enquanto valores mais altos de similaridade (próximos de 1.0) realçam as características da voz.
 </Info>
 
-## Best Practices
+## Melhores Práticas
 
-1. **Test voice changes** - Always test voice updates before publishing
-2. **Balance stability and similarity** - Higher stability for professional calls, higher similarity for personal touch
-3. **Consider conversation speed** - Faster speeds for quick interactions, slower for complex topics
-4. **Match language to voice** - Ensure the voice template supports the specified language
-5. **Set appropriate ambient background** - Use "office" for business calls, "quiet" for personal calls
+1. **Teste as alterações de voz** - Sempre teste atualizações de voz antes de publicar
+2. **Equilibre estabilidade e similaridade** - Maior estabilidade para chamadas profissionais, maior similaridade para um toque pessoal
+3. **Considere a velocidade da conversa** - Velocidades mais rápidas para interações breves, mais lentas para tópicos complexos
+4. **Combine o idioma com a voz** - Garanta que o modelo de voz suporta o idioma especificado
+5. **Defina o fundo ambiente apropriado** - Use "office" para chamadas comerciais, "quiet" para chamadas pessoais
 
-## Related Endpoints
+## Endpoints Relacionados
 
-- **Get Agent**: `GET /api/v1/agents/{agent_id}`
-- **Update Agent Knowledge**: `PUT /api/v1/agents/{agent_id}/knowledge`
-- **Update Agent Calling Settings**: `PUT /api/v1/agents/{agent_id}/calling`
-- **Publish Agent**: `POST /api/v1/agents/{agent_id}/publish`
-- **List Agents**: `GET /api/v1/agents`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
+- **Atualizar Conhecimento do Agente**: `PUT /api/v1/agents/{agent_id}/knowledge`
+- **Atualizar Configurações de Chamada do Agente**: `PUT /api/v1/agents/{agent_id}/calling`
+- **Publicar Agente**: `POST /api/v1/agents/{agent_id}/publish`
+- **Listar Agentes**: `GET /api/v1/agents`

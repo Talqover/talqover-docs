@@ -1,12 +1,12 @@
 ---
-title: "Get Calendars Sync Status"
-description: "Get current sync status for connected calendars"
+title: "Obter Status de Sincronização dos Calendários"
+description: "Obter status atual de sincronização para calendários conectados"
 api: "GET /api/v1/calendars/sync-status"
 ---
 
-# Get Calendars Sync Status
+# Obter Status de Sincronização dos Calendários
 
-Get the current sync status for all calendars in the environment that have provider connections.
+Obter o status atual de sincronização de todos os calendários do ambiente que possuem conexões com provedores.
 
 ## Endpoint
 
@@ -14,13 +14,13 @@ Get the current sync status for all calendars in the environment that have provi
 GET /api/v1/calendars/sync-status
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -31,7 +31,7 @@ curl "https://talkover.app/api/v1/calendars/sync-status" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

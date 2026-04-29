@@ -1,12 +1,12 @@
 ---
-title: "List Callback Agents"
-description: "List inbound agents configured to handle callback calls"
+title: "Listar Agentes de Callback"
+description: "Listar agentes inbound configurados para tratar chamadas de callback"
 api: "GET /api/v1/callback-agents"
 ---
 
-# List Callback Agents
+# Listar Agentes de Callback
 
-List all inbound agents in your environment that have been configured as callback agents. A callback agent receives return calls from contacts that were previously called by an outbound (source) agent.
+Lista todos os agentes inbound do seu ambiente que foram configurados como agentes de callback. Um agente de callback recebe chamadas de retorno de contatos que foram previamente chamados por um agente outbound (de origem).
 
 ## Endpoint
 
@@ -14,13 +14,13 @@ List all inbound agents in your environment that have been configured as callbac
 GET /api/v1/callback-agents
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -31,7 +31,7 @@ curl "https://talkover.app/api/v1/callback-agents" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -55,7 +55,7 @@ curl "https://talkover.app/api/v1/callback-agents" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Only `inbound` agents can serve as callback agents.
-- Use [List Callback Source Agents](/api-reference/endpoints/list-callback-source-agents) to find eligible outbound agents to route from.
+- Apenas agentes `inbound` podem servir como agentes de callback.
+- Use [Listar Agentes de Origem de Callback](/api-reference/endpoints/list-callback-source-agents) para encontrar agentes outbound elegíveis para roteamento.

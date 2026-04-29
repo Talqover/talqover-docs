@@ -1,12 +1,12 @@
 ---
-title: "Get Calendar"
-description: "Retrieve a calendar by ID"
+title: "Obter Calendário"
+description: "Recuperar um calendário pelo ID"
 api: "GET /api/v1/calendars/{calendar_id}"
 ---
 
-# Get Calendar
+# Obter Calendário
 
-Retrieve a single calendar.
+Recuperar um único calendário.
 
 ## Endpoint
 
@@ -14,17 +14,17 @@ Retrieve a single calendar.
 GET /api/v1/calendars/{calendar_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -35,7 +35,7 @@ curl "https://talkover.app/api/v1/calendars/calendar-uuid-1" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

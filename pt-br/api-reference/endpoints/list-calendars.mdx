@@ -1,12 +1,12 @@
 ---
-title: "List Calendars"
-description: "List calendars in the environment"
+title: "Listar Calendários"
+description: "Listar calendários no ambiente"
 api: "GET /api/v1/calendars"
 ---
 
-# List Calendars
+# Listar Calendários
 
-List calendars in the environment. Calendars hold events, members, and provider connections — typically used by agents that schedule appointments.
+Listar calendários no ambiente. Calendários armazenam eventos, membros e conexões com provedores — normalmente usados por agentes que agendam compromissos.
 
 ## Endpoint
 
@@ -14,17 +14,17 @@ List calendars in the environment. Calendars hold events, members, and provider 
 GET /api/v1/calendars
 ```
 
-## Query Parameters
+## Parâmetros de Consulta
 
-<ParamField query="per_page" type="integer">Items per page. Range: `1`–`100`. Default: `25`.</ParamField>
+<ParamField query="per_page" type="integer">Itens por página. Intervalo: `1`–`100`. Padrão: `25`.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -35,7 +35,7 @@ curl "https://talkover.app/api/v1/calendars" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

@@ -1,12 +1,12 @@
 ---
-title: "Get Events (Batch)"
-description: "Retrieve events from multiple calendars in a single call"
+title: "Obter Eventos (Lote)"
+description: "Recuperar eventos de múltiplos calendários em uma única chamada"
 api: "GET /api/v1/calendars/events"
 ---
 
-# Get Events (Batch)
+# Obter Eventos (Lote)
 
-Retrieve events from multiple calendars in a single request, optionally filtered by time range. Useful for rendering a unified calendar view across teams.
+Recuperar eventos de múltiplos calendários em uma única requisição, opcionalmente filtrados por intervalo de tempo. Útil para renderizar uma visão unificada de calendário entre equipes.
 
 ## Endpoint
 
@@ -14,27 +14,27 @@ Retrieve events from multiple calendars in a single request, optionally filtered
 GET /api/v1/calendars/events
 ```
 
-## Query Parameters
+## Parâmetros de Consulta
 
 <ParamField query="calendar_ids[]" type="array" required>
-  One or more calendar UUIDs. Repeat the parameter for multiple values.
+  Um ou mais UUIDs de calendário. Repita o parâmetro para múltiplos valores.
 </ParamField>
 
 <ParamField query="from" type="string">
-  Lower bound of event start time. ISO 8601.
+  Limite inferior do horário de início do evento. ISO 8601.
 </ParamField>
 
 <ParamField query="to" type="string">
-  Upper bound of event end time. ISO 8601.
+  Limite superior do horário de término do evento. ISO 8601.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -45,7 +45,7 @@ curl "https://talkover.app/api/v1/calendars/events?calendar_ids[]=cal-1&calendar
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

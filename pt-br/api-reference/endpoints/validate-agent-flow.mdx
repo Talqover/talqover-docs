@@ -1,12 +1,12 @@
 ---
-title: "Validate Agent Flow"
-description: "Dry-run validation of a flow configuration"
+title: "Validar Fluxo do Agente"
+description: "Validação em modo de teste de uma configuração de fluxo"
 api: "POST /api/v1/agents/{agent_id}/flow/validate"
 ---
 
-# Validate Agent Flow
+# Validar Fluxo do Agente
 
-Run validation on a candidate flow configuration without persisting changes. Returns the same errors that [Update Agent Flow](/api-reference/endpoints/update-agent-flow) would return.
+Executa a validação em uma configuração de fluxo candidata sem persistir alterações. Retorna os mesmos erros que [Atualizar Fluxo do Agente](/api-reference/endpoints/update-agent-flow) retornaria.
 
 ## Endpoint
 
@@ -14,27 +14,27 @@ Run validation on a candidate flow configuration without persisting changes. Ret
 POST /api/v1/agents/{agent_id}/flow/validate
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>Agent UUID. Used to scope validation (e.g., to check that referenced action IDs exist).</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente. Usado para delimitar a validação (ex: para verificar se IDs de ações referenciados existem).</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="flow_config" type="object" required>
-  Same shape as in [Update Agent Flow](/api-reference/endpoints/update-agent-flow).
+  Mesmo formato de [Atualizar Fluxo do Agente](/api-reference/endpoints/update-agent-flow).
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -55,9 +55,9 @@ curl -X POST "https://talkover.app/api/v1/agents/agent-uuid/flow/validate" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
-### Valid
+### Válido
 
 <ResponseExample>
 
@@ -70,7 +70,7 @@ curl -X POST "https://talkover.app/api/v1/agents/agent-uuid/flow/validate" \
 
 </ResponseExample>
 
-### Invalid
+### Inválido
 
 <ResponseExample>
 
@@ -86,7 +86,7 @@ curl -X POST "https://talkover.app/api/v1/agents/agent-uuid/flow/validate" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Use this from your editor before submitting an update — surfaces issues early without modifying agent state.
-- Validation rules cover: unique node IDs, reachability, valid `next`/`branches` targets, required fields per node `type`.
+- Use este endpoint a partir do seu editor antes de submeter uma atualização — expõe problemas cedo, sem modificar o estado do agente.
+- As regras de validação cobrem: IDs de nó únicos, alcançabilidade, alvos válidos de `next`/`branches` e campos obrigatórios por `type` de nó.

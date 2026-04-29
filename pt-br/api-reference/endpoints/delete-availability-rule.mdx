@@ -1,12 +1,12 @@
 ---
-title: "Delete Availability Rule"
-description: "Delete an availability rule"
+title: "Excluir Regra de Disponibilidade"
+description: "Excluir uma regra de disponibilidade"
 api: "DELETE /api/v1/calendars/{calendar_id}/availability-rules/{rule_id}"
 ---
 
-# Delete Availability Rule
+# Excluir Regra de Disponibilidade
 
-Delete an availability rule.
+Excluir uma regra de disponibilidade.
 
 ## Endpoint
 
@@ -14,18 +14,18 @@ Delete an availability rule.
 DELETE /api/v1/calendars/{calendar_id}/availability-rules/{rule_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
-<ParamField path="rule_id" type="string" required>Availability rule UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
+<ParamField path="rule_id" type="string" required>UUID da regra de disponibilidade.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -36,7 +36,7 @@ curl -X DELETE "https://talkover.app/api/v1/calendars/calendar-uuid-1/availabili
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

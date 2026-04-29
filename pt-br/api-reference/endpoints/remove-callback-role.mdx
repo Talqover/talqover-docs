@@ -1,12 +1,12 @@
 ---
-title: "Remove Callback Role"
-description: "Remove the callback role from an agent"
+title: "Remover Papel de Callback"
+description: "Remover o papel de callback de um agente"
 api: "DELETE /api/v1/agents/{agent_id}/callback"
 ---
 
-# Remove Callback Role
+# Remover Papel de Callback
 
-Remove the callback role from an agent. The agent stops handling callbacks but otherwise remains active for normal inbound traffic.
+Remove o papel de callback de um agente. O agente para de tratar callbacks mas, no restante, permanece ativo para o tráfego inbound normal.
 
 ## Endpoint
 
@@ -14,17 +14,17 @@ Remove the callback role from an agent. The agent stops handling callbacks but o
 DELETE /api/v1/agents/{agent_id}/callback
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>UUID of the callback agent.</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente de callback.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -35,7 +35,7 @@ curl -X DELETE "https://talkover.app/api/v1/agents/agent-uuid-1/callback" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -48,7 +48,7 @@ curl -X DELETE "https://talkover.app/api/v1/agents/agent-uuid-1/callback" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- The agent's other configuration (knowledge, voice, phone numbers) is preserved.
-- Inbound calls from contacts previously routed via callback will now follow the default routing for the dialed number.
+- As demais configurações do agente (conhecimento, voz, números de telefone) são preservadas.
+- Chamadas inbound de contatos previamente roteados via callback agora seguirão o roteamento padrão para o número discado.

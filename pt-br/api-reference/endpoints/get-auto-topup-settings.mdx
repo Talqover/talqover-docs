@@ -1,12 +1,12 @@
 ---
-title: "Get Auto Topup Settings"
-description: "Retrieve the current auto topup configuration"
+title: "Obter Configurações de Recarga Automática"
+description: "Recuperar a configuração atual de recarga automática"
 api: "GET /api/v1/auto-topup/settings"
 ---
 
-# Get Auto Topup Settings
+# Obter Configurações de Recarga Automática
 
-Retrieve the current auto topup configuration for your environment. Auto topup automatically recharges your account balance when it falls below a threshold, or on a scheduled day each month.
+Recupera a configuração atual de recarga automática (Auto Topup) do seu ambiente. A recarga automática repõe automaticamente o saldo da conta quando ele cai abaixo de um limite mínimo, ou em um dia agendado a cada mês.
 
 ## Endpoint
 
@@ -14,13 +14,13 @@ Retrieve the current auto topup configuration for your environment. Auto topup a
 GET /api/v1/auto-topup/settings
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -31,7 +31,7 @@ curl "https://talkover.app/api/v1/auto-topup/settings" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -56,15 +56,15 @@ curl "https://talkover.app/api/v1/auto-topup/settings" \
 
 </ResponseExample>
 
-### Response Fields
+### Campos da Resposta
 
-<ResponseField name="data.is_enabled" type="boolean">Whether auto topup is currently active.</ResponseField>
-<ResponseField name="data.threshold_amount" type="number">Balance threshold (in account currency) below which a recharge is triggered.</ResponseField>
-<ResponseField name="data.recharge_amount" type="number">Amount charged each time the threshold is hit.</ResponseField>
-<ResponseField name="data.scheduled_payment_enabled" type="boolean">Whether monthly scheduled recharges are active (independent of the threshold).</ResponseField>
-<ResponseField name="data.scheduled_amount" type="number">Amount charged on the scheduled day. Required when `scheduled_payment_enabled` is true.</ResponseField>
-<ResponseField name="data.day_of_month" type="integer">Day of month (1–28) for scheduled recharges.</ResponseField>
-<ResponseField name="data.payment_method_id" type="string">ID of the saved payment method used for charges.</ResponseField>
-<ResponseField name="data.daily_limit" type="number">Maximum total amount that can be charged in a single day across all auto-topup events.</ResponseField>
-<ResponseField name="data.recharge_count_today" type="integer">Number of recharges already executed today.</ResponseField>
-<ResponseField name="data.last_recharge_at" type="string">ISO 8601 timestamp of the most recent recharge.</ResponseField>
+<ResponseField name="data.is_enabled" type="boolean">Indica se a recarga automática está atualmente ativa.</ResponseField>
+<ResponseField name="data.threshold_amount" type="number">Limite mínimo de saldo (na moeda da conta) abaixo do qual uma recarga é disparada.</ResponseField>
+<ResponseField name="data.recharge_amount" type="number">Valor cobrado a cada vez que o limite mínimo é atingido.</ResponseField>
+<ResponseField name="data.scheduled_payment_enabled" type="boolean">Indica se as recargas mensais agendadas estão ativas (independente do limite mínimo).</ResponseField>
+<ResponseField name="data.scheduled_amount" type="number">Valor cobrado no dia agendado. Obrigatório quando `scheduled_payment_enabled` é true.</ResponseField>
+<ResponseField name="data.day_of_month" type="integer">Dia do mês (1–28) para recargas agendadas.</ResponseField>
+<ResponseField name="data.payment_method_id" type="string">ID do método de pagamento salvo usado para as cobranças.</ResponseField>
+<ResponseField name="data.daily_limit" type="number">Valor total máximo que pode ser cobrado em um único dia em todos os eventos de recarga automática.</ResponseField>
+<ResponseField name="data.recharge_count_today" type="integer">Número de recargas já executadas hoje.</ResponseField>
+<ResponseField name="data.last_recharge_at" type="string">Timestamp ISO 8601 da recarga mais recente.</ResponseField>

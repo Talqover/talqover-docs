@@ -1,12 +1,12 @@
 ---
-title: "List Callback Source Agents"
-description: "List outbound agents eligible to be sources for a callback agent"
+title: "Listar Agentes de Origem de Callback"
+description: "Listar agentes outbound elegíveis para serem origens de um agente de callback"
 api: "GET /api/v1/callback-agents/source-agents"
 ---
 
-# List Callback Source Agents
+# Listar Agentes de Origem de Callback
 
-List outbound agents that can be configured as **source agents** for a callback agent. A source agent's outbound calls become candidates for callback when the contact returns the call.
+Lista os agentes outbound que podem ser configurados como **agentes de origem** para um agente de callback. As chamadas outbound de um agente de origem se tornam candidatas para callback quando o contato retorna a ligação.
 
 ## Endpoint
 
@@ -14,13 +14,13 @@ List outbound agents that can be configured as **source agents** for a callback 
 GET /api/v1/callback-agents/source-agents
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -31,7 +31,7 @@ curl "https://talkover.app/api/v1/callback-agents/source-agents" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -57,7 +57,7 @@ curl "https://talkover.app/api/v1/callback-agents/source-agents" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Only published `outbound` agents are returned.
-- Use the IDs in this list when calling [Set Agent as Callback](/api-reference/endpoints/set-agent-as-callback) or [Update Callback Sources](/api-reference/endpoints/update-callback-sources).
+- Apenas agentes `outbound` publicados são retornados.
+- Use os IDs desta lista ao chamar [Definir Agente como Callback](/api-reference/endpoints/set-agent-as-callback) ou [Atualizar Origens de Callback](/api-reference/endpoints/update-callback-sources).

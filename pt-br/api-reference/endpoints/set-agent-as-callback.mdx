@@ -1,12 +1,12 @@
 ---
-title: "Set Agent as Callback"
-description: "Configure an inbound agent to handle callbacks from outbound source agents"
+title: "Definir Agente como Callback"
+description: "Configurar um agente inbound para tratar callbacks de agentes de origem outbound"
 api: "POST /api/v1/agents/{agent_id}/callback"
 ---
 
-# Set Agent as Callback
+# Definir Agente como Callback
 
-Configure an inbound agent to handle callbacks from one or more outbound source agents. When a contact previously called by a source agent dials back, the call is routed to this agent (assuming the agent owns the dialed number).
+Configura um agente inbound para tratar callbacks de um ou mais agentes de origem outbound. Quando um contato previamente chamado por um agente de origem retorna a ligação, a chamada é roteada para este agente (presumindo que o agente seja dono do número discado).
 
 ## Endpoint
 
@@ -14,27 +14,27 @@ Configure an inbound agent to handle callbacks from one or more outbound source 
 POST /api/v1/agents/{agent_id}/callback
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>UUID of the inbound agent. Must have `direction: "inbound"`.</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente inbound. Deve ter `direction: "inbound"`.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="source_agent_ids" type="array" required>
-  Array of outbound agent UUIDs whose contacts should route to this callback agent on inbound returns. Must contain at least one entry.
+  Array de UUIDs de agentes outbound cujos contatos devem ser roteados para este agente de callback nos retornos inbound. Deve conter pelo menos uma entrada.
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -49,7 +49,7 @@ curl -X POST "https://talkover.app/api/v1/agents/agent-uuid-1/callback" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -69,9 +69,9 @@ curl -X POST "https://talkover.app/api/v1/agents/agent-uuid-1/callback" \
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 422 — Wrong Direction
+### 422 — Direção Incorreta
 
 <ResponseExample>
 

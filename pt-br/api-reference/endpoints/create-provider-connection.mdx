@@ -1,12 +1,12 @@
 ---
-title: "Create Provider Connection"
-description: "Connect a calendar to an external provider"
+title: "Criar Conexão com Provedor"
+description: "Conectar um calendário a um provedor externo"
 api: "POST /api/v1/calendars/{calendar_id}/providers"
 ---
 
-# Create Provider Connection
+# Criar Conexão com Provedor
 
-Initiate a connection between a calendar and an external calendar provider. The OAuth flow is completed via a redirect URL returned in the response.
+Iniciar uma conexão entre um calendário e um provedor de calendário externo. O fluxo OAuth é concluído por meio de uma URL de redirecionamento retornada na resposta.
 
 ## Endpoint
 
@@ -14,24 +14,24 @@ Initiate a connection between a calendar and an external calendar provider. The 
 POST /api/v1/calendars/{calendar_id}/providers
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-<ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
+<ParamField header="Content-Type" type="string" required>Deve ser `application/json`.</ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-<ParamField body="provider" type="string" required>Provider identifier (returned by your environment configuration).</ParamField>
-<ParamField body="redirect_uri" type="string" required>URL the provider will redirect to after the user authorizes access.</ParamField>
+<ParamField body="provider" type="string" required>Identificador do provedor (retornado pela configuração do seu ambiente).</ParamField>
+<ParamField body="redirect_uri" type="string" required>URL para a qual o provedor redirecionará após o usuário autorizar o acesso.</ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -47,7 +47,7 @@ curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/providers" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -65,6 +65,6 @@ curl -X POST "https://talkover.app/api/v1/calendars/calendar-uuid-1/providers" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- After the user completes the OAuth flow at `authorization_url`, the connection becomes active and the first sync runs automatically.
+- Após o usuário concluir o fluxo OAuth em `authorization_url`, a conexão se torna ativa e a primeira sincronização é executada automaticamente.

@@ -1,12 +1,12 @@
 ---
-title: "Update Agent Calling Settings"
-description: "Update an agent's call direction and assigned phone numbers"
+title: "Atualizar Configurações de Chamada do Agente"
+description: "Atualizar a direção de chamada e os números de telefone atribuídos a um agente"
 api: "PUT /api/v1/agents/{agent_id}/calling"
 ---
 
-# Update Agent Calling Settings
+# Atualizar Configurações de Chamada do Agente
 
-Update the call direction (inbound/outbound) and the phone numbers assigned to the agent.
+Atualiza a direção da chamada (entrada/saída) e os números de telefone atribuídos ao agente.
 
 ## Endpoint
 
@@ -14,33 +14,33 @@ Update the call direction (inbound/outbound) and the phone numbers assigned to t
 PUT /api/v1/agents/{agent_id}/calling
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="agent_id" type="string" required>
-  The unique identifier of the voice agent to update.
+  O identificador único do agente de voz a ser atualizado.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body Parameters
+## Parâmetros do Corpo da Requisição
 
 <ParamField body="direction" type="string" required>
-  Call direction. Options: `inbound`, `outbound`.
+  Direção da chamada. Opções: `inbound`, `outbound`.
 </ParamField>
 
 <ParamField body="phone_number_ids" type="array">
-  Array of phone number UUIDs to assign to the agent.
+  Array de UUIDs de números de telefone a atribuir ao agente.
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -90,7 +90,7 @@ result = response.json()
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -126,8 +126,8 @@ result = response.json()
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Setting `direction: "inbound"` configures the agent to receive calls on the assigned numbers.
-- Setting `direction: "outbound"` configures the agent to place calls from the assigned numbers.
-- Phone numbers must already exist in your environment. Use the [List Phone Numbers](/api-reference/endpoints/list-phone-numbers) endpoint to retrieve available IDs.
+- Definir `direction: "inbound"` configura o agente para receber chamadas nos números atribuídos.
+- Definir `direction: "outbound"` configura o agente para realizar chamadas a partir dos números atribuídos.
+- Os números de telefone já devem existir em seu ambiente. Use o endpoint [Listar Números de Telefone](/api-reference/endpoints/list-phone-numbers) para recuperar os IDs disponíveis.

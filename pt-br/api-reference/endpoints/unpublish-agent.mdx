@@ -1,12 +1,12 @@
 ---
-title: "Unpublish Agent"
-description: "Unpublish an agent to take it offline without deleting it"
+title: "Despublicar Agente"
+description: "Despublicar um agente para deixá-lo offline sem excluí-lo"
 api: "POST /api/v1/agents/{agent_id}/unpublish"
 ---
 
-# Unpublish Agent
+# Despublicar Agente
 
-Unpublish an agent to revert it to draft state. The agent stops receiving inbound calls and cannot be used for outbound calls until published again.
+Despublica um agente para revertê-lo ao estado de rascunho. O agente deixa de receber chamadas de entrada e não pode ser usado para chamadas de saída até ser publicado novamente.
 
 ## Endpoint
 
@@ -14,19 +14,19 @@ Unpublish an agent to revert it to draft state. The agent stops receiving inboun
 POST /api/v1/agents/{agent_id}/unpublish
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="agent_id" type="string" required>
-  The unique identifier of the voice agent to unpublish.
+  O identificador único do agente de voz a ser despublicado.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -58,7 +58,7 @@ result = response.json()
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -78,8 +78,8 @@ result = response.json()
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Unpublishing does not delete any data — the agent's knowledge, voice, trainings, actions, and phone numbers are preserved.
-- Active calls that started before the unpublish are not interrupted. Only new calls are blocked.
-- To permanently delete an agent, use [Delete Agent](/api-reference/endpoints/delete-agent).
+- Despublicar não exclui nenhum dado — o conhecimento do agente, voz, treinamentos, ações e números de telefone são preservados.
+- Chamadas ativas que começaram antes do despublish não são interrompidas. Apenas novas chamadas são bloqueadas.
+- Para excluir permanentemente um agente, use [Excluir Agente](/api-reference/endpoints/delete-agent).

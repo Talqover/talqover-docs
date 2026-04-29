@@ -1,12 +1,12 @@
 ---
-title: "List Provider Connections"
-description: "List external calendar provider connections for a calendar"
+title: "Listar Conexões com Provedores"
+description: "Listar conexões com provedores de calendário externos para um calendário"
 api: "GET /api/v1/calendars/{calendar_id}/providers"
 ---
 
-# List Provider Connections
+# Listar Conexões com Provedores
 
-List external calendar provider connections attached to a calendar. Provider connections sync events with third-party calendar systems.
+Listar conexões com provedores de calendário externos vinculadas a um calendário. Conexões com provedores sincronizam eventos com sistemas de calendário de terceiros.
 
 ## Endpoint
 
@@ -14,17 +14,17 @@ List external calendar provider connections attached to a calendar. Provider con
 GET /api/v1/calendars/{calendar_id}/providers
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

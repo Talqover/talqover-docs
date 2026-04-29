@@ -1,12 +1,12 @@
 ---
-title: "Update Advanced Settings"
-description: "Toggle advanced agent features such as optimized cost caching"
+title: "Atualizar Configurações Avançadas"
+description: "Alternar recursos avançados do agente, como cache de custos otimizados"
 api: "PATCH /api/v1/agents/{agent_id}/advanced-settings"
 ---
 
-# Update Advanced Settings
+# Atualizar Configurações Avançadas
 
-Toggle advanced agent features. Currently the only advanced setting is `enable_initial_message_cache`, which activates optimized cost pricing once the agent meets the eligibility threshold.
+Alterna recursos avançados do agente. Atualmente, a única configuração avançada é `enable_initial_message_cache`, que ativa a precificação com custos otimizados assim que o agente atinge o limite de elegibilidade.
 
 ## Endpoint
 
@@ -14,29 +14,29 @@ Toggle advanced agent features. Currently the only advanced setting is `enable_i
 PATCH /api/v1/agents/{agent_id}/advanced-settings
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="agent_id" type="string" required>
-  Agent UUID.
+  UUID do agente.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="enable_initial_message_cache" type="boolean">
-  When `true`, enables caching of the agent's initial message audio for repeated outbound calls. Reduces voice synthesis cost per call. Requires the agent to be eligible — see [Check Optimized Costs Eligibility](/api-reference/endpoints/check-optimized-costs-eligibility).
+  Quando `true`, habilita o cache do áudio da mensagem inicial do agente para chamadas de saída repetidas. Reduz o custo de síntese de voz por chamada. Requer que o agente seja elegível — veja [Verificar Elegibilidade para Custos Otimizados](/api-reference/endpoints/check-optimized-costs-eligibility).
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -66,7 +66,7 @@ const result = await response.json();
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -87,9 +87,9 @@ const result = await response.json();
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 422 Not Eligible
+### 422 Não Elegível
 
 <ResponseExample>
 
@@ -108,7 +108,7 @@ const result = await response.json();
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Eligibility is enforced server-side. Toggling `enable_initial_message_cache: true` on an ineligible agent fails with `422`.
-- Disabling the cache (`false`) is always allowed.
+- A elegibilidade é aplicada no servidor. Alternar `enable_initial_message_cache: true` em um agente não elegível falha com `422`.
+- Desabilitar o cache (`false`) é sempre permitido.

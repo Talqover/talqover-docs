@@ -1,12 +1,12 @@
 ---
-title: "Update Auto Topup Settings"
-description: "Configure threshold-based or scheduled auto topup"
+title: "Atualizar Configurações de Recarga Automática"
+description: "Configurar recarga automática baseada em limite mínimo ou agendada"
 api: "PUT /api/v1/auto-topup/settings"
 ---
 
-# Update Auto Topup Settings
+# Atualizar Configurações de Recarga Automática
 
-Configure or update auto topup. You can enable threshold-based recharging (auto-charge when balance drops below `threshold_amount`), monthly scheduled recharging (auto-charge on a specific day), or both.
+Configure ou atualize a recarga automática. Você pode habilitar a recarga baseada em limite mínimo (cobrança automática quando o saldo cai abaixo de `threshold_amount`), recarga mensal agendada (cobrança automática em um dia específico), ou ambas.
 
 ## Endpoint
 
@@ -14,52 +14,52 @@ Configure or update auto topup. You can enable threshold-based recharging (auto-
 PUT /api/v1/auto-topup/settings
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="is_enabled" type="boolean">
-  Master switch for auto topup. When `false`, neither threshold nor scheduled recharges fire.
+  Chave principal da recarga automática. Quando `false`, nem as recargas por limite mínimo nem as agendadas são disparadas.
 </ParamField>
 
 <ParamField body="threshold_amount" type="number">
-  Trigger threshold in account currency. Range: `1`–`1000`. When the balance drops below this, a recharge is queued.
+  Limite mínimo para disparo, na moeda da conta. Faixa: `1`–`1000`. Quando o saldo cai abaixo deste valor, uma recarga é enfileirada.
 </ParamField>
 
 <ParamField body="recharge_amount" type="number">
-  Amount charged each time the threshold is hit. Range: `1`–`1000`.
+  Valor cobrado a cada vez que o limite mínimo é atingido. Faixa: `1`–`1000`.
 </ParamField>
 
 <ParamField body="scheduled_payment_enabled" type="boolean">
-  Enables monthly scheduled recharges in addition to (or instead of) threshold-based.
+  Habilita recargas mensais agendadas, em adição (ou em substituição) à recarga baseada em limite mínimo.
 </ParamField>
 
 <ParamField body="scheduled_amount" type="number">
-  Amount charged on the scheduled day. Range: `1`–`1000`. Required when `scheduled_payment_enabled` is `true`.
+  Valor cobrado no dia agendado. Faixa: `1`–`1000`. Obrigatório quando `scheduled_payment_enabled` é `true`.
 </ParamField>
 
 <ParamField body="day_of_month" type="integer">
-  Day of month for scheduled recharges. Range: `1`–`28` (avoids month-end edge cases).
+  Dia do mês para recargas agendadas. Faixa: `1`–`28` (evita situações específicas de fim de mês).
 </ParamField>
 
 <ParamField body="payment_method_id" type="string">
-  ID of the payment method to charge. Must be a method already saved on the account — see [List Payment Methods](/api-reference/endpoints/list-auto-topup-payment-methods).
+  ID do método de pagamento a ser cobrado. Deve ser um método já salvo na conta — veja [Listar Métodos de Pagamento](/api-reference/endpoints/list-auto-topup-payment-methods).
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-# Enable threshold-based topup at $50, recharge $100
+# Habilitar recarga por limite mínimo em $50, recarregar $100
 curl -X PUT "https://talkover.app/api/v1/auto-topup/settings" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
@@ -72,7 +72,7 @@ curl -X PUT "https://talkover.app/api/v1/auto-topup/settings" \
 ```
 
 ```bash
-# Enable monthly scheduled topup of $200 on the 1st
+# Habilitar recarga mensal agendada de $200 no dia 1º
 curl -X PUT "https://talkover.app/api/v1/auto-topup/settings" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
@@ -87,7 +87,7 @@ curl -X PUT "https://talkover.app/api/v1/auto-topup/settings" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -108,8 +108,8 @@ curl -X PUT "https://talkover.app/api/v1/auto-topup/settings" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- The `daily_limit` is set by your plan and cannot be modified via API. Contact support to request an increase.
-- To turn off auto topup entirely, send `{"is_enabled": false}` or use [Disable Auto Topup](/api-reference/endpoints/disable-auto-topup).
-- After updating, run [Test Auto Topup](/api-reference/endpoints/test-auto-topup) to verify the payment method works.
+- O `daily_limit` é definido pelo seu plano e não pode ser modificado via API. Entre em contato com o suporte para solicitar um aumento.
+- Para desativar completamente a recarga automática, envie `{"is_enabled": false}` ou utilize [Desativar Recarga Automática](/api-reference/endpoints/disable-auto-topup).
+- Após atualizar, execute [Testar Recarga Automática](/api-reference/endpoints/test-auto-topup) para verificar se o método de pagamento funciona.

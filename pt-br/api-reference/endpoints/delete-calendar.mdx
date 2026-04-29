@@ -1,15 +1,15 @@
 ---
-title: "Delete Calendar"
-description: "Delete a calendar and its events"
+title: "Excluir Calendário"
+description: "Excluir um calendário e seus eventos"
 api: "DELETE /api/v1/calendars/{calendar_id}"
 ---
 
-# Delete Calendar
+# Excluir Calendário
 
-Permanently delete a calendar, along with its events, members, availability rules, and provider connections.
+Excluir permanentemente um calendário, junto com seus eventos, membros, regras de disponibilidade e conexões com provedores.
 
 <Warning>
-  This is irreversible.
+  Esta ação é irreversível.
 </Warning>
 
 ## Endpoint
@@ -18,17 +18,17 @@ Permanently delete a calendar, along with its events, members, availability rule
 DELETE /api/v1/calendars/{calendar_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -39,7 +39,7 @@ curl -X DELETE "https://talkover.app/api/v1/calendars/calendar-uuid-1" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

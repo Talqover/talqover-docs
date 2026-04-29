@@ -1,12 +1,12 @@
 ---
-title: "List Action Integrations"
-description: "Retrieve the catalog of available action integrations"
+title: "Listar Integrações de Ação"
+description: "Recuperar o catálogo de integrações de ação disponíveis"
 api: "GET /api/v1/action-integrations"
 ---
 
-# List Action Integrations
+# Listar Integrações de Ação
 
-Retrieve the catalog of pre-built integrations that can be attached to agent actions. Each integration includes the metadata you need to configure it (display name, category, configuration schema).
+Recupera o catálogo de integrações pré-construídas que podem ser anexadas a ações de agente. Cada integração inclui os metadados necessários para configurá-la (nome de exibição, categoria, schema de configuração).
 
 ## Endpoint
 
@@ -14,13 +14,13 @@ Retrieve the catalog of pre-built integrations that can be attached to agent act
 GET /api/v1/action-integrations
 ```
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -31,7 +31,7 @@ curl "https://talkover.app/api/v1/action-integrations" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -66,29 +66,29 @@ curl "https://talkover.app/api/v1/action-integrations" \
 
 </ResponseExample>
 
-### Response Fields
+### Campos da Resposta
 
 <ResponseField name="data[].identifier" type="string" required>
-  Unique identifier used when creating an action with `integration: { id: "<identifier>" }`.
+  Identificador único usado ao criar uma ação com `integration: { id: "<identifier>" }`.
 </ResponseField>
 
 <ResponseField name="data[].display_name" type="string" required>
-  Human-readable name shown in the dashboard.
+  Nome legível exibido no painel.
 </ResponseField>
 
 <ResponseField name="data[].description" type="string">
-  Short description of what the integration does.
+  Descrição curta do que a integração faz.
 </ResponseField>
 
 <ResponseField name="data[].category" type="string">
-  Group the integration belongs to (e.g., `scheduling`, `data`, `communication`).
+  Grupo ao qual a integração pertence (ex: `scheduling`, `data`, `communication`).
 </ResponseField>
 
 <ResponseField name="data[].icon_url" type="string">
-  Public URL of an icon for the integration.
+  URL pública de um ícone para a integração.
 </ResponseField>
 
-## Notes
+## Observações
 
-- Use the `identifier` value when creating an action via [Create Action](/api-reference/endpoints/create-action) — pass it as `integration.id`.
-- Categories are stable; the integration list may grow over time.
+- Use o valor `identifier` ao criar uma ação via [Criar Ação](/api-reference/endpoints/create-action) — passe-o como `integration.id`.
+- As categorias são estáveis; a lista de integrações pode crescer ao longo do tempo.

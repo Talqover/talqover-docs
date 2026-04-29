@@ -1,12 +1,12 @@
 ---
-title: "Publish Agent"
-description: "Publish an agent to make it active and available to receive or place calls"
+title: "Publicar Agente"
+description: "Publicar um agente para torná-lo ativo e disponível para receber ou realizar chamadas"
 api: "POST /api/v1/agents/{agent_id}/publish"
 ---
 
-# Publish Agent
+# Publicar Agente
 
-Publish an agent to mark it as active. A published agent can receive inbound calls or be used to place outbound calls.
+Publica um agente para marcá-lo como ativo. Um agente publicado pode receber chamadas de entrada ou ser usado para realizar chamadas de saída.
 
 ## Endpoint
 
@@ -14,19 +14,19 @@ Publish an agent to mark it as active. A published agent can receive inbound cal
 POST /api/v1/agents/{agent_id}/publish
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="agent_id" type="string" required>
-  The unique identifier of the voice agent to publish.
+  O identificador único do agente de voz a ser publicado.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -58,7 +58,7 @@ result = response.json()
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -78,8 +78,8 @@ result = response.json()
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- The agent must be properly configured (knowledge, voice, calling settings) before it can be published. If `is_ready_to_publish` is `false`, the publish call will fail with a `422` validation error explaining what's missing.
-- Publishing an outbound agent does not start any calls — use [Make a Call](/api-reference/endpoints/make-call) to dispatch outbound calls.
-- To temporarily disable a published agent, use [Unpublish Agent](/api-reference/endpoints/unpublish-agent).
+- O agente deve estar devidamente configurado (conhecimento, voz, configurações de chamada) antes de poder ser publicado. Se `is_ready_to_publish` for `false`, a chamada de publicação falhará com um erro de validação `422` explicando o que está faltando.
+- Publicar um agente de saída não inicia chamadas — use [Realizar uma Chamada](/api-reference/endpoints/make-call) para despachar chamadas de saída.
+- Para desativar temporariamente um agente publicado, use [Despublicar Agente](/api-reference/endpoints/unpublish-agent).

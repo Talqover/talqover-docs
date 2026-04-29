@@ -1,12 +1,12 @@
 ---
-title: "Update Callback Sources"
-description: "Update the list of source agents for a callback agent"
+title: "Atualizar Origens de Callback"
+description: "Atualizar a lista de agentes de origem de um agente de callback"
 api: "PUT /api/v1/agents/{agent_id}/callback"
 ---
 
-# Update Callback Sources
+# Atualizar Origens de Callback
 
-Replace the list of source agents associated with this callback agent. The provided list completely replaces the existing one.
+Substitui a lista de agentes de origem associados a este agente de callback. A lista fornecida substitui completamente a existente.
 
 ## Endpoint
 
@@ -14,27 +14,27 @@ Replace the list of source agents associated with this callback agent. The provi
 PUT /api/v1/agents/{agent_id}/callback
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>UUID of the callback agent.</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente de callback.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="source_agent_ids" type="array" required>
-  New full list of outbound agent UUIDs that should route callbacks here. Must contain at least one entry.
+  Nova lista completa de UUIDs de agentes outbound que devem rotear callbacks para este agente. Deve conter pelo menos uma entrada.
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -49,7 +49,7 @@ curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid-1/callback" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -67,7 +67,7 @@ curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid-1/callback" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- This is a **replace** operation, not append. To remove all sources but keep the callback role, send an empty array — but note that an empty array fails validation; use [Remove Callback Role](/api-reference/endpoints/remove-callback-role) instead.
-- To add or remove individual sources, fetch the current list with [Get Callback Agent](/api-reference/endpoints/get-callback-agent), modify it, then send the full updated list here.
+- Esta é uma operação de **substituição**, não de adição. Para remover todas as origens mas manter o papel de callback, envie um array vazio — porém note que um array vazio falha na validação; use [Remover Papel de Callback](/api-reference/endpoints/remove-callback-role) em vez disso.
+- Para adicionar ou remover origens individuais, busque a lista atual com [Obter Agente de Callback](/api-reference/endpoints/get-callback-agent), modifique-a e então envie a lista atualizada completa aqui.

@@ -1,12 +1,12 @@
 ---
-title: "List Agent Flow Versions"
-description: "List historical versions of an agent's flow configuration"
+title: "Listar Versões do Fluxo do Agente"
+description: "Listar versões históricas da configuração de fluxo de um agente"
 api: "GET /api/v1/agents/{agent_id}/flow/versions"
 ---
 
-# List Agent Flow Versions
+# Listar Versões do Fluxo do Agente
 
-List historical versions of an agent's flow configuration. Each save produces a version entry that can be inspected.
+Lista as versões históricas da configuração de fluxo de um agente. Cada salvamento gera uma entrada de versão que pode ser inspecionada.
 
 ## Endpoint
 
@@ -14,17 +14,17 @@ List historical versions of an agent's flow configuration. Each save produces a 
 GET /api/v1/agents/{agent_id}/flow/versions
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -35,7 +35,7 @@ curl "https://talkover.app/api/v1/agents/agent-uuid/flow/versions" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -69,7 +69,7 @@ curl "https://talkover.app/api/v1/agents/agent-uuid/flow/versions" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Versioning is automatic on every flow update.
-- Restoring an older version requires fetching its `flow_config` and submitting via [Update Agent Flow](/api-reference/endpoints/update-agent-flow).
+- O versionamento é automático em cada atualização de fluxo.
+- Restaurar uma versão anterior requer buscar seu `flow_config` e enviá-lo via [Atualizar Fluxo do Agente](/api-reference/endpoints/update-agent-flow).

@@ -1,12 +1,12 @@
 ---
-title: "Disconnect Provider"
-description: "Remove a calendar's connection to an external provider"
+title: "Desconectar Provedor"
+description: "Remover a conexão de um calendário com um provedor externo"
 api: "DELETE /api/v1/calendars/{calendar_id}/providers/{provider_id}"
 ---
 
-# Disconnect Provider
+# Desconectar Provedor
 
-Remove a calendar's connection to an external provider. Existing events that were synced from the provider are preserved but stop receiving updates.
+Remover a conexão de um calendário com um provedor externo. Eventos existentes que foram sincronizados a partir do provedor são preservados, mas deixam de receber atualizações.
 
 ## Endpoint
 
@@ -14,18 +14,18 @@ Remove a calendar's connection to an external provider. Existing events that wer
 DELETE /api/v1/calendars/{calendar_id}/providers/{provider_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
-<ParamField path="provider_id" type="string" required>Provider connection UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
+<ParamField path="provider_id" type="string" required>UUID da conexão com o provedor.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -36,7 +36,7 @@ curl -X DELETE "https://talkover.app/api/v1/calendars/calendar-uuid-1/providers/
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

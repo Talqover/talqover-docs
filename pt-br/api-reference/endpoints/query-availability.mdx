@@ -1,12 +1,12 @@
 ---
-title: "Query Availability"
-description: "Compute available time slots for a calendar"
+title: "Consultar Disponibilidade"
+description: "Calcular horários disponíveis de um calendário"
 api: "GET /api/v1/calendars/{calendar_id}/availability"
 ---
 
-# Query Availability
+# Consultar Disponibilidade
 
-Compute available time slots for a calendar over a given range, applying recurring rules, exceptions, and existing events as busy time.
+Calcular horários disponíveis de um calendário em um intervalo determinado, aplicando regras recorrentes, exceções e eventos existentes como horário ocupado.
 
 ## Endpoint
 
@@ -14,23 +14,23 @@ Compute available time slots for a calendar over a given range, applying recurri
 GET /api/v1/calendars/{calendar_id}/availability
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
 
-## Query Parameters
+## Parâmetros de Consulta
 
-<ParamField query="from" type="string" required>Range start. ISO 8601.</ParamField>
-<ParamField query="to" type="string" required>Range end. ISO 8601.</ParamField>
-<ParamField query="duration_minutes" type="integer">Slot length to compute. Default: `30`.</ParamField>
+<ParamField query="from" type="string" required>Início do intervalo. ISO 8601.</ParamField>
+<ParamField query="to" type="string" required>Fim do intervalo. ISO 8601.</ParamField>
+<ParamField query="duration_minutes" type="integer">Duração do horário a calcular. Padrão: `30`.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -41,7 +41,7 @@ curl "https://talkover.app/api/v1/calendars/calendar-uuid-1/availability?from=20
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -58,7 +58,7 @@ curl "https://talkover.app/api/v1/calendars/calendar-uuid-1/availability?from=20
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Slots fall within recurring rules and exclude busy events and exception dates.
-- Use this endpoint to power scheduling agents — let the agent offer caller these slots.
+- Os horários ficam dentro das regras recorrentes e excluem eventos ocupados e datas de exceção.
+- Use este endpoint para alimentar agentes de agendamento — deixe que o agente ofereça esses horários ao interlocutor.

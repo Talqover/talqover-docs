@@ -1,12 +1,12 @@
 ---
-title: "Update Availability Rule"
-description: "Update an availability rule"
+title: "Atualizar Regra de Disponibilidade"
+description: "Atualizar uma regra de disponibilidade"
 api: "PUT /api/v1/calendars/{calendar_id}/availability-rules/{rule_id}"
 ---
 
-# Update Availability Rule
+# Atualizar Regra de Disponibilidade
 
-Update an existing availability rule. All fields are optional.
+Atualizar uma regra de disponibilidade existente. Todos os campos são opcionais.
 
 ## Endpoint
 
@@ -14,24 +14,24 @@ Update an existing availability rule. All fields are optional.
 PUT /api/v1/calendars/{calendar_id}/availability-rules/{rule_id}
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="calendar_id" type="string" required>Calendar UUID.</ParamField>
-<ParamField path="rule_id" type="string" required>Availability rule UUID.</ParamField>
+<ParamField path="calendar_id" type="string" required>UUID do calendário.</ParamField>
+<ParamField path="rule_id" type="string" required>UUID da regra de disponibilidade.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-<ParamField header="Content-Type" type="string" required>Must be `application/json`.</ParamField>
+<ParamField header="Content-Type" type="string" required>Deve ser `application/json`.</ParamField>
 
-## Request Body
+## Corpo da Requisição
 
-Same fields as [Create Availability Rule](/api-reference/endpoints/create-availability-rule), all optional.
+Mesmos campos de [Criar Regra de Disponibilidade](/api-reference/endpoints/create-availability-rule), todos opcionais.
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -44,7 +44,7 @@ curl -X PUT "https://talkover.app/api/v1/calendars/calendar-uuid-1/availability-
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 

@@ -1,12 +1,12 @@
 ---
-title: "Create/Update Action"
-description: "Create new actions or update existing actions for a voice agent"
+title: "Criar/Atualizar Ação"
+description: "Criar novas ações ou atualizar ações existentes para um agente de voz"
 api: "POST /api/v1/agents/{agent_id}/actions"
 ---
 
-# Create/Update Action
+# Criar/Atualizar Ação
 
-Create new actions or update existing actions for a voice agent. This endpoint allows you to configure webhooks, call transfers, holds, and other actions that the agent can perform during conversations.
+Criar novas ações ou atualizar ações existentes para um agente de voz. Este endpoint permite configurar webhooks, transferências de chamada, holds e outras ações que o agente pode executar durante as conversas.
 
 ## Endpoint
 
@@ -14,91 +14,91 @@ Create new actions or update existing actions for a voice agent. This endpoint a
 POST /api/v1/agents/{agent_id}/actions
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
 <ParamField path="agent" type="string" required>
-  The unique identifier of the voice agent. You can find this in your dashboard under Voice Agents.
+  O identificador único do agente de voz. Você pode encontrá-lo em seu painel, na seção Agentes de Voz.
 </ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token for authentication. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="node_id" type="string" required>
-  Action node ID for workflow integration
+  ID do nó da ação para integração com o fluxo de trabalho
 </ParamField>
 
 <ParamField body="name" type="string" required>
-  Action name (max 255 characters)
+  Nome da ação (máximo de 255 caracteres)
 </ParamField>
 
 <ParamField body="description" type="string" required>
-  Detailed description of what the action does
+  Descrição detalhada do que a ação faz
 </ParamField>
 
 <ParamField body="type" type="string" required>
-  Action type. Options: `webhook`, `transfer`, `hold`, etc.
+  Tipo da ação. Opções: `webhook`, `transfer`, `hold`, etc.
 </ParamField>
 
 <ParamField body="inputs" type="array" required={false}>
-  Array of input parameters for the action
+  Array de parâmetros de entrada para a ação
 </ParamField>
 
 <ParamField body="integration" type="object" required={false}>
-  Integration configuration object
+  Objeto de configuração da integração
 </ParamField>
 
 <ParamField body="url" type="string" required={false}>
-  Webhook URL (must be a valid URL — used by `webhook` actions).
+  URL do webhook (deve ser uma URL válida — usada por ações `webhook`).
 </ParamField>
 
 <ParamField body="authorization_url" type="string" required={false}>
-  Authorization URL (must be a valid URL — used by `webhook` actions when the target requires a separate authorization endpoint).
+  URL de autorização (deve ser uma URL válida — usada por ações `webhook` quando o destino requer um endpoint de autorização separado).
 </ParamField>
 
 <ParamField body="authorization_scheme" type="string" required={false}>
-  Authorization scheme used when calling `url`. Options: `none`, `bearer`, `basic`, `api_key`, `custom`. Default: `none`.
+  Esquema de autorização usado ao chamar `url`. Opções: `none`, `bearer`, `basic`, `api_key`, `custom`. Padrão: `none`.
 </ParamField>
 
 <ParamField body="custom_headers" type="array" required={false}>
-  Array of custom HTTP headers to send with the webhook request. Each item is `{ "key": "Header-Name", "value": "header-value" }`.
+  Array de cabeçalhos HTTP customizados a enviar com a requisição do webhook. Cada item é `{ "key": "Header-Name", "value": "header-value" }`.
 </ParamField>
 
 <ParamField body="speak_on_send" type="string" required={false}>
-  Phrase the agent will say when the webhook is triggered (before the call to `url`). Useful to keep the conversation natural while the integration runs.
+  Frase que o agente dirá quando o webhook for acionado (antes da chamada para `url`). Útil para manter a conversa natural enquanto a integração é executada.
 </ParamField>
 
 <ParamField body="speak_on_receive" type="string" required={false}>
-  Phrase the agent will say after the webhook responds successfully. The webhook response can be referenced via template variables.
+  Frase que o agente dirá após o webhook responder com sucesso. A resposta do webhook pode ser referenciada via variáveis de template.
 </ParamField>
 
 <ParamField body="execution_mode" type="string" required={false}>
-  Defines when the action runs. Options:
-  - `during_call` (default) — webhook runs during the conversation, response is consumed by the agent
-  - `post_call` — webhook runs after the call ends (only valid for `external` action type)
+  Define quando a ação é executada. Opções:
+  - `during_call` (padrão) — webhook executa durante a conversa, a resposta é consumida pelo agente
+  - `post_call` — webhook executa após o término da chamada (válido apenas para o tipo de ação `external`)
 </ParamField>
 
 <ParamField body="hold_duration" type="integer" required={false}>
-  Hold duration in seconds (for `hold` actions).
+  Duração do hold em segundos (para ações `hold`).
 </ParamField>
 
 <ParamField body="transfer_to" type="string" required={false}>
-  Transfer destination phone number in E.164 format (for `transfer` actions).
+  Número de telefone de destino da transferência no formato E.164 (para ações `transfer`).
 </ParamField>
 
 <ParamField body="current_status" type="string" required={false}>
-  Action status. Options: `active`, `inactive`. Default: `active`.
+  Status da ação. Opções: `active`, `inactive`. Padrão: `active`.
 </ParamField>
 
-## Example Requests
+## Exemplos de Requisição
 
 <RequestExample>
 
@@ -295,9 +295,9 @@ console.log(result);
 
 </RequestExample>
 
-## Response
+## Resposta
 
-### Success Response (200 OK)
+### Resposta de Sucesso (200 OK)
 
 <ResponseExample>
 
@@ -338,65 +338,65 @@ console.log(result);
 
 </ResponseExample>
 
-### Response Fields
+### Campos da Resposta
 
 <ResponseField name="success" type="boolean" required>
-  Indicates if the operation was successful.
+  Indica se a operação foi bem-sucedida.
 </ResponseField>
 
 <ResponseField name="message" type="string" required>
-  Success message confirming the action was created or updated.
+  Mensagem de sucesso confirmando que a ação foi criada ou atualizada.
 </ResponseField>
 
 <ResponseField name="data" type="object" required>
-  The created or updated action object.
+  O objeto de ação criado ou atualizado.
 
-  <Expandable title="Action Object">
+  <Expandable title="Objeto de Ação">
     <ResponseField name="id" type="string" required>
-      Unique identifier for the action.
+      Identificador único da ação.
     </ResponseField>
     <ResponseField name="name" type="string" required>
-      The name of the action.
+      O nome da ação.
     </ResponseField>
     <ResponseField name="label" type="string" required>
-      Display label for the action.
+      Rótulo de exibição da ação.
     </ResponseField>
     <ResponseField name="description" type="string" required>
-      Detailed description of what the action does.
+      Descrição detalhada do que a ação faz.
     </ResponseField>
     <ResponseField name="type" type="string" required>
-      Type of action. Options: `webhook`, `transfer`, `hold`, etc.
+      Tipo da ação. Opções: `webhook`, `transfer`, `hold`, etc.
     </ResponseField>
     <ResponseField name="input_schema" type="array" required>
-      Array of input parameters required for the action.
+      Array de parâmetros de entrada exigidos pela ação.
     </ResponseField>
     <ResponseField name="config" type="object">
-      Configuration object for the action (if applicable).
+      Objeto de configuração da ação (se aplicável).
     </ResponseField>
     <ResponseField name="action_trigger" type="object">
-      Trigger conditions for the action (if applicable).
+      Condições de gatilho para a ação (se aplicável).
     </ResponseField>
     <ResponseField name="url" type="string">
-      Webhook URL for webhook-type actions.
+      URL do webhook para ações do tipo webhook.
     </ResponseField>
     <ResponseField name="authorization_url" type="string">
-      Authorization URL for webhook-type actions.
+      URL de autorização para ações do tipo webhook.
     </ResponseField>
     <ResponseField name="current_status" type="string" required>
-      Current status of the action. Options: `active`, `inactive`.
+      Status atual da ação. Opções: `active`, `inactive`.
     </ResponseField>
     <ResponseField name="created_at" type="string" required>
-      ISO 8601 timestamp when the action was created.
+      Timestamp ISO 8601 quando a ação foi criada.
     </ResponseField>
     <ResponseField name="updated_at" type="string" required>
-      ISO 8601 timestamp when the action was last updated.
+      Timestamp ISO 8601 quando a ação foi atualizada pela última vez.
     </ResponseField>
   </Expandable>
 </ResponseField>
 
-## Error Responses
+## Respostas de Erro
 
-### Validation Error (422)
+### Erro de Validação (422)
 
 <ResponseExample>
 
@@ -423,7 +423,7 @@ console.log(result);
 
 </ResponseExample>
 
-### 404 Not Found
+### 404 Não Encontrado
 
 <ResponseExample>
 
@@ -436,7 +436,7 @@ console.log(result);
 
 </ResponseExample>
 
-### 401 Unauthorized
+### 401 Não Autorizado
 
 <ResponseExample>
 
@@ -449,7 +449,7 @@ console.log(result);
 
 </ResponseExample>
 
-### 403 Forbidden
+### 403 Proibido
 
 <ResponseExample>
 
@@ -462,7 +462,7 @@ console.log(result);
 
 </ResponseExample>
 
-### 500 Server Error
+### 500 Erro do Servidor
 
 <ResponseExample>
 
@@ -475,42 +475,42 @@ console.log(result);
 
 </ResponseExample>
 
-## Error Codes
+## Códigos de Erro
 
-| Code | Description | HTTP Status |
-|------|-------------|-------------|
-| `AGENT_NOT_FOUND` | Specified agent does not exist | 404 |
-| `INVALID_TOKEN` | Authentication token is invalid or missing | 401 |
-| `UNAUTHORIZED` | User does not have permission to create actions for this agent | 403 |
-| `VALIDATION_ERROR` | Request data validation failed | 422 |
-| `SERVER_ERROR` | Internal server error occurred | 500 |
+| Código | Descrição | Status HTTP |
+|--------|-----------|-------------|
+| `AGENT_NOT_FOUND` | O agente especificado não existe | 404 |
+| `INVALID_TOKEN` | Token de autenticação inválido ou ausente | 401 |
+| `UNAUTHORIZED` | O usuário não tem permissão para criar ações para este agente | 403 |
+| `VALIDATION_ERROR` | A validação dos dados da requisição falhou | 422 |
+| `SERVER_ERROR` | Erro interno do servidor ocorreu | 500 |
 
-## Important Notes
+## Observações Importantes
 
 <Info>
-  **Agent status will be set to draft.** After creating or updating actions, the agent will be automatically set to "draft" status and will need to be published again to become active.
+  **O status do agente será definido como rascunho.** Após criar ou atualizar ações, o agente será automaticamente definido como status "draft" e precisará ser publicado novamente para se tornar ativo.
 </Info>
 
 <Info>
-  **Action types have different requirements.** Different action types (webhook, transfer, hold) require different parameters and configurations.
+  **Tipos de ação têm requisitos diferentes.** Diferentes tipos de ação (webhook, transfer, hold) requerem parâmetros e configurações diferentes.
 </Info>
 
 <Warning>
-  **URL validation.** For webhook actions, both `url` and `authorization_url` must be valid URLs.
+  **Validação de URL.** Para ações de webhook, tanto `url` quanto `authorization_url` devem ser URLs válidas.
 </Warning>
 
-## Best Practices
+## Melhores Práticas
 
-1. **Test webhook URLs** - Always test webhook URLs before creating actions
-2. **Use descriptive names** - Give actions clear, descriptive names
-3. **Validate inputs** - Ensure all required input parameters are properly defined
-4. **Handle errors gracefully** - Implement proper error handling for action execution
-5. **Monitor action performance** - Track how often actions are triggered and their success rates
-6. **Document action behavior** - Provide clear descriptions of what each action does
+1. **Teste URLs de webhook** - Sempre teste URLs de webhook antes de criar ações
+2. **Use nomes descritivos** - Dê às ações nomes claros e descritivos
+3. **Valide entradas** - Garanta que todos os parâmetros de entrada exigidos estejam adequadamente definidos
+4. **Trate erros graciosamente** - Implemente tratamento adequado de erros para a execução das ações
+5. **Monitore o desempenho das ações** - Acompanhe com que frequência as ações são acionadas e suas taxas de sucesso
+6. **Documente o comportamento das ações** - Forneça descrições claras do que cada ação faz
 
-## Related Endpoints
+## Endpoints Relacionados
 
-- **List Actions**: `GET /api/v1/agents/{agent_id}/actions`
-- **Delete Action**: `DELETE /api/v1/agents/{agent_id}/actions/{action_id}`
-- **Get Agent**: `GET /api/v1/agents/{agent_id}`
-- **Publish Agent**: `POST /api/v1/agents/{agent_id}/publish`
+- **Listar Ações**: `GET /api/v1/agents/{agent_id}/actions`
+- **Excluir Ação**: `DELETE /api/v1/agents/{agent_id}/actions/{action_id}`
+- **Obter Agente**: `GET /api/v1/agents/{agent_id}`
+- **Publicar Agente**: `POST /api/v1/agents/{agent_id}/publish`

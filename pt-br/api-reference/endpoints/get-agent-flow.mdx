@@ -1,12 +1,12 @@
 ---
-title: "Get Agent Flow"
-description: "Retrieve an agent's conversation flow configuration"
+title: "Obter Fluxo do Agente"
+description: "Recuperar a configuração do fluxo de conversação de um agente"
 api: "GET /api/v1/agents/{agent_id}/flow"
 ---
 
-# Get Agent Flow
+# Obter Fluxo do Agente
 
-Retrieve the agent's current conversation mode and flow configuration. Agents can run in two modes: `llm_driven` (default — the LLM steers the conversation freely with knowledge/actions) or `flow_driven` (a node-based graph dictates the conversation flow).
+Recupera o modo de conversação atual e a configuração do Fluxo de Conversação do agente. Os agentes podem operar em dois modos: `llm_driven` (padrão — o LLM conduz a conversa livremente, com conhecimento/ações) ou `flow_driven` (um grafo baseado em nós dita o fluxo da conversa).
 
 ## Endpoint
 
@@ -14,17 +14,17 @@ Retrieve the agent's current conversation mode and flow configuration. Agents ca
 GET /api/v1/agents/{agent_id}/flow
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
@@ -35,7 +35,7 @@ curl "https://talkover.app/api/v1/agents/agent-uuid/flow" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -76,12 +76,12 @@ curl "https://talkover.app/api/v1/agents/agent-uuid/flow" \
 
 </ResponseExample>
 
-### Conversation Modes
+### Modos de Conversação
 
-- `llm_driven` — agent behavior is governed by knowledge, voice, and actions. `flow_config` is `null`.
-- `flow_driven` — a node graph dictates each turn. Use this for highly structured conversations (qualification, intake, scripted outreach).
+- `llm_driven` — o comportamento do agente é regido por conhecimento, voz e ações. `flow_config` é `null`.
+- `flow_driven` — um grafo de nós dita cada turno. Use este modo para conversas altamente estruturadas (qualificação, intake, abordagem com script).
 
-## Notes
+## Observações
 
-- The flow schema is detailed — see [Update Agent Flow](/api-reference/endpoints/update-agent-flow) for the full field reference.
-- Validation can be run independently with [Validate Agent Flow](/api-reference/endpoints/validate-agent-flow) before saving.
+- O esquema do fluxo é detalhado — veja [Atualizar Fluxo do Agente](/api-reference/endpoints/update-agent-flow) para a referência completa de campos.
+- A validação pode ser executada de forma independente com [Validar Fluxo do Agente](/api-reference/endpoints/validate-agent-flow) antes de salvar.

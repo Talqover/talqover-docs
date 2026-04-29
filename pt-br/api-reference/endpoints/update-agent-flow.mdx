@@ -1,12 +1,12 @@
 ---
-title: "Update Agent Flow"
-description: "Update an agent's conversation mode and flow configuration"
+title: "Atualizar Fluxo do Agente"
+description: "Atualizar o modo de conversação e a configuração de fluxo de um agente"
 api: "PUT /api/v1/agents/{agent_id}/flow"
 ---
 
-# Update Agent Flow
+# Atualizar Fluxo do Agente
 
-Update an agent's conversation mode and (when applicable) the structured flow configuration. Submitting an invalid flow returns a 422 with details — use [Validate Agent Flow](/api-reference/endpoints/validate-agent-flow) to dry-run validation before saving.
+Atualiza o modo de conversação de um agente e (quando aplicável) a configuração estruturada do fluxo. Submeter um fluxo inválido retorna um 422 com detalhes — use [Validar Fluxo do Agente](/api-reference/endpoints/validate-agent-flow) para executar a validação em modo de teste antes de salvar.
 
 ## Endpoint
 
@@ -14,53 +14,53 @@ Update an agent's conversation mode and (when applicable) the structured flow co
 PUT /api/v1/agents/{agent_id}/flow
 ```
 
-## Path Parameters
+## Parâmetros de Caminho
 
-<ParamField path="agent_id" type="string" required>Agent UUID.</ParamField>
+<ParamField path="agent_id" type="string" required>UUID do agente.</ParamField>
 
-## Request Headers
+## Cabeçalhos da Requisição
 
 <ParamField header="Authorization" type="string" required>
-  Bearer token. Format: `Bearer talq_your_environment_token_here`
+  Token Bearer para autenticação. Formato: `Bearer talq_your_environment_token_here`
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Must be set to `application/json`
+  Deve ser definido como `application/json`
 </ParamField>
 
-## Request Body
+## Corpo da Requisição
 
 <ParamField body="conversation_mode" type="string" required>
-  Conversation mode. Options:
-  - `llm_driven` — LLM-guided conversation (knowledge + actions). Send `flow_config: null` or omit.
-  - `flow_driven` — node-graph driven. `flow_config` is required.
+  Modo de conversação. Opções:
+  - `llm_driven` — conversa guiada por LLM (conhecimento + ações). Envie `flow_config: null` ou omita.
+  - `flow_driven` — guiado por grafo de nós. `flow_config` é obrigatório.
 </ParamField>
 
 <ParamField body="flow_config" type="object">
-  Flow definition. Required when `conversation_mode` is `flow_driven`.
+  Definição do fluxo. Obrigatório quando `conversation_mode` é `flow_driven`.
 
-  <Expandable title="flow_config object">
+  <Expandable title="objeto flow_config">
     <ParamField body="initial_node_id" type="string" required>
-      ID of the entry node. Must reference an existing node in `nodes`.
+      ID do nó de entrada. Deve referenciar um nó existente em `nodes`.
     </ParamField>
     <ParamField body="meta" type="object">
-      Optional metadata: `{ "name": "string", "version": "string" }`.
+      Metadados opcionais: `{ "name": "string", "version": "string" }`.
     </ParamField>
     <ParamField body="nodes" type="array" required>
-      Array of node objects. Each node has at minimum: `id` (string, unique), `type` (`say`, `ask`, `decision`, `action`, `transfer`, `end`), and type-specific fields (`content`, `next`, `branches`, etc.).
+      Array de objetos de nó. Cada nó tem no mínimo: `id` (string, único), `type` (`say`, `ask`, `decision`, `action`, `transfer`, `end`), e campos específicos do tipo (`content`, `next`, `branches`, etc.).
     </ParamField>
     <ParamField body="global_functions" type="array">
-      Functions invocable from any node. Common entries: `end_conversation`, `transfer_call`, `repeat_question`.
+      Funções invocáveis a partir de qualquer nó. Entradas comuns: `end_conversation`, `transfer_call`, `repeat_question`.
     </ParamField>
   </Expandable>
 </ParamField>
 
-## Examples
+## Exemplos
 
 <RequestExample>
 
 ```bash
-# Switch to llm_driven mode
+# Mudar para o modo llm_driven
 curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid/flow" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
@@ -68,7 +68,7 @@ curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid/flow" \
 ```
 
 ```bash
-# Set a flow-driven configuration
+# Definir uma configuração flow-driven
 curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid/flow" \
   -H "Authorization: Bearer talq_your_environment_token_here" \
   -H "Content-Type: application/json" \
@@ -90,7 +90,7 @@ curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid/flow" \
 
 </RequestExample>
 
-## Response
+## Resposta
 
 <ResponseExample>
 
@@ -106,9 +106,9 @@ curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid/flow" \
 
 </ResponseExample>
 
-## Error Responses
+## Respostas de Erro
 
-### 422 — Invalid Flow
+### 422 — Fluxo Inválido
 
 <ResponseExample>
 
@@ -125,7 +125,7 @@ curl -X PUT "https://talkover.app/api/v1/agents/agent-uuid/flow" \
 
 </ResponseExample>
 
-## Notes
+## Observações
 
-- Updating the flow does not change the agent's status — but published agents need to be re-published if the flow change is breaking.
-- See [List Flow Versions](/api-reference/endpoints/list-agent-flow-versions) to track historical configurations.
+- Atualizar o fluxo não altera o status do agente — mas agentes publicados precisam ser republicados se a alteração no fluxo for incompatível (breaking).
+- Veja [Listar Versões do Fluxo](/api-reference/endpoints/list-agent-flow-versions) para acompanhar configurações históricas.
